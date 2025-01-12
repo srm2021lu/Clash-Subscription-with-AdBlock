@@ -263,6 +263,23 @@ proxy-providers:
               - "Clash/v1.18.0"
               - "mihomo/1.18.3"
       path: ./profile/proxy_providers/xiaofeixia.yaml
+    Aggregator_Aoip:
+      url: https://aggregator.aoip.top/
+      health-check:
+         enable: true
+         interval: 3600
+         proxy: DIRECT
+         url: "https://cp.cloudflare.com/generate_204"
+      type: http
+      lazy: true
+      interval: 3600
+      override:
+         skip-cert-verify: true
+      header:
+         User-Agent:
+              - "Clash/v1.18.0"
+              - "mihomo/1.18.3"
+      path: ./profile/proxy_providers/aggregator_aoip.yaml
 proxy-groups:
     - name: auto
       health-check:
