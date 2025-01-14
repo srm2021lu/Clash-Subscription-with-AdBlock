@@ -6,8 +6,8 @@ lan-allowed-ips:
     - ::/0
 bind-address: 127.0.0.1
 mode: rule
-#keep-alive-interval: 15
-#keep-alive-idle: 15
+keep-alive-interval: 15
+keep-alive-idle: 15
 ipv6: true
 disable-keep-alive: false
 find-process-mode: always
@@ -97,12 +97,12 @@ proxy-providers:
       url: "https://sub.tgzdyz2.xyz/sub"
       health-check:
          enable: true
-         interval: 3600
+         interval: 300
          proxy: DIRECT
          url: "https://cp.cloudflare.com/generate_204"
       type: http
       lazy: true
-      interval: 3600
+      interval: 300
       override:
          skip-cert-verify: true
       header:
@@ -114,12 +114,12 @@ proxy-providers:
       url: "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.yml"
       health-check:
          enable: true
-         interval: 3600
+         interval: 300
          proxy: DIRECT
          url: "https://cp.cloudflare.com/generate_204"
       type: http
       lazy: true
-      interval: 3600
+      interval: 300
       override:
          skip-cert-verify: true
       header:
@@ -131,12 +131,12 @@ proxy-providers:
       url: "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.yml"
       health-check:
          enable: true
-         interval: 3600
+         interval: 300
          proxy: DIRECT
          url: "https://cp.cloudflare.com/generate_204"
       type: http
       lazy: true
-      interval: 3600
+      interval: 300
       override:
          skip-cert-verify: true
       header:
@@ -148,12 +148,12 @@ proxy-providers:
       url: "https://s.subcsub.com/Yobm51S"
       health-check:
          enable: true
-         interval: 3600
+         interval: 300
          proxy: DIRECT
          url: "https://cp.cloudflare.com/generate_204"
       type: http
       lazy: true
-      interval: 3600
+      interval: 300
       override:
          skip-cert-verify: true
       header:
@@ -165,12 +165,12 @@ proxy-providers:
       url: "https://sub.htg8866.us.kg/sublink98765"
       health-check:
          enable: true
-         interval: 3600
+         interval: 300
          proxy: DIRECT
          url: "https://cp.cloudflare.com/generate_204"
       type: http
       lazy: true
-      interval: 3600
+      interval: 300
       override:
          skip-cert-verify: true
       header:
@@ -182,12 +182,12 @@ proxy-providers:
       url: "https://super.jack991.filegear-sg.me/"
       health-check:
          enable: true
-         interval: 3600
+         interval: 300
          proxy: DIRECT
          url: "https://cp.cloudflare.com/generate_204"
       type: http
       lazy: true
-      interval: 3600
+      interval: 300
       override:
          skip-cert-verify: true
       header:
@@ -199,12 +199,12 @@ proxy-providers:
       url: "https://subapi.fxxk.dedyn.io/sub?&url=https%3A%2F%2Fraw.githubusercontent.com%2FPawdroid%2FFree-servers%2Fmain%2Fstatic%2Fsub_en&target=clash&new_name=true&config=https%3A%2F%2Fraw.githubusercontent.com%2FMazeorz%2Fairports%2Fmaster%2FClash%2FStitch.ini&emoji=false&append_type=true&append_info=true&scv=false&udp=false&list=false&sort=false&fdn=true&insert=false"
       health-check:
          enable: true
-         interval: 3600
+         interval: 300
          proxy: DIRECT
          url: "https://cp.cloudflare.com/generate_204"
       type: http
       lazy: true
-      interval: 3600
+      interval: 300
       override:
          skip-cert-verify: true
       header:
@@ -216,12 +216,12 @@ proxy-providers:
       url: "https://subapi.fxxk.dedyn.io/sub?&url=https%3A%2F%2Fraw.githubusercontent.com%2FPawdroid%2FFree-servers%2Fmain%2Fsub%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FPawdroid%2FFree-servers%2Fmain%2Fsub&target=clash&config=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FSleepyHeeead%2Fsubconverter-config%40master%2Fremote-config%2Funiversal%2Furltest.ini&emoji=true&append_type=true&append_info=true&scv=false&udp=false&list=false&sort=false&fdn=true&insert=false"
       health-check:
          enable: true
-         interval: 3600
+         interval: 300
          proxy: DIRECT
          url: "https://cp.cloudflare.com/generate_204"
       type: http
       lazy: true
-      interval: 3600
+      interval: 300
       override:
          skip-cert-verify: true
       header:
@@ -233,12 +233,12 @@ proxy-providers:
       url: "https://subapi.fxxk.dedyn.io/sub?&url=https%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Frefs%2Fheads%2Fmain%2Fcountries%2Fsg%2Fmixed%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fcountries%2Fsg%2Fmixed%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Frefs%2Fheads%2Fmain%2Fcountries%2Fhk%2Fmixed%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fcountries%2Fhk%2Fmixed&target=clashr&emoji=false&append_type=true&append_info=true&scv=true&udp=true&list=true&sort=true&fdn=true&insert=true"
       health-check:
          enable: true
-         interval: 3600
+         interval: 300
          proxy: DIRECT
          url: "https://cp.cloudflare.com/generate_204"
       type: http
       lazy: true
-      interval: 3600
+      interval: 300
       override:
          skip-cert-verify: true
       header:
@@ -250,12 +250,12 @@ proxy-providers:
       url: https://youxiu3102.xiaofeixia.click/api/v1/client/subscribe?token=f6e955c105f50fc834e6cd35e206df5d&flag=meta&type=all
       health-check:
          enable: true
-         interval: 3600
+         interval: 300
          proxy: DIRECT
          url: "https://cp.cloudflare.com/generate_204"
       type: http
       lazy: true
-      interval: 3600
+      interval: 300
       override:
          skip-cert-verify: true
       header:
@@ -267,12 +267,12 @@ proxy-providers:
       url: https://aggregator.aoip.top/
       health-check:
          enable: true
-         interval: 3600
+         interval: 300
          proxy: DIRECT
          url: "https://cp.cloudflare.com/generate_204"
       type: http
       lazy: true
-      interval: 3600
+      interval: 300
       override:
          skip-cert-verify: true
       header:
@@ -284,12 +284,12 @@ proxy-providers:
       url: https://gist.zmy666.us.kg/
       health-check:
          enable: true
-         interval: 3600
+         interval: 300
          proxy: DIRECT
          url: "https://cp.cloudflare.com/generate_204"
       type: http
       lazy: true
-      interval: 3600
+      interval: 300
       override:
          skip-cert-verify: true
       header:
@@ -301,7 +301,7 @@ proxy-groups:
     - name: auto
       health-check:
          enable: true
-         interval: 3600
+         interval: 300
          url: "https://cp.cloudflare.com/generate_204"
       type: url-test
       lazy: true
@@ -310,7 +310,7 @@ proxy-groups:
     - name: load-balance
       health-check:
          enable: true
-         interval: 3600
+         interval: 300
          url: "https://cp.cloudflare.com/generate_204"
       type: load-balance
       lazy: true
@@ -319,7 +319,7 @@ proxy-groups:
     - name: fallback
       health-check:
          enable: true
-         interval: 3600
+         interval: 300
          url: "https://cp.cloudflare.com/generate_204"
       type: fallback
       lazy: true
@@ -330,6 +330,16 @@ rule-providers:
       behavior: domain
       url: "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling/hosts"
       path: ./profile/rules/StevenBlack.yaml
+    AdGuardSDNSFilter_All:
+      type: http
+      behavior: domain
+      url: "https://raw.githubusercontent.com/Repcz/EgernRules/refs/heads/X/Rules/AdGuardSDNSFilter/AdGuardSDNSFilter_All.yaml"
+      path: ./profile/rules/AdGuardSDNSFilter_All.yaml
+    BanProgramAD:
+      type: http
+      behavior: domain
+      url: "https://raw.githubusercontent.com/Repcz/ACL4SSR/refs/heads/X/Rules/BanProgramAD.list"
+      path: ./profile/rules/BanProgramAD.yaml
     EasyList:
       type: http
       behavior: domain
@@ -399,21 +409,30 @@ rule-providers:
       type: http
       behavior: classical
       url: "https://raw.githubusercontent.com/G4free/clash-ruleset/main/ruleset/ChatGPT.yaml"
-      path: ./profile/rulea/ChatGPT.yaml
+      path: ./profile/rules/ChatGPT.yaml
+      interval: 86400
+    LAN:
+      type: http
+      behavior: classical
+      url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/LocalAreaNetwork.yaml"
+      path: ./profile/rules/LAN.yaml
       interval: 86400
 rules:
     - DOMAIN-SUFFIX,google.com,auto
     - DOMAIN-SUFFIX,pvp.net,auto,no-resolve
-    - DOMAIN-SUFFIX,riotcdn.net,auto,,no-resolve
+    - DOMAIN-SUFFIX,riotcdn.net,auto,no-resolve
     - DOMAIN-SUFFIX,riotgames.com,auto,no-resolve
     - DOMAIN-SUFFIX,leagueoflegends.com,auto,no-resolve
     - RULE-SET,StevenBlack,REJECT
+#    - RULE-SET,AdGuardSDNSFilter_All,REJECT
+#    - RULE-SET,BanProgramAD, REJECT
     - RULE-SET,LoyalSoldier,REJECT
     - RULE-SET,oisd_big,REJECT
     - RULE-SET,Hagezi,REJECT
     - RULE-SET,EasyList,REJECT
     - RULE-SET,Brave,REJECT
-    - RULE-SET,ChatGPT,load-balance,no-resolve
+    - RULE-SET,LAN,DIRECT,no-resolve
+    - RULE-SET,ChatGPT,auto,force-remote-dns
     - RULE-SET,lancidr,DIRECT,no-resolve
     - RULE-SET,mm-cidr,auto,no-resolve
     - RULE-SET,Reiji_Adblock,REJECT
@@ -481,13 +500,16 @@ rules:
     - DOMAIN-SUFFIX,samsung.com,auto
     - DOMAIN-SUFFIX,rgpub.io,auto,no-resolve
     - DOMAIN-SUFFIX,samsung.com,auto
-#    - DOMAIN-SUFFIX,partner.uc.cn,REJECT
-#    - SRC-PORT,8013,auto,no-resolve
-#    - SRC-PORT,2080-2099,auto,no-resolve
-#    - SRC-PORT,5100,auto,no-resolve
-#    - SRC-PORT,53,auto,no-resolve
+    - DOMAIN-SUFFIX,partner.uc.cn,REJECT
+#    - SRC-PORT,8013,auto
+ #   - SRC-PORT,2080-2099,auto
+#    - SRC-PORT,5100,auto
+#    - SRC-PORT,53,auto
     - DOMAIN-SUFFIX,strpst.com,REJECT
     - PROCESS-NAME,ai.chat.gpt.bot,auto,no-resolve
     - PROCESS-NAME,com.rezone.gvortex,DIRECT,no-resolve
+    - DOMAIN-SUFFIX,singular.net,auto,no-resolve
+    - PROCESS-NAME,moe.nb4a,DIRECT
     - DOMAIN,ms.applvn.com:443,DIRECT,no-resolve
+    - PROCESS-NAME,mm.com.mptvas,DIRECT
     - MATCH, auto
