@@ -1,5 +1,8 @@
-mixed-port: 7890
-allmixed-port: 7890
+port: 7890
+socks-port: 7891
+redir-port: 7893
+tproxy-port: 7894
+mixed-port: 7892
 allow-lan: true
 lan-allowed-ips:
     - 0.0.0.0/0
@@ -10,51 +13,78 @@ keep-alive-interval: 15
 keep-alive-idle: 15
 ipv6: true
 disable-keep-alive: false
-find-process-mode: always
+find-process-mode: strict
 log-level: info
 unified-delay: true
 tcp-concurrent: true
-routing-mark: 6666
 external-controller: 127.0.0.1:9090
-#external-controller-tls: 127.0.0.1:9443
-external-ui-url: "<https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip>"
-global-client-fingerprint: random
-#interface-name: en0
+external-controller-cors:
+    allow-origins:
+      - '*'
+    allow-private-network: true
+external-controller-tls: 127.0.0.1:9443
+external-ui: ui
+external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
+global-client-fingerprint: chrome
+routing-mark: 1986
+interface-name: en0
 geodata-mode: true
 geodata-loader: memconservative
-global-ua: chrome
-#etag-support: true
+global-ua: clash.meta
+etag-support: true
 profile:
     store-selected: true
     store-fake-ip: true
+geo-auto-update: true
+geo-update-interval: 24
 geox-url:
     geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
     geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
     mmdb: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
     asn: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/GeoLite2-ASN.mmdb"
 hosts:
-    '*.clash.dev': 127.0.0.1
-    '.dev': 127.0.0.1
+    '*.clash.dev': '127.0.0.1'
+    '.dev': '127.0.0.1'
     'alpha.clash.dev': '::1'
+sniffer:
+    enable: true
+    sniff:
+      HTTP:
+         ports: [80, 8080-8880]
+         override-destination: true
+      TLS:
+         ports: [443, 8443]
+      QUIC:
+         ports: [443, 8443]
+    skip-domain:
+      - '*.pvp.net'
+      - '*.riotcdn.net'
+      - '*.riotgames.com'
+      - '*.leagueoflegends.com'
 dns:
     enable: true
     listen: 0.0.0.0:53
     ipv6: true
+#    respect-rules: true
+    enhanced-mode: fake-ip
     use-hosts: true
     prefer-h3: true
     default-nameserver:
       - 1.1.1.1
       - 8.8.8.8
       - 127.0.0.1
-    enhanced-mode: fake-ip
     fake-ip-range: 198.18.0.1/16
     search-domains: [local]
     fake-ip-filter:
       - '*.lan'
+      - '+.lan'
       - '*.riotgames.com'
       - '*.osano.com'
       - '*.leagueoflegends.com'
       - '*.rgpub.io'
+      - '*.pvp.net'
+      - '*.riotcdn.net'
+      - 'geoip:wildrift'
     nameserver:
       - 1.1.1.1
       - 8.8.8.8
@@ -67,9 +97,11 @@ dns:
       - https://9.9.9.9/dns-query
       - tcp://8.8.4.4
       - tcp://1.0.0.1
-    fallback-filter:
     geoip: true
     geoip-code: MM
+    geosite:
+      - gfw
+    fallback-filter:
     ipcidr:
       - 240.0.0.0/4
     domain:
@@ -98,11 +130,14 @@ proxy-providers:
       health-check:
          enable: true
          interval: 300
-         proxy: DIRECT
+         timeout: 5000
+         expected-status: 204
+         max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
       type: http
+      proxy: DIRECT 
       lazy: true
-      interval: 300
+      interval: 3600
       override:
          skip-cert-verify: true
       header:
@@ -115,11 +150,14 @@ proxy-providers:
       health-check:
          enable: true
          interval: 300
-         proxy: DIRECT
+         timeout: 5000
+         expected-status: 204
+         max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
       type: http
+      proxy: DIRECT
       lazy: true
-      interval: 300
+      interval: 3600
       override:
          skip-cert-verify: true
       header:
@@ -132,11 +170,14 @@ proxy-providers:
       health-check:
          enable: true
          interval: 300
-         proxy: DIRECT
+         timeout: 5000
+         expected-status: 204
+         max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
       type: http
+      proxy: DIRECT
       lazy: true
-      interval: 300
+      interval: 3600
       override:
          skip-cert-verify: true
       header:
@@ -149,11 +190,14 @@ proxy-providers:
       health-check:
          enable: true
          interval: 300
-         proxy: DIRECT
+         timeout: 5000
+         expected-status: 204
+         max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
       type: http
+      proxy: DIRECT
       lazy: true
-      interval: 300
+      interval: 3600
       override:
          skip-cert-verify: true
       header:
@@ -166,11 +210,14 @@ proxy-providers:
       health-check:
          enable: true
          interval: 300
-         proxy: DIRECT
+         timeout: 5000
+         expected-status: 204
+         max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
       type: http
+      proxy: DIRECT
       lazy: true
-      interval: 300
+      interval: 3600
       override:
          skip-cert-verify: true
       header:
@@ -183,11 +230,14 @@ proxy-providers:
       health-check:
          enable: true
          interval: 300
-         proxy: DIRECT
+         timeout: 5000
+         expected-status: 204
+         max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
       type: http
+      proxy: DIRECT
       lazy: true
-      interval: 300
+      interval: 3600
       override:
          skip-cert-verify: true
       header:
@@ -200,11 +250,14 @@ proxy-providers:
       health-check:
          enable: true
          interval: 300
-         proxy: DIRECT
+         timeout: 5000
+         expected-status: 204
+         max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
       type: http
       lazy: true
-      interval: 300
+      proxy: DIRECT
+      interval: 3600
       override:
          skip-cert-verify: true
       header:
@@ -217,11 +270,14 @@ proxy-providers:
       health-check:
          enable: true
          interval: 300
-         proxy: DIRECT
+         timeout: 5000
+         expected-status: 204
+         max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
       type: http
+      proxy: DIRECT
       lazy: true
-      interval: 300
+      interval: 3600
       override:
          skip-cert-verify: true
       header:
@@ -234,11 +290,14 @@ proxy-providers:
       health-check:
          enable: true
          interval: 300
-         proxy: DIRECT
+         timeout: 5000
+         expected-status: 204
+         max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
       type: http
+      proxy: DIRECT
       lazy: true
-      interval: 300
+      interval: 3600
       override:
          skip-cert-verify: true
       header:
@@ -251,11 +310,14 @@ proxy-providers:
       health-check:
          enable: true
          interval: 300
-         proxy: DIRECT
+         timeout: 5000
+         expected-status: 204
+         max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
       type: http
+      proxy: DIRECT
       lazy: true
-      interval: 300
+      interval: 3600
       override:
          skip-cert-verify: true
       header:
@@ -268,11 +330,14 @@ proxy-providers:
       health-check:
          enable: true
          interval: 300
-         proxy: DIRECT
+         timeout: 5000
+         expected-status: 204
+         max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
       type: http
+      proxy: DIRECT
       lazy: true
-      interval: 300
+      interval: 3600
       override:
          skip-cert-verify: true
       header:
@@ -285,11 +350,14 @@ proxy-providers:
       health-check:
          enable: true
          interval: 300
-         proxy: DIRECT
+         timeout: 5000
+         expected-status: 204
+         max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
       type: http
+      proxy: DIRECT
       lazy: true
-      interval: 300
+      interval: 3600
       override:
          skip-cert-verify: true
       header:
@@ -302,9 +370,15 @@ proxy-groups:
       health-check:
          enable: true
          interval: 300
+         timeout: 5000
+         expected-status: 204
+         max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
       type: url-test
-      lazy: true
+      proxy: DIRECT
+      exclude-type: direct
+      size-limit: 0
+      lazy: false
       include-all: true
       icon: "https://cdn-icons-png.flaticon.com/512/3686/3686513.png"
     - name: load-balance
@@ -313,17 +387,24 @@ proxy-groups:
          interval: 300
          url: "https://cp.cloudflare.com/generate_204"
       type: load-balance
-      lazy: true
-      strategy: consistent-hashing
-      include-all: true
+      lazy: false
+      strategy: round-robin
+      include-all: false
+      include-all-proxies: false
+      include-all-providers: true
+#      filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore}"
+      exclude-filter: "fallback"
     - name: fallback
       health-check:
          enable: true
          interval: 300
          url: "https://cp.cloudflare.com/generate_204"
       type: fallback
-      lazy: true
-      include-all: true
+      lazy: false
+      include-all: false
+      include-all-proxies: false
+      include-all-providers: true
+      filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore}"
 rule-providers:
     StevenBlack:
       type: http
@@ -431,21 +512,21 @@ rules:
     - RULE-SET,Hagezi,REJECT
     - RULE-SET,EasyList,REJECT
     - RULE-SET,Brave,REJECT
-    - RULE-SET,LAN,DIRECT,no-resolve
-    - RULE-SET,ChatGPT,auto,force-remote-dns
-    - RULE-SET,lancidr,DIRECT,no-resolve
-    - RULE-SET,mm-cidr,auto,no-resolve
+    - RULE-SET,LAN,DIRECT
+    - RULE-SET,ChatGPT,auto
+    - RULE-SET,lancidr,DIRECT
+    - RULE-SET,mm-cidr,auto
     - RULE-SET,Reiji_Adblock,REJECT
     - RULE-SET,Telegramcidr,auto
     - GEOIP,Private,DIRECT,no-resolve
-    - GEOSITE,category-games,auto,no-resolve
+#    - GEOSITE,category-games,auto
     - GEOSITE,category-bank-mm,DIRECT
     - GEOSITE,category-ads@ads,REJECT
     - DOMAIN,clash.razord.top,DIRECT,no-resolve
     - DOMAIN,yacd.haishan.me,DIRECT,no-resolve
-    - GEOIP,LAN,DIRECT,no-resolve
+    - GEOIP,LAN,DIRECT
     - RULE-SET,NoPopUp_GEO_Location,REJECT
-    - RULE-SET,wildrift_ports,auto,no-resolve
+    - RULE-SET,wildrift_ports, DIRECT
     - DOMAIN-KEYWORD,google,auto
     - DOMAIN,speed.cloudflare.com,auto
     - DOMAIN,google.com,auto
@@ -499,6 +580,7 @@ rules:
     - DOMAIN-SUFFIX,click.googleanalytics.com,REJECT
     - DOMAIN-SUFFIX,samsung.com,auto
     - DOMAIN-SUFFIX,rgpub.io,auto,no-resolve
+    - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve  
     - DOMAIN-SUFFIX,samsung.com,auto
     - DOMAIN-SUFFIX,partner.uc.cn,REJECT
 #    - SRC-PORT,8013,auto
