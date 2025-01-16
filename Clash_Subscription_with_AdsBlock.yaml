@@ -129,8 +129,8 @@ proxy-providers:
       url: "https://sub.tgzdyz2.xyz/sub"
       health-check:
          enable: true
-         interval: 300
-         timeout: 5000
+         interval: 150
+         timeout: 0
          expected-status: 204
          max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
@@ -149,8 +149,8 @@ proxy-providers:
       url: "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.yml"
       health-check:
          enable: true
-         interval: 300
-         timeout: 5000
+         interval: 150
+         timeout: 0
          expected-status: 204
          max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
@@ -169,8 +169,8 @@ proxy-providers:
       url: "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.yml"
       health-check:
          enable: true
-         interval: 300
-         timeout: 5000
+         interval: 150
+         timeout: 0
          expected-status: 204
          max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
@@ -189,8 +189,8 @@ proxy-providers:
       url: "https://s.subcsub.com/Yobm51S"
       health-check:
          enable: true
-         interval: 300
-         timeout: 5000
+         interval: 150
+         timeout: 0
          expected-status: 204
          max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
@@ -209,8 +209,8 @@ proxy-providers:
       url: "https://sub.htg8866.us.kg/sublink98765"
       health-check:
          enable: true
-         interval: 300
-         timeout: 5000
+         interval: 150
+         timeout: 0
          expected-status: 204
          max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
@@ -229,8 +229,8 @@ proxy-providers:
       url: "https://super.jack991.filegear-sg.me/"
       health-check:
          enable: true
-         interval: 300
-         timeout: 5000
+         interval: 150
+         timeout: 0
          expected-status: 204
          max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
@@ -249,8 +249,8 @@ proxy-providers:
       url: "https://subapi.fxxk.dedyn.io/sub?&url=https%3A%2F%2Fraw.githubusercontent.com%2FPawdroid%2FFree-servers%2Fmain%2Fstatic%2Fsub_en&target=clash&new_name=true&config=https%3A%2F%2Fraw.githubusercontent.com%2FMazeorz%2Fairports%2Fmaster%2FClash%2FStitch.ini&emoji=false&append_type=true&append_info=true&scv=false&udp=false&list=false&sort=false&fdn=true&insert=false"
       health-check:
          enable: true
-         interval: 300
-         timeout: 5000
+         interval: 150
+         timeout: 0
          expected-status: 204
          max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
@@ -269,8 +269,8 @@ proxy-providers:
       url: "https://subapi.fxxk.dedyn.io/sub?&url=https%3A%2F%2Fraw.githubusercontent.com%2FPawdroid%2FFree-servers%2Fmain%2Fsub%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FPawdroid%2FFree-servers%2Fmain%2Fsub&target=clash&config=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FSleepyHeeead%2Fsubconverter-config%40master%2Fremote-config%2Funiversal%2Furltest.ini&emoji=true&append_type=true&append_info=true&scv=false&udp=false&list=false&sort=false&fdn=true&insert=false"
       health-check:
          enable: true
-         interval: 300
-         timeout: 5000
+         interval: 150
+         timeout: 0
          expected-status: 204
          max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
@@ -289,8 +289,8 @@ proxy-providers:
       url: "https://subapi.fxxk.dedyn.io/sub?&url=https%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Frefs%2Fheads%2Fmain%2Fcountries%2Fsg%2Fmixed%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fcountries%2Fsg%2Fmixed%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Frefs%2Fheads%2Fmain%2Fcountries%2Fhk%2Fmixed%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fcountries%2Fhk%2Fmixed&target=clashr&emoji=false&append_type=true&append_info=true&scv=true&udp=true&list=true&sort=true&fdn=true&insert=true"
       health-check:
          enable: true
-         interval: 300
-         timeout: 5000
+         interval: 150
+         timeout: 0
          expected-status: 204
          max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
@@ -309,8 +309,8 @@ proxy-providers:
       url: https://youxiu3102.xiaofeixia.click/api/v1/client/subscribe?token=f6e955c105f50fc834e6cd35e206df5d&flag=meta&type=all
       health-check:
          enable: true
-         interval: 300
-         timeout: 5000
+         interval: 150
+         timeout: 0
          expected-status: 204
          max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
@@ -329,8 +329,8 @@ proxy-providers:
       url: https://aggregator.aoip.top/
       health-check:
          enable: true
-         interval: 300
-         timeout: 5000
+         interval: 150
+         timeout: 0
          expected-status: 204
          max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
@@ -349,8 +349,8 @@ proxy-providers:
       url: https://gist.zmy666.us.kg/
       health-check:
          enable: true
-         interval: 300
-         timeout: 5000
+         interval: 150
+         timeout: 0
          expected-status: 204
          max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
@@ -369,8 +369,8 @@ proxy-groups:
     - name: auto
       health-check:
          enable: true
-         interval: 300
-         timeout: 5000
+         interval: 150
+         timeout: 0
          expected-status: 204
          max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
@@ -384,27 +384,27 @@ proxy-groups:
     - name: load-balance
       health-check:
          enable: true
-         interval: 300
+         interval: 15p
          url: "https://cp.cloudflare.com/generate_204"
       type: load-balance
       lazy: false
       strategy: round-robin
       include-all: false
-      include-all-proxies: false
+      include-all-proxies: true
       include-all-providers: true
 #      filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore}"
       exclude-filter: "fallback"
     - name: fallback
       health-check:
          enable: true
-         interval: 300
+         interval: 150
          url: "https://cp.cloudflare.com/generate_204"
       type: fallback
       lazy: false
       include-all: false
       include-all-proxies: false
       include-all-providers: true
-      filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore}"
+#      filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore}"
 rule-providers:
     StevenBlack:
       type: http
@@ -520,7 +520,7 @@ rules:
     - RULE-SET,Telegramcidr,auto
     - GEOIP,Private,DIRECT,no-resolve
 #    - GEOSITE,category-games,auto
-    - GEOSITE,category-bank-mm,DIRECT
+#    - GEOSITE,category-bank-mm,DIRECT
     - GEOSITE,category-ads@ads,REJECT
     - DOMAIN,clash.razord.top,DIRECT,no-resolve
     - DOMAIN,yacd.haishan.me,DIRECT,no-resolve
@@ -549,7 +549,7 @@ rules:
     - DOMAIN,geosite:unity-ads,REJECT
     - DOMAIN,geosite:meta-ads,REJECT
     - DOMAIN,geoip:google-ads,REJECT
-    - DOMAIN,geosite:category-bank-mm,DIRECT
+#    - DOMAIN,geosite:category-bank-mm,DIRECT
     - DOMAIN,geoip:facebook-ads,REJECT
     - DOMAIN,geosite:category-public-tracker,REJECT
     - DOMAIN-KEYWORD,googleadservices,REJECT
