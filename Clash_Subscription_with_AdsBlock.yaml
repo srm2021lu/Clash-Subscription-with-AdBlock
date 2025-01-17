@@ -145,6 +145,26 @@ proxy-providers:
               - "Clash/v1.18.0"
               - "mihomo/1.18.3"
       path: ./profile/proxy_providers/Igzdyz.yaml
+    Neigui-US:
+      url: "https://api.neigui.us.kg:443/sub?token=4v1eR3A9c8Z4dVQ0PE9Yjimrbfg&tag=clash"
+      health-check:
+         enable: true
+         interval: 150
+         timeout: 0
+         expected-status: 204
+         max-failed-times: 10
+         url: "https://cp.cloudflare.com/generate_204"
+      type: http
+      proxy: DIRECT 
+      lazy: true
+      interval: 3600
+      override:
+         skip-cert-verify: true
+      header:
+         User-Agent:
+              - "Clash/v1.18.0"
+              - "mihomo/1.18.3"
+      path: ./profile/proxy_providers/Neigui_US.yaml
     NoMoreWalls:
       url: "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.yml"
       health-check:
@@ -384,7 +404,7 @@ proxy-groups:
     - name: load-balance
       health-check:
          enable: true
-         interval: 15p
+         interval: 150
          url: "https://cp.cloudflare.com/generate_204"
       type: load-balance
       lazy: false
@@ -404,7 +424,7 @@ proxy-groups:
       include-all: false
       include-all-proxies: false
       include-all-providers: true
-#      filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore}"
+      filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore}"
 rule-providers:
     StevenBlack:
       type: http
@@ -416,11 +436,11 @@ rule-providers:
       behavior: domain
       url: "https://raw.githubusercontent.com/Repcz/EgernRules/refs/heads/X/Rules/AdGuardSDNSFilter/AdGuardSDNSFilter_All.yaml"
       path: ./profile/rules/AdGuardSDNSFilter_All.yaml
-    BanProgramAD:
-      type: http
-      behavior: domain
-      url: "https://raw.githubusercontent.com/Repcz/ACL4SSR/refs/heads/X/Rules/BanProgramAD.list"
-      path: ./profile/rules/BanProgramAD.yaml
+#    BanProgramAD:
+#      type: http
+#      behavior: domain
+#      url: "https://raw.githubusercontent.com/Repcz/ACL4SSR/refs/heads/X/Rules/BanProgramAD.list"
+#      path: ./profile/rules/BanProgramAD.yaml
     EasyList:
       type: http
       behavior: domain
@@ -526,7 +546,7 @@ rules:
     - DOMAIN,yacd.haishan.me,DIRECT,no-resolve
     - GEOIP,LAN,DIRECT
     - RULE-SET,NoPopUp_GEO_Location,REJECT
-    - RULE-SET,wildrift_ports, DIRECT
+    - RULE-SET,wildrift_ports, DIRECT,no-resolve
     - DOMAIN-KEYWORD,google,auto
     - DOMAIN,speed.cloudflare.com,auto
     - DOMAIN,google.com,auto
