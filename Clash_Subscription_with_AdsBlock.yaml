@@ -14,8 +14,8 @@ keep-alive-idle: 15
 ipv6: true
 disable-keep-alive: false
 find-process-mode: strict
-log-level: info
-unified-delay: true
+log-level: debug
+unified-delay: false
 tcp-concurrent: true
 external-controller: 127.0.0.1:9090
 external-controller-cors:
@@ -25,8 +25,8 @@ external-controller-cors:
 external-controller-tls: 127.0.0.1:9443
 external-ui: ui
 external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
-global-client-fingerprint: chrome
-routing-mark: 1986
+global-client-fingerprint: random
+routing-mark: 6666
 interface-name: en0
 geodata-mode: true
 geodata-loader: memconservative
@@ -35,7 +35,7 @@ etag-support: true
 profile:
     store-selected: true
     store-fake-ip: true
-geo-auto-update: true
+geo-auto-update: false
 geo-update-interval: 24
 geox-url:
     geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
@@ -61,14 +61,26 @@ sniffer:
       - '*.riotcdn.net'
       - '*.riotgames.com'
       - '*.leagueoflegends.com'
+      - '*.singular.net'
+tun:
+    enable: true
+    stack: mixed
+    dns-hijack:
+      - "any:53"
+      - "tcp://any:53"
+    auto-route: true
+    auto-redirect: true
+    auto-detect-interface: true
 dns:
     enable: true
     listen: 0.0.0.0:53
     ipv6: true
-#    respect-rules: true
+    use-system-hosts: true
+    respect-rules: false
     enhanced-mode: fake-ip
+    fake-ip-filter-mode: blacklist
     use-hosts: true
-    prefer-h3: true
+    prefer-h3: false
     default-nameserver:
       - 1.1.1.1
       - 8.8.8.8
@@ -85,12 +97,19 @@ dns:
       - '*.pvp.net'
       - '*.riotcdn.net'
       - 'geoip:wildrift'
+      - '*.singular.net'
     nameserver:
       - 1.1.1.1
       - 8.8.8.8
       - 127.0.0.1
       - https://dns64.dns.google/dns-query
       - dhcp://en0
+#    nameserver-policy:
+#      - '+.arpa': 
+#         - '10.0.0.1'
+#      - 'rule-set:mm':
+#        - https://doh.google/dns-query
+#         - https://dns.google/dns-query
     fallback:
       - https://8.8.8.8/dns-query
       - https://1.1.1.1/dns-query
@@ -125,6 +144,86 @@ proxies:
       headers:
          host: vless.aihi.uk
 proxy-providers:
+    Soroushmirzaei_Subs:
+      url: "https://subapi.fxxk.dedyn.io/sub?&url=https%3A%2F%2Fraw.githubusercontent.com%2FALIILAPRO%2Fv2rayNG-Config%2Fmain%2Fsub.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FAshkan-m%2Fv2ray%2Fmain%2FSub.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FMrMohebi%2Fxray-proxy-grabber-telegram%2Fmaster%2Fcollected-proxies%2Frow-url%2Factives.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FMrMohebi%2Fxray-proxy-grabber-telegram%2Fmaster%2Fcollected-proxies%2Frow-url%2Fall.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FMrPooyaX%2FVpnsFucking%2Fmain%2FBeVpn.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Ftuic%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Fhysteria%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Fjuicity%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Freality%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Fshadowsocks%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Ftrojan%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Fvless%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Fvmess%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Ftuic%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Fhysteria%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Fjuicity%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Freality%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Fshadowsocks%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Ftrojan%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Fvless%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Fvmess%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FEveryday-VPN%2FEveryday-VPN%2Fmain%2Fsubscription%2Fmain.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FEveryday-VPN%2FEveryday-VPN%2Fmain%2Fsubscription%2Ftest.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FKwinshadow%2FTelegramV2rayCollector%2Fmain%2Fsublinks%2Fmix.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fts-sf%2Ffly%2Fmain%2Fv2%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FEpodonios%2Fv2ray-configs%2Fmain%2FSplitted-By-Protocol%2Fvless.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FEpodonios%2Fv2ray-configs%2Fmain%2FSplitted-By-Protocol%2Fvmess.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FEpodonios%2Fv2ray-configs%2Fmain%2FSplitted-By-Protocol%2Ftrojan.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FEpodonios%2Fv2ray-configs%2Fmain%2FSplitted-By-Protocol%2Fss.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fqjlxg%2Fhy2%2Fmain%2Fsplitted%2Fvless%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fqjlxg%2Fhy2%2Fmain%2Fsplitted%2Fsocks%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fqjlxg%2Fhy2%2Fmain%2Fsplitted%2Ftrojan%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fqjlxg%2Fhy2%2Fmain%2Fsplitted%2Fhy2%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fqjlxg%2Fhy2%2Fmain%2Fsplitted%2Fhysteria%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FTGParse%2Fmain%2Fpython%2Fhy2%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FTGParse%2Fmain%2Fpython%2Fhysteria2%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FTGParse%2Fmain%2Fpython%2Fhysteria%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FTGParse%2Fmain%2Fsplitted%2Fvless%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FTGParse%2Fmain%2Fsplitted%2Fvmess%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fmiladtahanian%2FV2RayCFGDumper%2Fmain%2Fconfig.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSpace-00%2FV2ray-configs%2Frefs%2Fheads%2Fmain%2Fconfig.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FProxy-sorter%2Fmain%2Fcustom%2Fudp.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FProxy-sorter%2Fmain%2Fws_tls%2Fproxies%2Fwstls%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FProxy-sorter%2Fmain%2Fselector%2Frandom%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FProxy-sorter%2Fmain%2Foutput%2Fconverted.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FProxy-sorter%2Frefs%2Fheads%2Fmain%2Fcustom%2Fmahsa.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FV2RAYCONFIGSPOOL%2FV2RAY_SUB%2Frefs%2Fheads%2Fmain%2FV2RAY_SUB.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FMrMohebi%2Fxray-proxy-grabber-telegram%2Frefs%2Fheads%2Fmaster%2Fcollected-proxies%2Frow-url%2Fall.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FMrMohebi%2Fxray-proxy-grabber-telegram%2Frefs%2Fheads%2Fmaster%2Fcollected-proxies%2Frow-url%2Factives.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FMhdiTaheri%2FV2rayCollector_Py%2Frefs%2Fheads%2Fmain%2Fsub%2FMix%2Fmix.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Froosterkid%2Fopenproxylist%2Frefs%2Fheads%2Fmain%2FV2RAY_RAW.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FMhdiTaheri%2FV2rayCollector%2Fmain%2Fsub%2Fmix&target=clash&emoji=false&append_type=true&append_info=true&scv=true&udp=true&list=false&sort=false&fdn=true&insert=false"
+      health-check:
+         enable: true
+         interval: 150
+         timeout: 0
+         expected-status: 204
+         max-failed-times: 100
+         url: "https://cp.cloudflare.com/generate_204"
+      type: http
+      proxy: DIRECT 
+      lazy: false
+      interval: 3600
+      override:
+         skip-cert-verify: true
+      header:
+         User-Agent:
+              - "Clash/v1.18.0"
+              - "mihomo/1.18.3"
+      path: ./profile/proxy_providers/Soroushmirzaei_Subs.yaml
+    Soroushmirzaei:
+      url: "https://subapi.fxxk.dedyn.io/sub?&url=https%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fsubscribe%2Fprotocols%2Fjuicity%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fsubscribe%2Fprotocols%2Fhysteria%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Ftuic%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Freality%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Fvless%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Fvmess%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Ftrojan%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Fshadowsocks%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fsplitted%2Fchannels%7C%7C%7C%7C%7C%7C%7C&target=clash&emoji=false&append_type=true&append_info=true&scv=true&udp=true&list=false&sort=false&fdn=true&insert=false"
+      health-check:
+         enable: true
+         interval: 150
+         timeout: 0
+         expected-status: 204
+         max-failed-times: 100
+         url: "https://cp.cloudflare.com/generate_204"
+      type: http
+      proxy: DIRECT 
+      lazy: false
+      interval: 3600
+      override:
+         skip-cert-verify: true
+      header:
+         User-Agent:
+              - "Clash/v1.18.0"
+              - "mihomo/1.18.3"
+      path: ./profile/proxy_providers/Soroushmirzaei.yaml
+    Soroushmirzaei_ipv4:
+      url: "https://subapi.fxxk.dedyn.io/sub?&url=https%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Flayers%2Fipv4&target=clash&emoji=false&append_type=true&append_info=true&scv=true&udp=true&list=false&sort=false&fdn=true&insert=false"
+      health-check:
+         enable: true
+         interval: 150
+         timeout: 0
+         expected-status: 204
+         #max-failed-times: 10
+         url: "https://cp.cloudflare.com/generate_204"
+      type: http
+      proxy: DIRECT 
+      lazy: false
+      interval: 3600
+      override:
+         skip-cert-verify: true
+      header:
+         User-Agent:
+              - "Clash/v1.18.0"
+              - "mihomo/1.18.3"
+      path: ./profile/proxy_providers/Soroushmirzaei_ipv4.yaml
+    Soroushmirzaei_ipv6:
+      url: "https://subapi.fxxk.dedyn.io/sub?&url=https%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fsubscribe%2Flayers%2Fipv6&target=clash&emoji=false&append_type=true&append_info=true&scv=true&udp=true&list=false&sort=false&fdn=true&insert=false"
+      health-check:
+         enable: true
+         interval: 150
+         timeout: 0
+         expected-status: 204
+         #max-failed-times: 10
+         url: "https://cp.cloudflare.com/generate_204"
+      type: http
+      proxy: DIRECT 
+      lazy: false
+      interval: 3600
+      override:
+         skip-cert-verify: true
+      header:
+         User-Agent:
+              - "Clash/v1.18.0"
+              - "mihomo/1.18.3"
+      path: ./profile/proxy_providers/Soroushmirzaei_ipv6.yaml
     Igzdyz:
       url: "https://sub.tgzdyz2.xyz/sub"
       health-check:
@@ -132,11 +231,11 @@ proxy-providers:
          interval: 150
          timeout: 0
          expected-status: 204
-         max-failed-times: 10
+         #max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
       type: http
       proxy: DIRECT 
-      lazy: true
+      lazy: false
       interval: 3600
       override:
          skip-cert-verify: true
@@ -145,6 +244,26 @@ proxy-providers:
               - "Clash/v1.18.0"
               - "mihomo/1.18.3"
       path: ./profile/proxy_providers/Igzdyz.yaml
+    SR:
+      url: "https://sub.vip.sd/JPa6vvFgygVtNP2sGJ2r/download/NL?target=ShadowRocket"
+      health-check:
+         enable: true
+         interval: 150
+         timeout: 0
+         expected-status: 204
+         #max-failed-times: 10
+         url: "https://cp.cloudflare.com/generate_204"
+      type: http
+      proxy: DIRECT 
+      lazy: false
+      interval: 3600
+      override:
+         skip-cert-verify: true
+      header:
+         User-Agent:
+              - "Clash/v1.18.0"
+              - "mihomo/1.18.3"
+      path: ./profile/proxy_providers/SR.yaml
     Neigui-US:
       url: "https://api.neigui.us.kg:443/sub?token=4v1eR3A9c8Z4dVQ0PE9Yjimrbfg&tag=clash"
       health-check:
@@ -152,11 +271,11 @@ proxy-providers:
          interval: 150
          timeout: 0
          expected-status: 204
-         max-failed-times: 10
+         #max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
       type: http
       proxy: DIRECT 
-      lazy: true
+      lazy: false
       interval: 3600
       override:
          skip-cert-verify: true
@@ -172,11 +291,11 @@ proxy-providers:
          interval: 150
          timeout: 0
          expected-status: 204
-         max-failed-times: 10
+         #max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
       type: http
       proxy: DIRECT
-      lazy: true
+      lazy: false
       interval: 3600
       override:
          skip-cert-verify: true
@@ -192,11 +311,11 @@ proxy-providers:
          interval: 150
          timeout: 0
          expected-status: 204
-         max-failed-times: 10
+         #max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
       type: http
       proxy: DIRECT
-      lazy: true
+      lazy: false
       interval: 3600
       override:
          skip-cert-verify: true
@@ -212,11 +331,11 @@ proxy-providers:
          interval: 150
          timeout: 0
          expected-status: 204
-         max-failed-times: 10
+         #max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
       type: http
       proxy: DIRECT
-      lazy: true
+      lazy: false
       interval: 3600
       override:
          skip-cert-verify: true
@@ -232,11 +351,11 @@ proxy-providers:
          interval: 150
          timeout: 0
          expected-status: 204
-         max-failed-times: 10
+         #max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
       type: http
       proxy: DIRECT
-      lazy: true
+      lazy: false
       interval: 3600
       override:
          skip-cert-verify: true
@@ -252,11 +371,11 @@ proxy-providers:
          interval: 150
          timeout: 0
          expected-status: 204
-         max-failed-times: 10
+         #max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
       type: http
       proxy: DIRECT
-      lazy: true
+      lazy: false
       interval: 3600
       override:
          skip-cert-verify: true
@@ -272,10 +391,10 @@ proxy-providers:
          interval: 150
          timeout: 0
          expected-status: 204
-         max-failed-times: 10
+         #max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
       type: http
-      lazy: true
+      lazy: false
       proxy: DIRECT
       interval: 3600
       override:
@@ -292,11 +411,11 @@ proxy-providers:
          interval: 150
          timeout: 0
          expected-status: 204
-         max-failed-times: 10
+         #max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
       type: http
       proxy: DIRECT
-      lazy: true
+      lazy: false
       interval: 3600
       override:
          skip-cert-verify: true
@@ -312,11 +431,11 @@ proxy-providers:
          interval: 150
          timeout: 0
          expected-status: 204
-         max-failed-times: 10
+         #max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
       type: http
       proxy: DIRECT
-      lazy: true
+      lazy: false
       interval: 3600
       override:
          skip-cert-verify: true
@@ -332,11 +451,11 @@ proxy-providers:
          interval: 150
          timeout: 0
          expected-status: 204
-         max-failed-times: 10
+         #max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
       type: http
       proxy: DIRECT
-      lazy: true
+      lazy: false
       interval: 3600
       override:
          skip-cert-verify: true
@@ -352,11 +471,11 @@ proxy-providers:
          interval: 150
          timeout: 0
          expected-status: 204
-         max-failed-times: 10
+         #max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
       type: http
       proxy: DIRECT
-      lazy: true
+      lazy: false
       interval: 3600
       override:
          skip-cert-verify: true
@@ -372,11 +491,11 @@ proxy-providers:
          interval: 150
          timeout: 0
          expected-status: 204
-         max-failed-times: 10
+         #max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
       type: http
       proxy: DIRECT
-      lazy: true
+      lazy: false
       interval: 3600
       override:
          skip-cert-verify: true
@@ -392,7 +511,7 @@ proxy-groups:
          interval: 150
          timeout: 0
          expected-status: 204
-         max-failed-times: 10
+         #max-failed-times: 10
          url: "https://cp.cloudflare.com/generate_204"
       type: url-test
       proxy: DIRECT
@@ -408,13 +527,15 @@ proxy-groups:
          url: "https://cp.cloudflare.com/generate_204"
       type: load-balance
       lazy: false
-      strategy: round-robin
+      strategy: consistent-hashing
       include-all: false
       include-all-proxies: true
       include-all-providers: true
 #      filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore}"
       exclude-filter: "fallback"
+      exclude-type: direct
     - name: fallback
+      exclude-type: direct
       health-check:
          enable: true
          interval: 150
@@ -422,9 +543,9 @@ proxy-groups:
       type: fallback
       lazy: false
       include-all: false
-      include-all-proxies: false
+      include-all-proxies: true
       include-all-providers: true
-      filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore}"
+  #    filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore}"
 rule-providers:
     StevenBlack:
       type: http
@@ -610,8 +731,9 @@ rules:
     - DOMAIN-SUFFIX,strpst.com,REJECT
     - PROCESS-NAME,ai.chat.gpt.bot,auto,no-resolve
     - PROCESS-NAME,com.rezone.gvortex,DIRECT,no-resolve
-    - DOMAIN-SUFFIX,singular.net,auto,no-resolve
+    - DOMAIN,sdk-api-v1.singular.net:443,auto,no-resolve
     - PROCESS-NAME,moe.nb4a,DIRECT
     - DOMAIN,ms.applvn.com:443,DIRECT,no-resolve
     - PROCESS-NAME,mm.com.mptvas,DIRECT
+    - MATCH, auto,mm.com.mptvas,DIRECT
     - MATCH, auto
