@@ -144,8 +144,8 @@ proxies:
       headers:
          host: vless.aihi.uk
 proxy-providers:
-    Soroushmirzaei_Subs:
-      url: "https://subapi.fxxk.dedyn.io/sub?&url=https%3A%2F%2Fraw.githubusercontent.com%2FALIILAPRO%2Fv2rayNG-Config%2Fmain%2Fsub.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FAshkan-m%2Fv2ray%2Fmain%2FSub.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FMrMohebi%2Fxray-proxy-grabber-telegram%2Fmaster%2Fcollected-proxies%2Frow-url%2Factives.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FMrMohebi%2Fxray-proxy-grabber-telegram%2Fmaster%2Fcollected-proxies%2Frow-url%2Fall.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FMrPooyaX%2FVpnsFucking%2Fmain%2FBeVpn.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Ftuic%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Fhysteria%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Fjuicity%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Freality%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Fshadowsocks%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Ftrojan%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Fvless%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Fvmess%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Ftuic%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Fhysteria%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Fjuicity%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Freality%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Fshadowsocks%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Ftrojan%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Fvless%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Fvmess%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FEveryday-VPN%2FEveryday-VPN%2Fmain%2Fsubscription%2Fmain.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FEveryday-VPN%2FEveryday-VPN%2Fmain%2Fsubscription%2Ftest.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FKwinshadow%2FTelegramV2rayCollector%2Fmain%2Fsublinks%2Fmix.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fts-sf%2Ffly%2Fmain%2Fv2%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FEpodonios%2Fv2ray-configs%2Fmain%2FSplitted-By-Protocol%2Fvless.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FEpodonios%2Fv2ray-configs%2Fmain%2FSplitted-By-Protocol%2Fvmess.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FEpodonios%2Fv2ray-configs%2Fmain%2FSplitted-By-Protocol%2Ftrojan.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FEpodonios%2Fv2ray-configs%2Fmain%2FSplitted-By-Protocol%2Fss.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fqjlxg%2Fhy2%2Fmain%2Fsplitted%2Fvless%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fqjlxg%2Fhy2%2Fmain%2Fsplitted%2Fsocks%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fqjlxg%2Fhy2%2Fmain%2Fsplitted%2Ftrojan%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fqjlxg%2Fhy2%2Fmain%2Fsplitted%2Fhy2%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fqjlxg%2Fhy2%2Fmain%2Fsplitted%2Fhysteria%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FTGParse%2Fmain%2Fpython%2Fhy2%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FTGParse%2Fmain%2Fpython%2Fhysteria2%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FTGParse%2Fmain%2Fpython%2Fhysteria%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FTGParse%2Fmain%2Fsplitted%2Fvless%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FTGParse%2Fmain%2Fsplitted%2Fvmess%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fmiladtahanian%2FV2RayCFGDumper%2Fmain%2Fconfig.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSpace-00%2FV2ray-configs%2Frefs%2Fheads%2Fmain%2Fconfig.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FProxy-sorter%2Fmain%2Fcustom%2Fudp.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FProxy-sorter%2Fmain%2Fws_tls%2Fproxies%2Fwstls%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FProxy-sorter%2Fmain%2Fselector%2Frandom%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FProxy-sorter%2Fmain%2Foutput%2Fconverted.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FProxy-sorter%2Frefs%2Fheads%2Fmain%2Fcustom%2Fmahsa.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FV2RAYCONFIGSPOOL%2FV2RAY_SUB%2Frefs%2Fheads%2Fmain%2FV2RAY_SUB.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FMrMohebi%2Fxray-proxy-grabber-telegram%2Frefs%2Fheads%2Fmaster%2Fcollected-proxies%2Frow-url%2Fall.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FMrMohebi%2Fxray-proxy-grabber-telegram%2Frefs%2Fheads%2Fmaster%2Fcollected-proxies%2Frow-url%2Factives.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FMhdiTaheri%2FV2rayCollector_Py%2Frefs%2Fheads%2Fmain%2Fsub%2FMix%2Fmix.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Froosterkid%2Fopenproxylist%2Frefs%2Fheads%2Fmain%2FV2RAY_RAW.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FMhdiTaheri%2FV2rayCollector%2Fmain%2Fsub%2Fmix&target=clash&emoji=false&append_type=true&append_info=true&scv=true&udp=true&list=false&sort=false&fdn=true&insert=false"
+    Soroushmirzaei_Subs_1:
+      url: "https://url.v1.mk/sub?&url=https%3A%2F%2Fraw.githubusercontent.com%2FALIILAPRO%2Fv2rayNG-Config%2Fmain%2Fsub.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FAshkan-m%2Fv2ray%2Fmain%2FSub.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FMrMohebi%2Fxray-proxy-grabber-telegram%2Fmaster%2Fcollected-proxies%2Frow-url%2Factives.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FMrMohebi%2Fxray-proxy-grabber-telegram%2Fmaster%2Fcollected-proxies%2Frow-url%2Fall.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FMrPooyaX%2FVpnsFucking%2Fmain%2FBeVpn.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Ftuic%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Fhysteria%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Fjuicity%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Freality%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Fshadowsocks%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Ftrojan%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Fvless&target=clash&config=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FSleepyHeeead%2Fsubconverter-config%40master%2Fremote-config%2Funiversal%2Furltest.ini&emoji=false&append_type=true&append_info=true&scv=true&udp=true&list=false&sort=false&fdn=true&insert=false"
       health-check:
          enable: true
          interval: 150
@@ -163,7 +163,47 @@ proxy-providers:
          User-Agent:
               - "Clash/v1.18.0"
               - "mihomo/1.18.3"
-      path: ./profile/proxy_providers/Soroushmirzaei_Subs.yaml
+      path: ./profile/proxy_providers/Soroushmirzaei_Subs_1.yaml
+    Soroushmirzaei_Subs_2:
+      url: "https://url.v1.mk/sub?&url=https%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Fvmess%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Ftuic%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Fhysteria%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Fjuicity%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Freality%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Fshadowsocks%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Ftrojan%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Fvless%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Fvmess%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FEveryday-VPN%2FEveryday-VPN%2Fmain%2Fsubscription%2Fmain.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FEveryday-VPN%2FEveryday-VPN%2Fmain%2Fsubscription%2Ftest.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FKwinshadow%2FTelegramV2rayCollector%2Fmain%2Fsublinks%2Fmix.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fts-sf%2Ffly%2Fmain%2Fv2%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FEpodonios%2Fv2ray-configs%2Fmain%2FSplitted-By-Protocol%2Fvless.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FEpodonios%2Fv2ray-configs%2Fmain%2FSplitted-By-Protocol%2Fvmess.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FEpodonios%2Fv2ray-configs%2Fmain%2FSplitted-By-Protocol%2Ftrojan.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FEpodonios%2Fv2ray-configs%2Fmain%2FSplitted-By-Protocol%2Fss.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fqjlxg%2Fhy2%2Fmain%2Fsplitted%2Fvless%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fqjlxg%2Fhy2%2Fmain%2Fsplitted%2Fsocks%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fqjlxg%2Fhy2%2Fmain%2Fsplitted%2Ftrojan%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fqjlxg%2Fhy2%2Fmain%2Fsplitted%2Fhy2%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fqjlxg%2Fhy2%2Fmain%2Fsplitted%2Fhysteria%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FTGParse%2Fmain%2Fpython%2Fhy2%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FTGParse%2Fmain%2Fpython%2Fhysteria2%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FTGParse%2Fmain%2Fpython%2Fhysteria%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FTGParse%2Fmain%2Fsplitted%2Fvless%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FTGParse%2Fmain%2Fsplitted%2Fvmess%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fmiladtahanian%2FV2RayCFGDumper%2Fmain%2Fconfig.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSpace-00%2FV2ray-configs%2Frefs%2Fheads%2Fmain%2Fconfig.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FProxy-sorter%2Fmain%2Fcustom%2Fudp.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FProxy-sorter%2Fmain%2Fws_tls%2Fproxies%2Fwstls%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FProxy-sorter%2Fmain%2Fselector%2Frandom%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FProxy-sorter%2Fmain%2Foutput%2Fconverted.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FProxy-sorter%2Frefs%2Fheads%2Fmain%2Fcustom%2Fmahsa.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FV2RAYCONFIGSPOOL%2FV2RAY_SUB%2Frefs%2Fheads%2Fmain%2FV2RAY_SUB.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FMrMohebi%2Fxray-proxy-grabber-telegram%2Frefs%2Fheads%2Fmaster%2Fcollected-proxies%2Frow-url%2Fall.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FMrMohebi%2Fxray-proxy-grabber-telegram%2Frefs%2Fheads%2Fmaster%2Fcollected-proxies%2Frow-url%2Factives.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FMhdiTaheri%2FV2rayCollector_Py%2Frefs%2Fheads%2Fmain%2Fsub%2FMix%2Fmix.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Froosterkid%2Fopenproxylist%2Frefs%2Fheads%2Fmain%2FV2RAY_RAW.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FMhdiTaheri%2FV2rayCollector%2Fmain%2Fsub%2Fmix&target=clash&config=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FSleepyHeeead%2Fsubconverter-config%40master%2Fremote-config%2Funiversal%2Furltest.ini&emoji=false&append_type=true&append_info=true&scv=true&udp=true&list=false&sort=false&fdn=true&insert=false"
+      health-check:
+         enable: true
+         interval: 150
+         timeout: 0
+         expected-status: 204
+         max-failed-times: 100
+         url: "https://cp.cloudflare.com/generate_204"
+      type: http
+      proxy: DIRECT 
+      lazy: false
+      interval: 3600
+      override:
+         skip-cert-verify: true
+      header:
+         User-Agent:
+              - "Clash/v1.18.0"
+              - "mihomo/1.18.3"
+      path: ./profile/proxy_providers/Soroushmirzaei_Subs_2.yaml
+    Soroushmirzaei_Subs_3:
+      url: "https://subapi.fxxk.dedyn.io/sub?&url=https%3A%2F%2Fraw.githubusercontent.com%2FALIILAPRO%2Fv2rayNG-Config%2Fmain%2Fsub.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FAshkan-m%2Fv2ray%2Fmain%2FSub.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FMrMohebi%2Fxray-proxy-grabber-telegram%2Fmaster%2Fcollected-proxies%2Frow-url%2Factives.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FMrMohebi%2Fxray-proxy-grabber-telegram%2Fmaster%2Fcollected-proxies%2Frow-url%2Fall.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FMrPooyaX%2FVpnsFucking%2Fmain%2FBeVpn.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Ftuic%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Fhysteria%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Fjuicity%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Freality%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Fshadowsocks%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Ftrojan%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Fvless%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Fvmess%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Ftuic%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Fhysteria%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Fjuicity%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Freality%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Fshadowsocks%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Ftrojan%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Fvless%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Fvmess%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FEveryday-VPN%2FEveryday-VPN%2Fmain%2Fsubscription%2Fmain.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FEveryday-VPN%2FEveryday-VPN%2Fmain%2Fsubscription%2Ftest.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FKwinshadow%2FTelegramV2rayCollector%2Fmain%2Fsublinks%2Fmix.txt&target=clash&config=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FSleepyHeeead%2Fsubconverter-config%40master%2Fremote-config%2Funiversal%2Furltest.ini&emoji=false&append_type=true&append_info=true&scv=true&udp=true&list=false&sort=false&fdn=true&insert=false"
+      health-check:
+         enable: true
+         interval: 150
+         timeout: 0
+         expected-status: 204
+         max-failed-times: 100
+         url: "https://cp.cloudflare.com/generate_204"
+      type: http
+      proxy: DIRECT 
+      lazy: false
+      interval: 3600
+      override:
+         skip-cert-verify: true
+      header:
+         User-Agent:
+              - "Clash/v1.18.0"
+              - "mihomo/1.18.3"
+      path: ./profile/proxy_providers/Soroushmirzaei_Subs_3.yaml
     Soroushmirzaei:
       url: "https://subapi.fxxk.dedyn.io/sub?&url=https%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fsubscribe%2Fprotocols%2Fjuicity%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fsubscribe%2Fprotocols%2Fhysteria%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Ftuic%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Freality%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Fvless%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Fvmess%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Ftrojan%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fchannels%2Fprotocols%2Fshadowsocks%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fsplitted%2Fchannels%7C%7C%7C%7C%7C%7C%7C&target=clash&emoji=false&append_type=true&append_info=true&scv=true&udp=true&list=false&sort=false&fdn=true&insert=false"
       health-check:
@@ -364,26 +404,6 @@ proxy-providers:
               - "Clash/v1.18.0"
               - "mihomo/1.18.3"
       path: ./profile/proxy_providers/HTG8866.yaml
-    SuperJack:
-      url: "https://super.jack991.filegear-sg.me/"
-      health-check:
-         enable: true
-         interval: 150
-         timeout: 0
-         expected-status: 204
-         #max-failed-times: 10
-         url: "https://cp.cloudflare.com/generate_204"
-      type: http
-      proxy: DIRECT
-      lazy: false
-      interval: 3600
-      override:
-         skip-cert-verify: true
-      header:
-         User-Agent:
-              - "Clash/v1.18.0"
-              - "mihomo/1.18.3"
-      path: ./profile/proxy_providers/superjack yaml
     Pawdroid:
       url: "https://subapi.fxxk.dedyn.io/sub?&url=https%3A%2F%2Fraw.githubusercontent.com%2FPawdroid%2FFree-servers%2Fmain%2Fstatic%2Fsub_en&target=clash&new_name=true&config=https%3A%2F%2Fraw.githubusercontent.com%2FMazeorz%2Fairports%2Fmaster%2FClash%2FStitch.ini&emoji=false&append_type=true&append_info=true&scv=false&udp=false&list=false&sort=false&fdn=true&insert=false"
       health-check:
@@ -484,26 +504,6 @@ proxy-providers:
               - "Clash/v1.18.0"
               - "mihomo/1.18.3"
       path: ./profile/proxy_providers/aggregator_aoip.yaml
-    ZMY666:
-      url: https://gist.zmy666.us.kg/
-      health-check:
-         enable: true
-         interval: 150
-         timeout: 0
-         expected-status: 204
-         #max-failed-times: 10
-         url: "https://cp.cloudflare.com/generate_204"
-      type: http
-      proxy: DIRECT
-      lazy: false
-      interval: 3600
-      override:
-         skip-cert-verify: true
-      header:
-         User-Agent:
-              - "Clash/v1.18.0"
-              - "mihomo/1.18.3"
-      path: ./profile/proxy_providers/ZMY666.yaml
 proxy-groups:
     - name: auto
       health-check:
@@ -533,9 +533,9 @@ proxy-groups:
       include-all-providers: true
 #      filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore}"
       exclude-filter: "fallback"
-      exclude-type: direct
+      exclude-type: DIRECT
     - name: fallback
-      exclude-type: direct
+      exclude-type: DIRECT
       health-check:
          enable: true
          interval: 150
@@ -646,8 +646,6 @@ rules:
     - DOMAIN-SUFFIX,riotgames.com,auto,no-resolve
     - DOMAIN-SUFFIX,leagueoflegends.com,auto,no-resolve
     - RULE-SET,StevenBlack,REJECT
-#    - RULE-SET,AdGuardSDNSFilter_All,REJECT
-#    - RULE-SET,BanProgramAD, REJECT
     - RULE-SET,LoyalSoldier,REJECT
     - RULE-SET,oisd_big,REJECT
     - RULE-SET,Hagezi,REJECT
@@ -660,8 +658,6 @@ rules:
     - RULE-SET,Reiji_Adblock,REJECT
     - RULE-SET,Telegramcidr,auto
     - GEOIP,Private,DIRECT,no-resolve
-#    - GEOSITE,category-games,auto
-#    - GEOSITE,category-bank-mm,DIRECT
     - GEOSITE,category-ads@ads,REJECT
     - DOMAIN,clash.razord.top,DIRECT,no-resolve
     - DOMAIN,yacd.haishan.me,DIRECT,no-resolve
@@ -690,7 +686,6 @@ rules:
     - DOMAIN,geosite:unity-ads,REJECT
     - DOMAIN,geosite:meta-ads,REJECT
     - DOMAIN,geoip:google-ads,REJECT
-#    - DOMAIN,geosite:category-bank-mm,DIRECT
     - DOMAIN,geoip:facebook-ads,REJECT
     - DOMAIN,geosite:category-public-tracker,REJECT
     - DOMAIN-KEYWORD,googleadservices,REJECT
@@ -724,10 +719,6 @@ rules:
     - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve  
     - DOMAIN-SUFFIX,samsung.com,auto
     - DOMAIN-SUFFIX,partner.uc.cn,REJECT
-#    - SRC-PORT,8013,auto
- #   - SRC-PORT,2080-2099,auto
-#    - SRC-PORT,5100,auto
-#    - SRC-PORT,53,auto
     - DOMAIN-SUFFIX,strpst.com,REJECT
     - PROCESS-NAME,ai.chat.gpt.bot,auto,no-resolve
     - PROCESS-NAME,com.rezone.gvortex,DIRECT,no-resolve
@@ -736,4 +727,5 @@ rules:
     - DOMAIN,ms.applvn.com:443,DIRECT,no-resolve
     - PROCESS-NAME,mm.com.mptvas,DIRECT
     - MATCH, auto,mm.com.mptvas,DIRECT
+    - DOMAIN,turn.speed.cloudflare.com:50000, auto
     - MATCH, auto
