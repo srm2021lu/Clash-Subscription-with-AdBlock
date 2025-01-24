@@ -304,6 +304,46 @@ proxy-providers:
               - "Clash/v1.18.0"
               - "mihomo/1.18.3"
       path: ./profile/proxy_providers/SR.yaml
+    ProxyPool_1:
+      url: "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml"
+      health-check:
+         enable: true
+         interval: 150
+         timeout: 0
+         expected-status: 204
+         #max-failed-times: 10
+         url: "https://cp.cloudflare.com/generate_204"
+      type: http
+      proxy: DIRECT 
+      lazy: false
+      interval: 3600
+      override:
+         skip-cert-verify: true
+      header:
+         User-Agent:
+              - "Clash/v1.18.0"
+              - "mihomo/1.18.3"
+      path: ./profile/proxy_providers/ProxyPool_1.yaml
+    ProxyPool_2:
+      url: "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta-2.yaml"
+      health-check:
+         enable: true
+         interval: 150
+         timeout: 0
+         expected-status: 204
+         #max-failed-times: 10
+         url: "https://cp.cloudflare.com/generate_204"
+      type: http
+      proxy: DIRECT 
+      lazy: false
+      interval: 3600
+      override:
+         skip-cert-verify: true
+      header:
+         User-Agent:
+              - "Clash/v1.18.0"
+              - "mihomo/1.18.3"
+      path: ./profile/proxy_providers/ProxyPool_2.yaml
     Neigui-US:
       url: "https://api.neigui.us.kg:443/sub?token=4v1eR3A9c8Z4dVQ0PE9Yjimrbfg&tag=clash"
       health-check:
