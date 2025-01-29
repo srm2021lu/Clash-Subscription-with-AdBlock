@@ -144,6 +144,46 @@ proxies:
       headers:
          host: vless.aihi.uk
 proxy-providers:
+    V2Node_HK:
+      url: "https://url.v1.mk/sub?&url=https%3A%2F%2Fwww.v2nodes.com%2Fsubscriptions%2Fcountry%2Fhk%2F&target=clash&config=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FSleepyHeeead%2Fsubconverter-config%40master%2Fremote-config%2Funiversal%2Furltest.ini&emoji=false&append_type=true&append_info=true&scv=true&udp=true&list=false&sort=false&fdn=true&insert=false"
+      health-check:
+         enable: true
+         interval: 150
+         timeout: 0
+         expected-status: 204
+         max-failed-times: 100
+         url: "https://cp.cloudflare.com/generate_204"
+      type: http
+      proxy: DIRECT 
+      lazy: false
+      interval: 3600
+      override:
+         skip-cert-verify: true
+      header:
+         User-Agent:
+              - "Clash/v1.18.0"
+              - "mihomo/1.18.3"
+      path: ./profile/proxy_providers/V2Node_HK.yaml
+    V2Node_SG:
+      url: "https://url.v1.mk/sub?&url=https%3A%2F%2Fwww.v2nodes.com%2Fsubscriptions%2Fcountry%2Fsg%2F&target=clash&config=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FSleepyHeeead%2Fsubconverter-config%40master%2Fremote-config%2Funiversal%2Furltest.ini&emoji=false&append_type=true&append_info=true&scv=true&udp=true&list=false&sort=false&fdn=true&insert=false"
+      health-check:
+         enable: true
+         interval: 150
+         timeout: 0
+         expected-status: 204
+         max-failed-times: 100
+         url: "https://cp.cloudflare.com/generate_204"
+      type: http
+      proxy: DIRECT 
+      lazy: false
+      interval: 3600
+      override:
+         skip-cert-verify: true
+      header:
+         User-Agent:
+              - "Clash/v1.18.0"
+              - "mihomo/1.18.3"
+      path: ./profile/proxy_providers/V2Node_SG.yaml
     Soroushmirzaei_Subs_1:
       url: "https://url.v1.mk/sub?&url=https%3A%2F%2Fraw.githubusercontent.com%2FALIILAPRO%2Fv2rayNG-Config%2Fmain%2Fsub.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FAshkan-m%2Fv2ray%2Fmain%2FSub.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FMrMohebi%2Fxray-proxy-grabber-telegram%2Fmaster%2Fcollected-proxies%2Frow-url%2Factives.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FMrMohebi%2Fxray-proxy-grabber-telegram%2Fmaster%2Fcollected-proxies%2Frow-url%2Fall.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2FMrPooyaX%2FVpnsFucking%2Fmain%2FBeVpn.txt%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Ftuic%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Fhysteria%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Fjuicity%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Freality%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Fshadowsocks%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Ftrojan%7Chttps%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fprotocols%2Fvless&target=clash&config=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FSleepyHeeead%2Fsubconverter-config%40master%2Fremote-config%2Funiversal%2Furltest.ini&emoji=false&append_type=true&append_info=true&scv=true&udp=true&list=false&sort=false&fdn=true&insert=false"
       health-check:
@@ -344,26 +384,6 @@ proxy-providers:
               - "Clash/v1.18.0"
               - "mihomo/1.18.3"
       path: ./profile/proxy_providers/ProxyPool_2.yaml
-    Neigui-US:
-      url: "https://api.neigui.us.kg:443/sub?token=4v1eR3A9c8Z4dVQ0PE9Yjimrbfg&tag=clash"
-      health-check:
-         enable: true
-         interval: 150
-         timeout: 0
-         expected-status: 204
-         #max-failed-times: 10
-         url: "https://cp.cloudflare.com/generate_204"
-      type: http
-      proxy: DIRECT 
-      lazy: false
-      interval: 3600
-      override:
-         skip-cert-verify: true
-      header:
-         User-Agent:
-              - "Clash/v1.18.0"
-              - "mihomo/1.18.3"
-      path: ./profile/proxy_providers/Neigui_US.yaml
     NoMoreWalls:
       url: "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.yml"
       health-check:
@@ -424,26 +444,6 @@ proxy-providers:
               - "Clash/v1.18.0"
               - "mihomo/1.18.3"
       path: ./profile/proxy_providers/Yobm.yaml
-    HTG8866:
-      url: "https://sub.htg8866.us.kg/sublink98765"
-      health-check:
-         enable: true
-         interval: 150
-         timeout: 0
-         expected-status: 204
-         #max-failed-times: 10
-         url: "https://cp.cloudflare.com/generate_204"
-      type: http
-      proxy: DIRECT
-      lazy: false
-      interval: 3600
-      override:
-         skip-cert-verify: true
-      header:
-         User-Agent:
-              - "Clash/v1.18.0"
-              - "mihomo/1.18.3"
-      path: ./profile/proxy_providers/HTG8866.yaml
     Pawdroid:
       url: "https://subapi.fxxk.dedyn.io/sub?&url=https%3A%2F%2Fraw.githubusercontent.com%2FPawdroid%2FFree-servers%2Fmain%2Fstatic%2Fsub_en&target=clash&new_name=true&config=https%3A%2F%2Fraw.githubusercontent.com%2FMazeorz%2Fairports%2Fmaster%2FClash%2FStitch.ini&emoji=false&append_type=true&append_info=true&scv=false&udp=false&list=false&sort=false&fdn=true&insert=false"
       health-check:
@@ -766,6 +766,4 @@ rules:
     - PROCESS-NAME,moe.nb4a,DIRECT
     - DOMAIN,ms.applvn.com:443,DIRECT,no-resolve
     - PROCESS-NAME,mm.com.mptvas,DIRECT
-    - MATCH, auto,mm.com.mptvas,DIRECT
-    - DOMAIN,turn.speed.cloudflare.com:50000, auto
     - MATCH, auto
