@@ -14,8 +14,8 @@ keep-alive-idle: 15
 ipv6: true
 disable-keep-alive: false
 find-process-mode: strict
-log-level: debug
-unified-delay: false
+log-level: info
+unified-delay: true
 tcp-concurrent: true
 external-controller: 127.0.0.1:9090
 external-controller-cors:
@@ -25,7 +25,7 @@ external-controller-cors:
 external-controller-tls: 127.0.0.1:9443
 external-ui: ui
 external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
-global-client-fingerprint: random
+global-client-fingerprint: chrome
 routing-mark: 6666
 interface-name: en0
 geodata-mode: true
@@ -73,31 +73,30 @@ tun:
     auto-detect-interface: true
 dns:
     enable: true
-    listen: 0.0.0.0:53
+#    listen: 0.0.0.0:53
     ipv6: true
     use-system-hosts: true
     respect-rules: false
-    enhanced-mode: fake-ip
-    fake-ip-filter-mode: blacklist
+#    enhanced-mode: fake-ip
+#    fake-ip-filter-mode: blacklist
     use-hosts: true
-    prefer-h3: false
+    prefer-h3: true
     default-nameserver:
       - 1.1.1.1
       - 8.8.8.8
       - 127.0.0.1
     fake-ip-range: 198.18.0.1/16
     search-domains: [local]
-    fake-ip-filter:
-      - '*.lan'
-      - '+.lan'
-      - '*.riotgames.com'
-      - '*.osano.com'
-      - '*.leagueoflegends.com'
-      - '*.rgpub.io'
-      - '*.pvp.net'
-      - '*.riotcdn.net'
-      - 'geoip:wildrift'
-      - '*.singular.net'
+#    fake-ip-filter:
+#      - '*.lan'
+#      - '*.riotgames.com'
+#      - '*.osano.com'
+#      - '*.leagueoflegends.com'
+#      - '*.rgpub.io'
+#      - '*.pvp.net'
+#      - '*.riotcdn.net'
+#      - 'geoip:wildrift'
+#      - '*.singular.net'
     nameserver:
       - 1.1.1.1
       - 8.8.8.8
@@ -144,17 +143,17 @@ proxies:
       headers:
          host: vless.aihi.uk
 proxy-providers:
-    V2Node_HK:
-      url: "https://url.v1.mk/sub?&url=https%3A%2F%2Fwww.v2nodes.com%2Fsubscriptions%2Fcountry%2Fhk%2F&target=clash&config=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FSleepyHeeead%2Fsubconverter-config%40master%2Fremote-config%2Funiversal%2Furltest.ini&emoji=false&append_type=true&append_info=true&scv=true&udp=true&list=false&sort=false&fdn=true&insert=false"
+    V2Node:
+      url: "https://url.v1.mk/sub?&url=https%3A%2F%2Fwww.v2nodes.com%2Fsubscriptions%2Fcountry%2Fsg%2F%3Fkey%3DDA6E539D7BBAAD5%7Chttps%3A%2F%2Fwww.v2nodes.com%2Fsubscriptions%2Fcountry%2Fhk%2F%3Fkey%3DDA6E539D7BBAAD5%7Chttps%3A%2F%2Fwww.v2nodes.com%2Fsubscriptions%2Fcountry%2Fth%2F%3Fkey%3DDA6E539D7BBAAD5%7Chttps%3A%2F%2Fwww.v2nodes.com%2Fsubscriptions%2Fcountry%2Fmy%2F%3Fkey%3DDA6E539D7BBAAD5%7Chttps%3A%2F%2Fwww.v2nodes.com%2Fsubscriptions%2Fcountry%2Ftw%2F%3Fkey%3DDA6E539D7BBAAD5%7Chttps%3A%2F%2Fwww.v2nodes.com%2Fsubscriptions%2Fcountry%2Fkh%2F%3Fkey%3DDA6E539D7BBAAD5%7Chttps%3A%2F%2Fwww.v2nodes.com%2Fsubscriptions%2Fcountry%2Fvn%2F%3Fkey%3DDA6E539D7BBAAD5%7Chttps%3A%2F%2Fwww.v2nodes.com%2Fsubscriptions%2Fcountry%2Fin%2F%3Fkey%3DDA6E539D7BBAAD5%7C%7C&target=clash&new_name=true&config=https%3A%2F%2Fraw.githubusercontent.com%2Fcmliu%2FACL4SSR%2Fmain%2FClash%2Fconfig%2FACL4SSR_Online_Full_CF.ini&emoji=false&append_type=true&append_info=true&scv=true&udp=true&list=false&sort=false&fdn=true&insert=false"
       health-check:
          enable: true
          interval: 150
          timeout: 0
-         expected-status: 204
-         max-failed-times: 100
-         url: "https://cp.cloudflare.com/generate_204"
+         #expected-status: 204
+#         max-failed-times: 100
+         url: "https://clients3.google.com/generate_204"
       type: http
-      proxy: DIRECT 
+#      proxy: DIRECT 
       lazy: false
       interval: 3600
       override:
@@ -163,18 +162,18 @@ proxy-providers:
          User-Agent:
               - "Clash/v1.18.0"
               - "mihomo/1.18.3"
-      path: ./profile/proxy_providers/V2Node_HK.yaml
+      path: ./profile/proxy_providers/V2Node.yaml
     V2Node_SG:
       url: "https://url.v1.mk/sub?&url=https%3A%2F%2Fwww.v2nodes.com%2Fsubscriptions%2Fcountry%2Fsg%2F&target=clash&config=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FSleepyHeeead%2Fsubconverter-config%40master%2Fremote-config%2Funiversal%2Furltest.ini&emoji=false&append_type=true&append_info=true&scv=true&udp=true&list=false&sort=false&fdn=true&insert=false"
       health-check:
          enable: true
          interval: 150
          timeout: 0
-         expected-status: 204
-         max-failed-times: 100
-         url: "https://cp.cloudflare.com/generate_204"
+         #expected-status: 204
+#         max-failed-times: 100
+         url: "https://clients3.google.com/generate_204"
       type: http
-      proxy: DIRECT 
+#      proxy: DIRECT 
       lazy: false
       interval: 3600
       override:
@@ -190,11 +189,11 @@ proxy-providers:
          enable: true
          interval: 150
          timeout: 0
-         expected-status: 204
-         max-failed-times: 100
-         url: "https://cp.cloudflare.com/generate_204"
+         #expected-status: 204
+#         max-failed-times: 100
+         url: "https://clients3.google.com/generate_204"
       type: http
-      proxy: DIRECT 
+#      proxy: DIRECT 
       lazy: false
       interval: 3600
       override:
@@ -210,11 +209,11 @@ proxy-providers:
          enable: true
          interval: 150
          timeout: 0
-         expected-status: 204
-         max-failed-times: 100
-         url: "https://cp.cloudflare.com/generate_204"
+         #expected-status: 204
+ #        max-failed-times: 100
+         url: "https://clients3.google.com/generate_204"
       type: http
-      proxy: DIRECT 
+#      proxy: DIRECT 
       lazy: false
       interval: 3600
       override:
@@ -230,11 +229,11 @@ proxy-providers:
          enable: true
          interval: 150
          timeout: 0
-         expected-status: 204
-         max-failed-times: 100
-         url: "https://cp.cloudflare.com/generate_204"
+         #expected-status: 204
+#         max-failed-times: 100
+         url: "https://clients3.google.com/generate_204"
       type: http
-      proxy: DIRECT 
+#      proxy: DIRECT 
       lazy: false
       interval: 3600
       override:
@@ -250,11 +249,11 @@ proxy-providers:
          enable: true
          interval: 150
          timeout: 0
-         expected-status: 204
-         max-failed-times: 100
-         url: "https://cp.cloudflare.com/generate_204"
+         #expected-status: 204
+#         max-failed-times: 100
+         url: "https://clients3.google.com/generate_204"
       type: http
-      proxy: DIRECT 
+#      proxy: DIRECT 
       lazy: false
       interval: 3600
       override:
@@ -270,11 +269,11 @@ proxy-providers:
          enable: true
          interval: 150
          timeout: 0
-         expected-status: 204
+         #expected-status: 204
          #max-failed-times: 10
-         url: "https://cp.cloudflare.com/generate_204"
+         url: "https://clients3.google.com/generate_204"
       type: http
-      proxy: DIRECT 
+#      proxy: DIRECT 
       lazy: false
       interval: 3600
       override:
@@ -290,11 +289,11 @@ proxy-providers:
          enable: true
          interval: 150
          timeout: 0
-         expected-status: 204
+         #expected-status: 204
          #max-failed-times: 10
-         url: "https://cp.cloudflare.com/generate_204"
+         url: "https://clients3.google.com/generate_204"
       type: http
-      proxy: DIRECT 
+#      proxy: DIRECT 
       lazy: false
       interval: 3600
       override:
@@ -310,11 +309,11 @@ proxy-providers:
          enable: true
          interval: 150
          timeout: 0
-         expected-status: 204
+         #expected-status: 204
          #max-failed-times: 10
-         url: "https://cp.cloudflare.com/generate_204"
+         url: "https://clients3.google.com/generate_204"
       type: http
-      proxy: DIRECT 
+#      proxy: DIRECT 
       lazy: false
       interval: 3600
       override:
@@ -330,11 +329,11 @@ proxy-providers:
          enable: true
          interval: 150
          timeout: 0
-         expected-status: 204
+         #expected-status: 204
          #max-failed-times: 10
-         url: "https://cp.cloudflare.com/generate_204"
+         url: "https://clients3.google.com/generate_204"
       type: http
-      proxy: DIRECT 
+#      proxy: DIRECT 
       lazy: false
       interval: 3600
       override:
@@ -350,11 +349,11 @@ proxy-providers:
          enable: true
          interval: 150
          timeout: 0
-         expected-status: 204
+         #expected-status: 204
          #max-failed-times: 10
-         url: "https://cp.cloudflare.com/generate_204"
+         url: "https://clients3.google.com/generate_204"
       type: http
-      proxy: DIRECT 
+#      proxy: DIRECT 
       lazy: false
       interval: 3600
       override:
@@ -370,11 +369,11 @@ proxy-providers:
          enable: true
          interval: 150
          timeout: 0
-         expected-status: 204
+         #expected-status: 204
          #max-failed-times: 10
-         url: "https://cp.cloudflare.com/generate_204"
+         url: "https://clients3.google.com/generate_204"
       type: http
-      proxy: DIRECT 
+#      proxy: DIRECT 
       lazy: false
       interval: 3600
       override:
@@ -390,9 +389,9 @@ proxy-providers:
          enable: true
          interval: 150
          timeout: 0
-         expected-status: 204
+         #expected-status: 204
          #max-failed-times: 10
-         url: "https://cp.cloudflare.com/generate_204"
+         url: "https://clients3.google.com/generate_204"
       type: http
       proxy: DIRECT
       lazy: false
@@ -410,9 +409,9 @@ proxy-providers:
          enable: true
          interval: 150
          timeout: 0
-         expected-status: 204
+         #expected-status: 204
          #max-failed-times: 10
-         url: "https://cp.cloudflare.com/generate_204"
+         url: "https://clients3.google.com/generate_204"
       type: http
       proxy: DIRECT
       lazy: false
@@ -430,9 +429,9 @@ proxy-providers:
          enable: true
          interval: 150
          timeout: 0
-         expected-status: 204
+         #expected-status: 204
          #max-failed-times: 10
-         url: "https://cp.cloudflare.com/generate_204"
+         url: "https://clients3.google.com/generate_204"
       type: http
       proxy: DIRECT
       lazy: false
@@ -450,9 +449,9 @@ proxy-providers:
          enable: true
          interval: 150
          timeout: 0
-         expected-status: 204
+         #expected-status: 204
          #max-failed-times: 10
-         url: "https://cp.cloudflare.com/generate_204"
+         url: "https://clients3.google.com/generate_204"
       type: http
       lazy: false
       proxy: DIRECT
@@ -470,9 +469,9 @@ proxy-providers:
          enable: true
          interval: 150
          timeout: 0
-         expected-status: 204
+         #expected-status: 204
          #max-failed-times: 10
-         url: "https://cp.cloudflare.com/generate_204"
+         url: "https://clients3.google.com/generate_204"
       type: http
       proxy: DIRECT
       lazy: false
@@ -490,9 +489,9 @@ proxy-providers:
          enable: true
          interval: 150
          timeout: 0
-         expected-status: 204
+         #expected-status: 204
          #max-failed-times: 10
-         url: "https://cp.cloudflare.com/generate_204"
+         url: "https://clients3.google.com/generate_204"
       type: http
       proxy: DIRECT
       lazy: false
@@ -510,9 +509,9 @@ proxy-providers:
          enable: true
          interval: 150
          timeout: 0
-         expected-status: 204
+         #expected-status: 204
          #max-failed-times: 10
-         url: "https://cp.cloudflare.com/generate_204"
+         url: "https://clients3.google.com/generate_204"
       type: http
       proxy: DIRECT
       lazy: false
@@ -530,9 +529,9 @@ proxy-providers:
          enable: true
          interval: 150
          timeout: 0
-         expected-status: 204
+         #expected-status: 204
          #max-failed-times: 10
-         url: "https://cp.cloudflare.com/generate_204"
+         url: "https://clients3.google.com/generate_204"
       type: http
       proxy: DIRECT
       lazy: false
@@ -550,36 +549,35 @@ proxy-groups:
          enable: true
          interval: 150
          timeout: 0
-         expected-status: 204
+#         #expected-status: 204
          #max-failed-times: 10
-         url: "https://cp.cloudflare.com/generate_204"
+         url: "https://clients3.google.com/generate_204"
       type: url-test
-      proxy: DIRECT
+      proxy: url-test
       exclude-type: direct
-      size-limit: 0
+#      size-limit: 0
       lazy: false
       include-all: true
-      icon: "https://cdn-icons-png.flaticon.com/512/3686/3686513.png"
+#      icon: "https://cdn-icons-png.flaticon.com/512/3686/3686513.png"
     - name: load-balance
       health-check:
          enable: true
          interval: 150
-         url: "https://cp.cloudflare.com/generate_204"
+         url: "https://clients3.google.com/generate_204"
       type: load-balance
       lazy: false
       strategy: consistent-hashing
-      include-all: false
+#      include-all: false
       include-all-proxies: true
       include-all-providers: true
 #      filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore}"
-      exclude-filter: "fallback"
-      exclude-type: DIRECT
+#      exclude-f      exclude-type: DIRECT
     - name: fallback
       exclude-type: DIRECT
       health-check:
          enable: true
          interval: 150
-         url: "https://cp.cloudflare.com/generate_204"
+         url: "https://clients3.google.com/generate_204"
       type: fallback
       lazy: false
       include-all: false
@@ -665,20 +663,20 @@ rule-providers:
       type: http
       behavior: ipcidr
       url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
-      interval: 86400
+#      interval: 86400
       path: ./ruleset/ipcidr/Telegramcidr.yaml
     ChatGPT:
       type: http
       behavior: classical
       url: "https://raw.githubusercontent.com/G4free/clash-ruleset/main/ruleset/ChatGPT.yaml"
       path: ./profile/rules/ChatGPT.yaml
-      interval: 86400
+#      interval: 86400
     LAN:
       type: http
       behavior: classical
       url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/LocalAreaNetwork.yaml"
       path: ./profile/rules/LAN.yaml
-      interval: 86400
+#      interval: 86400
 rules:
     - DOMAIN-SUFFIX,google.com,auto
     - DOMAIN-SUFFIX,pvp.net,auto,no-resolve
@@ -754,7 +752,6 @@ rules:
     - DOMAIN-SUFFIX,crashlytics.com,REJECT
     - DOMAIN-SUFFIX,staticxx.facebook.com,REJECT
     - DOMAIN-SUFFIX,click.googleanalytics.com,REJECT
-    - DOMAIN-SUFFIX,samsung.com,auto
     - DOMAIN-SUFFIX,rgpub.io,auto,no-resolve
     - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve  
     - DOMAIN-SUFFIX,samsung.com,auto
@@ -765,5 +762,4 @@ rules:
     - DOMAIN,sdk-api-v1.singular.net:443,auto,no-resolve
     - PROCESS-NAME,moe.nb4a,DIRECT
     - DOMAIN,ms.applvn.com:443,DIRECT,no-resolve
-    - PROCESS-NAME,mm.com.mptvas,DIRECT
     - MATCH, auto
