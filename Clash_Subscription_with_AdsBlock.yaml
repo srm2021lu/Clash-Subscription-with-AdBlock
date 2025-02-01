@@ -77,8 +77,8 @@ dns:
     ipv6: true
     use-system-hosts: true
     respect-rules: false
-#    enhanced-mode: fake-ip
-#    fake-ip-filter-mode: blacklist
+    enhanced-mode: fake-ip
+    fake-ip-filter-mode: blacklist
     use-hosts: true
     prefer-h3: true
     default-nameserver:
@@ -87,16 +87,16 @@ dns:
       - 127.0.0.1
     fake-ip-range: 198.18.0.1/16
     search-domains: [local]
-#    fake-ip-filter:
-#      - '*.lan'
-#      - '*.riotgames.com'
-#      - '*.osano.com'
-#      - '*.leagueoflegends.com'
-#      - '*.rgpub.io'
-#      - '*.pvp.net'
-#      - '*.riotcdn.net'
-#      - 'geoip:wildrift'
-#      - '*.singular.net'
+    fake-ip-filter:
+      - '*.lan'
+      - '*.riotgames.com'
+      - '*.osano.com'
+      - '*.leagueoflegends.com'
+      - '*.rgpub.io'
+      - '*.pvp.net'
+      - '*.riotcdn.net'
+      - 'geoip:wildrift'
+      - '*.singular.net'
     nameserver:
       - 1.1.1.1
       - 8.8.8.8
@@ -443,6 +443,8 @@ proxy-groups:
 #      size-limit: 0
       lazy: false
       include-all: true
+      filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore|新加坡|香港}"
+#      exclude-type: DIRECT
 #      icon: "https://cdn-icons-png.flaticon.com/512/3686/3686513.png"
     - name: load-balance
       health-check:
@@ -455,8 +457,9 @@ proxy-groups:
 #      include-all: false
       include-all-proxies: true
       include-all-providers: true
+      filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore|新加坡|香港}"
 #      filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore}"
-#      exclude-f      exclude-type: DIRECT
+      exclude-type: DIRECT
     - name: fallback
       exclude-type: DIRECT
       health-check:
@@ -647,5 +650,5 @@ rules:
     - DOMAIN,sdk-api-v1.singular.net:443,auto,no-resolve
     - PROCESS-NAME,moe.nb4a,DIRECT
     - DOMAIN,ms.applvn.com:443,DIRECT,no-resolve
-    - DOMAIN-SUFFIX,tgzdyz2.xyz,auto
+#    - DOMAIN-SUFFIX,tgzdyz2.xyz,auto
     - MATCH, auto
