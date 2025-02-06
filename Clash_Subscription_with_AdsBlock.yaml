@@ -149,7 +149,7 @@ proxy-providers:
               - "mihomo/1.18.3"
       path: ./profile/proxy_providers/TopFreeProxy.yaml
     V2Node:
-      url: "https://url.v1.mk/sub?&url=https%3A%2F%2Fwww.v2nodes.com%2Fsubscriptions%2Fcountry%2Fsg%2F%3Fkey%3DDA6E539D7BBAAD5%7Chttps%3A%2F%2Fwww.v2nodes.com%2Fsubscriptions%2Fcountry%2Fhk%2F%3Fkey%3DDA6E539D7BBAAD5%7Chttps%3A%2F%2Fwww.v2nodes.com%2Fsubscriptions%2Fcountry%2Fth%2F%3Fkey%3DDA6E539D7BBAAD5%7Chttps%3A%2F%2Fwww.v2nodes.com%2Fsubscriptions%2Fcountry%2Fmy%2F%3Fkey%3DDA6E539D7BBAAD5%7Chttps%3A%2F%2Fwww.v2nodes.com%2Fsubscriptions%2Fcountry%2Ftw%2F%3Fkey%3DDA6E539D7BBAAD5%7Chttps%3A%2F%2Fwww.v2nodes.com%2Fsubscriptions%2Fcountry%2Fkh%2F%3Fkey%3DDA6E539D7BBAAD5%7Chttps%3A%2F%2Fwww.v2nodes.com%2Fsubscriptions%2Fcountry%2Fvn%2F%3Fkey%3DDA6E539D7BBAAD5%7Chttps%3A%2F%2Fwww.v2nodes.com%2Fsubscriptions%2Fcountry%2Fin%2F%3Fkey%3DDA6E539D7BBAAD5%7C%7C&target=clash&new_name=true&config=https%3A%2F%2Fraw.githubusercontent.com%2Fcmliu%2FACL4SSR%2Fmain%2FClash%2Fconfig%2FACL4SSR_Online_Full_CF.ini&emoji=false&append_type=true&append_info=true&scv=true&udp=true&list=false&sort=false&fdn=true&insert=false"
+      url: "https://url.v1.mk/sub?&url=https%3A%2F%2Fwww.v2nodes.com%2Fsubscriptions%2Fcountry%2Fsg%2F%3Fkey%3F941C0391695EE8%7Chttps%3A%2F%2Fwww.v2nodes.com%2Fsubscriptions%2Fcountry%2Fhk%2F%3Fkey%3F941C0391695EE8%7Chttps%3A%2F%2Fwww.v2nodes.com%2Fsubscriptions%2Fcountry%2Fth%2F%3Fkey%3F941C0391695EE8%7Chttps%3A%2F%2Fwww.v2nodes.com%2Fsubscriptions%2Fcountry%2Fmy%2F%3Fkey%3F941C0391695EE8%7Chttps%3A%2F%2Fwww.v2nodes.com%2Fsubscriptions%2Fcountry%2Ftw%2F%3Fkey%3F941C0391695EE8%7Chttps%3A%2F%2Fwww.v2nodes.com%2Fsubscriptions%2Fcountry%2Fkh%2F%3Fkey%3F941C0391695EE8%7Chttps%3A%2F%2Fwww.v2nodes.com%2Fsubscriptions%2Fcountry%2Fvn%2F%3Fkey%3F941C0391695EE8%7Chttps%3A%2F%2Fwww.v2nodes.com%2Fsubscriptions%2Fcountry%2Fin%2F%3Fkey%3F941C0391695EE8%7C%7C&target=clash&new_name=true&config=https%3A%2F%2Fraw.githubusercontent.com%2Fcmliu%2FACL4SSR%2Fmain%2FClash%2Fconfig%2FACL4SSR_Online_Full_CF.ini&emoji=false&append_type=true&append_info=true&scv=true&udp=true&list=false&sort=false&fdn=true&insert=false"
       health-check:
          enable: true
          interval: 150
@@ -443,7 +443,7 @@ proxy-groups:
 #      size-limit: 0
       lazy: false
       include-all: true
-      filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore|新加坡|香港}"
+#     filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore|新加坡|香港}"
 #      exclude-type: DIRECT
 #      icon: "https://cdn-icons-png.flaticon.com/512/3686/3686513.png"
     - name: load-balance
@@ -457,7 +457,7 @@ proxy-groups:
 #      include-all: false
       include-all-proxies: true
       include-all-providers: true
-      filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore|新加坡|香港}"
+#     filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore|新加坡|香港}"
 #      filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore}"
       exclude-type: DIRECT
     - name: fallback
