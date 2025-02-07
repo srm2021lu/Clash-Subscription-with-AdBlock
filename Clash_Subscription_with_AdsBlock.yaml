@@ -38,6 +38,8 @@ profile:
 geo-auto-update: true
 geo-update-interval: 24
 geox-url:
+ #   geoip: "https://github.com/lyc8503/sing-box-rules/releases/latest/download/geoip.db”
+#    geosite: "https://github.com/lyc8503/sing-box-rules/releases/latest/download/geosite.db"
     geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
     geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
     mmdb: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
@@ -46,6 +48,7 @@ hosts:
     '*.clash.dev': '127.0.0.1'
     '.dev': '127.0.0.1'
     'alpha.clash.dev': '::1'
+    'geosite:category-ads-all': '127.0.0.1'
 sniffer:
     enable: true
     sniff:
@@ -443,7 +446,7 @@ proxy-groups:
 #      size-limit: 0
       lazy: false
       include-all: true
-      filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore|新加坡|香港}"
+#      filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore|新加坡|香港}"
 #      exclude-type: DIRECT
 #      icon: "https://cdn-icons-png.flaticon.com/512/3686/3686513.png"
     - name: load-balance
@@ -457,7 +460,7 @@ proxy-groups:
 #      include-all: false
       include-all-proxies: true
       include-all-providers: true
-      filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore|新加坡|香港}"
+#      filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore|新加坡|香港}"
 #      filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore}"
       exclude-type: DIRECT
     - name: fallback
