@@ -1,4 +1,4 @@
-port: 7890
+cport: 7890
 socks-port: 7891
 redir-port: 7893
 tproxy-port: 7894
@@ -332,7 +332,7 @@ proxy-providers:
               - "mihomo/1.18.3"
       path: ./profile/proxy_providers/Yobm.yaml
     Pawdroid:
-      url: "https://subapi.fxxk.dedyn.io/sub?&url=https%3A%2F%2Fraw.githubusercontent.com%2FPawdroid%2FFree-servers%2Fmain%2Fstatic%2Fsub_en&target=clash&new_name=true&config=https%3A%2F%2Fraw.githubusercontent.com%2FMazeorz%2Fairports%2Fmaster%2FClash%2FStitch.ini&emoji=false&append_type=true&append_info=true&scv=false&udp=false&list=false&sort=false&fdn=true&insert=false"
+      url: "https://url.v1.mk/sub?&url=https%3A%2F%2Fraw.githubusercontent.com%2FPawdroid%2FFree-servers%2Frefs%2Fheads%2Fmain%2Fsub&target=clash&config=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FSleepyHeeead%2Fsubconverter-config%40master%2Fremote-config%2Funiversal%2Furltest.ini&emoji=false&append_type=true&append_info=true&scv=true&udp=true&list=false&sort=false&fdn=true&insert=false"
       health-check:
          enable: true
          interval: 150
@@ -447,7 +447,7 @@ proxy-groups:
       lazy: false
       include-all: true
 #      filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore|新加坡|香港}"
-#      exclude-type: DIRECT
+ #     exclude-type: DIRECT
 #      icon: "https://cdn-icons-png.flaticon.com/512/3686/3686513.png"
     - name: load-balance
       health-check:
@@ -460,7 +460,7 @@ proxy-groups:
 #      include-all: false
       include-all-proxies: true
       include-all-providers: true
-#      filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore|新加坡|香港}"
+ #     filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore|新加坡|香港}"
 #      filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore}"
       exclude-type: DIRECT
     - name: fallback
@@ -506,17 +506,17 @@ rule-providers:
       behavior: domain
       url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/reject-list.txt"
       path: ./profile/rules/LoyalSoldier.yaml
-    lancidr:
-      type: http
-      behavior: ipcidr
-      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
-      path: ./profile/rules/lancidr.yaml
-    mm-cidr:
-      type: http
-      behavior: ipcidr
-      format: yaml
-      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/clash/ipcidr/mm.txt"
-      path: ./ruleset/ipcidr/mm.yaml
+ #   lancidr:
+#      type: http
+#      behavior: ipcidr
+#      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
+#      path: ./profile/rules/lancidr.yaml
+#    mm-cidr:
+ #     type: http
+ #     behavior: ipcidr
+ #     format: yaml
+#      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/clash/ipcidr/mm.txt"
+ #     path: ./ruleset/ipcidr/mm.yaml
     gfw:
       type: http
       behavior: domain
@@ -562,11 +562,11 @@ rule-providers:
       url: "https://raw.githubusercontent.com/G4free/clash-ruleset/main/ruleset/ChatGPT.yaml"
       path: ./profile/rules/ChatGPT.yaml
 #      interval: 86400
-    LAN:
-      type: http
-      behavior: classical
-      url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/LocalAreaNetwork.yaml"
-      path: ./profile/rules/LAN.yaml
+#    LAN:
+#     type: http
+#      behavior: classical
+#      url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/LocalAreaNetwork.yaml"
+ #    path: ./profile/rules/LAN.yaml
 #      interval: 86400
 rules:
     - DOMAIN-SUFFIX,google.com,auto
@@ -580,17 +580,17 @@ rules:
     - RULE-SET,Hagezi,REJECT
     - RULE-SET,EasyList,REJECT
     - RULE-SET,Brave,REJECT
-    - RULE-SET,LAN,DIRECT
+#    - RULE-SET,LAN,DIRECT
     - RULE-SET,ChatGPT,auto
-    - RULE-SET,lancidr,DIRECT
-    - RULE-SET,mm-cidr,auto
+#    - RULE-SET,lancidr,DIRECT
+#    - RULE-SET,mm-cidr,auto
     - RULE-SET,Reiji_Adblock,REJECT
     - RULE-SET,Telegramcidr,auto
-    - GEOIP,Private,DIRECT,no-resolve
+#    - GEOIP,Private,DIRECT,no-resolve
     - GEOSITE,category-ads@ads,REJECT
     - DOMAIN,clash.razord.top,DIRECT,no-resolve
     - DOMAIN,yacd.haishan.me,DIRECT,no-resolve
-    - GEOIP,LAN,DIRECT
+#    - GEOIP,LAN,DIRECT
     - RULE-SET,NoPopUp_GEO_Location,REJECT
     - RULE-SET,wildrift_ports, DIRECT,no-resolve
     - DOMAIN-KEYWORD,google,auto
