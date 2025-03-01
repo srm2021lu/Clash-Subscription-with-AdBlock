@@ -160,8 +160,8 @@ experimental:
       domain:
          - '+.google.com'
          - '+.facebook.com'
-         - '+.messenger.com'
          - '+.fbcdn.net'
+         - '+.messenger.com'
 
 proxies:
     - name: "sggs1"
@@ -172,6 +172,64 @@ proxies:
       password: heinlu198y
 
 proxy-providers:
+
+    SSR:
+      method: GET
+      url: "https://clash.crossxx.com/sub/ssr/1735156804"
+      health-check:
+         enable: true
+         method: GET
+         interval: 60
+         tolerance: 50
+         timeout: 0
+         expected-status: 204
+         url: "https://www.gstatic.com/generate_204"
+      type: http
+      lazy: false
+      proxy: DIRECT
+      interval: 3600
+      override:
+         skip-cert-verify: true
+      path: ./profile/proxy_providers/SSR.yaml
+
+    VMess:
+      method: GET
+      url: "https://clash.crossxx.com/sub/ssr/1735156804"
+      health-check:
+         enable: true
+         method: GET
+         interval: 60
+         tolerance: 50
+         timeout: 0
+         expected-status: 204
+         url: "https://www.gstatic.com/generate_204"
+      type: http
+      lazy: false
+      proxy: DIRECT
+      interval: 3600
+      override:
+         skip-cert-verify: true
+      path: ./profile/proxy_providers/vmess.yaml
+
+    Hysteria:
+      method: GET
+      url: "https://clash.crossxx.com/sub/hysteria/1735156804"
+      health-check:
+         enable: true
+         method: GET
+         interval: 60
+         tolerance: 50
+         timeout: 0
+         expected-status: 204
+         url: "https://www.gstatic.com/generate_204"
+      type: http
+      lazy: false
+      proxy: DIRECT
+      interval: 3600
+      override:
+         skip-cert-verify: true
+      path: ./profile/proxy_providers/hysteria.yaml
+
     Soroushmirzaei_SS:
       method: GET
       url: "https://url.v1.mk/sub?&url=https%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fsubscribe%2Fprotocols%2Fshadowsocks&target=clash&new_name=true&wxclude=cipher%3A%20ss&emoji=false&append_type=true&append_info=true&scv=true&udp=true&list=false&sort=false&fdn=true&insert=false"
@@ -317,7 +375,6 @@ proxy-groups:
       lazy: false 
       include-all: true
       include-all-proxies: true
-      exclude-type: DIRECT
     - name: load-balance
       health-check:
          method: GET
@@ -523,6 +580,7 @@ rules:
     - DOMAIN-SUFFIX,staticxx.facebook.com,REJECT
     - DOMAIN-SUFFIX,click.googleanalytics.com,REJECT
     - DOMAIN-SUFFIX,rgpub.io,auto,no-resolve
+    - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve  
     - DOMAIN-SUFFIX,samsung.com,auto
     - DOMAIN-SUFFIX,partner.uc.cn,REJECT
     - DOMAIN-SUFFIX,strpst.com,REJECT
@@ -535,6 +593,7 @@ rules:
     - DOMAIN,ms.applvn.com:443,DIRECT,no-resolve
     - NETWORK,udp,auto
     - DSCP,4,auto
+    - IP-SUFFIX,8.8.8.8/24,auto
     - GEOSITE,youtube,auto
     - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
     - IP-CIDR6,2620:0:2d0:200::7/32,auto
