@@ -159,6 +159,9 @@ experimental:
          - 240.0.0.0/4
       domain:
          - '+.google.com'
+         - '+.facebook.com'
+         - '+.messenger.com'
+         - '+.fbcdn.net'
 
 proxies:
     - name: "sggs1"
@@ -267,7 +270,7 @@ proxy-providers:
 
     V2Node_HK:
       method: GET
-      url: "hhttps://www.v2nodes.com/subscriptions/country/hk/?key=E9F53948B487B30"
+      url: "https://www.v2nodes.com/subscriptions/country/hk/?key=E9F53948B487B30"
       health-check:
          method: GET
          enable: true
@@ -314,6 +317,7 @@ proxy-groups:
       lazy: false 
       include-all: true
       include-all-proxies: true
+      exclude-type: DIRECT
     - name: load-balance
       health-check:
          method: GET
@@ -519,7 +523,6 @@ rules:
     - DOMAIN-SUFFIX,staticxx.facebook.com,REJECT
     - DOMAIN-SUFFIX,click.googleanalytics.com,REJECT
     - DOMAIN-SUFFIX,rgpub.io,auto,no-resolve
-    - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve  
     - DOMAIN-SUFFIX,samsung.com,auto
     - DOMAIN-SUFFIX,partner.uc.cn,REJECT
     - DOMAIN-SUFFIX,strpst.com,REJECT
@@ -532,7 +535,6 @@ rules:
     - DOMAIN,ms.applvn.com:443,DIRECT,no-resolve
     - NETWORK,udp,auto
     - DSCP,4,auto
-    - IP-SUFFIX,8.8.8.8/24,auto
     - GEOSITE,youtube,auto
     - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
     - IP-CIDR6,2620:0:2d0:200::7/32,auto
