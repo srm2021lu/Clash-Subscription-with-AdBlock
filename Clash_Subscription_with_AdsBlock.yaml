@@ -27,7 +27,7 @@ disable-keep-alive: false
 
 find-process-mode: always
 
-log-level: info
+log-level: error
 
 external-controller: 0.0.0.0:9091
 
@@ -41,15 +41,10 @@ external-ui-url: "https://metacubexd.pages.dev/"
 
 global-client-fingerprint: random
 
-routing-mark: 6666
-
 interface-name: en0
-
-global-ua: clash.meta
 
 profile:
     store-selected: true
-    store-fake-ip: true
 
 geo-auto-update: true
 
@@ -117,7 +112,7 @@ dns:
     enable: true
     sniff-tls-sni: true
     prefer-h3: true
-    enhanced-mode: fake-ip
+    enhanced-mode: redir-host
     enhanced-mode-by-rule: true
     nameserver:
       - 1.1.1.1
@@ -127,18 +122,6 @@ dns:
       - tls://dns.google:853
 
 experimental:
-    fake-ip-filter:
-      - '*.lan'
-      - '*.local'
-      - '*.riotgames.com'
-      - '*.osano.com'
-      - '*.leagueoflegends.com'
-      - '*.rgpub.io'
-      - '*.pvp.net'
-      - '*.riotcdn.net'
-      - 'geoip:wildrift'
-      - '*.singular.net'
-    fake-ip-range: 198.18.0.1/16
     geodata-mode: true
     geodata-loader: memconservative
     fallback-filter:
@@ -187,6 +170,7 @@ proxy-providers:
       type: http
       lazy: false
       proxy: DIRECT
+      disable-keep-alive: false
       interval: 3600
       override:
          skip-cert-verify: true
@@ -206,6 +190,7 @@ proxy-providers:
       type: http
       lazy: false
       proxy: DIRECT
+      disable-keep-alive: false
       interval: 3600
       override:
          skip-cert-verify: true
@@ -225,6 +210,7 @@ proxy-providers:
       type: http
       lazy: false
       proxy: DIRECT
+      disable-keep-alive: false
       interval: 3600
       override:
          skip-cert-verify: true
@@ -244,6 +230,7 @@ proxy-providers:
       type: http
       lazy: false
       proxy: DIRECT
+      disable-keep-alive: false
       interval: 3600
       override:
          skip-cert-verify: true
@@ -263,6 +250,7 @@ proxy-providers:
       type: http
       lazy: false
       proxy: DIRECT
+      disable-keep-alive: false
       interval: 3600
       override:
          skip-cert-verify: true
@@ -282,6 +270,7 @@ proxy-providers:
       type: http
       lazy: false
       proxy: DIRECT
+      disable-keep-alive: false
       interval: 3600
       override:
          skip-cert-verify: true
@@ -301,6 +290,7 @@ proxy-providers:
       type: http
       lazy: false
       proxy: DIRECT
+      disable-keep-alive: false
       interval: 3600
       override:
          skip-cert-verify: true
@@ -322,6 +312,7 @@ proxy-providers:
       proxy: DIRECT
       lazy: false
       interval: 3600
+      disable-keep-alive: false
       override:
          skip-cert-verify: true
       path: ./profile/proxy_providers/Darknessm427_SS.yaml
@@ -340,6 +331,7 @@ proxy-providers:
       type: http
       proxy: DIRECT
       lazy: false
+      disable-keep-alive: false
       cipher: chacha20-ietf-poly1305
       interval: 3600
       override:
@@ -360,164 +352,185 @@ proxy-providers:
       type: http
       proxy: DIRECT
       lazy: false
+      disable-keep-alive: false
       cipher: chacha20-ietf-poly1305
       interval: 3600
       path: ./profile/proxy_providers/V2NODE_SG.yaml
 
 proxy-groups:
+
     - name: auto
       type: url-test
       proxies:
          - sggs1
-      url: "https://www.gstatic.com/generate_204"
       interval: 60
+      url: "https://www.gstatic.com/generate_204"
       tolerance: 50
-      lazy: false 
+      lazy: true
       include-all: true
       include-all-proxies: true
+      include-all-providers: true
+      exclude-type: DIRECT
+      disable-udp: false
+
     - name: load-balance
-      health-check:
-         method: GET
-         enable: true
-         interval: 60
-         url: "https://www.gstatic.com/generate_204"
+      interval: 60
+      tolerance: 20
+      url: "https://www.gstatic.com/generate_204"
       type: load-balance
-      lazy: false
-      strategy: round-robin
- #     include-all: false
-#      include-all-proxies: true
+      lazy: true
+      strategy: consistent-hashing
       include-all-providers: true
-      filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore|新加坡|香港}"
-#      filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore}"
-      exclude-type: DIRECT
+      include-all: true
+      disable-udp: false
+
     - name: fallback
-      exclude-type: DIRECT
-      health-check:
-         method: GET
-         enable: true
-         interval: 60
-         url: "https://www.gstatic.com/generate_204"
+      interval: 60
+      url: "https://www.gstatic.com/generate_204"
       type: fallback
-      lazy: false
-#      include-all: false
-#      include-all-proxies: true
+      timeout: 5000
+      disable-udp: false
+      lazy: true
       include-all-providers: true
-      filter: "{hk|hongkong|[hong kong]|[Hong Kong]|HK|SG|Singapore}"
+
 rule-providers:
+
     StevenBlack:
       type: http
       behavior: domain
       url: "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling/hosts"
       path: ./profile/rules/StevenBlack.yaml
+
     AdGuardSDNSFilter_All:
       type: http
       behavior: domain
       url: "https://raw.githubusercontent.com/Repcz/EgernRules/refs/heads/X/Rules/AdGuardSDNSFilter/AdGuardSDNSFilter_All.yaml"
       path: ./profile/rules/AdGuardSDNSFilter_All.yaml
+
     BanProgramAD:
       type: http
       behavior: domain
       url: "https://raw.githubusercontent.com/Repcz/ACL4SSR/refs/heads/X/Rules/BanProgramAD.list"
       path: ./profile/rules/BanProgramAD.yaml
+
     EasyList:
       type: http
       behavior: domain
       url: "https://raw.githubusercontent.com/easylist/easylist/refs/heads/master/easylist/easylist_adservers_popup.txt"
       path: ./profile/rules/EasyList.yaml
+
     Hagezi:
       type: http
       behavior: domain
       url: "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/adblock/ultimate.txt"
       path: /profile/rules/Hagezi.yaml
+
     LoyalSoldier:
       type: http
       behavior: domain
       url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/reject-list.txt"
       path: ./profile/rules/LoyalSoldier.yaml
- #   lancidr:
-#      type: http
-#      behavior: ipcidr
-#      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
-#      path: ./profile/rules/lancidr.yaml
-#    mm-cidr:
- #     type: http
- #     behavior: ipcidr
- #     format: yaml
-#      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/clash/ipcidr/mm.txt"
- #     path: ./ruleset/ipcidr/mm.yaml
-#    gfw:
-#      type: http
-#      behavior: domain
-#      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt"
-#      path: ./profile/rules/gfw.yaml
+
+    lancidr:
+      type: http
+      behavior: ipcidr
+      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
+      path: ./profile/rules/lancidr.yaml
+
+    mm-cidr:
+      type: http
+      behavior: ipcidr
+      format: yaml
+      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/clash/ipcidr/mm.txt"
+      path: ./ruleset/ipcidr/mm.yaml
+
     oisd_big:
       type: http
       behavior: classical
       url: "https://raw.githubusercontent.com/hillz2/openclash_adblock/main/oisd_big.yaml"
       path: ./profile/rules/oisd_big.yaml
+
     wildrift_ports:
       type: http
       behavior: classical
       url: "https://raw.githubusercontent.com/hillz2/clashrules/refs/heads/main/rule_provider/Game_LeagueOfLegends_Ports.yaml"
       path: ./profile/rules/wildrift_ports.yaml
+
     Brave:
       type: http
       behavior: domain
       format: yaml
       url: "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-android-specific.txt"
       path: ./profile/rules/Brave.yaml
+
     Reiji_Adblock:
       type: http
       behavior: domain
       format: yaml
       url: "https://raw.githubusercontent.com/REIJI007/AdBlock_Rule_For_Clash/main/adblock_reject.yaml"
       path: ./profile/rules/adblock_reject.yaml
+
     FB-Non-Graph:
       type: http
       behavior: domain
       format: yaml
       url: "https://gitlab.com/eyeo/anti-cv/abp-filters-anti-cv/-/blob/201548971c18e780f456141c987fb81ec00722e0/fb_non-graph.txt"
       path: ./profile/rules/fb-non-graph.yaml
+
     NoPopUp_GEO_Location:
       type: http
       behavior: domain
       format: yaml
       url: "https://raw.githubusercontent.com/easylist/easylist/refs/heads/master/custom-lists/google_geolocation_popup.txt"
       path: ./profile/rules/NoPopUp_GEO_Location.yaml
+
     Telegramcidr:
       type: http
       behavior: ipcidr
       url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
-#      interval: 86400
       path: ./ruleset/ipcidr/Telegramcidr.yaml
-    ChatGPT:
-      type: http
-      behavior: classical
-      url: "https://raw.githubusercontent.com/G4free/clash-ruleset/main/ruleset/ChatGPT.yaml"
-      path: ./profile/rules/ChatGPT.yaml
-#      interval: 86400
-#    LAN:
-#     type: http
-#      behavior: classical
-#      url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/LocalAreaNetwork.yaml"
- #    path: ./profile/rules/LAN.yaml
-#      interval: 86400
+
 rules:
+    - DOMAIN-SUFFIX,samsung.com,auto
+    - DOMAIN-SUFFIX,partner.uc.cn,REJECT
+    - DOMAIN-SUFFIX,strpst.com,REJECT
+    - DOMAIN-SUFFIX,googleads.g.doubleclick.nes,REJECT
+    - DOMAIN-SUFFIX,adsense.google.com,REJECT
+    - DOMAIN-SUFFIX,adservice.google.com,REJECT
+    - DOMAIN-SUFFIX,ads.google.com,REJECT
+    - DOMAIN-SUFFIX,crashlyticsreports-pa.googleapis.com,REJECT
+    - DOMAIN-SUFFIX,firebaselogging-pa.googleapis.com,REJECT
+    - DOMAIN-SUFFIX,googleadservices.com,REJECT
+    - DOMAIN-SUFFIX,analytics.google.com,REJECT
+    - DOMAIN-SUFFIX,adservice.google.com,REJECT
+    - DOMAIN-SUFFIX,googleadservices-mm.com,REJECT
+    - DOMAIN-SUFFIX,googletagservices-mm.com,REJECT
+    - DOMAIN-SUFFIX,advertising-api.amazon.com,REJECT
+    - DOMAIN-SUFFIX,s.amazon-adsystem.com,REJECT
+    - DOMAIN-SUFFIX,crashlytics.com,REJECT
+    - DOMAIN-SUFFIX,staticxx.facebook.com,REJECT
+    - DOMAIN-SUFFIX,click.googleanalytics.com,REJECT
+    - DOMAIN-SUFFIX,rgpub.io,auto,no-resolve
+    - DOMAIN-SUFFIX,imkirh.com,REJECT
+    - DOMAIN-SUFFIX,riotgames.com,auto
+    - DOMAIN-SUFFIX,leagueoflegends.com,auto
+    - DOMAIN-SUFFIX,haobet77.co,REJECT
+    - DOMAIN-SUFFIX,ad.com,REJECT
     - DOMAIN-SUFFIX,google.com,auto
     - DOMAIN-SUFFIX,pvp.net,auto
     - DOMAIN-SUFFIX,riotcdn.net,auto
-    - DOMAIN-SUFFIX,riotgames.com,auto
-    - DOMAIN-SUFFIX,leagueoflegends.com,auto
+    - DOMAIN-SUFFIX,fbcdn.net,auto
     - RULE-SET,StevenBlack,REJECT
     - RULE-SET,LoyalSoldier,REJECT
     - RULE-SET,oisd_big,REJECT
     - RULE-SET,Hagezi,REJECT
     - RULE-SET,EasyList,REJECT
     - RULE-SET,Brave,REJECT
-    - RULE-SET,ChatGPT,auto
     - RULE-SET,BanProgramAD,REJECT
     - RULE-SET,Reiji_Adblock,REJECT
-    - RULE-SET,Telegramcidr,auto
+    - RULE-SET,Telegramcidr,DIRECT
+    - RULE-SET,mm-cidr,DIRECT
+    - RULE-SET,lancidr,DIRECT
     - DOMAIN,geosite:category-ads@ads,REJECT
     - DOMAIN,clash.razord.top,DIRECT,no-resolve
     - DOMAIN,yacd.haishan.me,DIRECT,no-resolve
@@ -526,9 +539,6 @@ rules:
     - DOMAIN-KEYWORD,google,auto
     - DOMAIN,speed.cloudflare.com,auto
     - DOMAIN,google.com,auto
-    - DOMAIN-SUFFIX,ad.com,REJECT
-    - DOMAIN-SUFFIX,imkirh.com,REJECT
-    - DOMAIN-SUFFIX,haobet77.co,REJECT
     - DOMAIN-KEYWORD,club388myanmar,REJECT
     - DOMAIN-KEYWORD,vipclubmm,REJECT
     - DOMAIN-KEYWORD,388gaming,REJECT
@@ -563,27 +573,8 @@ rules:
     - PROCESS-NAME,com.termux,auto
     - PROCESS-NAME,com.kbzbank.kpaycustomer,auto
     - PROCESS-NAME,com.company.myanmarbroadbandtelecom,auto
-    - DOMAIN-SUFFIX,googleads.g.doubleclick.nes,REJECT
-    - DOMAIN-SUFFIX,adsense.google.com,REJECT
-    - DOMAIN-SUFFIX,adservice.google.com,REJECT
-    - DOMAIN-SUFFIX,ads.google.com,REJECT
-    - DOMAIN-SUFFIX,crashlyticsreports-pa.googleapis.com,REJECT
-    - DOMAIN-SUFFIX,firebaselogging-pa.googleapis.com,REJECT
-    - DOMAIN-SUFFIX,googleadservices.com,REJECT
-    - DOMAIN-SUFFIX,analytics.google.com,REJECT
-    - DOMAIN-SUFFIX,adservice.google.com,REJECT
-    - DOMAIN-SUFFIX,googleadservices-mm.com,REJECT
-    - DOMAIN-SUFFIX,googletagservices-mm.com,REJECT
-    - DOMAIN-SUFFIX,advertising-api.amazon.com,REJECT
-    - DOMAIN-SUFFIX,s.amazon-adsystem.com,REJECT
-    - DOMAIN-SUFFIX,crashlytics.com,REJECT
-    - DOMAIN-SUFFIX,staticxx.facebook.com,REJECT
-    - DOMAIN-SUFFIX,click.googleanalytics.com,REJECT
-    - DOMAIN-SUFFIX,rgpub.io,auto,no-resolve
     - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve  
-    - DOMAIN-SUFFIX,samsung.com,auto
-    - DOMAIN-SUFFIX,partner.uc.cn,REJECT
-    - DOMAIN-SUFFIX,strpst.com,REJECT
+
     - PROCESS-NAME,ai.chat.gpt.bot,auto
     - PROCESS-NAME,com.rezone.gvortex,DIRECT,no-resolve
     - IP-SUFFIX,8.8.8.8/24,auto
@@ -597,7 +588,6 @@ rules:
     - GEOSITE,youtube,auto
     - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
     - IP-CIDR6,2620:0:2d0:200::7/32,auto
-    - DOMAIN-SUFFIX,fbcdn.net,auto
     - DOMAIN-KEYWORD,messenger,auto
     - DOMAIN-KEYWORD,facebook,auto
     - MATCH,auto
