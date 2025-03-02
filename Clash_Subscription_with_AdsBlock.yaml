@@ -167,8 +167,8 @@ proxies:
     - name: "sggs1"
       type: ssh
       server: sggs1.hostip.co
-      port: 22
-      username: fastssh.com-riko830
+      port: 442
+      username: fastssh.com-riko752
       password: heinlu198y
 
 proxy-providers:
@@ -328,7 +328,7 @@ proxy-providers:
 
     V2Node_HK:
       method: GET
-      url: "https://www.v2nodes.com/subscriptions/country/hk/?key=E9F53948B487B30"
+      url: "https://www.v2nodes.com/subscriptions/country/hk/?key=1428D252CB4115A"
       health-check:
          method: GET
          enable: true
@@ -348,7 +348,7 @@ proxy-providers:
 
     V2Node_SG:
       method: GET
-      url: "https://www.v2nodes.com/subscriptions/country/sg/?key=E9F53948B487B30"
+      url: "https://www.v2nodes.com/subscriptions/country/sg/?key=1428D252CB4115A"
       health-check:
          enable: true
          method: GET
