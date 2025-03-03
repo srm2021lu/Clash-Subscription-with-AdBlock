@@ -41,8 +41,6 @@ external-ui-url: "https://metacubexd.pages.dev/"
 
 global-client-fingerprint: random
 
-interface-name: en0
-
 profile:
     store-selected: true
 
@@ -319,7 +317,7 @@ proxy-providers:
 
     V2Node_HK:
       method: GET
-      url: "https://www.v2nodes.com/subscriptions/country/hk/?key=1428D252CB4115A"
+      url: "https://www.v2nodes.com/subscriptions/country/hk/?key=03F3496879C67E9"
       health-check:
          method: GET
          enable: true
@@ -340,7 +338,7 @@ proxy-providers:
 
     V2Node_SG:
       method: GET
-      url: "https://www.v2nodes.com/subscriptions/country/sg/?key=1428D252CB4115A"
+      url: "https://www.v2nodes.com/subscriptions/country/sg/?key=03F3496879C67E9"
       health-check:
          enable: true
          method: GET
