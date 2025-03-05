@@ -483,7 +483,7 @@ rules:
     - DOMAIN-SUFFIX,google.com,auto
     - DOMAIN-SUFFIX,pvp.net,auto
     - DOMAIN-SUFFIX,riotcdn.net,auto
-    - DOMAIN-SUFFIX,fbcdn.net,sggs3
+    - DOMAIN-SUFFIX,fbcdn.net,sggs5
     - RULE-SET,StevenBlack,REJECT
     - RULE-SET,LoyalSoldier,REJECT
     - RULE-SET,oisd_big,REJECT
