@@ -359,7 +359,7 @@ proxy-groups:
       include-all: true
       include-all-proxies: true
       include-all-providers: true
-      exclude-filter: {DIRECT|Trojan|trojan|Cloudflare|cloidflare}
+      exclude-filter: "DIRECT|Trojan|trojan|CloudFlare"
       disable-udp: false
 
     - name: load-balance
