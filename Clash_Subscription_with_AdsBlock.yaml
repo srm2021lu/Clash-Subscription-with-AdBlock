@@ -351,7 +351,7 @@ proxy-groups:
     - name: auto
       type: url-test
       proxies:
-         - sggs5
+         - sggs
       interval: 60
       url: "https://www.gstatic.com/generate_204"
       tolerance: 50
