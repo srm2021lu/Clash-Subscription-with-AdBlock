@@ -197,7 +197,7 @@ experimental:
          - '+.messenger.com'
 
 proxies:
-    - name: "sggs5"
+    - name: "sggs"
       type: ssh
       server: sggs5.hostip.co
       port: 442
@@ -483,7 +483,7 @@ rules:
     - DOMAIN-SUFFIX,google.com,auto
     - DOMAIN-SUFFIX,pvp.net,auto
     - DOMAIN-SUFFIX,riotcdn.net,auto
-    - DOMAIN-SUFFIX,fbcdn.net,sggs5
+    - DOMAIN-SUFFIX,fbcdn.net,sggs
     - RULE-SET,StevenBlack,REJECT
     - RULE-SET,LoyalSoldier,REJECT
     - RULE-SET,oisd_big,REJECT
@@ -504,7 +504,7 @@ rules:
     - DOMAIN-KEYWORD,vipclubmm,REJECT
     - DOMAIN-KEYWORD,388gaming,REJECT
     - GEOIP,MM,auto
-    - GEOIP,facebook,sggs5
+    - GEOIP,facebook,sggs
     - GEOSITE,google-play,auto,no-resolve
     - GEOSITE,iqiyi-ads,REJECT
     - DOMAIN,geosite:adblockplus,REJECT
@@ -549,6 +549,6 @@ rules:
     - GEOSITE,youtube,auto
     - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
     - IP-CIDR6,2620:0:2d0:200::7/32,auto
-    - DOMAIN-KEYWORD,messenger,sggs5
-    - DOMAIN-KEYWORD,facebook,sggs5
+    - DOMAIN-KEYWORD,messenger,sggs
+    - DOMAIN-KEYWORD,facebook,sggs
     - MATCH,auto
