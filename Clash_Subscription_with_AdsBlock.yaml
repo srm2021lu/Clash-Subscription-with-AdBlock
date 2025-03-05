@@ -206,26 +206,6 @@ proxies:
 
 proxy-providers:
     
-    Soroushmirzaei_SS:
-      method: GET
-      url: "https://url.v1.mk/sub?&url=https%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fsubscribe%2Fprotocols%2Fshadowsocks&target=clash&new_name=true&wxclude=cipher%3A%20ss&emoji=false&append_type=true&append_info=true&scv=true&udp=true&list=false&sort=false&fdn=true&insert=false"
-      health-check:
-         enable: true
-         method: GET
-         interval: 60
-         tolerance: 50
-         timeout: 0
-         expected-status: 204
-         url: "https://www.gstatic.com/generate_204"
-      type: http
-      lazy: true
-      proxy: auto
-      disable-keep-alive: false
-      interval: 3600
-      override:
-         skip-cert-verify: true
-      path: ./profile/proxy_providers/soroushmirzaei_ss.yaml
-
     Barry-Far-SS:
       method: GET
       url: "https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/All_Configs_Sub.txt"
@@ -307,30 +287,29 @@ proxy-providers:
          skip-cert-verify: true
       path: ./profile/proxy_providers/Darknessm427_SS.yaml
 
-    V2Node_HK:
+    OpenProxyList:
       method: GET
-      url: "https://www.v2nodes.com/subscriptions/country/hk/?key=03F3496879C67E9"
+      url: "https://url.v1.mk/sub?&url=https%3A%2F%2Fraw.githubusercontent.com%2Froosterkid%2Fopenproxylist%2Frefs%2Fheads%2Fmain%2FV2RAY_BASE64.txt&target=clash&config=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FSleepyHeeead%2Fsubconverter-config%40master%2Fremote-config%2Funiversal%2Furltest.ini&emoji=false&append_type=true&append_info=true&scv=true&udp=true&list=false&sort=false&fdn=true&insert=false"
       health-check:
-         method: GET
          enable: true
+         method: GET
          interval: 60
          tolerance: 50
          timeout: 0
          expected-status: 204
          url: "https://www.gstatic.com/generate_204"
       type: http
+      lazy: false
       proxy: auto
-      lazy: true
       disable-keep-alive: false
-      cipher: chacha20-ietf-poly1305
       interval: 3600
       override:
          skip-cert-verify: true
-      path: ./profile/proxy_providers/V2NODE_HK.yaml
-
-    V2Node_SG:
+      path: ./profile/proxy_providers/OpenProxyList.yaml
+      
+    Soroushmirzaei_SS:
       method: GET
-      url: "https://www.v2nodes.com/subscriptions/country/sg/?key=03F3496879C67E9"
+      url: "https://url.v1.mk/sub?&url=https%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fsubscribe%2Fprotocols%2Fshadowsocks&target=clash&new_name=true&wxclude=cipher%3A%20ss&emoji=false&append_type=true&append_info=true&scv=true&udp=true&list=false&sort=false&fdn=true&insert=false"
       health-check:
          enable: true
          method: GET
@@ -340,11 +319,34 @@ proxy-providers:
          expected-status: 204
          url: "https://www.gstatic.com/generate_204"
       type: http
+      lazy: false
       proxy: auto
-      lazy: true
       disable-keep-alive: false
       interval: 3600
-      path: ./profile/proxy_providers/V2NODE_SG.yaml
+      override:
+         skip-cert-verify: true
+      path: ./profile/proxy_providers/soroushmirzaei_ss.yaml
+
+    Coldwater_SS:
+      method: GET
+      url: "https://raw.githubusercontent.com/coldwater-10/V2RayAggregator/master/sub/splitted/ss.txt"
+      health-check:
+         enable: true
+         method: GET
+         interval: 60
+         tolerance: 50
+         timeout: 0
+         expected-status: 204
+         url: "https://www.gstatic.com/generate_204"
+      type: http
+      lazy: false
+      proxy: auto
+      disable-keep-alive: false
+      interval: 3600
+      override:
+         skip-cert-verify: true
+      path: ./profile/proxy_providers/coldwater_ss.yaml
+
 
 proxy-groups:
 
