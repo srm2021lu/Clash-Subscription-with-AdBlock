@@ -496,7 +496,6 @@ rules:
     - DOMAIN,clash.razord.top,DIRECT,no-resolve
     - DOMAIN,yacd.haishan.me,DIRECT,no-resolve
     - RULE-SET,NoPopUp_GEO_Location,REJECT
-    - RULE-SET,wildrift_ports, DIRECT
     - DOMAIN-KEYWORD,google,auto
     - DOMAIN,speed.cloudflare.com,auto
     - DOMAIN,google.com,auto
@@ -535,7 +534,6 @@ rules:
     - PROCESS-NAME,com.kbzbank.kpaycustomer,auto
     - PROCESS-NAME,com.company.myanmarbroadbandtelecom,auto
     - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve  
-
     - PROCESS-NAME,ai.chat.gpt.bot,auto
     - PROCESS-NAME,com.rezone.gvortex,DIRECT,no-resolve
     - IP-SUFFIX,8.8.8.8/24,auto
