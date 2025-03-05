@@ -43,6 +43,7 @@ global-client-fingerprint: random
 
 profile:
     store-selected: true
+    store-fake-ip: true
 
 geo-auto-update: true
 
@@ -66,12 +67,16 @@ sniffer:
     force-dns-mapping: true
     parse-pure-ip: true
     override-destination: false
+    port-whitelist:
+      - 80
+      - 443
     sniff:
       HTTP:
-         ports: [80, 8080-8880]
+         ports: [1-442, 444-8442, 8444-65535]
          override-destination: true
       TLS:
-         ports: [443, 8443]
+         ports: [1-79, 81-8079, 8081-65535]
+         override-destination: true
       QUIC:
          ports: [443, 8443]
     skip-domain:
@@ -110,11 +115,58 @@ dns:
     enable: true
     sniff-tls-sni: true
     prefer-h3: true
-    enhanced-mode: redir-host
+    enhanced-mode: fake-ip
     enhanced-mode-by-rule: true
+    fake-ip-range: 198.18.0.1/16
+    fake-ip-filter:
+      - '*.lan'
+      - '*.localhost'
+      - 'stun.*.*'
+      - 'stun.*.*.*'
+      - '+.stun.*.*'
+      - '+.stun.*.*.*'
+      - '+.stun.*.*.*.*'
     nameserver:
-      - 1.1.1.1
-      - 8.8.8.8
+      - https://cloudflare-dns.com/dns-query
+      - https://1.1.1.1/dns-query#en0
+      - https://1.1.1.1/dns-query
+      - https://dns.google/dns-query
+      - https://dns.quad9.net/dns-query
+      - https://dns.nextdns.io
+      - https://doh.opendns.com/dns-query
+      - https://dns.adguard.com/dns-query
+      - https://dns.surfshark.com/dns-query
+      - https://8.8.8.8/dns-query
+      - https://9.9.9.9/dns-query
+      - https://doh.cleanbrowsing.org/doh/security-filter/
+      - https://resolver2.dns.watch/dns-query
+      - https://doh-de.blahdns.com/dns-query
+      - https://freedns.controld.com/p2
+      - https://dns.dnswarden.com/adblock
+      - https://adblock.doh.mullvad.net/dns-query
+      - https://basic.rethinkdns.com/dns-query
+      - tls://1.0.0.1:853
+      - tls://1.1.1.1:853
+      - tls://dns.google:853
+      - 162.159.36.1
+      - 162.159.46.1
+      - https://dns.aa.net.uk/dns-query
+      - https://rubyfish.cn/dns-query
+      - https://nsc.torgues.net/dns-query
+      - https://xmission-slc-1.edge.nextdns.io/dns-query
+      - https://Doh1.B-Cdn.net/dns-query
+      - https://dns.melalandia.tk/dns-query
+      - https://jp-kix2.doh.sb/
+      - https://dns.gi.co.id/dns-query
+      - https://dns.controld.com/
+      - https://xtom-osa-1.edge.nextdns.io/dns-query
+      - https://170.176.145.150/
+      - https://ipv4-zepto-mci-1.edge.nextdns.io/dns-query
+      - https://res-acst3.absolight.net/
+      - https://zepto-sto-1.edge.nextdns.io
+      - https://doh.dns.sb/dns-query
+      - tls://dns.rubyfish.cn:853
+      - tls://8.8.8.8#en0
     fallback:
       - https://dns.cloudflare.com/dns-query
       - tls://dns.google:853
@@ -145,75 +197,15 @@ experimental:
          - '+.messenger.com'
 
 proxies:
-    - name: "sggs3"
+    - name: "sggs5"
       type: ssh
-      server: sggs3.hostip.co
+      server: sggs5.hostip.co
       port: 442
-      username: fastssh.com-riko86
+      username: fastssh.com-riko209
       password: heinlu198y
 
 proxy-providers:
-
-    SSR:
-      method: GET
-      url: "https://clash.crossxx.com/sub/ssr/1735156804"
-      health-check:
-         enable: true
-         method: GET
-         interval: 60
-         tolerance: 50
-         timeout: 0
-         expected-status: 204
-         url: "https://www.gstatic.com/generate_204"
-      type: http
-      lazy: false
-      proxy: DIRECT
-      disable-keep-alive: false
-      interval: 3600
-      override:
-         skip-cert-verify: true
-      path: ./profile/proxy_providers/SSR.yaml
-
-    VMess:
-      method: GET
-      url: "https://clash.crossxx.com/sub/ssr/1735156804"
-      health-check:
-         enable: true
-         method: GET
-         interval: 60
-         tolerance: 50
-         timeout: 0
-         expected-status: 204
-         url: "https://www.gstatic.com/generate_204"
-      type: http
-      lazy: false
-      proxy: DIRECT
-      disable-keep-alive: false
-      interval: 3600
-      override:
-         skip-cert-verify: true
-      path: ./profile/proxy_providers/vmess.yaml
-
-    Hysteria:
-      method: GET
-      url: "https://clash.crossxx.com/sub/hysteria/1735156804"
-      health-check:
-         enable: true
-         method: GET
-         interval: 60
-         tolerance: 50
-         timeout: 0
-         expected-status: 204
-         url: "https://www.gstatic.com/generate_204"
-      type: http
-      lazy: false
-      proxy: DIRECT
-      disable-keep-alive: false
-      interval: 3600
-      override:
-         skip-cert-verify: true
-      path: ./profile/proxy_providers/hysteria.yaml
-
+    
     Soroushmirzaei_SS:
       method: GET
       url: "https://url.v1.mk/sub?&url=https%3A%2F%2Fraw.githubusercontent.com%2Fsoroushmirzaei%2Ftelegram-configs-collector%2Fmain%2Fsubscribe%2Fprotocols%2Fshadowsocks&target=clash&new_name=true&wxclude=cipher%3A%20ss&emoji=false&append_type=true&append_info=true&scv=true&udp=true&list=false&sort=false&fdn=true&insert=false"
@@ -226,8 +218,8 @@ proxy-providers:
          expected-status: 204
          url: "https://www.gstatic.com/generate_204"
       type: http
-      lazy: false
-      proxy: DIRECT
+      lazy: true
+      proxy: auto
       disable-keep-alive: false
       interval: 3600
       override:
@@ -246,8 +238,8 @@ proxy-providers:
          expected-status: 204
          url: "https://www.gstatic.com/generate_204"
       type: http
-      lazy: false
-      proxy: DIRECT
+      lazy: true
+      proxy: auto
       disable-keep-alive: false
       interval: 3600
       override:
@@ -266,8 +258,8 @@ proxy-providers:
          expected-status: 204
          url: "https://www.gstatic.com/generate_204"
       type: http
-      lazy: false
-      proxy: DIRECT
+      lazy: true
+      proxy: auti
       disable-keep-alive: false
       interval: 3600
       override:
@@ -286,8 +278,8 @@ proxy-providers:
          expected-status: 204
          url: "https://www.gstatic.com/generate_204"
       type: http
-      lazy: false
-      proxy: DIRECT
+      lazy: true
+      proxy: auto
       disable-keep-alive: false
       interval: 3600
       override:
@@ -307,8 +299,8 @@ proxy-providers:
          max-failed-times: 10
          url: "https://www.gstatic.com/generate_204"
       type: http
-      proxy: DIRECT
-      lazy: false
+      proxy: auto
+      lazy: true
       interval: 3600
       disable-keep-alive: false
       override:
@@ -327,8 +319,8 @@ proxy-providers:
          expected-status: 204
          url: "https://www.gstatic.com/generate_204"
       type: http
-      proxy: DIRECT
-      lazy: false
+      proxy: auto
+      lazy: true
       disable-keep-alive: false
       cipher: chacha20-ietf-poly1305
       interval: 3600
@@ -348,10 +340,9 @@ proxy-providers:
          expected-status: 204
          url: "https://www.gstatic.com/generate_204"
       type: http
-      proxy: DIRECT
-      lazy: false
+      proxy: auto
+      lazy: true
       disable-keep-alive: false
-      cipher: chacha20-ietf-poly1305
       interval: 3600
       path: ./profile/proxy_providers/V2NODE_SG.yaml
 
@@ -360,7 +351,7 @@ proxy-groups:
     - name: auto
       type: url-test
       proxies:
-         - sggs3
+         - sggs5
       interval: 60
       url: "https://www.gstatic.com/generate_204"
       tolerance: 50
@@ -368,7 +359,7 @@ proxy-groups:
       include-all: true
       include-all-proxies: true
       include-all-providers: true
-      exclude-type: DIRECT
+      exclude-filter: {DIRECT|Trojan|trojan|Cloudflare|cloidflare}
       disable-udp: false
 
     - name: load-balance
@@ -429,30 +420,11 @@ rule-providers:
       url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/reject-list.txt"
       path: ./profile/rules/LoyalSoldier.yaml
 
-    lancidr:
-      type: http
-      behavior: ipcidr
-      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
-      path: ./profile/rules/lancidr.yaml
-
-    mm-cidr:
-      type: http
-      behavior: ipcidr
-      format: yaml
-      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/clash/ipcidr/mm.txt"
-      path: ./ruleset/ipcidr/mm.yaml
-
     oisd_big:
       type: http
       behavior: classical
       url: "https://raw.githubusercontent.com/hillz2/openclash_adblock/main/oisd_big.yaml"
       path: ./profile/rules/oisd_big.yaml
-
-    wildrift_ports:
-      type: http
-      behavior: classical
-      url: "https://raw.githubusercontent.com/hillz2/clashrules/refs/heads/main/rule_provider/Game_LeagueOfLegends_Ports.yaml"
-      path: ./profile/rules/wildrift_ports.yaml
 
     Brave:
       type: http
@@ -481,12 +453,6 @@ rule-providers:
       format: yaml
       url: "https://raw.githubusercontent.com/easylist/easylist/refs/heads/master/custom-lists/google_geolocation_popup.txt"
       path: ./profile/rules/NoPopUp_GEO_Location.yaml
-
-    Telegramcidr:
-      type: http
-      behavior: ipcidr
-      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
-      path: ./ruleset/ipcidr/Telegramcidr.yaml
 
 rules:
     - DOMAIN-SUFFIX,samsung.com,auto
@@ -526,9 +492,6 @@ rules:
     - RULE-SET,Brave,REJECT
     - RULE-SET,BanProgramAD,REJECT
     - RULE-SET,Reiji_Adblock,REJECT
-    - RULE-SET,Telegramcidr,DIRECT
-    - RULE-SET,mm-cidr,DIRECT
-    - RULE-SET,lancidr,DIRECT
     - DOMAIN,geosite:category-ads@ads,REJECT
     - DOMAIN,clash.razord.top,DIRECT,no-resolve
     - DOMAIN,yacd.haishan.me,DIRECT,no-resolve
@@ -541,8 +504,8 @@ rules:
     - DOMAIN-KEYWORD,vipclubmm,REJECT
     - DOMAIN-KEYWORD,388gaming,REJECT
     - GEOIP,MM,auto
-    - GEOIP,facebook,sggs3
-    - GEOSITE,google-play,DIRECT
+    - GEOIP,facebook,sggs5
+    - GEOSITE,google-play,auto,no-resolve
     - GEOSITE,iqiyi-ads,REJECT
     - DOMAIN,geosite:adblockplus,REJECT
     - DOMAIN,geosite:segment-ads,REJECT
@@ -564,7 +527,7 @@ rules:
     - DOMAIN-KEYWORD,googleadservices,REJECT
     - PROCESS-NAME,com.riotgames.league.wildrift,auto
     - PROCESS-NAME,com.sec.android.app.sbrowser,auto
-    - PROCESS-NAME,sia.internet.apps.samsing.com,auto
+    - PROCESS-NAME,sia.internet.apps.samsung.com,auto
     - PROCESS-NAME,mm.com.mptvas,auto
     - PROCESS-NAME,moe.nb4a,DIRECT
     - PROCESS-NAME,com.company.myanmarbroadbandtelecom,auto
@@ -586,6 +549,6 @@ rules:
     - GEOSITE,youtube,auto
     - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
     - IP-CIDR6,2620:0:2d0:200::7/32,auto
-    - DOMAIN-KEYWORD,messenger,sggs3
-    - DOMAIN-KEYWORD,facebook,sggs3
+    - DOMAIN-KEYWORD,messenger,sggs5
+    - DOMAIN-KEYWORD,facebook,sggs5
     - MATCH,auto
