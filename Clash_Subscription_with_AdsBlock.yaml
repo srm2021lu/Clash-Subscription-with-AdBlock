@@ -201,7 +201,7 @@ proxies:
       type: ssh
       server: sggs5.hostip.co
       port: 442
-      username: fastssh.com-riko209
+      username: fastssh.com-riko1130
       password: heinlu198y
 
 proxy-providers:
