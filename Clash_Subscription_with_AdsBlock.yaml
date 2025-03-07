@@ -199,9 +199,9 @@ experimental:
 proxies:
     - name: "sggs"
       type: ssh
-      server: sggs5.hostip.co
+      server: sggs7.hostip.co
       port: 442
-      username: fastssh.com-riko756
+      username: fastssh.com-riko236
       password: heinlu198y
 
 proxy-providers:
@@ -329,7 +329,7 @@ proxy-providers:
 
     V2Node:
       method: GET
-      url: "https://www.v2nodes.com/subscriptions/country/all/?key=33B7AC46C825446"
+      url: "https://www.v2nodes.com/subscriptions/country/all/?key=1A19133F07FADE1"
       health-check:
          enable: true
          method: GET
