@@ -329,7 +329,7 @@ proxy-providers:
 
     V2Node:
       method: GET
-      url: "https://www.v2nodes.com/subscriptions/country/all/?key=1A19133F07FADE1"
+      url: "https://www.v2nodes.com/subscriptions/country/all/?key=0624BD04309A941"
       health-check:
          enable: true
          method: GET
