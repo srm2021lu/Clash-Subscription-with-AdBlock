@@ -199,9 +199,9 @@ experimental:
 proxies:
     - name: "sggs"
       type: ssh
-      server: sggs7.hostip.co
+      server: sggs9.hostip.co
       port: 442
-      username: fastssh.com-riko524
+      username: fastssh.com-riko712
       password: heinlu198y
 
 proxy-providers:
