@@ -199,14 +199,11 @@ experimental:
 proxies:
     - name: "sggs"
       type: ssh
-      server: ssl-sg1.hostip.co
-      port: 110
+      server: sggs9.hostip.co
+      port: 442
       skip-cert-verify: true
-      username: fastssh.com-riko521
+      username: fastssh.com-riko607
       password: heinlu198y
-      cipher: aes-128-gcm
-      udp: true
-      sni: forex.cbm.gov.mm
 
 proxy-providers:
     
