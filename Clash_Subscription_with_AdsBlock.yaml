@@ -147,7 +147,7 @@ experimental:
     geodata-loader: memconservative
     fallback-filter:
       geoip: true
-      geoip-code: MM
+      geoip: MM
       geosite:
          - gfw
          - oisd-full
