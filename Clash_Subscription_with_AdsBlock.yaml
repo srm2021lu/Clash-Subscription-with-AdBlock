@@ -170,11 +170,11 @@ experimental:
 proxies:
     - name: "sggs"
       type: ssh
-      server: sggs17.hostip.co
+      server: sggs19.hostip.co
       port: 442
       skip-cert-verify: true
-      username: fastssh.com-riko644
-      password: heinlu198y
+      username: fastssh.com-riko45
+      password: heinku198y
 
 proxy-providers:
     
