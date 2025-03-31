@@ -173,7 +173,7 @@ proxies:
       server: sggs31.hostip.co
       port: 442
       skip-cert-verify: true
-      username: fastssh.com-riko7471
+      username: fastssh.com-riko31_3
       password: heinlu198y
 
 proxy-providers:
