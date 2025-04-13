@@ -1,0 +1,312 @@
+    proxies:
+      - name: "sggs11_442"
+        type: ssh
+        server: sggs11.hostip.co
+        port: 442
+        skip-cert-verify: true
+        username: fastssh.com-riko151_1 
+        password: heinlu198y
+        cipher: aes-256-ctr
+
+      - name: "sggs11_447"
+        type: ssh
+        server: sggs11.hostip.co
+        port: 447
+        skip-cert-verify: true
+        username: fastssh.com-riko151_1 
+        password: heinlu198y
+        cipher: aes-256-ctr
+
+      - name: "sggs11_143"
+        type: ssh
+        server: sggs11.hostip.co
+        port: 143
+        skip-cert-verify: true
+        username: fastssh.com-riko151_1 
+        password: heinlu198y
+        cipher: aes-256-ctr
+        
+      - name: "sggs11_109"
+        type: ssh
+        server: sggs11.hostip.co
+        port: 109
+        skip-cert-verify: true
+        username: fastssh.com-riko151_1 
+        password: heinlu198y
+        cipher: aes-256-ctr        
+        
+      - name: "sggs11_80"
+        type: ssh
+        server: sggs11.hostip.co
+        port: 80
+        skip-cert-verify: true
+        username: fastssh.com-riko151_1
+        password: heinlu198y
+        sni: www.google.com
+        cipher: aes-256-ctr     
+        
+      - name: "sggs11_443"
+        type: ssh
+        server: sggs11.hostip.co
+        port: 443
+        skip-cert-verify: true
+        username: fastssh.com-riko151_1 
+        password: heinlu198y
+        sni: www.google.com
+        cipher: aes-256-ctr  
+        
+      - name: "sggs11_990"
+        type: ssh
+        server: sggs11.hostip.co
+        port: 990
+        skip-cert-verify: true
+        username: fastssh.com-riko151_1 
+        password: heinlu198y
+        sni: www.google.com
+        cipher: aes-256-ctr        
+        
+      - name: "sggs11_110"
+        type: ssh
+        server: sggs11.hostip.co
+        port: 110
+        skip-cert-verify: true
+        username: fastssh.com-riko151_1 
+        password: heinlu198y
+        sni: www.google.com
+        cipher: aes-256-ctr        
+        
+      - name: "sggs11_444"
+        type: ssh
+        server: sggs11.hostip.co
+        port: 444
+        skip-cert-verify: true
+        username: fastssh.com-riko151_1 
+        password: heinlu198y
+        sni: www.google.com
+        cipher: aes-256-ctr            
+      - name: "SG Streaming 03"
+        type: vless
+        server: 13.212.91.85
+        port: 20230
+        uuid: d0d98f45-15ec-4a5a-9ccd-d4089e2204d9
+        network: tcp
+        flow: xtls-rprx-vision
+        tls: true
+        servername: www.alibaba.com
+        reality-opts:
+          public-key: gKQ1iax36vjbOYLKLveiSn_OnlBVAf3ecHLpQnrC4jw
+          short-id: a7464bff
+        client-fingerprint: chrome
+      
+      - name: "SS-SG6"
+        type: ss
+        server: 13.229.73.58
+        port: 443
+        cipher: aes-256-cfb
+        password: amazonskr05
+      
+      - name: "vmess-HK-7303706"
+        type: vmess
+        server: 104.16.0.135
+        port: 80
+        uuid: 53598401-31e1-4ce3-bb2e-6c00a8fc3e01
+      
+        alterId: 0
+        cipher: auto
+        network: ws
+        ws-opts:
+          path: "/"
+          headers:
+            Host: hk03s.c142-946b-a8a5.cfd      
+      
+      - name: "[openproxylist.com] vless-SG-22-3-2025"
+        type: vless
+        server: 152.42.190.37
+        port: 443
+        uuid: ba935c99-72cf-412b-b624-28aff2408f2c
+        network: tcp
+        tls: true
+        servername: partner.steampowered.com
+        alpn:
+          - h3
+          - h2
+          - http/1.1
+        fingerprint: chrome
+        skip-cert-verify: true  
+      
+      - name: "SG-Vless-2"
+        type: vless
+        server: 134.185.89.158
+        port: 33155
+        uuid: 656e621e-dd2e-4cb6-b3b8-e0308cc53174
+        network: tcp
+        tls: true
+        servername: www.microsoft.com
+        fingerprint: qq
+        reality-opts:
+          public-key: OstL8i2vDibAu1T4j1I9UnySmrG-wloKWBVC-MhPUDw
+          short-id: 42241206
+        packet-encoding: xudp
+     
+      - name: "HK-HY2-4"
+        type: hysteria2
+        server: 191.96.242.179
+        port: 8080
+        password: 656e621e-dd2e-4cb6-b3b8-e0308cc53174
+        insecure: true
+        sni: hkh4.youxuan.wiki     
+     
+      - name: "HK-HY2-1"
+        type: hysteria2
+        server: 154.16.183.209
+        port: 8080
+        password: 656e621e-dd2e-4cb6-b3b8-e0308cc53174
+        insecure: true
+        sni: hkh1.youxuan.wiki
+      
+      - name: "Vmess-riko1152"
+        type: vmess
+        server: 206.206.126.67
+        port: 8443
+        uuid: "3130312039394039b820353020313030"
+        network: "ws"
+        path: "/ws"
+        security: "tls"
+        cipher: "none"
+        sni: "creativecommons.org"
+        alterId: "16"
+
+      - name: "Trojan-riko1152"
+        type: trojan
+        server: 206.206.126.67
+        port: 8441
+        password: "tunnel-riko1152"
+        network: "tcp"
+        sni: "creativecommons.org"
+        alpn:
+          - "http/1.1"
+        skip-cert-verify: true
+        tls: true
+      
+      - name: "Vless-riko1152"
+        type: vless
+        server: 206.206.126.67
+        port: 8442
+        uuid: "31303120-3939-4039-b820-353020313030"
+        network: "tcp"
+        encryption: "none"
+        flow: "xtls-rprx-vision"
+        sni: "creativecommons.org"
+        fingerprint: "chrome"
+        security: "reality"
+        publicKey: "pFRfJJDY6TYJq-OVgAqFXhdaeur7gJWJM-RZT8g8yAA"
+        shortId: "59b75803"
+      
+      - name: "Vless_SG_2"
+        type: vless
+        server: 134.185.89.158
+        port: 33155
+        uuid: "656e621e-dd2e-4cb6-b3b8-e0308cc53174"
+        network: tcp
+        encryption: none
+        sni: "www.microsoft.com"
+        fingerprint: "qq"
+        security: "reality"
+        publicKey: "OstL8i2vDibAu1T4j1I9UnySmrG-wloKWBVC-MhPUDw"
+        shortId: "42241206"
+        packetEncoding: "xudp"
+      
+      - name: "SG_hy2"
+        type: hysteria2
+        server: 178.128.52.37
+        port: 8443
+        uuid: "beb8b58c-fa25-4533-9df2-6dcd5d388509"
+        sni: "xjp1.gywanglug.xyz"
+      
+      - name: "US_3_hy2"
+        type: hysteria2
+        server: 134.199.163.231
+        port: 8443
+        uuid: "60146890-20a6-4341-bcfe-c9b68ff2807d"
+        sni: "mg3.gywanglug.xyz"     
+
+      - name: "sggs_1"
+        type: ssh
+        server: sggs17.hostip.co
+        port: 447
+        skip-cert-verify: true
+        username: fastssh.com-riko15
+        password: heinlu198y
+      
+      - name: "sggs_2"
+        type: ssh
+        server: sggs17.hostip.co
+        port: 143 
+        skip-cert-verify: true
+        username: fastssh.com-riko15
+        password: heinlu198y
+            
+      - name: "sggs_3"
+        type: ssh
+        server: sggs17.hostip.co
+        port: 109
+        skip-cert-verify: true
+        username: fastssh.com-riko15
+        password: heinlu198y
+      
+      - name: "ssh_stunnel_25_3_2025"
+        type: ssh
+        server: sg-1.stunnel.cc
+        port: 444
+        skip-cert-verify: true
+        username: tunnel-riko1152
+        password: heinlu198y
+     
+      - name: "trojan_sg-1.stunnel_25_3_2025"
+        type: trojan
+        server: sg-1.stunnel.cc
+        port: 8441
+        password: tunnel-riko1152
+        sni: creativecommons.org
+        alpn:
+          - http/1.1
+        skip-cert-verify: true
+        network: tcp
+        tls: true
+       
+      - name: "vless_sg-1.stunnel_25_3_2025"
+        type: vless
+        server: sg-1.stunnel.cc
+        port: 8442
+        uuid: 31303120-3939-4039-b820-353020313030
+        flow: xtls-rprx-vision
+        tls: true
+        network: tcp
+        reality-opts:
+          public-key: pFRfJJDY6TYJq-OVgAqFXhdaeur7gJWJM-RZT8g8yAA
+          short-id: 59b75803
+          spider-x: "/"
+        client-fingerprint: chrome
+        servername: creativecommons.org
+      
+      - name: "SS-TCP-SG (52.76.22.133)"
+        type: ss
+        server: 52.76.22.133
+        port: 443
+        cipher: aes-256-cfb
+        password: amazonskr05
+      
+      - name: "ss_sg-1.stunnel_25_3_2025"
+        type: ss
+        server: 206.206.126.67
+        port: 8444
+        cipher: chacha20-ietf-poly1305
+        password: tunnel-riko1152
+
+      - name: "SS-SG-443"
+        type: ss
+        server: 18.141.139.23
+        port: 443
+        cipher: aes-256-cfb
+        password: amazonskr05
+        
