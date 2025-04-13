@@ -424,6 +424,12 @@ rule-providers:
 
 rules:
 
+##FASTSSH&&SSHKIT
+  - DOMAIN-SUFFIX,fastssh.com,auto
+  - DOMAIN-KEYWORD,fastssh,auto
+  - DOMAIN-SUFFIX,sshkit.com,auto
+  - DOMAIN-KEYWORD,sshkit,auto
+
 ##WILDRIFT
   - IP-CIDR,104.160.128.0/19,auto,no-resolve
   - IP-CIDR,23.204.13.0/24,auto,no-resolve
@@ -443,14 +449,6 @@ rules:
   - RULE-SET,Wildrift_Ports,DIRECT
   - DOMAIN-SUFFIX,singular.net,auto,no-resolve
   - DOMAIN-KEYWORD,singular,auto,no-resolve
-  
-##FASTSSH&&SSHKIT
-  - DOMAIN-SUFFIX,fastssh.com,auto
-  - DOMAIN-KEYWORD,fastssh,auto
-  - DOMAIN-SUFFIX,sshkit.com,auto
-  - DOMAIN-KEYWORD,sshkit,auto
-  
-  - PROCESS-NAME,com.mca.iptvplayer.new,auto
   
 ##REDDIT
   - PROCESS-NAME,com.reddit.frontpage,auto
