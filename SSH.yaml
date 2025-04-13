@@ -1,89 +1,90 @@
     proxies:
-      - name: "sggs11_442"
+      - name: "sggs13_442"
         type: ssh
-        server: sggs11.hostip.co
+        server: sggs13.hostip.co
         port: 442
         skip-cert-verify: true
-        username: fastssh.com-riko151_1 
+        username: fastssh.com-ri454
         password: heinlu198y
         cipher: aes-256-ctr
 
-      - name: "sggs11_447"
+      - name: "sggs13_447"
         type: ssh
-        server: sggs11.hostip.co
+        server: sggs13.hostip.co
         port: 447
         skip-cert-verify: true
-        username: fastssh.com-riko151_1 
+        username: fastssh.com-ri454
         password: heinlu198y
         cipher: aes-256-ctr
 
-      - name: "sggs11_143"
+      - name: "sggs13_143"
         type: ssh
-        server: sggs11.hostip.co
+        server: sggs13.hostip.co
         port: 143
         skip-cert-verify: true
-        username: fastssh.com-riko151_1 
+        username: fastssh.com-ri454
         password: heinlu198y
         cipher: aes-256-ctr
         
-      - name: "sggs11_109"
+      - name: "sggs13_109"
         type: ssh
-        server: sggs11.hostip.co
+        server: sggs13.hostip.co
         port: 109
         skip-cert-verify: true
-        username: fastssh.com-riko151_1 
+        username: fastssh.com-ri454
         password: heinlu198y
         cipher: aes-256-ctr        
         
-      - name: "sggs11_80"
+      - name: "sggs13_80"
         type: ssh
-        server: sggs11.hostip.co
+        server: sggs13.hostip.co
         port: 80
         skip-cert-verify: true
-        username: fastssh.com-riko151_1
+        username: fastssh.com-ri454
         password: heinlu198y
         sni: www.google.com
         cipher: aes-256-ctr     
         
-      - name: "sggs11_443"
+      - name: "sggs13_443"
         type: ssh
-        server: sggs11.hostip.co
+        server: sggs13.hostip.co
         port: 443
         skip-cert-verify: true
-        username: fastssh.com-riko151_1 
+        username: fastssh.com-ri454
         password: heinlu198y
         sni: www.google.com
         cipher: aes-256-ctr  
         
-      - name: "sggs11_990"
+      - name: "sggs13_990"
         type: ssh
-        server: sggs11.hostip.co
+        server: sggs13.hostip.co
         port: 990
         skip-cert-verify: true
-        username: fastssh.com-riko151_1 
+        username: fastssh.com-ri454
         password: heinlu198y
         sni: www.google.com
         cipher: aes-256-ctr        
         
-      - name: "sggs11_110"
+      - name: "sggs13_110"
         type: ssh
-        server: sggs11.hostip.co
+        server: sggs13.hostip.co
         port: 110
         skip-cert-verify: true
-        username: fastssh.com-riko151_1 
+        username: fastssh.com-ri454
         password: heinlu198y
         sni: www.google.com
         cipher: aes-256-ctr        
         
-      - name: "sggs11_444"
+      - name: "sggs13_444"
         type: ssh
-        server: sggs11.hostip.co
+        server: sggs13.hostip.co
         port: 444
         skip-cert-verify: true
-        username: fastssh.com-riko151_1 
+        username: fastssh.com-ri454
         password: heinlu198y
         sni: www.google.com
-        cipher: aes-256-ctr            
+        cipher: aes-256-ctr 
+        
       - name: "SG Streaming 03"
         type: vless
         server: 13.212.91.85
