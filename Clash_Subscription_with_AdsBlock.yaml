@@ -164,7 +164,10 @@ enhanced-mode-by-rule: true
 proxy-providers:
 
   SSH:
-    type: file
+    type: http
+    url: "https://raw.githubusercontent.com/srm2021lu/Clash-Subscription-with-AdBlock/refs/heads/10_Jan_2025/SSH.yaml"
+    interval: 43200
+    etag-support: true
     path: ./profile/proxies/ssh.yaml
     health-check:
       enable: true
