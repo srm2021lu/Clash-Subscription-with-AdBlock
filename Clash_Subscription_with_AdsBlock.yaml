@@ -18,7 +18,7 @@ keep-alive-interval: 15
 
 keep-alive-idle: 15
 
-ipv6: true
+ipv6: false
 
 lan-allowed-ips:
   - 0.0.0.0/0
@@ -37,11 +37,15 @@ find-process-mode: strict
 
 log-level: info
 
-external-controller: 127.0.0.1:9091
+external-controller: 127.0.0.1:9090
 
-external-controller-tls: 127.0.0.1:9092
+external-controller-tls: 127.0.0.1:9443
 
 external-controller-unix: mihomo.sock
+
+external-ui: "https://metacubexd.pages.dev/"
+
+external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
 
 external-controller-cors:
     allow-origins:
@@ -58,9 +62,9 @@ profile:
 
 geo-auto-update: true
 
-geo-data-mode: true
+geo-data-mode: false
 
-geo-update-interval: 24
+geo-update-interval: 48
 
 geox-url:
 
@@ -88,33 +92,44 @@ sniffer:
 tun:
   enable: true
   udp: true
+  mtu: 1500
   stack: mixed
+  respect-rules: false
   auto-route: true
+  strict-route: false
   auto-redirect: true
   auto-detect-interface: true
+  bypass-tun: ["192.168.0.0/16", "10.0.0.0/8"]
   dns-hijack:
     - any:53
-    - 8.8.8.8:53  
-    - tcp://8.8.8.8:53  
     - tcp://any:53
 
 dns:
   enable: true
+  enhanced-mode-by-rule: true
   cache-algorithm: arc
   listen: 0.0.0.0:1053
   sniff-tls-sni: true
-  respect-rules: false
   use-hosts: false
   use-system-hosts: true
   ipv6: false
   enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
   fake-ip-filter-mode: blacklist  
   fake-ip-filter:
     - "*.msftconnecttest.com"
     - "*.msftnsci.com"
+    - "geosite:private"
+    - "*.lan"
+    - "*.local"
   force-dns-mapping: false
   disable-rcode: [2,3]
   cache: 300
+  
+  hosts:
+    - '*.clash.dev': '127.0.0.1'
+    - 'alpha.clash.dev': '::1'
+    - '.dev': '127.0.0.1'
 
   nameserver:
     - https://dns.google/dns-query
@@ -145,7 +160,6 @@ dns:
     'playewildrift.page.link': '+.singular.net'
     
 experimental:
-    geodata-mode: false
     quic-go-disable-gso: false
     quic-go-disable-ecn: false
     geodata-loader: memconservative
@@ -153,13 +167,11 @@ experimental:
       geoip: true
       geoip-code: MM
       ipcidr:
-         - 0.0.0.0/32
+         - 240.0.0.0/32
       domain:
          - '+.google.com'
          - '+.facebook.com'
          - '+.messenger.com'
-
-enhanced-mode-by-rule: true
 
 proxy-providers:
 
@@ -176,12 +188,39 @@ proxy-providers:
       tolerance: 20 
       skip-cert-verify: true
 
-  Epodonios:
+  TS-SF:
     type: http
-    filter: "HK|hk|hongkong|hong kong|SG|sg|Singapore|singapore"
     etag-support: true
-    url: "https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/All_Configs_base64_Sub.txt"
-    path: ./profile/proxies/Epodonios.yaml
+    url: "https://raw.githubusercontent.com/ts-sf/fly/main/clash"
+    path: ./profile/proxies/TS-SF.yaml
+    interval: 43200
+    exclude-type: "Trojan|Http|h2|H2|h2-opts"
+    health-check:
+      enable: true
+      interval: 300
+      tolerance: 20
+      url: "https://www.gstatic.com/generate_204"
+      skip-cert-verify: true
+
+  Epodonios_HK:
+    type: http
+    etag-support: true
+    url: "https://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-configs/refs/heads/main/sub/Hong%20Kong/config.txt"
+    path: ./profile/proxies/Epodonios_HK.yaml
+    interval: 43200
+    exclude-type: "Trojan|Http|h2|H2|h2-opts"
+    health-check:
+      enable: true
+      interval: 300
+      tolerance: 20
+      url: "https://www.gstatic.com/generate_204"
+      skip-cert-verify: true
+      
+  Epodonios_SG:
+    type: http
+    etag-support: true
+    url: "https://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-configs/refs/heads/main/sub/Singapore/config.txt"
+    path: ./profile/proxies/Epodonios_SG.yaml
     interval: 43200
     exclude-type: "Trojan|Http|h2|H2|h2-opts"
     health-check:
@@ -235,26 +274,73 @@ proxy-providers:
       tolerance: 20
       url: "https://www.gstatic.com/generate_204"
       skip-cert-verify: true
+ 
+  Barabama:
+    type: http
+    etag-support: true
+    url: "https://raw.githubusercontent.com/Barabama/FreeNodes/refs/heads/main/nodes/clashmeta.yaml"
+    path: ./profile/proxies/Barabama.yaml
+    interval: 43200
+    exclude-type: "Trojan|Http"
+    health-check:
+      enable: true
+      interval: 300
+      tolerance: 20
+      url: "https://www.gstatic.com/generate_204"
+      skip-cert-verify: true
 
+  Misersun:
+    type: http
+    etag-support: true
+    url: "https://raw.githubusercontent.com/misersun/config003/main/config_all.yaml"
+    path: ./profile/proxies/Misersun.yaml
+    interval: 43200
+    exclude-type: "Trojan|Http"
+    health-check:
+      enable: true
+      interval: 300
+      tolerance: 20
+      url: "https://www.gstatic.com/generate_204"
+      skip-cert-verify: respect-rules
+
+  Anaer:
+    type: http
+    etag-support: true
+    url: "https://raw.githubusercontent.com/anaer/Sub/refs/heads/main/clash.yaml"
+    path: ./profile/proxies/Anaer.yaml
+    interval: 43200
+    exclude-type: "Trojan|Http"
+    health-check:
+      enable: true
+      interval: 300
+      tolerance: 20
+      url: "https://www.gstatic.com/generate_204"
+      skip-cert-verify: true
+      
 proxy-groups:
 
   - name: auto
     type: url-test
     use:
       - SSH
-      - Epodonios
+      - TS-SF
+      - Barabama
+      - Anaer
+      - Epodonios_HK
+      - Epodonios_SG
       - Peasoft
       - Soroushmirzaei-SG
       - Soroushmirzaei-HK
+      - Misersun
 #    filter: "HK|SG|hk|hongkong|hong kong|sg|Singapore|singapore"
     url: "https://www.gstatic.com/generate_204"
-    interval: 600
+    interval: 300
     latency: 20
     udp: true
     skip-cert-verify: true
     exclude-type: "Trojan|Http|DIRECT"
 
-  - name: MESSENGER
+  - name: League_Of_Legends
     type: select
     proxies:
       - "auto"
@@ -265,19 +351,36 @@ proxy-groups:
     skip-cert-verify: true
     exclude-type: "Trojan|Http|DIRECT"
 
+  - name: MESSENGER
+    type: select
+    proxies:
+      - "auto"
+#    filter: "HK|SG|hk|hongkong|hong kong|sg|Singapore|singapore"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 600
+    latency: 20
+    skip-cert-verify: true
+    exclude-type: "Trojan|Http|DIRECT"
+    hidden: true
+
   - name: load-balance
     type: load-balance
     strategy: consistent-hashing
     use: 
       - Peasoft
       - SSH
-      - Epodonios
+      - TS-SF
+      - Anaer
+      - Barabama
+      - Epodonios_HK
+      - Epodonios_SG
       - Soroushmirzaei-HK
       - Soroushmirzaei-SG
+      - Misersun
     filter: "HK|SG|hk|hongkong|hong kong|sg|Singapore|singapore"
     lazy: true
     url: "https://www.gstatic.com/generate_204"
-    interval: 1800
+    interval: 300
     latency: 20
     skip-cert-verify: true
     exclude-type: "Trojan|Http|DIRECT"
@@ -287,16 +390,26 @@ rule-providers:
     AdultPopUp:
       type: http
       etag-support: true
-      exclude-filter: {apkpure|fastssh.com|sshkit.com|deepseek}
+      exclude-filter: {apkpure|fastssh.com|sshkit|deepseek}
+      exclude: {fastssh.com|sshkit.com}
       interval: 86400
       behavior: domain
       url: "https://raw.githubusercontent.com/easylist/easylist/master/easylist_adult/adult_adservers.txt"
       path: ./profile/rules/AdultPopUp.yaml
+      
+    GAMES:
+      type: http
+      etag-support: true
+      interval: 86400
+      behavior: domain
+      url: "https://raw.githubusercontent.com/10ium/V2rayDomains2Clash/refs/heads/generated/category-games.yaml"
+      path: ./profile/rules/GAMES.yaml
 
     GoodByeAds:
       type: http
       etag-support: true
-      exclude-filter: {apkpure|fastssh.com|sshkit.com|deepseek}
+      exclude-filter: {apkpure|fastssh|sshkit.com|deepseek}
+      exclude: {fastssh.com|sshkit.com}
       interval: 86400
       behavior: domain
       url: "https://raw.githubusercontent.com/coldwater-10/clash_rules/main/GoodbyeAds.yaml"
@@ -305,7 +418,8 @@ rule-providers:
     AntiAds:
       type: http
       etag-support: true
-      exclude-filter: {apkpure|fastssh.com|sshkit.com|deepseek}
+      exclude-filter: {apkpure|fastssh|sshkit|deepseek}
+      exclude: {fastssh.com|sshkit.com}
       interval: 86400
       behavior: domain
       url: "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml"
@@ -316,7 +430,8 @@ rule-providers:
       etag-support: true
       interval: 86400
       behavior: domain
-      exclude-filter: {apkpure|fastssh.com|sshkit.com|deepseek}
+      exclude-filter: {apkpure|fastssh|sshkit|deepseek}
+      exclude: {fastssh.com|sshkit.com}
       url: "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling/hosts"
       path: ./profile/rules/StevenBlack.yaml
 
@@ -324,7 +439,8 @@ rule-providers:
       type: http
       etag-support: true
       interval: 86400
-      exclude-filter: {apkpure|fastssh.com|sshkit.com|deepseek}
+      exclude-filter: {apkpure|fastssh|sshkit|deepseek}
+      exclude: {fastssh.com|sshkit.com}
       behavior: domain
       url: "https://raw.githubusercontent.com/Repcz/EgernRules/refs/heads/X/Rules/AdGuardSDNSFilter/AdGuardSDNSFilter_All.yaml"
       path: ./profile/rules/AdGuardSDNSFilter_All.yaml
@@ -333,7 +449,8 @@ rule-providers:
       type: http
       etag-support: true
       interval: 86400
-      exclude-filter: {apkpure|fastssh.com|sshkit.com|deepseek}
+      exclude-filter: {apkpure|fastssh|sshkit|deepseek}
+      exclude: {fastssh.com|sshkit.com}
       behavior: domain
       url: "https://raw.githubusercontent.com/Repcz/ACL4SSR/refs/heads/X/Rules/BanProgramAD.list"
       path: ./profile/rules/BanProgramAD.yaml
@@ -342,7 +459,8 @@ rule-providers:
       type: http
       etag-support: true
       interval: 86400
-      exclude-filter: {apkpure|fastssh.com|sshkit.com|deepseek}
+      exclude-filter: {apkpure|fastssh|sshkit|deepseek}
+      exclude: {fastssh.com|sshkit.com}
       behavior: domain
       url: "https://raw.githubusercontent.com/easylist/easylist/refs/heads/master/easylist/easylist_adservers_popup.txt"
       path: ./profile/rules/EasyList.yaml
@@ -351,7 +469,8 @@ rule-providers:
       type: http
       etag-support: true
       interval: 86400
-      exclude-filter: {apkpure|fastssh.com|sshkit.com|deepseek}
+      exclude-filter: {apkpure|fastssh|sshkit|deepseek}
+      exclude: {fastssh.com|sshkit.com}
       behavior: domain
       url: "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/adblock/ultimate.txt"
       path: /profile/rules/Hagezi.yaml
@@ -360,7 +479,8 @@ rule-providers:
       type: http
       etag-support: true
       interval: 86400
-      exclude-filter: {apkpure|fastssh.com|sshkit.com|deepseek}
+      exclude-filter: {apkpure|fastssh|sshkit|deepseek}
+      exclude: {fastssh.com|sshkit.com}
       behavior: domain
       url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/reject-list.txt"
       path: ./profile/rules/LoyalSoldier.yaml
@@ -369,7 +489,8 @@ rule-providers:
       type: http
       etag-support: true
       interval: 86400
-      exclude-filter: {apkpure|fastssh.com|sshkit.com|deepseek}
+      exclude-filter: {apkpure|fastssh|sshkit|deepseek}
+      exclude: {fastssh.com|sshkit.com}
       behavior: classical
       url: "https://raw.githubusercontent.com/hillz2/openclash_adblock/main/oisd_big.yaml"
       path: ./profile/rules/oisd_big.yaml
@@ -385,7 +506,8 @@ rule-providers:
     Brave:
       type: http
       etag-support: true
-      exclude-filter: {apkpure|fastssh.com|sshkit.com|deepseek}
+      exclude-filter: {apkpure|fastssh|sshkit|deepseek}
+      exclude: {fastssh.com|sshkit.com}
       interval: 86400
       behavior: domain
       format: yaml
@@ -396,7 +518,8 @@ rule-providers:
       type: http
       etag-support: true
       interval: 86400
-      exclude-filter: {apkpure|fastssh.com|sshkit.com|deepseek|wildrift|sdk-api-v1.singular.net}
+      exclude-filter: {apkpure|fastssh|sshkit|deepseek|wildrift|sdk-api-v1.singular.net}
+      exclude: {fastssh.com|sshkit.com}
       behavior: domain
       format: yaml
       url: "https://raw.githubusercontent.com/REIJI007/AdBlock_Rule_For_Clash/main/adblock_reject.yaml"
@@ -406,49 +529,95 @@ rule-providers:
       type: http
       etag-support: true
       interval: 86400
-      exclude-filter: {apkpure|fastssh.com|sshkit.com|deepseek}
+      exclude-filter: {apkpure|fastssh|sshkit|deepseek}
+      exclude: {fastssh.com|sshkit.com}
       behavior: domain
       format: yaml
       url: "https://gitlab.com/eyeo/anti-cv/abp-filters-anti-cv/-/blob/201548971c18e780f456141c987fb81ec00722e0/fb_non-graph.txt"
       path: ./profile/rules/fb-non-graph.yaml
 
+    FB-Extended:
+      type: http
+      etag-support: true
+      interval: 86400
+      exclude-filter: {apkpure|fastssh|sshkit|deepseek}
+      exclude: {fastssh.com|sshkit.com}
+      behavior: domain
+      format: yaml
+      url: "https://www.github.developerdan.com/hosts/lists/facebook-extended.txt"
+      path: ./profile/rules/FB-Extended.yaml
+
     NoPopUp_GEO_Location:
       type: http
-      exclude-filter: {apkpure|fastssh.com|sshkit.com|deepseek}
+      exclude-filter: {apkpure|fastssh|sshkit|deepseek}
+      exclude: {fastssh.com|sshkit.com}
       interval: 86400
       behavior: domain
       etag-support: true
       format: yaml
       url: "https://raw.githubusercontent.com/easylist/easylist/refs/heads/master/custom-lists/google_geolocation_popup.txt"
       path: ./profile/rules/NoPopUp_GEO_Location.yaml
+      
+    Youtube:
+      type: http
+      interval: 86400
+      behavior: domain
+      etag-support: true
+      format: yaml
+      url: "https://raw.githubusercontent.com/10ium/V2rayDomains2Clash/generated/youtube.yaml"
+      path: ./profile/rules/Youtube.yaml      
 
+    Adservers_blocker:
+      type: http
+      interval: 86400
+      behavior: domain
+      etag-support: true
+      format: yaml
+      url: "https://hosts.anudeep.me/mirror/adservers.txt"
+      path: ./profile/rules/Adservers_blocker.yaml       
 rules:
 
-##FASTSSH&&SSHKIT
-  - DOMAIN-SUFFIX,fastssh.com,auto
-  - DOMAIN-KEYWORD,fastssh,auto
-  - DOMAIN-SUFFIX,sshkit.com,auto
-  - DOMAIN-KEYWORD,sshkit,auto
+  - PROCESS-NAME,com.xbrowser.play,auto
+  - PROCESS-NAME,idm.internet.download.manager.plus,auto,no-resolve
+  - DOMAIN-SUFFIX,devuploads.com,auto
+  - DOMAIN,devuploads.com,auto
+  - DOMAIN-SUFFIX,xbext.com,auto,no-resolve
+  - DOMAIN-KEYWORD,microsoft,auto
+  - DOMAIN,https://en.xbext.com/user/login,DIRECT,no-resolve
+  - DOMAIN-SUFFIX,fastssh.com,DIRECT,no-resolve
+  - DOMAIN,fastssh.com,DIRECT,no-resolve
+  - DOMAIN,sshkit.com,DIRECT,no-resolve
+  - DOMAIN-KEYWORD,fastssh,DIRECT,NoPopUp_GEO_Location
+  - DOMAIN-SUFFIX,sshkit.com,DIRECT,no-resolve
+  - DOMAIN-KEYWORD,sshkit,DIRECT,no-resolve
 
 ##WILDRIFT
-  - IP-CIDR,104.160.128.0/19,auto,no-resolve
-  - IP-CIDR,23.204.13.0/24,auto,no-resolve
-  - DOMAIN-SUFFIX,gcloud.cros.wr.pvp.net,auto,no-resolve
-  - DOMAIN,authenticate.riotgames.com,auto,no-resolve
-  - DOMAIN,tdm.prod01.row.cros.wr.pvp.net,auto,no-resolve
-  - DOMAIN,prod.ap1.lol.riotgames.com,auto,no-resolve
-  - DOMAIN,prod.eu1.lol.riotgames.com,auto,no-resolve
-  - DOMAIN,prod.na1.lol.riotgames.com,auto,no-resolve
-  - DOMAIN,wildrift.leagueoflegends.com,auto,no-resolve
-  - DOMAIN-SUFFIX,riotcdn.net,auto,no-resolve
-  - DOMAIN-SUFFIX,pvp.net,auto,no-resolve
-  - DOMAIN-SUFFIX,rgpub.io,auto,no-resolve
-  - DOMAIN-SUFFIX,leagueoflegends.com,auto,no-resolve
-  - DOMAIN-SUFFIX,riotgames.com,auto,no-resolve
-  - PROCESS-NAME,com.riotgames.league.wildrift,auto,no-resolve
+  - IP-CIDR,104.160.128.0/19,League_Of_Legends,no-resolve
+  - IP-CIDR,23.204.13.0/24,League_Of_Legends,no-resolve
+  - DOMAIN-SUFFIX,gcloud.cros.wr.pvp.net,League_Of_Legends,no-resolve
+  - DOMAIN,authenticate.riotgames.com,League_Of_Legends,no-resolve
+  - DOMAIN,tdm.prod01.row.cros.wr.pvp.net,League_Of_Legends,no-resolve
+  - DOMAIN,prod.ap1.lol.riotgames.com,League_Of_Legends,no-resolve
+  - DOMAIN,prod.eu1.lol.riotgames.com,League_Of_Legends,no-resolve
+  - DOMAIN,prod.na1.lol.riotgames.com,League_Of_Legends,no-resolve
+  - DOMAIN,wildrift.leagueoflegends.com,League_Of_Legends,no-resolve
+  - DOMAIN-SUFFIX,riotcdn.net,League_Of_Legends,no-resolve
+  - DOMAIN-SUFFIX,pvp.net,League_Of_Legends,no-resolve
+  - DOMAIN-SUFFIX,rgpub.io,League_Of_Legends,no-resolve
+  - DOMAIN-SUFFIX,leagueoflegends.com,League_Of_Legends,no-resolve
+  - DOMAIN-SUFFIX,riotgames.com,League_Of_Legends,no-resolve
+  - PROCESS-NAME,com.riotgames.league.wildrift,League_Of_Legends,no-resolve
   - RULE-SET,Wildrift_Ports,DIRECT
-  - DOMAIN-SUFFIX,singular.net,auto,no-resolve
-  - DOMAIN-KEYWORD,singular,auto,no-resolve
+  - DOMAIN-SUFFIX,singular.net,League_Of_Legends,no-resolve
+  - DOMAIN-KEYWORD,singular,League_Of_Legends,no-resolve
+  - RULE-SET,GAMES,League_Of_Legends,no-resolve
+  - DOMAIN-SUFFIX,dyn.riotcdn.net,League_Of_Legends,no-resolve
+  - DOMAIN,origin-a.akamaihd.net,League_Of_Legends,no-resolve
+
+##FASTSSH&&SSHKIT
+
+#  - DOMAIN-SUFFIX,doubleclick.net,auto
+#  - DOMAIN-SUFFIX,googlesyndication.com,auto-detect-interface
   
 ##REDDIT
   - PROCESS-NAME,com.reddit.frontpage,auto
@@ -483,11 +652,12 @@ rules:
   - DOMAIN,orgads-dev.fb.me,REJECT
   - DOMAIN-SUFFIX,facebook.com,auto
   - DOMAIN-KEYWORD,messenger, MESSENGER 
-  - PROCESS-NAME,com.facebook.orca,MESSENGER
-  - DOMAIN,app-measurement.com,auto 
+  - DOMAIN,app-measurement.com,auto
 
 ##RULE-SETS
   - RULE-SET,AdultPopUp,REJECT
+  - RULE-SET,FB-Extended,REJECT
+  - RULE-SET,FB-Non-Graph,REJECT
   - RULE-SET,AntiAds,REJECT
   - RULE-SET,StevenBlack,REJECT
   - RULE-SET,LoyalSoldier,REJECT
@@ -499,6 +669,8 @@ rules:
   - RULE-SET,Reiji_Adblock,REJECT
   - RULE-SET,GoodByeAds,REJECT
   - RULE-SET,NoPopUp_GEO_Location,REJECT
+  - RULE-SET,Youtube,DIRECT
+  - RULE-SET,Adservers_blocker,REJECT
   - DOMAIN,geosite:category-ads@ads,REJECT
 
   - DOMAIN,img.doppiocdn.com,REJECT
@@ -532,6 +704,7 @@ rules:
   - DOMAIN-KEYWORD,vipclubmm,REJECT
   - DOMAIN-KEYWORD,388gaming,REJECT
   - DOMAIN,gstaticadssl.l.google.com,REJECT
+  - DOMAIN,gjapplog.ucweb.com,auto
   
   - GEOIP,MM,auto
   - DOMAIN,geosite:google-play,auto
