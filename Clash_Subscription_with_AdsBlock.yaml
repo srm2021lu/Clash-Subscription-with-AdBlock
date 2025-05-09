@@ -14,9 +14,9 @@ bind-address: "*"
 
 mode: rule
 
-keep-alive-interval: 15
+keep-alive-interval: 30
 
-keep-alive-idle: 15
+keep-alive-idle: 30
 
 ipv6: false
 
@@ -151,13 +151,13 @@ dns:
   fallback-nameserver:
     - 8.8.4.4
     - 1.0.0.1
-    
+  
   nameserver-policy:
     'playewildrift.page.link': '+.riotgames.com'
     'playewildrift.page.link': '+.riotcdn.net'
     'playewildrift.page.link': '+.leagueoflegends.com'
     'playewildrift.page.link': '+.pvp.net'
-    'playewildrift.page.link': '+.singular.net'
+    'playewildrift.page.link': '+.singular.net'  
     
 experimental:
     quic-go-disable-gso: false
@@ -167,7 +167,7 @@ experimental:
       geoip: true
       geoip-code: MM
       ipcidr:
-         - 240.0.0.0/32
+         - 240.0.0.0/4
       domain:
          - '+.google.com'
          - '+.facebook.com'
@@ -175,7 +175,7 @@ experimental:
 
 proxy-providers:
 
-  SSH:
+ SSH:
     type: http
     url: "https://raw.githubusercontent.com/srm2021lu/Clash-Subscription-with-AdBlock/refs/heads/10_Jan_2025/SSH.yaml"
     interval: 43200
@@ -187,69 +187,155 @@ proxy-providers:
       interval: 300
       tolerance: 20 
       skip-cert-verify: true
-
+  
   TS-SF:
     type: http
     etag-support: true
-    url: "https://raw.githubusercontent.com/ts-sf/fly/main/clash"
+    filter: "HK|SG|hk|hongkong|hong kong|sg|Singapore|singapore"
+    url: "http://raw.githubusercontent.com/ts-sf/fly/main/clash"
     path: ./profile/proxies/TS-SF.yaml
     interval: 43200
-    exclude-type: "Trojan|Http|h2|H2|h2-opts"
+    exclude-type: "Trojan|Http|h2"
     health-check:
       enable: true
       interval: 300
       tolerance: 20
       url: "https://www.gstatic.com/generate_204"
-      skip-cert-verify: true
+    skip-cert-verify: true
+    insecure: true
+    
+  Barry-Far-Vmess:
+    type: http
+    etag-support: true
+    filter: "HK|SG|hk|hongkong|hong kong|sg|Singapore|singapore"
+    url: "https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Splitted-By-Protocol/vmess.txt"
+    path: ./profile/proxies/Barry-Far-Vmess.yaml
+    interval: 43200
+    exclude-type: "Trojan|Http|h2"
+    health-check:
+      enable: true
+      interval: 300
+      tolerance: 20
+      url: "https://www.gstatic.com/generate_204"
+    skip-cert-verify: true
+    insecure: true    
+    
+  Barry-Far-Vless:
+    type: http
+    etag-support: true
+    filter: "HK|SG|hk|hongkong|hong kong|sg|Singapore|singapore"
+    url: "https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Splitted-By-Protocol/vless.txt"
+    path: ./profile/proxies/Barry-Far-Vless.yaml
+    interval: 43200
+    exclude-type: "Trojan|Http|h2"
+    health-check:
+      enable: true
+      interval: 300
+      tolerance: 20
+      url: "https://www.gstatic.com/generate_204"
+    skip-cert-verify: true
+    insecure: true        
+    
+  Barry-Far-SS:
+    type: http
+    etag-support: true
+    filter: "HK|SG|hk|hongkong|hong kong|sg|Singapore|singapore"
+    url: "https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Splitted-By-Protocol/ss.txt"
+    path: ./profile/proxies/Barry-Far-SS.yaml
+    interval: 43200
+    exclude-type: "Trojan|Http|h2"
+    health-check:
+      enable: true
+      interval: 300
+      tolerance: 20
+      url: "https://www.gstatic.com/generate_204"
+    skip-cert-verify: true
+    insecure: true        
+    
+  Shadowmere:
+    type: http
+    etag-support: true
+    filter: "HK|SG|hk|hongkong|hong kong|sg|Singapore|singapore"
+    url: "https://shadowmere.xyz/api/b64sub/"
+    path: ./profile/proxies/Shadowmere.yaml
+    interval: 43200
+    exclude-type: "Trojan|Http|h2"
+    health-check:
+      enable: true
+      interval: 300
+      tolerance: 20
+      url: "https://www.gstatic.com/generate_204"
+    skip-cert-verify: true
+    insecure: true    
+    
+  SV2Ray_UDP:
+    type: http
+    etag-support: true
+    filter: "HK|SG|hk|hongkong|hong kong|sg|Singapore|singapore"
+    url: "https://raw.githubusercontent.com/Surfboardv2ray/Proxy-sorter/main/custom/udp.txt"
+    path: ./profile/proxies/SV2Ray_UDP.yaml
+    interval: 43200
+    exclude-type: "Trojan|Http|h2"
+    health-check:
+      enable: true
+      interval: 300
+      tolerance: 20
+      url: "https://www.gstatic.com/generate_204"
+    skip-cert-verify: true
+    insecure: true    
 
   Epodonios_HK:
     type: http
     etag-support: true
-    url: "https://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-configs/refs/heads/main/sub/Hong%20Kong/config.txt"
+    url: "http://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-configs/refs/heads/main/sub/Hong%20Kong/config.txt"
     path: ./profile/proxies/Epodonios_HK.yaml
     interval: 43200
-    exclude-type: "Trojan|Http|h2|H2|h2-opts"
+    insecure: true
+    exclude-type: "Trojan|Http|h2"
     health-check:
       enable: true
       interval: 300
       tolerance: 20
       url: "https://www.gstatic.com/generate_204"
-      skip-cert-verify: true
+    skip-cert-verify: true 
       
   Epodonios_SG:
     type: http
     etag-support: true
-    url: "https://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-configs/refs/heads/main/sub/Singapore/config.txt"
+    insecure: true
+    url: "http://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-configs/refs/heads/main/sub/Singapore/config.txt"
     path: ./profile/proxies/Epodonios_SG.yaml
     interval: 43200
-    exclude-type: "Trojan|Http|h2|H2|h2-opts"
+    exclude-type: "Trojan|Http|h2"
     health-check:
       enable: true
       interval: 300
       tolerance: 20
       url: "https://www.gstatic.com/generate_204"
-      skip-cert-verify: true
+    skip-cert-verify: true 
 
   Peasoft:
     type: http
     filter: "HK|SG|hk|hongkong|hong kong|sg|Singapore|singapore"
     etag-support: true
-    url: "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.meta.yml"
+    insecure: true
+    url: "http://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.meta.yml"
     path: ./profile/proxies/peasoft.yaml
     interval: 43200
-    exclude-type: "Trojan|Http|h2|H2|h2-opts"
+    exclude-type: "Trojan|Http|h2"
     health-check:
       enable: true
       interval: 300
       tolerance: 20
       url: "https://www.gstatic.com/generate_204"
-      skip-cert-verify: true
+    skip-cert-verify: true 
 
   Soroushmirzaei-SG:
     type: http
     filter: "HK|SG|hk|hongkong|hong kong|sg|Singapore|singapore"
     etag-support: true
-    url: "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/countries/sg/mixed"
+    insecure: true
+    url: "http://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/countries/sg/mixed"
     path: ./profile/proxies/Soroushmirzaei-SG.yaml
     interval: 43200
     exclude-type: "Trojan|Http"  
@@ -258,13 +344,14 @@ proxy-providers:
       interval: 300
       tolerance: 20
       url: "https://www.gstatic.com/generate_204"
-      skip-cert-verify: true
+    skip-cert-verify: true 
 
   Soroushmirzaei-HK:
     type: http
+    insecure: true
     filter: "HK|SG|hk|hongkong|hong kong|sg|Singapore|singapore"
     etag-support: true
-    url: "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/countries/hk/mixed"
+    url: "http://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/countries/hk/mixed"
     path: ./profile/proxies/Soroushmirzaei-HK.yaml
     interval: 43200
     exclude-type: "Trojan|Http"
@@ -273,12 +360,14 @@ proxy-providers:
       interval: 300
       tolerance: 20
       url: "https://www.gstatic.com/generate_204"
-      skip-cert-verify: true
+    skip-cert-verify: true 
  
   Barabama:
     type: http
+    insecure: true
     etag-support: true
-    url: "https://raw.githubusercontent.com/Barabama/FreeNodes/refs/heads/main/nodes/clashmeta.yaml"
+    filter: "HK|SG|hk|hongkong|hong kong|sg|Singapore|singapore"
+    url: "http://raw.githubusercontent.com/Barabama/FreeNodes/refs/heads/main/nodes/clashmeta.yaml"
     path: ./profile/proxies/Barabama.yaml
     interval: 43200
     exclude-type: "Trojan|Http"
@@ -287,12 +376,14 @@ proxy-providers:
       interval: 300
       tolerance: 20
       url: "https://www.gstatic.com/generate_204"
-      skip-cert-verify: true
+    skip-cert-verify: true 
 
   Misersun:
     type: http
+    insecure: true
+    filter: "HK|SG|hk|hongkong|hong kong|sg|Singapore|singapore"
     etag-support: true
-    url: "https://raw.githubusercontent.com/misersun/config003/main/config_all.yaml"
+    url: "http://raw.githubusercontent.com/misersun/config003/main/config_all.yaml"
     path: ./profile/proxies/Misersun.yaml
     interval: 43200
     exclude-type: "Trojan|Http"
@@ -301,12 +392,13 @@ proxy-providers:
       interval: 300
       tolerance: 20
       url: "https://www.gstatic.com/generate_204"
-      skip-cert-verify: respect-rules
+    skip-cert-verify: true 
 
   Anaer:
     type: http
     etag-support: true
-    url: "https://raw.githubusercontent.com/anaer/Sub/refs/heads/main/clash.yaml"
+    insecure: true
+    url: "http://raw.githubusercontent.com/anaer/Sub/refs/heads/main/clash.yaml"
     path: ./profile/proxies/Anaer.yaml
     interval: 43200
     exclude-type: "Trojan|Http"
@@ -315,7 +407,7 @@ proxy-providers:
       interval: 300
       tolerance: 20
       url: "https://www.gstatic.com/generate_204"
-      skip-cert-verify: true
+    skip-cert-verify: true 
       
 proxy-groups:
 
@@ -323,7 +415,12 @@ proxy-groups:
     type: url-test
     use:
       - SSH
+      - Barry-Far-Vmess
+      - Barry-Far-Vless
+      - Barry-Far-SS
       - TS-SF
+      - Shadowmere
+      - SV2Ray_UDP
       - Barabama
       - Anaer
       - Epodonios_HK
@@ -338,10 +435,12 @@ proxy-groups:
     latency: 20
     udp: true
     skip-cert-verify: true
+    insecure: true
     exclude-type: "Trojan|Http|DIRECT"
 
   - name: League_Of_Legends
     type: select
+    udp: true
     proxies:
       - "auto"
 #    filter: "HK|SG|hk|hongkong|hong kong|sg|Singapore|singapore"
@@ -349,6 +448,7 @@ proxy-groups:
     interval: 3600
     latency: 20
     skip-cert-verify: true
+    insecure: true
     exclude-type: "Trojan|Http|DIRECT"
 
   - name: MESSENGER
@@ -360,6 +460,7 @@ proxy-groups:
     interval: 600
     latency: 20
     skip-cert-verify: true
+    insecure: true
     exclude-type: "Trojan|Http|DIRECT"
     hidden: true
 
@@ -369,6 +470,11 @@ proxy-groups:
     use: 
       - Peasoft
       - SSH
+      - Barry-Far-Vmess
+      - Barry-Far-Vless
+      - Barry-Far-SS
+      - Shadowmere
+      - SV2Ray_UDP
       - TS-SF
       - Anaer
       - Barabama
@@ -383,6 +489,7 @@ proxy-groups:
     interval: 300
     latency: 20
     skip-cert-verify: true
+    insecure: true
     exclude-type: "Trojan|Http|DIRECT"
 
 rule-providers:
@@ -578,6 +685,7 @@ rule-providers:
 rules:
 
   - PROCESS-NAME,com.xbrowser.play,auto
+  - DOMAIN,googleads.g.doubleclick.net,REJECT
   - PROCESS-NAME,idm.internet.download.manager.plus,auto,no-resolve
   - DOMAIN-SUFFIX,devuploads.com,auto
   - DOMAIN,devuploads.com,auto
@@ -631,15 +739,26 @@ rules:
   - PROCESS-NAME,org.telegram.group,auto
 
 ##YOUTUBE
-  - PROCESS-NAME,org.schabi.newpipe,auto
-  - DOMAIN,geosite:youtube, auto, no-resolve
+  - PROCESS-NAME,org.schabi.newpipe, DIRECT, no-resolve
+  - DOMAIN,geosite:youtube, DIRECT, no-resolve
   - DOMAIN-SUFFIX,ytimg.com, auto, no-resolve
-  - PROCESS-NAME,org.polymorphicshade.tubular, auto
+  - PROCESS-NAME,org.polymorphicshade.tubular, DIRECT,no-resolve
     
 ##FACEBOOK
   - DOMAIN-KEYWORD,scontent,auto
+  - DOMAIN-SUFFIX,xx.fbcdn.net,auto
+  - DOMAIN,business.facebook.com,REJECT 
+  - DOMAIN-SUFFIX,fbcdn.net,REJECT  
+  - DOMAIN-SUFFIX,facebook.com#ads,REJECT  
+  - DOMAIN-SUFFIX,ads-delivery.com,REJECT  
+  - DOMAIN-SUFFIX,an.facebook.com,REJECT  
+  - DOMAIN-SUFFIX,adnxs.com,REJECT  
+  - DOMAIN-KEYWORD,sponsored,REJECT 
+  - DOMAIN-KEYWORD,ads,REJECT  
+  - DOMAIN,an.facebook.com,REJECT
+  - DOMAIN,ads-api.facebook.com,REJECT  
+  - DOMAIN,pixel.facebook.com,REJECT
   - DOMAIN-SUFFIX,fbsbx.com,REJECT
-  - DOMAIN-SUFFIX,fbcdn.net,REJECT
   - DOMAIN-SUFFIX,facebook.net,REJECT
   - DOMAIN-SUFFIX,an.facebook.com,REJECT
   - DOMAIN-KEYWORD,ads,REJECT
@@ -648,11 +767,11 @@ rules:
   - DOMAIN-SUFFIX,fb.me,auto
   - DOMAIN-SUFFIX,fb.watch,auto
   - DOMAIN,ads.facebook.com,REJECT
-  - DOMAIN-KEYWORD, advertising,REJECT
+  - DOMAIN-KEYWORD,advertising,REJECT
   - DOMAIN,orgads-dev.fb.me,REJECT
   - DOMAIN-SUFFIX,facebook.com,auto
   - DOMAIN-KEYWORD,messenger, MESSENGER 
-  - DOMAIN,app-measurement.com,auto
+  - DOMAIN,app-measurement.com,REJECT
 
 ##RULE-SETS
   - RULE-SET,AdultPopUp,REJECT
@@ -719,7 +838,7 @@ rules:
   - DOMAIN,geosite:samsung,auto
   - DOMAIN,geosite:unity-ads,REJECT
   - DOMAIN,geosite:meta-ads,REJECT
-  - DOMAIN,gepip:google-ads,REJECT
+  - DOMAIN,geip:google-ads,REJECT
   - DOMAIN,geosite:category-public-tracker,REJECT
   - DOMAIN-KEYWORD,googleadservices,REJECT
   - PROCESS-NAME,com.sec.android.app.sbrowser,auto
