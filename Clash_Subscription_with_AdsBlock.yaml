@@ -175,7 +175,7 @@ experimental:
 
 proxy-providers:
 
- SSH:
+  SSH:
     type: http
     url: "https://raw.githubusercontent.com/srm2021lu/Clash-Subscription-with-AdBlock/refs/heads/10_Jan_2025/SSH.yaml"
     interval: 43200
@@ -187,7 +187,7 @@ proxy-providers:
       interval: 300
       tolerance: 20 
       skip-cert-verify: true
-  
+      
   TS-SF:
     type: http
     etag-support: true
