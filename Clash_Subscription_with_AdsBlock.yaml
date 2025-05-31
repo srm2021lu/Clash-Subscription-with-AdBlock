@@ -142,7 +142,6 @@ dns:
     - dns.google
     - tls://dns.google:853
     - tls://1.1.1.1:853
-    - playewildrift.page.link
       
   default-nameserver:
     - 8.8.8.8
@@ -191,7 +190,6 @@ proxy-providers:
   TS-SF:
     type: http
     etag-support: true
-    filter: "HK|SG|hk|hongkong|hong kong|sg|Singapore|singapore"
     url: "http://raw.githubusercontent.com/ts-sf/fly/main/clash"
     path: ./profile/proxies/TS-SF.yaml
     interval: 43200
@@ -204,12 +202,54 @@ proxy-providers:
     skip-cert-verify: true
     insecure: true
     
-  Barry-Far-Vmess:
+  52pokemon:
     type: http
     etag-support: true
-    filter: "HK|SG|hk|hongkong|hong kong|sg|Singapore|singapore"
-    url: "https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Splitted-By-Protocol/vmess.txt"
-    path: ./profile/proxies/Barry-Far-Vmess.yaml
+    url: "https://52pokemon.xz61.cn/api/v1/client/subscribe?token=7dab13ea5a0349f1043df3d05299f5f9"
+    path: ./profile/proxies/52pokemon.yaml
+    interval: 43200
+    exclude-type: "Trojan|Http|h2"
+    health-check:
+      enable: true
+      interval: 300
+      tolerance: 20
+      url: "https://www.gstatic.com/generate_204"
+    skip-cert-verify: true
+    insecure: true
+
+  Hysteria:
+    type: http
+    etag-support: true
+    url: "https://clash.crossxx.com/sub/hysteria/1730865604"
+    path: ./profile/proxies/Hysteria.yaml
+    interval: 43200
+    health-check:
+      enable: true
+      interval: 300
+      tolerance: 20
+      url: "https://www.gstatic.com/generate_204"
+    skip-cert-verify: true
+    insecure: true
+    
+  CROSSXX_SSR:
+    type: http
+    etag-support: true
+    url: "https://clash.crossxx.com/sub/ssr/1730808004"
+    path: ./profile/proxies/CROSSXX_SSR.yaml
+    interval: 43200
+    health-check:
+      enable: true
+      interval: 300
+      tolerance: 20
+      url: "https://www.gstatic.com/generate_204"
+    skip-cert-verify: true
+    insecure: true    
+    
+  MhdiTaheri_HK:
+    type: http
+    etag-support: true
+    url: "https://raw.githubusercontent.com/MhdiTaheri/V2rayCollector_Py/refs/heads/main/sub/Hong%20Kong/config.txt"
+    path: ./profile/proxies/MhdiTaheri_HK.yaml
     interval: 43200
     exclude-type: "Trojan|Http|h2"
     health-check:
@@ -219,13 +259,12 @@ proxy-providers:
       url: "https://www.gstatic.com/generate_204"
     skip-cert-verify: true
     insecure: true    
-    
-  Barry-Far-Vless:
+
+  MhdiTaheri_SG:
     type: http
     etag-support: true
-    filter: "HK|SG|hk|hongkong|hong kong|sg|Singapore|singapore"
-    url: "https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Splitted-By-Protocol/vless.txt"
-    path: ./profile/proxies/Barry-Far-Vless.yaml
+    url: "https://raw.githubusercontent.com/MhdiTaheri/V2rayCollector_Py/refs/heads/main/sub/Singapore/config.txt"
+    path: ./profile/proxies/MhdiTaheri_SG.yaml
     interval: 43200
     exclude-type: "Trojan|Http|h2"
     health-check:
@@ -234,30 +273,42 @@ proxy-providers:
       tolerance: 20
       url: "https://www.gstatic.com/generate_204"
     skip-cert-verify: true
-    insecure: true        
-    
-  Barry-Far-SS:
+    insecure: true 
+
+  Surfboardv2ray_QUIC:
     type: http
     etag-support: true
-    filter: "HK|SG|hk|hongkong|hong kong|sg|Singapore|singapore"
-    url: "https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Splitted-By-Protocol/ss.txt"
-    path: ./profile/proxies/Barry-Far-SS.yaml
+    url: "https://raw.githubusercontent.com/Surfboardv2ray/Proxy-sorter/main/custom/udp.txt"
+    path: ./profile/proxies/Surfboardv2ray_QUIC.yaml
     interval: 43200
-    exclude-type: "Trojan|Http|h2"
     health-check:
       enable: true
       interval: 300
       tolerance: 20
       url: "https://www.gstatic.com/generate_204"
     skip-cert-verify: true
-    insecure: true        
+    insecure: true
+
+  Surfboardv2ray_WSTLS:
+    type: http
+    etag-support: true
+    url: "https://raw.githubusercontent.com/Surfboardv2ray/Proxy-sorter/main/ws_tls/proxies/wstls"
+    path: ./profile/proxies/Surfboardv2ray_WSTLS.yaml
+    interval: 43200
+    health-check:
+      enable: true
+      interval: 300
+      tolerance: 20
+      url: "https://www.gstatic.com/generate_204"
+    skip-cert-verify: true
+    insecure: true
     
-  Shadowmere:
+  AzadNet:
     type: http
     etag-support: true
     filter: "HK|SG|hk|hongkong|hong kong|sg|Singapore|singapore"
-    url: "https://shadowmere.xyz/api/b64sub/"
-    path: ./profile/proxies/Shadowmere.yaml
+    url: "https://raw.githubusercontent.com/AzadNetCH/Clash/main/AzadNet.txt"
+    path: ./profile/proxies/AzadNet.yaml
     interval: 43200
     exclude-type: "Trojan|Http|h2"
     health-check:
@@ -316,7 +367,7 @@ proxy-providers:
 
   Peasoft:
     type: http
-    filter: "HK|SG|hk|hongkong|hong kong|sg|Singapore|singapore"
+#    filter: "HK|SG|hk|hongkong|hong kong|sg|Singapore|singapore"
     etag-support: true
     insecure: true
     url: "http://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.meta.yml"
@@ -366,7 +417,7 @@ proxy-providers:
     type: http
     insecure: true
     etag-support: true
-    filter: "HK|SG|hk|hongkong|hong kong|sg|Singapore|singapore"
+#    filter: "HK|SG|hk|hongkong|hong kong|sg|Singapore|singapore"
     url: "http://raw.githubusercontent.com/Barabama/FreeNodes/refs/heads/main/nodes/clashmeta.yaml"
     path: ./profile/proxies/Barabama.yaml
     interval: 43200
@@ -381,7 +432,6 @@ proxy-providers:
   Misersun:
     type: http
     insecure: true
-    filter: "HK|SG|hk|hongkong|hong kong|sg|Singapore|singapore"
     etag-support: true
     url: "http://raw.githubusercontent.com/misersun/config003/main/config_all.yaml"
     path: ./profile/proxies/Misersun.yaml
@@ -408,18 +458,38 @@ proxy-providers:
       tolerance: 20
       url: "https://www.gstatic.com/generate_204"
     skip-cert-verify: true 
-      
+
+  CROSSXX_VMESS:
+    type: http
+    etag-support: true
+    insecure: true
+    url: "https://clash.crossxx.com/sub/vmess/1730808004"
+    path: ./profile/proxies/CROSSXX_VMESS.yaml
+    interval: 43200
+    exclude-type: "Trojan|Http"
+    health-check:
+      enable: true
+      interval: 300
+      tolerance: 20
+      url: "https://www.gstatic.com/generate_204"
+    skip-cert-verify: true 
+    
 proxy-groups:
 
   - name: auto
     type: url-test
     use:
       - SSH
-      - Barry-Far-Vmess
-      - Barry-Far-Vless
-      - Barry-Far-SS
+      - MhdiTaheri_SG
+      - MhdiTaheri_HK
+      - Hysteria
+      - AzadNet
+      - 52pokemon
+      - CROSSXX_SSR
+      - CROSSXX_VMESS
+      - Surfboardv2ray_QUIC
+      - Surfboardv2ray_WSTLS
       - TS-SF
-      - Shadowmere
       - SV2Ray_UDP
       - Barabama
       - Anaer
@@ -429,7 +499,7 @@ proxy-groups:
       - Soroushmirzaei-SG
       - Soroushmirzaei-HK
       - Misersun
-#    filter: "HK|SG|hk|hongkong|hong kong|sg|Singapore|singapore"
+    filter: "HK|SG|hk|hongkong|hong kong|sg|Singapore|singapore"
     url: "https://www.gstatic.com/generate_204"
     interval: 300
     latency: 20
@@ -440,16 +510,16 @@ proxy-groups:
 
   - name: League_Of_Legends
     type: select
-    udp: true
     proxies:
       - "auto"
 #    filter: "HK|SG|hk|hongkong|hong kong|sg|Singapore|singapore"
     url: "https://www.gstatic.com/generate_204"
     interval: 3600
     latency: 20
+    udp: true
     skip-cert-verify: true
     insecure: true
-    exclude-type: "Trojan|Http|DIRECT"
+    exclude-type: "ss|shadowsocks|Trojan|Http|DIRECT"
 
   - name: MESSENGER
     type: select
@@ -469,11 +539,15 @@ proxy-groups:
     strategy: consistent-hashing
     use: 
       - Peasoft
-      - SSH
-      - Barry-Far-Vmess
-      - Barry-Far-Vless
-      - Barry-Far-SS
-      - Shadowmere
+      - AzadNet
+      - 52pokemon
+      - MhdiTaheri_HK
+      - MhdiTaheri_SG
+      - Hysteria
+      - CROSSXX_VMESS
+      - CROSSXX_SSR
+      - Surfboardv2ray_QUIC
+      - Surfboardv2ray_WSTLS
       - SV2Ray_UDP
       - TS-SF
       - Anaer
@@ -663,194 +737,4 @@ rule-providers:
       etag-support: true
       format: yaml
       url: "https://raw.githubusercontent.com/easylist/easylist/refs/heads/master/custom-lists/google_geolocation_popup.txt"
-      path: ./profile/rules/NoPopUp_GEO_Location.yaml
-      
-    Youtube:
-      type: http
-      interval: 86400
-      behavior: domain
-      etag-support: true
-      format: yaml
-      url: "https://raw.githubusercontent.com/10ium/V2rayDomains2Clash/generated/youtube.yaml"
-      path: ./profile/rules/Youtube.yaml      
-
-    Adservers_blocker:
-      type: http
-      interval: 86400
-      behavior: domain
-      etag-support: true
-      format: yaml
-      url: "https://hosts.anudeep.me/mirror/adservers.txt"
-      path: ./profile/rules/Adservers_blocker.yaml       
-rules:
-
-  - PROCESS-NAME,com.xbrowser.play,auto
-  - DOMAIN,googleads.g.doubleclick.net,REJECT
-  - PROCESS-NAME,idm.internet.download.manager.plus,auto,no-resolve
-  - DOMAIN-SUFFIX,devuploads.com,auto
-  - DOMAIN,devuploads.com,auto
-  - DOMAIN-SUFFIX,xbext.com,auto,no-resolve
-  - DOMAIN-KEYWORD,microsoft,auto
-  - DOMAIN,https://en.xbext.com/user/login,DIRECT,no-resolve
-  - DOMAIN-SUFFIX,fastssh.com,DIRECT,no-resolve
-  - DOMAIN,fastssh.com,DIRECT,no-resolve
-  - DOMAIN,sshkit.com,DIRECT,no-resolve
-  - DOMAIN-KEYWORD,fastssh,DIRECT,NoPopUp_GEO_Location
-  - DOMAIN-SUFFIX,sshkit.com,DIRECT,no-resolve
-  - DOMAIN-KEYWORD,sshkit,DIRECT,no-resolve
-
-##WILDRIFT
-  - IP-CIDR,104.160.128.0/19,League_Of_Legends,no-resolve
-  - IP-CIDR,23.204.13.0/24,League_Of_Legends,no-resolve
-  - DOMAIN-SUFFIX,gcloud.cros.wr.pvp.net,League_Of_Legends,no-resolve
-  - DOMAIN,authenticate.riotgames.com,League_Of_Legends,no-resolve
-  - DOMAIN,tdm.prod01.row.cros.wr.pvp.net,League_Of_Legends,no-resolve
-  - DOMAIN,prod.ap1.lol.riotgames.com,League_Of_Legends,no-resolve
-  - DOMAIN,prod.eu1.lol.riotgames.com,League_Of_Legends,no-resolve
-  - DOMAIN,prod.na1.lol.riotgames.com,League_Of_Legends,no-resolve
-  - DOMAIN,wildrift.leagueoflegends.com,League_Of_Legends,no-resolve
-  - DOMAIN-SUFFIX,riotcdn.net,League_Of_Legends,no-resolve
-  - DOMAIN-SUFFIX,pvp.net,League_Of_Legends,no-resolve
-  - DOMAIN-SUFFIX,rgpub.io,League_Of_Legends,no-resolve
-  - DOMAIN-SUFFIX,leagueoflegends.com,League_Of_Legends,no-resolve
-  - DOMAIN-SUFFIX,riotgames.com,League_Of_Legends,no-resolve
-  - PROCESS-NAME,com.riotgames.league.wildrift,League_Of_Legends,no-resolve
-  - RULE-SET,Wildrift_Ports,DIRECT
-  - DOMAIN-SUFFIX,singular.net,League_Of_Legends,no-resolve
-  - DOMAIN-KEYWORD,singular,League_Of_Legends,no-resolve
-  - RULE-SET,GAMES,League_Of_Legends,no-resolve
-  - DOMAIN-SUFFIX,dyn.riotcdn.net,League_Of_Legends,no-resolve
-  - DOMAIN,origin-a.akamaihd.net,League_Of_Legends,no-resolve
-
-##FASTSSH&&SSHKIT
-
-#  - DOMAIN-SUFFIX,doubleclick.net,auto
-#  - DOMAIN-SUFFIX,googlesyndication.com,auto-detect-interface
-  
-##REDDIT
-  - PROCESS-NAME,com.reddit.frontpage,auto
-
-  - DOMAIN,easylist-downloads.adblockplus.org,auto
-
-  - DOMAIN,alb.reddit.com,auto
-
-  - DOMAIN-SUFFIX,d.metacubexd.one,DIRECT,no-resolve
-  - DOMAIN-SUFFIX,samsungconsent.com,auto,no-resolve
-  - PROCESS-NAME,org.telegram.group,auto
-
-##YOUTUBE
-  - PROCESS-NAME,org.schabi.newpipe, DIRECT, no-resolve
-  - DOMAIN,geosite:youtube, DIRECT, no-resolve
-  - DOMAIN-SUFFIX,ytimg.com, auto, no-resolve
-  - PROCESS-NAME,org.polymorphicshade.tubular, DIRECT,no-resolve
-    
-##FACEBOOK
-  - DOMAIN-KEYWORD,scontent,auto
-  - DOMAIN-SUFFIX,xx.fbcdn.net,auto
-  - DOMAIN,business.facebook.com,REJECT 
-  - DOMAIN-SUFFIX,fbcdn.net,REJECT  
-  - DOMAIN-SUFFIX,facebook.com#ads,REJECT  
-  - DOMAIN-SUFFIX,ads-delivery.com,REJECT  
-  - DOMAIN-SUFFIX,an.facebook.com,REJECT  
-  - DOMAIN-SUFFIX,adnxs.com,REJECT  
-  - DOMAIN-KEYWORD,sponsored,REJECT 
-  - DOMAIN-KEYWORD,ads,REJECT  
-  - DOMAIN,an.facebook.com,REJECT
-  - DOMAIN,ads-api.facebook.com,REJECT  
-  - DOMAIN,pixel.facebook.com,REJECT
-  - DOMAIN-SUFFIX,fbsbx.com,REJECT
-  - DOMAIN-SUFFIX,facebook.net,REJECT
-  - DOMAIN-SUFFIX,an.facebook.com,REJECT
-  - DOMAIN-KEYWORD,ads,REJECT
-  - DOMAIN-SUFFIX,doubleclick.net,REJECT
-  - DOMAIN-SUFFIX,m.facebook.com,auto
-  - DOMAIN-SUFFIX,fb.me,auto
-  - DOMAIN-SUFFIX,fb.watch,auto
-  - DOMAIN,ads.facebook.com,REJECT
-  - DOMAIN-KEYWORD,advertising,REJECT
-  - DOMAIN,orgads-dev.fb.me,REJECT
-  - DOMAIN-SUFFIX,facebook.com,auto
-  - DOMAIN-KEYWORD,messenger, MESSENGER 
-  - DOMAIN,app-measurement.com,REJECT
-
-##RULE-SETS
-  - RULE-SET,AdultPopUp,REJECT
-  - RULE-SET,FB-Extended,REJECT
-  - RULE-SET,FB-Non-Graph,REJECT
-  - RULE-SET,AntiAds,REJECT
-  - RULE-SET,StevenBlack,REJECT
-  - RULE-SET,LoyalSoldier,REJECT
-  - RULE-SET,oisd_big,REJECT
-  - RULE-SET,Hagezi,REJECT
-  - RULE-SET,EasyList,REJECT
-  - RULE-SET,Brave,REJECT
-  - RULE-SET,BanProgramAD,REJECT
-  - RULE-SET,Reiji_Adblock,REJECT
-  - RULE-SET,GoodByeAds,REJECT
-  - RULE-SET,NoPopUp_GEO_Location,REJECT
-  - RULE-SET,Youtube,DIRECT
-  - RULE-SET,Adservers_blocker,REJECT
-  - DOMAIN,geosite:category-ads@ads,REJECT
-
-  - DOMAIN,img.doppiocdn.com,REJECT
-  - DOMAIN,sextb.live,REJECT
-  
-  - IP-CIDR,23.204.13.0/24,auto,no-resolve
-  - IP-CIDR,104.160.128.0/19,auto,no-resolve
-  - IP-CIDR,54.69.134.0/24,auto,no-resolve
-  - IP-CIDR,44.206.18.0/24,auto,no-resolve
-  - IP-CIDR,3.33.186.0/24,auto,no-resolve
-  - IP-CIDR,15.197.167.0/24,auto,no-resolve
-  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
-
-  - DOMAIN-SUFFIX,7mmtv.tv,auto
-  - DOMAIN-SUFFIX,microsoft.com,auto
-  - PROCESS-NAME-REGEX,.*telegram.*,auto
-  - PROCESS-NAME,com.fhrz.axeron,auto
-  - DOMAIN,fahrez256.github.io:443,auto
-
-  - PROCESS-NAME,com.deepseek.chat,auto
-  - DOMAIN-SUFFIX,apkpure.com,auto
-  - DOMAIN-KEYWORD,apkpure,auto
-  - DOMAIN,www.apkpure.com,auto
-
-  - DOMAIN,clash.razord.top,DIRECT,no-resolve
-  - DOMAIN,yacd.haishan.me,DIRECT,no-resolve
-  - DOMAIN-KEYWORD,google,auto
-  - DOMAIN,speed.cloudflare.com,auto
-  - DOMAIN,google.com,auto
-  - DOMAIN-KEYWORD,club388myanmar,REJECT
-  - DOMAIN-KEYWORD,vipclubmm,REJECT
-  - DOMAIN-KEYWORD,388gaming,REJECT
-  - DOMAIN,gstaticadssl.l.google.com,REJECT
-  - DOMAIN,gjapplog.ucweb.com,auto
-  
-  - GEOIP,MM,auto
-  - DOMAIN,geosite:google-play,auto
-  - DOMAIN,geosite:iqiyi-ads,REJECT
-  - DOMAIN,geosite:adblockplus,REJECT
-  - DOMAIN,geosite:segment-ads,REJECT
-  - DOMAIN,geosite:adjust-ads,REJECT
-  - DOMAIN,geosite:category-ads-all,REJECT
-  - DOMAIN,geosite:category-ads,REJECT
-  - DOMAIN,geosite:category-ads-mm,REJECT
-  - DOMAIN,geosite:xiaomi-ads,REJECT
-  - DOMAIN,geosite:samsung,auto
-  - DOMAIN,geosite:unity-ads,REJECT
-  - DOMAIN,geosite:meta-ads,REJECT
-  - DOMAIN,geip:google-ads,REJECT
-  - DOMAIN,geosite:category-public-tracker,REJECT
-  - DOMAIN-KEYWORD,googleadservices,REJECT
-  - PROCESS-NAME,com.sec.android.app.sbrowser,auto
-  - PROCESS-NAME,sia.internet.apps.samsung.com,auto
-  - PROCESS-NAME,mm.com.mptvas,auto
-  - PROCESS-NAME,moe.nb4a,DIRECT
-  - PROCESS-NAME,com.company.myanmarbroadbandtelecom,auto
-  - PROCESS-NAME,com.termux,auto
-  - PROCESS-NAME,com.kbzbank.kpaycustomer,auto
-  - PROCESS-NAME,com.company.myanmarbroadbandtelecom,auto
-  - DOMAIN,drive.google.com,auto
-  - PROCESS-NAME,moe.nb4a,DIRECT,no-resolve
-  - PROCESS-NAME,idm.internet.download.manager.plus,auto
-  - DOMAIN,ms.applvn.com:443,DIRECT,no-resolve
-  - MATCH,auto
+      path: ./profil
