@@ -64,7 +64,7 @@ geo-auto-update: true
 
 geo-data-mode: false
 
-geo-update-interval: 48
+geo-update-interval: 24
 
 geox-url:
 
@@ -92,7 +92,7 @@ sniffer:
 tun:
   enable: true
   udp: true
-  mtu: 1500
+  mtu: 1450
   stack: mixed
   respect-rules: false
   auto-route: true
@@ -166,11 +166,8 @@ experimental:
       geoip: true
       geoip-code: MM
       ipcidr:
-         - 240.0.0.0/4
+         - 240.0.0.0/32
       domain:
-         - '+.google.com'
-         - '+.facebook.com'
-         - '+.messenger.com'
 
 proxy-providers:
 
