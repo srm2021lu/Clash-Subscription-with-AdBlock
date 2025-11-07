@@ -1,0 +1,298 @@
+socks-port: 7891
+mixed-port: 7890
+mode: rule
+tcp-timeout: 300
+keep-alive-interval: 15
+log-level: info
+ipv6: false
+find-process-mode: always 
+allow-private-domains: true
+  
+dns:
+  enable: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  prefer-h3: true          
+  listen: 0.0.0.0:1053     
+  use-hosts: true  
+  cache-algorithm: "lru"
+  cache-max-size: 2048
+  
+  fallback-filter:
+    geoip: true
+    geoip-code: CN 
+    ipcidr:
+      - 240.0.0.0/4         
+      - 10.0.0.0/8          
+      - 192.168.0.0/24       
+      
+  nameserver:
+    - https://dns.google/dns-query    
+    - https://cloudflare-dns.com/dns-query
+    - tls://dns.google:853
+    
+  fallback:
+    - 8.8.8.8 
+    - 1.1.1.1
+    
+  default-nameserver:            
+    - 8.8.8.8  
+    - 1.1.1.1
+
+proxies:
+  
+  - name: "sggs1_442"
+    type: ssh
+    server: sggs1.hostip.co
+    port: 442
+    skip-cert-verify: true
+    username: fastssh.com-riko356
+    password: heinlu198y
+    cipher: aes-256-ctr
+    udp: true
+  
+  - name: "sggs1_443"
+    type: ssh
+    server: sggs1.hostip.co
+    port: 443
+    skip-cert-verify: true
+    username: fastssh.com-riko356
+    password: heinlu198y
+    cipher: aes-256-ctr
+    tls: true
+    udp: true
+
+  - name: "sggs1_80"
+    type: ssh
+    server: sggs1.hostip.co
+    port: 80
+    skip-cert-verify: true
+    username: fastssh.com-riko356
+    password: heinlu198y
+    cipher: aes-256-ctr
+    tls: true
+    udp: true
+    
+  - name: "sggs1_ws_2086"
+    type: ssh
+    server: sggs1.hostip.co
+    port: 2086
+    skip-cert-verify: true
+    username: fastssh.com-riko356
+    password: heinlu198y
+    cipher: aes-256-ctr
+    ws: true
+    ws-path: "/" 
+    udp: true
+
+  - name: "sggs1_wss_2087"
+    type: ssh
+    server: sggs1.hostip.co
+    port: 2087
+    skip-cert-verify: true
+    username: fastssh.com-riko356
+    password: heinlu198y
+    cipher: aes-256-ctr
+    ws: true
+    ws-path: "/" 
+    tls: true 
+    udp: true
+
+  - name: "VLESS_TLS_09VPN"
+    type: vless
+    server: ul-singapore2.09vpn.com
+    port: 8443
+    uuid: 55e5faae-8d0e-4cf0-8af0-8d6ed47b35cd
+    network: ws
+    tls: true
+    skip-cert-verify: true
+    ws-path: "/vless/"
+    udp: true
+    
+  - name: "VLESS_WS_09VPN"
+    type: vless
+    server: ul-singapore2.09vpn.com
+    port: 80
+    uuid: 55e5faae-8d0e-4cf0-8af0-8d6ed47b35cd
+    network: ws
+    tls: false
+    ws-path: "/vless/"
+    udp: true
+    
+  - name: "SS_TLS_bing"
+    type: ss
+    server: 86.38.247.109
+    port: 4906
+    cipher: aes-256-cfb
+    password: u9216277479
+    plugin: obfs-local
+    plugin-opts:
+      mode: tls
+      host: bing.com
+
+  - name: "SS_HTTP_bing"
+    type: ss
+    server: 86.38.247.109
+    port: 5407
+    cipher: aes-256-cfb
+    password: u9216277479
+    plugin: obfs-local
+    plugin-opts:
+      mode: http
+      host: bing.com    
+      
+proxy-providers:
+
+  V2Ray_HK_SG: 
+    type: http
+    url: "https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/proxy_configs.txt"
+    path: ./proxies/V2Ray.yaml
+    etag-support: true
+    filter: "(?i)SG|Singapore|SINGAPORE|HK|HongKong|HK"
+    udp: true
+    allow-insecure: true
+    skip-cert-verify: true
+    
+  XRay_HK_SG: 
+    type: http
+    url: "https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/proxy_configs_tested.txt"
+    path: ./proxies/XRay.yaml
+    etag-support: true
+    allow-insecure: true
+    udp: true
+    skip-cert-verify: true
+    filter: "(?i)SG|Singapore|SINGAPORE|HK|HongKong|HK"
+    
+  Epodonios: 
+    type: http
+    url: "https://github.com/Epodonios/v2ray-configs/raw/main/All_Configs_Sub.txt"
+    path: ./proxies/new_configs.yaml
+    etag-support: true
+    udp: true
+    allow-insecure: true
+    skip-cert-verify: true
+    filter: "(?i)SG|Singapore|SINGAPORE|HK|HongKong|HK"
+    
+proxy-groups:
+
+  - name: "General"
+    type: url-test
+    allow-insecure: true
+    skip-cert-verify: true
+    disable-udp: false
+    url: "https://gstatic.com/generate_204"
+    interval: 600 
+    latency: 30
+    proxies:
+      - sggs1_442
+      - sggs1_443
+      - sggs1_80
+      - sggs1_ws_2086 
+      - sggs1_wss_2087 
+      - VLESS_TLS_09VPN
+      - VLESS_WS_09VPN
+      - SS_TLS_bing
+      - SS_HTTP_bing
+    use:
+      - Epodonios
+      - V2Ray_HK_SG
+      - XRay_HK_SG       
+      
+  - name: "WildRift"
+    type: select
+    url: "https://gstatic.com/generate_204"
+    proxies:
+      - sggs1_442
+      - sggs1_443
+      - sggs1_80
+      - sggs1_ws_2086 
+      - sggs1_wss_2087
+      - VLESS_TLS_09VPN
+      - VLESS_WS_09VPN
+      - SS_TLS_bing
+      - SS_HTTP_bing
+    use:
+      - Epodonios
+      - V2Ray_HK_SG
+      - XRay_HK_SG       
+
+ruleset-providers:
+
+  AdBlocker:
+    type: domain
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt"
+    path: ./rules/reject.txt
+    interval: 86400
+    payload: []
+    
+rules:
+
+  - PROCESS-NAME,com.riotgames.league.wildrift,WildRift,no-resolve
+  - DOMAIN-SUFFIX,riotgames.com,WildRift,no-resolve
+  - DOMAIN-SUFFIX,wildrift.com,WildRift,no-resolve
+  - DOMAIN-SUFFIX,riotcdn.net,WildRift,no-resolve
+  - DOMAIN-SUFFIX,lolesports.com,WildRift,no-resolve
+  - DOMAIN-SUFFIX,leagueoflegends.com,WildRift,no-resolve
+  - DOMAIN-SUFFIX,api.riotgames.com,WildRift,no-resolve
+  - DOMAIN-SUFFIX,txdt.net,WildRift,no-resolve
+  - DOMAIN-SUFFIX,osano.com,WildRift,no-resolve
+  - DOMAIN-SUFFIX,singular.net,WildRift,no-resolve
+  
+#  - DOMAIN-SUFFIX,firebase.com,DIRECT
+#  - DOMAIN-SUFFIX,firebaseio.com,
+  - DOMAIN-SUFFIX,kbzbank.com,DIRECT
+  - DOMAIN-SUFFIX,kbzpay.com,DIRECT
+  - DOMAIN-KEYWORD,kbz,DIRECT
+  - DOMAIN-SUFFIX,mbt.com.mm,DIRECT 
+  - DOMAIN-KEYWORD,mbt,DIRECT
+  - DOMAIN-SUFFIX,mpt.com.mm,DIRECT
+  - DOMAIN-KEYWORD,mpt,DIRECT
+  - DOMAIN-SUFFIX,grab.com,DIRECT
+  - DOMAIN-SUFFIX,grabsrv.com,DIRECT
+  - DOMAIN-KEYWORD,grab,DIRECT
+ 
+  - PROCESS-NAME,org.schabi.newpipe,DIRECT
+  - GEOSITE,YOUTUBE,DIRECT
+  - DOMAIN-SUFFIX,googlevideo.com,DIRECT
+  - DOMAIN-SUFFIX,youtube.com,DIRECT
+  - DOMAIN-SUFFIX,youtu.be,DIRECT
+  - DOMAIN-SUFFIX,ytimg.com,DIRECT
+  - PROCESS-NAME,com.google.android.youtube,DIRECT
+  - DOMAIN,suggestqueries-clients6.youtube.com,DIRECT
+  - PROCESS-NAME,com.google.uid.shared,General,no-resolve
+    
+  - GEOSITE,FACEBOOK,General
+  - GEOSITE,TELEGRAM,General
+  - DOMAIN-SUFFIX,github.com,General 
+  - DOMAIN-KEYWORD,gemini,General 
+  - PROCESS-NAME,com.google.android.googlequicksearchbox,General
+  - PROCESS-NAME,com.google.android.apps.bard,General
+  - PROCESS-NAME,com.google.android.chrome,General
+  - DOMAIN,google-ohttp-relay-safebrowsing.fastly-edge.com,General
+  - DOMAIN,ai.google.dev,General
+  - DOMAIN-KEYWORD,cloudflare,General
+  - PROCESS-NAME,com.UCMobile.intl,General
+  
+  - DOMAIN,AdBlocker,REJECT
+  - DOMAIN-SUFFIX,tradplusad.com,REJECT 
+  - DOMAIN-SUFFIX,appsflyersdk.com,REJECT 
+  - DOMAIN-SUFFIX,pangle.io,REJECT
+  - DOMAIN-SUFFIX,i18n-pglstatp.com,REJECT
+  - DOMAIN-SUFFIX,dtscdn.com,REJECT
+  - DOMAIN-SUFFIX,adsrvr.org,REJECT
+  - DOMAIN-SUFFIX,a-ads.com,REJECT
+  - DOMAIN-SUFFIX,mrktmtrcs.net,REJECT
+  - DOMAIN-SUFFIX,dtscout.com,REJECT
+  - DOMAIN,388gaming.info,REJECT
+  - DOMAIN,388mm.info,REJECT
+  - DOMAIN-SUFFIX,histats.com,REJECT
+  - GEOSITE,CATEGORY-ADS-ALL,REJECT
+  - GEOSITE,CATEGORY-ADS,REJECT
+  - GEOSITE,FACEBOOK-ADS,REJECT
+  - GEOSITE,META-ADS,REJECT
+  - GEOSITE,GOOGLE-ADS,REJECT 
+  
+  - GEOIP,MM,General
+  - MATCH,General
+  
