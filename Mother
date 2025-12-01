@@ -1,0 +1,302 @@
+socks-port: 7891
+
+mixed-port: 7890
+
+mode: rule
+
+allow-lan: true
+
+tcp-timeout: 300
+
+keep-alive-interval: 15
+
+disable-keep-alive: false
+
+purse-pure-ip: false
+
+override-destination: false
+
+log-level: info
+
+ipv6: false
+
+external-doh-server: "/dns-query"
+
+geodata-mode: true 
+
+geox-url:
+  geoip: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat"
+  geosite: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
+  mmdb: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb"
+  asn: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb"
+ 
+find-process-mode: strict
+
+global-client-fingerprint: chrome
+
+allow-private-domains: true 
+
+unified-delay: false
+
+tcp-concurrent: true
+
+experimental:
+  quic-go-disable-gso: false
+  quic-go-disable-ecn: false
+  
+profile:
+  store-selected: true
+  store-fake-ip: true
+  
+#tun:
+#  enable: true
+#  stack: mixed
+#  dns-hijack:
+#    - "any:53"
+#    - "tcp://any:53"
+#  auto-route: true
+# auto-detect-interface: true  
+  
+dns:
+  enable: true
+  cache-algorithm: arc
+  cache-max-size: 1024
+  prefer-h3: false
+  use-hosts: true
+  use-system-hosts: true
+  respect-rules: false
+  listen: 0.0.0.0:1053
+  ipv6: false
+  default-nameserver:
+    - 8.8.8.8
+    - 1.1.1.1
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter-mode: blacklist
+  nameserver:
+    - https://dns.google/dns-query
+    - 8.8.8.8
+    - 1.1.1.1
+  nameserver-policy:
+    "geosite:category-ads-all": rcode://success
+  fallback:
+    - tls://8.8.8.8:853
+    - tls://1.1.1.1:853
+    - 8.8.8.8
+    - 8.8.4.4
+    - 1.1.1.1
+    - 1.0.0.1
+  fallback-filter:
+    geoip: true
+    geoip-code: MM
+    geosite:
+      - youtube
+      - facebook
+      - telegram
+    ipcidr:
+      - 240.0.0.0/4
+      - 10.0.0.0/8          
+      - 192.168.0.0/16 
+    domain:
+      - '+.google.com'
+      - '+.facebook.com'
+      - '+.youtube.com'  
+      - '+.mpt.com'      
+    
+proxy-providers:
+
+  TSSF: 
+    type: http
+    path: "./proxies/TSSF.yaml"
+    url: "https://raw.githubusercontent.com/ts-sf/fly/main/clash"
+    etag-support: true
+    disable-udp: false
+    allow-insecure: true
+    skip-cert-verify: true
+    
+  Blues: 
+    type: http
+    path: "./proxies/blues.yaml"
+    url: "https://raw.githubusercontent.com/Barabama/FreeNodes/refs/heads/main/nodes/blues.yaml"
+    etag-support: true
+    disable-udp: false
+    allow-insecure: true
+    skip-cert-verify: true
+    
+  NodeFree: 
+    type: http
+    path: "./proxies/NodeFree.yaml"
+    url: "https://raw.githubusercontent.com/Barabama/FreeNodes/refs/heads/main/nodes/nodefree.yaml"
+    etag-support: true
+    disable-udp: false
+    allow-insecure: true
+    skip-cert-verify: true
+
+  NDNode: 
+    type: http
+    path: "./proxies/NDNode.yaml"
+    url: "https://raw.githubusercontent.com/Barabama/FreeNodes/refs/heads/main/nodes/ndnode.yaml"
+    etag-support: true
+    disable-udp: false
+    allow-insecure: true
+    skip-cert-verify: true   
+    
+  V2RayShare: 
+    type: http
+    path: "./proxies/V2RayShare.yaml"
+    url: "https://raw.githubusercontent.com/Barabama/FreeNodes/refs/heads/main/nodes/v2rayshare.yaml"
+    etag-support: true
+    disable-udp: false
+    allow-insecure: true
+    skip-cert-verify: true
+    
+  WeNode: 
+    type: http
+    path: "./proxies/WeNode.yaml"
+    url: "https://raw.githubusercontent.com/Barabama/FreeNodes/refs/heads/main/nodes/wenode.yaml"
+    etag-support: true
+    disable-udp: false
+    allow-insecure: true
+    skip-cert-verify: true    
+    
+  XRay_HK_SG: 
+    type: http
+    url: "https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/proxy_configs_tested.txt"
+    path: ./proxies/XRay.yaml
+    etag-support: true
+    disable-udp: false
+    
+  SUBPewdzaVPN: 
+    type: http
+    url: "https://raw.githubusercontent.com/peweza/PublicPewezaSub/refs/heads/main/SUBPewezaVPN"
+    path: ./proxies/SUBPewdzaVPN.yaml
+    etag-support: true
+    disable-udp: false
+
+  Shuaidaoya:
+    type: http
+    url: "https://gist.githubusercontent.com/shuaidaoya/9e5cf2749c0ce79932dd9229d9b4162b/raw/all.yaml"
+    path: ./proxies/Shuaidaoya.yaml
+    etag-support: true
+    disable-udp: false
+    allow-insecure: true
+    disable-cert-verify: true
+    
+proxy-groups:
+
+  - name: "General"
+    type: url-test
+    disable-udp: false
+    allow-insecure: true
+    url: "https://gstatic.com/generate_204"
+    interval: 300 
+    tolerance: 30
+    use:
+      - TSSF
+      - Shuaidaoya
+      - Blues
+      - NodeFree
+      - NDNode
+      - WeNode
+      - V2RayShare
+      - SUBPewdzaVPN
+      - XRay_HK_SG       
+    exclude-filter: "(?i)(HK|HongKong)"
+  #  filter: "(?i)(SG|Singapore|TH|Thailand).*(VMESS|VLESS|TROJAN|SS|SSH)"
+    
+  - name: "GAMING_SSH"
+    type: url-test
+    disable-udp: false
+    lazy: true
+    url: "https://gstatic.com/generate_204"
+    interval: 1800
+    tolerance: 10
+    use:
+      - TSSF
+      - Shuaidaoya
+      - Blues
+      - NodeFree
+      - NDNode
+      - V2RayShare
+      - WeNode
+      - XRay_HK_SG
+      - SUBPewdzaVPN
+    filter: "(?i)(SG|Singapore|TH|Thailand|HongKong|HK).*(VLESS|TROJAN|SS|SSH|H2|Hysteria)"
+    
+ruleset-providers:
+
+  AdBlocker:
+    type: domain
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt"
+    path: ./rules/reject.txt
+    interval: 86400
+    payload: []
+
+rules:
+
+  - PROCESS-NAME,com.riotgames.league.wildrift,GAMING_SSH,no-resolve
+  - PROCESS-NAME,org.schabi.newpipe.nightly,General,no-resolve
+  - DOMAIN-SUFFIX,riotgames.com,GAMING_SSH,no-resolve
+  - DOMAIN-SUFFIX,akamaized.net,GAMING_SSH,no-resolve
+  - DOMAIN-SUFFIX,pvp.net,GAMING_SSH,no-resolve
+  - DOMAIN-SUFFIX,riotcdn.net,GAMING_SSH,no-resolve
+  - DOMAIN-SUFFIX,lolesports.com,GAMING_SSH,no-resolve
+  - DOMAIN-SUFFIX,leagueoflegends.com,GAMING_SSH,no-resolve
+  - DOMAIN-SUFFIX,txdt.net,GAMING_SSH,no-resolve
+  - DOMAIN-SUFFIX,osano.com,GAMING_SSH,no-resolve
+  - DOMAIN-SUFFIX,singular.net,GAMING_SSH,no-resolve
+  - GEOSITE,CATEGORY-GAMES,GAMING_SSH,no-resolve
+  - GEOSITE,AKAMAI,GAMING_SSH,no-resolve
+  - GEOSITE,RIOT,GAMING_SSH,no-resolve
+
+  - DOMAIN-SUFFIX,googleapis.com,General,no-resolve
+  - PROCESS-NAME,com.google.android.googlequicksearchbox,General
+  - PROCESS-NAME,com.google.android.apps.bard,General
+  - PROCESS-NAME,org.schabi.newpipe,General,no-resolve
+  - DOMAIN,google-ohttp-relay-safebrowsing.fastly-edge.com,General
+  - PROCESS-NAME,com.google.android.chrome,General
+  - PROCESS-NAME,com.google.uid.shared,General
+  - PROCESS-NAME,com.google.android.youtube,General,no-resolve
+  - DOMAIN-KEYWORD,gemini,General 
+  - DOMAIN-SUFFIX,googlevideo.com,General,no-resolve
+  - DOMAIN-SUFFIX,youtube.com,General,no-resolve
+  - DOMAIN-SUFFIX,youtu.be,General,no-resolve
+  - DOMAIN-SUFFIX,ytimg.com,General
+  - DOMAIN,ai.google.dev,General
+  - DOMAIN-SUFFIX,firebase.com,General
+  - DOMAIN-SUFFIX,firebaseio.com,General 
+
+  - DOMAIN-SUFFIX,github.com,General 
+  - DOMAIN-KEYWORD,cloudflare,General
+  - PROCESS-NAME,com.UCMobile.intl,General
+  
+  - DOMAIN-SUFFIX,blcdog.com,REJECT
+  - DOMAIN,fapchatvip.com,REJECT
+  - DOMAIN-SUFFIX,growcdnssedge.com,REJECT
+  - DOMAIN-SUFFIX,myavlive.com,REJECT
+  - DOMAIN,stripchat.org,REJECT
+  - DOMAIN-SUFFIX,tradplusad.com,REJECT 
+  - DOMAIN-SUFFIX,appsflyersdk.com,REJECT 
+  - DOMAIN-SUFFIX,pangle.io,REJECT
+  - DOMAIN-SUFFIX,i18n-pglstatp.com,REJECT
+  - DOMAIN-SUFFIX,dtscdn.com,REJECT
+  - DOMAIN-SUFFIX,adsrvr.org,REJECT
+  - DOMAIN-SUFFIX,a-ads.com,REJECT
+  - DOMAIN-SUFFIX,mrktmtrcs.net,REJECT
+  - DOMAIN-SUFFIX,dtscout.com,REJECT
+  - DOMAIN,388gaming.info,REJECT
+  - DOMAIN,388mm.info,REJECT
+  - DOMAIN-SUFFIX,histats.com,REJECT
+  - DOMAIN,AdBlocker,REJECT
+  - GEOSITE,CATEGORY-ADS-ALL,REJECT
+  - GEOSITE,CATEGORY-ADS,REJECT
+  - GEOSITE,FACEBOOK-ADS,REJECT
+  - GEOSITE,META-ADS,REJECT
+  - GEOSITE,GOOGLE-ADS,REJECT 
+  
+  - GEOSITE,facebook,General
+  - GEOSITE,youtube,General
+  - GEOSITE,telegram,General
+  - GEOIP,MM,General
+  - MATCH,General
