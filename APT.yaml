@@ -32,7 +32,7 @@ geox-url:
   mmdb: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb"
   asn: "https://github.com/MetaCubeX/meta-cube-x-dat/releases/download/latest/GeoLite2-ASN.mmdb"
  
-find-process-mode: always
+find-process-mode: strict
 
 global-client-fingerprint: ios 
 
