@@ -24,7 +24,7 @@ external-doh-server: "/dns-query"
 
 geodata-mode: true 
 
-bind-address: "*"
+bind- address: "*"
 
 geox-url:
   geoip: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat"
@@ -109,7 +109,6 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/ts-sf/fly/main/clash"
     etag-support: true
     disable-udp: false
-    interval: 86400
 
   MatinGhanbari: 
     type: http
@@ -117,7 +116,6 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/ss.txt"
     etag-support: true
     disable-udp: false
-    interval: 86400
 
   NodeFree: 
     type: http
@@ -125,7 +123,6 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/Barabama/FreeNodes/refs/heads/main/nodes/nodefree.yaml"
     etag-support: true
     disable-udp: false
-    interval: 86400
     
   V2RayShare: 
     type: http
@@ -133,7 +130,6 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/Barabama/FreeNodes/refs/heads/main/nodes/v2rayshare.yaml"
     etag-support: true
     disable-udp: false
-    interval: 86400
     
   WeNode: 
     type: http
@@ -141,7 +137,6 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/Barabama/FreeNodes/refs/heads/main/nodes/wenode.yaml"
     etag-support: true
     disable-udp: false
-    interval: 86400
     
   XRay_HK_SG: 
     type: http
@@ -149,7 +144,6 @@ proxy-providers:
     path: ./proxies/XRay.yaml
     etag-support: true
     disable-udp: false
-    interval: 86400
     
   SUBPewdzaVPN: 
     type: http
@@ -157,7 +151,6 @@ proxy-providers:
     path: ./proxies/SUBPewdzaVPN.yaml
     etag-support: true
     disable-udp: false
-    interval: 86400
 
   Shuaidaoya:
     type: http
@@ -165,7 +158,13 @@ proxy-providers:
     path: ./proxies/Shuaidaoya.yaml
     etag-support: true
     disable-udp: false
-    interval: 86400
+
+  Argh94:
+    type: http
+    url: "https://raw.githubusercontent.com/Argh94/Proxy-List/refs/heads/main/All_Config.txt"
+    path: ./proxies/Argh94.yaml
+    etag-support: true
+    disable-udp: false    
     
 proxy-groups:
 
@@ -179,6 +178,7 @@ proxy-groups:
     tolerance: 30
     use:
       - TSSF
+      - Argh94
       - MatinGhanbari
       - Shuaidaoya
       - NodeFree
@@ -186,7 +186,6 @@ proxy-groups:
       - V2RayShare
       - SUBPewdzaVPN
       - XRay_HK_SG        
-    exclude-filter: "(?i)(🇭🇰|HK|Hongkong)"
     
 ruleset-providers:
  
@@ -215,6 +214,7 @@ rules:
   - PROCESS-NAME,com.google.uid.shared,General
   - PROCESS-NAME,com.google.android.youtube,General
   - DOMAIN-KEYWORD,gemini,General
+  - PROCESS-NAME,org.telegram.group,DIRECT
   - PROCESS-NAME,com.google.android.googlequicksearchbox,General
   - PROCESS-NAME,com.google.android.apps.bard,General
   - DOMAIN,google-ohttp-relay-safebrowsing.fastly-edge.com,General
@@ -263,7 +263,7 @@ rules:
   - GEOSITE,facebook,General
   - GEOSITE,google,General
   - GEOSITE,youtube,General
-  - GEOSITE,telegram,General
+  - GEOSITE,telegram,DIRECT
   - GEOIP,MM,General
   - GEOIP,PRIVATE,DIRECT 
   - GEOSITE,PRIVATE,DIRECT
