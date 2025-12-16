@@ -176,7 +176,7 @@ ruleset-providers:
     payload: []
 rules:
   - PROCESS-NAME,com.riotgames.league.wildrift,General,no-resolve
-  - PROCESS-NAME,com.viber.voip,DIRECT,no-resolve
+  - PROCESS-NAME,com.viber.voip,General,no-resolve
   - PROCESS-NAME,com.google.android.chrome,General
   - PROCESS-NAME,com.google.uid.shared,General
   - PROCESS-NAME,com.google.android.youtube,General  
