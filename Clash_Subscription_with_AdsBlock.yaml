@@ -249,7 +249,6 @@ rules:
   - GEOSITE,google,General
   - GEOSITE,youtube,General
   - GEOSITE,telegram,DIRECT
-  - GEOSITE,viber,DIRECT
   - GEOIP,MM,General
   - GEOIP,PRIVATE,DIRECT 
   - GEOSITE,PRIVATE,DIRECT
