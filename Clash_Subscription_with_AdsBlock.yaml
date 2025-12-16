@@ -5,8 +5,6 @@ allow-lan: true
 tcp-timeout: 300
 keep-alive-interval: 15
 disable-keep-alive: false
-purse-pure-ip: false
-override-destination: false
 log-level: info
 ipv6: false
 external-doh-server: "/dns-query"
@@ -20,7 +18,7 @@ geox-url:
 find-process-mode: always
 global-client-fingerprint: chrome
 allow-private-domains: true 
-unified-delay: false
+unified-delay: true
 tcp-concurrent: true
 experimental:
   quic-go-disable-gso: false
@@ -32,10 +30,8 @@ dns:
   enable: true
   cache-algorithm: arc
   cache-max-size: 1024
-  prefer-h3: false
   use-hosts: true
   use-system-hosts: true
-  respect-rules: false
   listen: 0.0.0.0:1053
   ipv6: false
   default-nameserver:
@@ -132,7 +128,15 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/Argh94/Proxy-List/refs/heads/main/All_Config.txt"
     path: ./proxies/Argh94.yaml
     etag-support: true
-    disable-udp: false    
+    disable-udp: false  
+    allow-insecure: true
+  NMWalls:
+    type: http
+    url: "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml"
+    path: ./proxies/NMWalls.yaml
+    etag-support: true
+    disable-udp: false  
+    allow-insecure: true
 proxy-groups:
   - name: "General"
     type: url-test
@@ -142,16 +146,20 @@ proxy-groups:
     url: "https://gstatic.com/generate_204"
     interval: 60
     tolerance: 30
-    use:
-      - TSSF
-      - Argh94
-      - MatinGhanbari
-      - Shuaidaoya
-      - NodeFree
-      - WeNode
-      - V2RayShare
-      - SUBPewdzaVPN
-      - XRay_HK_SG        
+   # filter: "(?i)(🇹🇭|THL|Thailand)"
+    exclude-filter: "(?i)(🇭🇰|HK|HongKong)"
+    include-all: true
+   # use:
+    #  - TSSF
+   #   - Argh94
+  #    - MatinGhanbari
+   #   - Shuaidaoya
+  #    - NodeFree
+  #    - WeNode
+  #    - V2RayShare
+  #    - SUBPewdzaVPN
+  #    - XRay_HK_SG        
+      
 ruleset-providers:
   AntiAd:
     type: domain
@@ -167,30 +175,35 @@ ruleset-providers:
     interval: 86400
     payload: []
 rules:
- # - PROCESS-NAME,com.riotgames.league.wildrift,GAMING_SSH,no-resolve
-  - PROCESS-NAME,com.viber.voip,General
-  - PROCESS-NAME,org.schabi.newpipe,General
-  - PROCESS-NAME,org.schabi.newpipe.nightly,General
-  - DOMAIN-KEYWORD,youtube.com,General
+  - PROCESS-NAME,com.riotgames.league.wildrift,General,no-resolve
+  - PROCESS-NAME,com.viber.voip,DIRECT,no-resolve
   - PROCESS-NAME,com.google.android.chrome,General
   - PROCESS-NAME,com.google.uid.shared,General
-  - PROCESS-NAME,com.google.android.youtube,General
-  - DOMAIN-KEYWORD,gemini,General
-#  - DOMAIN-SUFFIX,riotgames.com,GAMING_SSH,no-resolve
-#  - DOMAIN-SUFFIX,akamaized.net,GAMING_SSH,no-resolve
- # - DOMAIN-SUFFIX,pvp.net,GAMING_SSH,no-resolve
- # - DOMAIN-SUFFIX,riotcdn.net,GAMING_SSH,no-resolve
-  #- DOMAIN-SUFFIX,lolesports.com,GAMING_SSH,no-resolve
- # - DOMAIN-SUFFIX,leagueoflegends.com,GAMING_SSH,no-resolve
-#  - DOMAIN-SUFFIX,txdt.net,GAMING_SSH,no-resolve
-#  - DOMAIN-SUFFIX,osano.com,GAMING_SSH,no-resolve
-#  - DOMAIN-SUFFIX,singular.net,GAMING_SSH,no-resolve
- # - GEOSITE,CATEGORY-GAMES,GAMING_SSH,no-resolve
- # - GEOSITE,AKAMAI,GAMING_SSH,no-resolve
-#  - GEOSITE,RIOT,GAMING_SSH,no-resolve
+  - PROCESS-NAME,com.google.android.youtube,General  
+  - PROCESS-NAME,com.google.android.googlequicksearchbox,General,no-resolve
+  - PROCESS-NAME,com.google.android.apps.bard,DIRECT  
+  - PROCESS-NAME,org.schabi.newpipe,General
+  - PROCESS-NAME,org.schabi.newpipe.nightly,General
   - PROCESS-NAME,org.telegram.group,DIRECT
-  - PROCESS-NAME,com.google.android.googlequicksearchbox,General
-  - PROCESS-NAME,com.google.android.apps.bard,General
+  - PROCESS-NAME,mm.com.mptvas,DIRECT
+  - PROCESS-NAME,com.kbzbank.kpaycustomer,DIRECT
+
+  - DOMAIN-KEYWORD,gemini,DIRECT,no-resolve
+  - DOMAIN-KEYWORD,youtube.com,General
+
+  - DOMAIN-SUFFIX,riotgames.com,General,no-resolve
+  - DOMAIN-SUFFIX,akamaized.net,General,no-resolve
+  - DOMAIN-SUFFIX,pvp.net,General,no-resolve
+  - DOMAIN-SUFFIX,riotcdn.net,General,no-resolve
+  - DOMAIN-SUFFIX,lolesports.com,General,no-resolve
+  - DOMAIN-SUFFIX,leagueoflegends.com,General,no-resolve
+  - DOMAIN-SUFFIX,txdt.net,General,no-resolve
+  - DOMAIN-SUFFIX,osano.com,General,no-resolve
+  - DOMAIN-SUFFIX,singular.net,General,no-resolve
+  - GEOSITE,CATEGORY-GAMES,General,no-resolve
+  - GEOSITE,AKAMAI,General,no-resolve
+  - GEOSITE,RIOT,General,no-resolve
+
   - DOMAIN,google-ohttp-relay-safebrowsing.fastly-edge.com,General
   - DOMAIN-SUFFIX,youtu.be,General
   - DOMAIN-SUFFIX,ytimg.com,General
@@ -198,7 +211,7 @@ rules:
   - DOMAIN-SUFFIX,firebaseio.com,General 
   - DOMAIN-SUFFIX,github.com,General 
   - DOMAIN-KEYWORD,cloudflare,General
-  - PROCESS-NAME,com.UCMobile.intl,General
+  
   - DOMAIN,analytics.us.tiktok.com,REJECT
   - DOMAIN-SUFFIX,adtrafficquality.google,REJECT
   - DOMAIN,www.googleadservices.com,REJECT
@@ -230,11 +243,13 @@ rules:
   - GEOSITE,FACEBOOK-ADS,REJECT
   - GEOSITE,META-ADS,REJECT
   - GEOSITE,GOOGLE-ADS,REJECT 
+  
   - DOMAIN-KEYWORD,google,General
   - GEOSITE,facebook,General
   - GEOSITE,google,General
   - GEOSITE,youtube,General
   - GEOSITE,telegram,DIRECT
+  - GEOSITE,viber,DIRECT
   - GEOIP,MM,General
   - GEOIP,PRIVATE,DIRECT 
   - GEOSITE,PRIVATE,DIRECT
