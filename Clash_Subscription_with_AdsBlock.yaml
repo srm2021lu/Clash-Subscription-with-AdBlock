@@ -11,10 +11,10 @@ external-doh-server: "/dns-query"
 geodata-mode: true 
 bind- address: "*"
 geox-url:
-  geoip: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat"
-  geosite: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
-  mmdb: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb"
-  asn: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb"
+  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/geoip.dat"
+  geosite: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/202512160513/geosite.dat"
+  mmdb: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
+  asn: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country-asn.mmdb"
 find-process-mode: always
 global-client-fingerprint: chrome
 allow-private-domains: true 
@@ -188,8 +188,10 @@ rules:
   - PROCESS-NAME,mm.com.mptvas,DIRECT
   - PROCESS-NAME,com.kbzbank.kpaycustomer,DIRECT
 
+  - DOMAIN,challenges.cloudflare.com, General   
   - DOMAIN-KEYWORD,gemini,DIRECT,no-resolve
   - DOMAIN-KEYWORD,youtube.com,General
+  - DOMAIN,googletagmanager.com, General 
 
   - DOMAIN-SUFFIX,riotgames.com,General,no-resolve
   - DOMAIN-SUFFIX,akamaized.net,General,no-resolve
@@ -249,6 +251,7 @@ rules:
   - GEOSITE,google,General
   - GEOSITE,youtube,General
   - GEOSITE,telegram,DIRECT
+  - GEOSITE,viber,DIRECT
   - GEOIP,MM,General
   - GEOIP,PRIVATE,DIRECT 
   - GEOSITE,PRIVATE,DIRECT
