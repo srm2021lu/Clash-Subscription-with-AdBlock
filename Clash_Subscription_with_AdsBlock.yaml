@@ -9,7 +9,7 @@ log-level: info
 ipv6: false
 external-doh-server: "/dns-query"
 geodata-mode: true 
-bind- address: "*"
+bind-address: "*"
 geox-url:
   geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/geoip.dat"
   geosite: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/202512160513/geosite.dat"
