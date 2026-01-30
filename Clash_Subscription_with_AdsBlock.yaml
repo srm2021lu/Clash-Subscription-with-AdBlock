@@ -16,7 +16,6 @@ geox-url:
   mmdb: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
   asn: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country-asn.mmdb"
 find-process-mode: always
-global-client-fingerprint: chrome
 allow-private-domains: true 
 unified-delay: true
 tcp-concurrent: true
@@ -52,7 +51,6 @@ dns:
     - https://cloudflare-dns.com/dns-query  
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
-  fake-ip-filter-mode: blacklist
   fallback:
     - tls://8.8.8.8:853
     - tls://1.1.1.1:853
@@ -70,10 +68,6 @@ dns:
       - 10.0.0.0/8          
       - 192.168.0.0/16 
     domain:
-      - '+.facebook.com'
-      - '+.youtube.com'  
-      - '+.mpt.com' 
-      - '+.google.com'
 proxy-providers:
   TSSF: 
     type: http
@@ -81,62 +75,81 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/ts-sf/fly/main/clash"
     etag-support: true
     disable-udp: false
+    allow-insecure: true
+    skip-cert-verify: true
   MatinGhanbari: 
     type: http
     path: "./proxies/MatinGhanbari.yaml"
     url: "https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/ss.txt"
     etag-support: true
     disable-udp: false
-  NodeFree: 
+    allow-insecure: true
+    skip-cert-verify: true
+  SP66_1: 
     type: http
-    path: "./proxies/NodeFree.yaml"
-    url: "https://raw.githubusercontent.com/Barabama/FreeNodes/refs/heads/main/nodes/nodefree.yaml"
+    path: "./proxies/SP66_1.yaml"
+    url: "https://sub.shadowproxy66.workers.dev/sub/be80a76c-6044-417c-9bff-e587f9380d05"
     etag-support: true
     disable-udp: false
-  V2RayShare: 
+    allow-insecure: true
+    skip-cert-verify: true
+  SP66_2: 
     type: http
-    path: "./proxies/V2RayShare.yaml"
-    url: "https://raw.githubusercontent.com/Barabama/FreeNodes/refs/heads/main/nodes/v2rayshare.yaml"
+    path: "./proxies/SP66_2.yaml"
+    url: "https://sub.shadowproxy66.workers.dev/sub/465a96df-b2fb-4fd6-ac52-48a3ff8b252d"
     etag-support: true
     disable-udp: false
-  WeNode: 
-    type: http
-    path: "./proxies/WeNode.yaml"
-    url: "https://raw.githubusercontent.com/Barabama/FreeNodes/refs/heads/main/nodes/wenode.yaml"
-    etag-support: true
-    disable-udp: false
+    allow-insecure: true
+    skip-cert-verify: true
   XRay_HK_SG: 
     type: http
     url: "https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/proxy_configs_tested.txt"
     path: ./proxies/XRay.yaml
     etag-support: true
     disable-udp: false
-  SUBPewdzaVPN: 
-    type: http
-    url: "https://raw.githubusercontent.com/peweza/PublicPewezaSub/refs/heads/main/SUBPewezaVPN"
-    path: ./proxies/SUBPewdzaVPN.yaml
-    etag-support: true
-    disable-udp: false
+    allow-insecure: true
+    skip-cert-verify: true
   Shuaidaoya:
     type: http
     url: "https://gist.githubusercontent.com/shuaidaoya/9e5cf2749c0ce79932dd9229d9b4162b/raw/all.yaml"
-    path: ./proxies/Shuaidaoya.yaml
+    path: "./proxies/Shuaidaoya.yaml"
     etag-support: true
     disable-udp: false
-  Argh94:
+    allow-insecure: true
+    skip-cert-verify: true
+  FreeNode:
     type: http
-    url: "https://raw.githubusercontent.com/Argh94/Proxy-List/refs/heads/main/All_Config.txt"
-    path: ./proxies/Argh94.yaml
+    url: "https://raw.githubusercontent.com/telegeam/freenode/refs/heads/master/clash.yaml"
+    path: "./proxies/FreeNode.yaml"
     etag-support: true
+    skip-cert-verify: true
     disable-udp: false  
     allow-insecure: true
   NMWalls:
     type: http
     url: "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml"
-    path: ./proxies/NMWalls.yaml
+    path: "./proxies/NMWalls.yaml"
     etag-support: true
     disable-udp: false  
     allow-insecure: true
+    skip-cert-verify: true
+  V2Free:
+    type: http
+    url: "https://raw.githubusercontent.com/clashv2ray-hub/v2rayfree/refs/heads/main/v2ray.txt"
+    path: "./proxies/V2Free.yaml"
+    etag-support: true
+    disable-udp: false  
+    allow-insecure: true    
+    skip-cert-verify: true
+  G3:
+    type: http
+    url: "http://g3.03184.com:8091/F_20241011160900vrqpbf/clash.yaml"
+    path: "./proxies/G3.yaml"
+    etag-support: true
+    disable-udp: false  
+    allow-insecure: true    
+    skip-cert-verify: true
+    
 proxy-groups:
   - name: "General"
     type: url-test
@@ -146,19 +159,12 @@ proxy-groups:
     url: "https://gstatic.com/generate_204"
     interval: 60
     tolerance: 30
-   # filter: "(?i)(🇹🇭|THL|Thailand)"
-    exclude-filter: "(?i)(🇭🇰|HK|HongKong)"
+   # exclude-filter: "(?i)(HK|HongKong|🇭🇰)"
+  #  filter: "(?i)(🇹🇭|TH|THL|Thailand||🇸🇬|SG|Singapore)"
+  #  filter: "(?i)(Japan|🇯🇵|JP|🇸🇬|SG|Singapore)"
+        
     include-all: true
-   # use:
-    #  - TSSF
-   #   - Argh94
-  #    - MatinGhanbari
-   #   - Shuaidaoya
-  #    - NodeFree
-  #    - WeNode
-  #    - V2RayShare
-  #    - SUBPewdzaVPN
-  #    - XRay_HK_SG        
+         
       
 ruleset-providers:
   AntiAd:
@@ -175,13 +181,13 @@ ruleset-providers:
     interval: 86400
     payload: []
 rules:
-  - PROCESS-NAME,com.riotgames.league.wildrift,General,no-resolve
-  - PROCESS-NAME,com.viber.voip,General,no-resolve
+ 
+  - PROCESS-NAME,com.viber.voip,DIRECT
   - PROCESS-NAME,com.google.android.chrome,General
   - PROCESS-NAME,com.google.uid.shared,General
   - PROCESS-NAME,com.google.android.youtube,General  
-  - PROCESS-NAME,com.google.android.googlequicksearchbox,General,no-resolve
-  - PROCESS-NAME,com.google.android.apps.bard,DIRECT  
+  - PROCESS-NAME,com.google.android.googlequicksearchbox,General
+  - PROCESS-NAME,com.google.android.apps.bard,General 
   - PROCESS-NAME,org.schabi.newpipe,General
   - PROCESS-NAME,org.schabi.newpipe.nightly,General
   - PROCESS-NAME,org.telegram.group,DIRECT
@@ -189,22 +195,9 @@ rules:
   - PROCESS-NAME,com.kbzbank.kpaycustomer,DIRECT
 
   - DOMAIN,challenges.cloudflare.com, General   
-  - DOMAIN-KEYWORD,gemini,DIRECT,no-resolve
+  - DOMAIN-KEYWORD,gemini,General
   - DOMAIN-KEYWORD,youtube.com,General
   - DOMAIN,googletagmanager.com, General 
-
-  - DOMAIN-SUFFIX,riotgames.com,General,no-resolve
-  - DOMAIN-SUFFIX,akamaized.net,General,no-resolve
-  - DOMAIN-SUFFIX,pvp.net,General,no-resolve
-  - DOMAIN-SUFFIX,riotcdn.net,General,no-resolve
-  - DOMAIN-SUFFIX,lolesports.com,General,no-resolve
-  - DOMAIN-SUFFIX,leagueoflegends.com,General,no-resolve
-  - DOMAIN-SUFFIX,txdt.net,General,no-resolve
-  - DOMAIN-SUFFIX,osano.com,General,no-resolve
-  - DOMAIN-SUFFIX,singular.net,General,no-resolve
-  - GEOSITE,CATEGORY-GAMES,General,no-resolve
-  - GEOSITE,AKAMAI,General,no-resolve
-  - GEOSITE,RIOT,General,no-resolve
 
   - DOMAIN,google-ohttp-relay-safebrowsing.fastly-edge.com,General
   - DOMAIN-SUFFIX,youtu.be,General
