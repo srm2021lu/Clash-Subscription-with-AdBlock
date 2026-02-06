@@ -37,13 +37,8 @@ dns:
     - 8.8.8.8
     - 1.1.1.1
   direct-nameserver:
-    - https://223.5.5.5:443/dns-query
-    - https://doh.pub/dns-query 
     - https://dns.google/dns-query
-    - https://dns.alidns.com/dns-query
   proxy-server-nameserver:
-    - https://doh.pub/dns-query 
-    - https://dns.alidns.com/dns-query
     - https://dns.google/dns-query
   nameserver:
     - https://8.8.8.8:443/dns-query
@@ -104,7 +99,7 @@ proxy-providers:
   XRay_HK_SG: 
     type: http
     url: "https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/proxy_configs_tested.txt"
-    path: ./proxies/XRay.yaml
+    path: "./proxies/XRay.yaml"
     etag-support: true
     disable-udp: false
     allow-insecure: true
@@ -246,6 +241,6 @@ rules:
   - GEOSITE,telegram,DIRECT
   - GEOSITE,viber,DIRECT
   - GEOIP,MM,General
-  - GEOIP,PRIVATE,DIRECT 
-  - GEOSITE,PRIVATE,DIRECT
+  #- GEOIP,PRIVATE,DIRECT 
+  #- GEOSITE,PRIVATE,DIRECT
   - MATCH,General
