@@ -235,7 +235,7 @@ rules:
   - GEOSITE,GOOGLE-ADS,REJECT 
   
   - DOMAIN-KEYWORD,google,General
-  - GEOSITE,facebook,General
+  #- GEOSITE,facebook,General
   - GEOSITE,google,General
   - GEOSITE,youtube,General
   - GEOSITE,telegram,DIRECT
