@@ -88,22 +88,6 @@ proxy-providers:
     disable-udp: false
     allow-insecure: true
     skip-cert-verify: true
-  SP66_2: 
-    type: http
-    path: "./proxies/SP66_2.yaml"
-    url: "https://sub.shadowproxy66.workers.dev/sub/465a96df-b2fb-4fd6-ac52-48a3ff8b252d"
-    etag-support: true
-    disable-udp: false
-    allow-insecure: true
-    skip-cert-verify: true
-  XRay_HK_SG: 
-    type: http
-    url: "https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/proxy_configs_tested.txt"
-    path: "./proxies/XRay.yaml"
-    etag-support: true
-    disable-udp: false
-    allow-insecure: true
-    skip-cert-verify: true
   Shuaidaoya:
     type: http
     url: "https://gist.githubusercontent.com/shuaidaoya/9e5cf2749c0ce79932dd9229d9b4162b/raw/all.yaml"
@@ -136,15 +120,6 @@ proxy-providers:
     disable-udp: false  
     allow-insecure: true    
     skip-cert-verify: true
-  G3:
-    type: http
-    url: "http://g3.03184.com:8091/F_20241011160900vrqpbf/clash.yaml"
-    path: "./proxies/G3.yaml"
-    etag-support: true
-    disable-udp: false  
-    allow-insecure: true    
-    skip-cert-verify: true
-    
 proxy-groups:
   - name: "General"
     type: url-test
@@ -179,6 +154,8 @@ rules:
  
   - PROCESS-NAME,com.viber.voip,DIRECT
   - PROCESS-NAME,com.google.android.chrome,General
+  - DOMAIN-SUFFIX,gvt2.com,General
+  - DOMAIN,googletagmanager.com,General
   - PROCESS-NAME,com.google.uid.shared,General
   - PROCESS-NAME,com.google.android.youtube,General  
   - PROCESS-NAME,com.google.android.googlequicksearchbox,General
