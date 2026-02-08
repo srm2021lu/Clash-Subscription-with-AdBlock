@@ -152,7 +152,7 @@ ruleset-providers:
     payload: []
 rules:
  
-  - PROCESS-NAME,com.viber.voip,DIRECT
+  - PROCESS-NAME,com.viber.voip,General
   - PROCESS-NAME,com.google.android.chrome,General
   - DOMAIN-SUFFIX,gvt2.com,General
   - DOMAIN,googletagmanager.com,General
@@ -216,7 +216,7 @@ rules:
   - GEOSITE,google,General
   - GEOSITE,youtube,General
   - GEOSITE,telegram,DIRECT
-  - GEOSITE,viber,DIRECT
+  - GEOSITE,viber,General
   - GEOIP,MM,General
   #- GEOIP,PRIVATE,DIRECT 
   #- GEOSITE,PRIVATE,DIRECT
