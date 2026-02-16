@@ -8,14 +8,14 @@ disable-keep-alive: false
 log-level: info
 ipv6: false
 external-doh-server: "/dns-query"
-geodata-mode: true 
+geodata-mode: false 
 bind-address: "*"
 geox-url:
   geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/geoip.dat"
   geosite: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/202512160513/geosite.dat"
   mmdb: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
   asn: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country-asn.mmdb"
-find-process-mode: always
+find-process-mode: strict
 allow-private-domains: true 
 unified-delay: true
 tcp-concurrent: true
@@ -23,8 +23,8 @@ experimental:
   quic-go-disable-gso: false
   quic-go-disable-ecn: false
 profile:
-  store-selected: false
-  store-fake-ip: false
+  store-selected: true
+  store-fake-ip: true
 dns:
   enable: true
   cache-algorithm: arc
@@ -54,8 +54,8 @@ dns:
     - 1.1.1.1
     - 1.0.0.1
   fallback-filter:
-    geoip: true
-    geoip-code: MM
+    geoip: false
+    geoip-code: 
     geosite:
       - gfw
     ipcidr:
@@ -76,14 +76,6 @@ proxy-providers:
     type: http
     path: "./proxies/MatinGhanbari.yaml"
     url: "https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/ss.txt"
-    etag-support: true
-    disable-udp: false
-    allow-insecure: true
-    skip-cert-verify: true
-  SP66_1: 
-    type: http
-    path: "./proxies/SP66_1.yaml"
-    url: "https://sub.shadowproxy66.workers.dev/sub/be80a76c-6044-417c-9bff-e587f9380d05"
     etag-support: true
     disable-udp: false
     allow-insecure: true
@@ -120,6 +112,30 @@ proxy-providers:
     disable-udp: false  
     allow-insecure: true    
     skip-cert-verify: true
+  G3:
+    type: http
+    url: "http://g3.03184.com:8091/F_20241011160900vrqpbf/clash.yaml"
+    path: "./proxies/G3.yaml"
+    etag-support: true
+    disable-udp: false  
+    allow-insecure: true    
+    skip-cert-verify: true
+  G4:
+    type: http
+    url: "https://ldld.whtjdasha.com/api/v1/client/subscribe?token=6b69e6bc9bc793ea90db235e89a649d5"
+    path: "./proxies/G4.yaml"
+    etag-support: true
+    disable-udp: false  
+    allow-insecure: true    
+    skip-cert-verify: true   
+  G5:
+    type: http
+    url: "https://shz.al/njPK"
+    path: "./proxies/G5.yaml"
+    etag-support: true
+    disable-udp: false  
+    allow-insecure: true    
+    skip-cert-verify: true   
 proxy-groups:
   - name: "General"
     type: url-test
@@ -152,7 +168,7 @@ ruleset-providers:
     payload: []
 rules:
  
-  - PROCESS-NAME,com.viber.voip,General
+  - PROCESS-NAME,com.viber.voip,DIRECT
   - PROCESS-NAME,com.google.android.chrome,General
   - DOMAIN-SUFFIX,gvt2.com,General
   - DOMAIN,googletagmanager.com,General
@@ -211,13 +227,13 @@ rules:
   - GEOSITE,META-ADS,REJECT
   - GEOSITE,GOOGLE-ADS,REJECT 
   
-  - DOMAIN-KEYWORD,google,General
+  #- DOMAIN-KEYWORD,google,General
   #- GEOSITE,facebook,General
-  - GEOSITE,google,General
-  - GEOSITE,youtube,General
-  - GEOSITE,telegram,DIRECT
-  - GEOSITE,viber,General
-  - GEOIP,MM,General
+  #- GEOSITE,google,General
+ # - GEOSITE,youtube,General
+ # - GEOSITE,telegram,DIRECT
+  #- GEOSITE,viber,General
+  #- GEOIP,MM,General
   #- GEOIP,PRIVATE,DIRECT 
   #- GEOSITE,PRIVATE,DIRECT
   - MATCH,General
