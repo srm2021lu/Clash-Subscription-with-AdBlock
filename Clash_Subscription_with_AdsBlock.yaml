@@ -16,7 +16,7 @@ geox-url:
   mmdb: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
   asn: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country-asn.mmdb"
 find-process-mode: strict
-allow-private-domains: true 
+#allow-private-domains: true 
 unified-delay: true
 tcp-concurrent: true
 experimental:
@@ -53,16 +53,16 @@ dns:
     - 8.8.4.4
     - 1.1.1.1
     - 1.0.0.1
-  fallback-filter:
-    geoip: false
-    geoip-code: 
-    geosite:
-      - gfw
-    ipcidr:
-      - 240.0.0.0/4
-      - 10.0.0.0/8          
-      - 192.168.0.0/16 
-    domain:
+ # fallback-filter:
+ #   geoip: false
+ #   geoip-code: 
+ #   geosite:
+ #     - gfw
+ #   ipcidr:
+ #     - 240.0.0.0/4
+ #     - 10.0.0.0/8          
+ #     - 192.168.0.0/16 
+ #   domain:
 proxy-providers:
   TSSF: 
     type: http
