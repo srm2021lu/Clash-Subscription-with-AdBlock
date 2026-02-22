@@ -1,14 +1,14 @@
 socks-port: 7891
-mixed-port: 7890
+mixedmixed-port: 7890
 mode: rule
-allow-lan: true
+allow-lan: false
 tcp-timeout: 300
 keep-alive-interval: 15
 disable-keep-alive: false
 log-level: info
-ipv6: false
+ipv6: true
 external-doh-server: "/dns-query"
-geodata-mode: false 
+geodata-mode: true 
 bind-address: "*"
 geox-url:
   geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/geoip.dat"
@@ -16,12 +16,13 @@ geox-url:
   mmdb: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
   asn: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country-asn.mmdb"
 find-process-mode: strict
-#allow-private-domains: true 
+#client-fingerprint: chrome
+allow-private-domains: true 
 unified-delay: true
 tcp-concurrent: true
 experimental:
-  quic-go-disable-gso: false
-  quic-go-disable-ecn: false
+  quic-go-disable-gso: true
+  quic-go-disable-ecn: true
 profile:
   store-selected: true
   store-fake-ip: true
@@ -32,18 +33,25 @@ dns:
   use-hosts: true
   use-system-hosts: true
   listen: 0.0.0.0:1053
-  ipv6: false
+  ipv6: true
   default-nameserver:
     - 8.8.8.8
     - 1.1.1.1
   direct-nameserver:
+#    - https://223.5.5.5:443/dns-query
+#    - https://doh.pub/dns-query 
     - https://dns.google/dns-query
+ #   - https://dns.alidns.com/dns-query
   proxy-server-nameserver:
+#    - https://doh.pub/dns-query 
+#    - https://dns.alidns.com/dns-query
     - https://dns.google/dns-query
-  nameserver:
-    - https://8.8.8.8:443/dns-query
+  nameserver:   
+    - 8.8.8.8
+    - 1.1.1.1
     - https://dns.google/dns-query
-    - https://cloudflare-dns.com/dns-query  
+    - https://1.1.1.1/dns-query
+    - https://94.140.14.14/dns-query 
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fallback:
@@ -53,16 +61,22 @@ dns:
     - 8.8.4.4
     - 1.1.1.1
     - 1.0.0.1
- # fallback-filter:
- #   geoip: false
- #   geoip-code: 
+#  fallback-filter:
+ #   geoip: true
+#    geoip-code: MM
  #   geosite:
  #     - gfw
  #   ipcidr:
  #     - 240.0.0.0/4
  #     - 10.0.0.0/8          
- #     - 192.168.0.0/16 
- #   domain:
+#      - 192.168.0.0/16 
+#    domain:
+     # - '+.gemini.google.com'
+   #   - '+.google.com'
+  #    - '+.youtube.com'
+ #     - '+.mpt.com'
+ #     - '+.github.com'
+    #  - '+.githubusercontent.com'
 proxy-providers:
   TSSF: 
     type: http
@@ -136,6 +150,15 @@ proxy-providers:
     disable-udp: false  
     allow-insecure: true    
     skip-cert-verify: true   
+  G6:
+    type: http
+    url: "https://ldld.whtjdasha.com/api/v1/client/subscribe?token=6b69e6bc9bc793ea90db235e89a649d5"
+    path: "./proxies/G6.yaml"
+    etag-support: true
+    disable-udp: false  
+    allow-insecure: true    
+    skip-cert-verify: true   
+  
 proxy-groups:
   - name: "General"
     type: url-test
@@ -144,61 +167,158 @@ proxy-groups:
     allow-insecure: true
     url: "https://gstatic.com/generate_204"
     interval: 60
-    tolerance: 30
-   # exclude-filter: "(?i)(HK|HongKong|🇭🇰)"
-  #  filter: "(?i)(🇹🇭|TH|THL|Thailand||🇸🇬|SG|Singapore)"
+    tolerance: 30 
+ #   exclude-filter: "(?i)(trojan|🇭🇰|HK|HongKong|香港|HK-|HONG_KONG|hkt|hkbn|\\[trojan\\]|\\(trojan\\)|\\(tj\\)|\\[tj\\])"
+  #  filter: "(?i)(🇸🇬|SG|Singapore)"
   #  filter: "(?i)(Japan|🇯🇵|JP|🇸🇬|SG|Singapore)"
         
     include-all: true
-         
       
-ruleset-providers:
+rule-providers:
   AntiAd:
-    type: domain
+    type: http
     behavior: domain
+    format: yaml
     url: "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/refs/heads/master/anti-ad-clash.yaml"
-    path: ./rules/AntiAd.yaml
+    path: "./rules/AntiAd.yaml"
+    interval: 86400  
+    payload: []
+  AntiAdBlock:
+    type: http
+    behavior: domain
+    format: yaml
+    url: "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml"
+    path: "./rules/AntiAdBlock.yaml"
     interval: 86400
   AdBlocker:
-    type: domain
+    type: http
+    format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt"
-    path: ./rules/reject.txt
+    path: "./rules/reject.txt"
     interval: 86400
     payload: []
 rules:
- 
-  - PROCESS-NAME,com.viber.voip,DIRECT
-  - PROCESS-NAME,com.google.android.chrome,General
-  - DOMAIN-SUFFIX,gvt2.com,General
-  - DOMAIN,googletagmanager.com,General
   - PROCESS-NAME,com.google.uid.shared,General
-  - PROCESS-NAME,com.google.android.youtube,General  
-  - PROCESS-NAME,com.google.android.googlequicksearchbox,General
-  - PROCESS-NAME,com.google.android.apps.bard,General 
+  - PROCESS-NAME,ai.qwenlm.chat.android,DIRECT
+  - DOMAIN,qwenlm.ai,DIRECT
+  - DOMAIN,qwen.ai,DIRECT
+  - DOMAIN,cdn.qwenlm.ai,DIRECT
+  - DOMAIN-SUFFIX,googlevideo.com,General
+  - DOMAIN-SUFFIX,youtube.com,General
+  - DOMAIN-SUFFIX,youtu.be,General
+  - DOMAIN-SUFFIX,ytimg.com,General  
   - PROCESS-NAME,org.schabi.newpipe,General
   - PROCESS-NAME,org.schabi.newpipe.nightly,General
+  - PROCESS-NAME,me.knighthat.kreate,General
+  - PROCESS-NAME,com.android.vending,General
+  - PROCESS-NAME,com.termux,General
+  - PROCESS-NAME,ai.x.grok,General
+  #- PROCESS-NAME,com.android.chrome,General,no-resolve
+#  - DOMAIN-SUFFIX,github.com,General,no-resolve
+  - DOMAIN-KEYWORD,gemini,General
+  - DOMAIN-KEYWORD,git,DIRECT
+  - DOMAIN-KEYWORD,google,General
+  - DOMAIN-KEYWORD,githubusercontent,DIRECT
+  - DOMAIN-SUFFIX,gemini.google.com,General
+  - PROCESS-NAME,com.facebook.katana, General
+ # - DOMAIN-SUFFIX,generativelanguage.googleapis.com,General
+#  - DOMAIN-SUFFIX,ai.google.dev,General
+#  - DOMAIN-SUFFIX,palm.googleapis.com,General
+ # - DOMAIN-SUFFIX,google.ai,General
+#  - DOMAIN-SUFFIX,bard.google.com,General
+#  - DOMAIN-SUFFIX,studio.google.com,General
+  - PROCESS-NAME,com.UCMobile.intl, General
+  
+  # For "HacxGPT" or other AI apps
+#  - DOMAIN-KEYWORD,chat,General
+#  - DOMAIN-KEYWORD,ai,General
+ # - DOMAIN-KEYWORD,gpt,General
+#  - DOMAIN-KEYWORD,openai,General
+#  - DOMAIN-KEYWORD,anthropic,General
+#  - DOMAIN-KEYWORD,claude,General
+  
+  # Google domains
+ # - DOMAIN-SUFFIX,googleapis.com,General
+ # - DOMAIN-SUFFIX,gstatic.com, General
+ # - DOMAIN-SUFFIX,google.com,General
+#  - DOMAIN-SUFFIX,googleusercontent.com,General
+  
+  # Your existing rules continue below...
+#  - DOMAIN-KEYWORD,google,General
+  - DOMAIN-KEYWORD,reddit,General
+    
+  - DOMAIN-SUFFIX,gvt2.com,General
+ # - DOMAIN,googletagmanager.com,General
+  - PROCESS-NAME,com.reddit.frontpage, General
+ # - DOMAIN,www.google-analytics.com,General
+  - PROCESS-NAME,com.viber.voip,General
+  - GEOSITE,viber,General
+ # - DOMAIN,clientservices.googleapis.com,General
+  - DOMAIN,core.ac.uk,General
+#  - PROCESS-NAME,com.riotgames.league.wildrift,General
+#  - DOMAIN-SUFFIX,pvp.net,General
+#  - DOMAIN-SUFFIX,riotgames.com,General,no-resolve
+#  - DOMAIN-SUFFIX,akamaized.net,General,no-resolve
+#  - DOMAIN-SUFFIX,pvp.net,General,no-resolve
+#  - DOMAIN-SUFFIX,riotcdn.net,General,no-resolve
+#  - DOMAIN-SUFFIX,lolesports.com,General,no-resolve
+#  - DOMAIN-SUFFIX,leagueoflegends.com,General,no-resolve
+#  - DOMAIN-SUFFIX,txdt.net,General,no-resolve
+#  - DOMAIN-SUFFIX,osano.com,General,no-resolve
+#  - DOMAIN-SUFFIX,singular.net,General,no-resolve
+#  - GEOSITE,CATEGORY-GAMES,General,no-resolve
+#  - GEOSITE,AKAMAI,General,no-resolve
+#  - GEOSITE,RIOT,General,no-resolve
+  
+  - PROCESS-NAME,com.deepseek.chat,General
+  - PROCESS-NAME,ai.perplexity.comet,General
+  - PROCESS-NAME,ai.perplexity.app.android, General
+  - PROCESS-NAME,com.microsoft.copilot,General
+  - PROCESS-NAME,com.jetkite.gemmy,General
+#  - DOMAIN-KEYWORD,burmalibrary,General,no-resolve
+  - DOMAIN-SUFFIX,wikipedia.org,DIRECT
+#  - DOMAIN-SUFFIX,fbcdn.net,REJECT-DROP
+
+  - DOMAIN-SUFFIX,crashlytics.com,General
+  - PROCESS-NAME,ai.x.grok,General
   - PROCESS-NAME,org.telegram.group,DIRECT
+ # - PROCESS-NAME,com.google.android.chrome,General
+  #- PROCESS-NAME,com.google.uid.shared,General
+ # - PROCESS-NAME,com.google.android.youtube,General
+ # - PROCESS-NAME,com.google.android.googlequicksearchbox,General
+ # - PROCESS-NAME,com.google.android.apps.bard,General
+
   - PROCESS-NAME,mm.com.mptvas,DIRECT
   - PROCESS-NAME,com.kbzbank.kpaycustomer,DIRECT
-
+  
+  - DOMAIN,digitalphrases.com,DIRECT
+  - DOMAIN-SUFFIX,branch.io,General
+  - DOMAIN-SUFFIX,*.*.samsung.com,General
+  - DOMAIN-SUFFIX,mixpanel.com,General
   - DOMAIN,challenges.cloudflare.com, General   
-  - DOMAIN-KEYWORD,gemini,General
-  - DOMAIN-KEYWORD,youtube.com,General
-  - DOMAIN,googletagmanager.com, General 
+ # - DOMAIN,googletagmanager.com,General
 
   - DOMAIN,google-ohttp-relay-safebrowsing.fastly-edge.com,General
-  - DOMAIN-SUFFIX,youtu.be,General
-  - DOMAIN-SUFFIX,ytimg.com,General
   - DOMAIN-SUFFIX,firebase.com,General
-  - DOMAIN-SUFFIX,firebaseio.com,General 
-  - DOMAIN-SUFFIX,github.com,General 
+  - DOMAIN-SUFFIX,firebaseio.com,General
   - DOMAIN-KEYWORD,cloudflare,General
   
-  - DOMAIN,analytics.us.tiktok.com,REJECT
-  - DOMAIN-SUFFIX,adtrafficquality.google,REJECT
-  - DOMAIN,www.googleadservices.com,REJECT
-  - DOMAIN,fundingchoicesmessages.google.com,REJECT
+  - DOMAIN-SUFFIX,facebook.net, REJECT-DROP 
+  - DOMAIN,pixel.facebook.com, REJECT-DROP 
+  - DOMAIN,tr.facebook.com, REJECT-DROP 
+  - DOMAIN,gateway.facebook.com, REJECT-DROP 
+  - DOMAIN-SUFFIX,atdmt.com, REJECT-DROP 
+  - DOMAIN-KEYWORD,ad-delivery,REJECT-DROP
+  - DOMAIN-KEYWORD,ad-video,REJECT-DROP
+  - DOMAIN-KEYWORD,ads-internal,REJECT-DROP  
+  - DOMAIN,vbsdkgc.com,REJECT-DROP
+  - DOMAIN,md6tu.com,REJECT-DROP    
+  - DOMAIN,analytics.us.tiktok.com,REJECT-DROP
+  - DOMAIN,com.google.android.adservices.api,REJECT-DROP
+  - DOMAIN-SUFFIX,adtrafficquality.google,REJECT-DROP 
+  - DOMAIN,www.googleadservices.com, REJECT-DROP 
+  - DOMAIN,fundingchoicesmessages.google.com,REJECT-DROP 
   - DOMAIN,google-analytics.com,REJECT
   - DOMAIN-SUFFIX,blcdog.com,REJECT
   - DOMAIN-SUFFIX,advolve.io,REJECT
@@ -219,21 +339,21 @@ rules:
   - DOMAIN,388gaming.info,REJECT
   - DOMAIN,388mm.info,REJECT
   - DOMAIN-SUFFIX,histats.com,REJECT
-  - DOMAIN,AdBlocker,REJECT
-  - DOMAIN,AntiAd,REJECT
-  - GEOSITE,CATEGORY-ADS-ALL,REJECT
-  - GEOSITE,CATEGORY-ADS,REJECT
-  - GEOSITE,FACEBOOK-ADS,REJECT
-  - GEOSITE,META-ADS,REJECT
-  - GEOSITE,GOOGLE-ADS,REJECT 
   
-  #- DOMAIN-KEYWORD,google,General
-  #- GEOSITE,facebook,General
-  #- GEOSITE,google,General
- # - GEOSITE,youtube,General
+  - RULE-SET,AdBlocker,REJECT-DROP 
+  - RULE-SET,AntiAd,REJECT-DROP 
+  - RULE-SET,AntiAdBlock,REJECT-DROP
+  - GEOSITE,CATEGORY-ADS-ALL,REJECT-DROP 
+  - GEOSITE,CATEGORY-ADS,REJECT-DROP 
+  - GEOSITE,FACEBOOK-ADS,REJECT-DROP
+  - GEOSITE,META-ADS,REJECT-DROP
+  - GEOSITE,GOOGLE-ADS,REJECT-DROP 
+
+ # - GEOIP,ai,General
+  #- GEOSITE,google,General     
+#  - GEOSITE,youtube,G
  # - GEOSITE,telegram,DIRECT
-  #- GEOSITE,viber,General
-  #- GEOIP,MM,General
-  #- GEOIP,PRIVATE,DIRECT 
-  #- GEOSITE,PRIVATE,DIRECT
+ # - GEOSITE,facebook,General
+  - GEOIP,MM,General
+  #- GEOIP,lan,DIRECT
   - MATCH,General
