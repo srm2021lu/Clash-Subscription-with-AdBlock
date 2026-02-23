@@ -8,7 +8,7 @@ disable-keep-alive: false
 log-level: info
 ipv6: true
 external-doh-server: "/dns-query"
-geodata-mode: true 
+#geodata-mode: true 
 bind-address: "*"
 geox-url:
   geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/geoip.dat"
@@ -21,11 +21,11 @@ allow-private-domains: true
 unified-delay: true
 tcp-concurrent: true
 experimental:
-  quic-go-disable-gso: true
-  quic-go-disable-ecn: true
+  quic-go-disable-gso: false
+  quic-go-disable-ecn: false
 profile:
-  store-selected: true
-  store-fake-ip: true
+  store-selected: false
+  store-fake-ip: false
 dns:
   enable: true
   cache-algorithm: arc
@@ -37,15 +37,15 @@ dns:
   default-nameserver:
     - 8.8.8.8
     - 1.1.1.1
-  direct-nameserver:
+ # direct-nameserver:
 #    - https://223.5.5.5:443/dns-query
 #    - https://doh.pub/dns-query 
-    - https://dns.google/dns-query
+ #   - https://dns.google/dns-query
  #   - https://dns.alidns.com/dns-query
-  proxy-server-nameserver:
+ # proxy-server-nameserver:
 #    - https://doh.pub/dns-query 
 #    - https://dns.alidns.com/dns-query
-    - https://dns.google/dns-query
+ #   - https://dns.google/dns-query
   nameserver:   
     - 8.8.8.8
     - 1.1.1.1
@@ -169,7 +169,7 @@ proxy-groups:
     interval: 60
     tolerance: 30 
  #   exclude-filter: "(?i)(trojan|🇭🇰|HK|HongKong|香港|HK-|HONG_KONG|hkt|hkbn|\\[trojan\\]|\\(trojan\\)|\\(tj\\)|\\[tj\\])"
-  #  filter: "(?i)(🇸🇬|SG|Singapore)"
+    filter: "(?i)(🇸🇬|SG|Singapore)"
   #  filter: "(?i)(Japan|🇯🇵|JP|🇸🇬|SG|Singapore)"
         
     include-all: true
