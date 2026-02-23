@@ -8,7 +8,7 @@ disable-keep-alive: false
 log-level: info
 ipv6: true
 external-doh-server: "/dns-query"
-geodata-mode: true 
+geodata-mode: false
 bind-address: "*"
 geox-url:
   geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/geoip.dat"
@@ -17,7 +17,7 @@ geox-url:
   asn: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country-asn.mmdb"
 find-process-mode: strict
 #client-fingerprint: chrome
-#allow-private-domains: true 
+allow-private-domains: false
 unified-delay: true
 tcp-concurrent: true
 experimental:
@@ -34,10 +34,11 @@ dns:
   use-system-hosts: true
   listen: 0.0.0.0:1053
   ipv6: true
+  prefer-h3: true
   default-nameserver:
     - 8.8.8.8
     - 1.1.1.1
- # direct-nameserver:
+#  direct-nameserver:
 #    - https://223.5.5.5:443/dns-query
 #    - https://doh.pub/dns-query 
  #   - https://dns.google/dns-query
@@ -51,14 +52,14 @@ dns:
     - 1.1.1.1
     - https://dns.google/dns-query
     - https://1.1.1.1/dns-query
-    - https://94.140.14.14/dns-query 
+#    - https://94.140.14.14/dns-query 
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
-  #fallback:
+#  fallback:
  #   - tls://8.8.8.8:853
  #   - tls://1.1.1.1:853
-  #  - 8.8.8.8
-  #  - 8.8.4.4
+ #   - 8.8.8.8
+ #   - 8.8.4.4
  #   - 1.1.1.1
  #   - 1.0.0.1
 #  fallback-filter:
@@ -169,7 +170,7 @@ proxy-groups:
     interval: 60
     tolerance: 30 
  #   exclude-filter: "(?i)(trojan|🇭🇰|HK|HongKong|香港|HK-|HONG_KONG|hkt|hkbn|\\[trojan\\]|\\(trojan\\)|\\(tj\\)|\\[tj\\])"
-    filter: "(?i)(🇸🇬|SG|Singapore)"
+  #  filter: "(?i)(🇸🇬|SG|Singapore)"
   #  filter: "(?i)(Japan|🇯🇵|JP|🇸🇬|SG|Singapore)"
         
     include-all: true
@@ -199,29 +200,31 @@ rule-providers:
     interval: 86400
     payload: []
 rules:
-  - PROCESS-NAME,com.google.uid.shared,General
+  - DOMAIN-KEYWORD,gemini,DIRECT
+  - DOMAIN-KEYWORD,git,DIRECT
+  - DOMAIN-KEYWORD,google,DIRECT
+  - DOMAIN-KEYWORD,githubusercontent,DIRECT
+  - DOMAIN-SUFFIX,gemini.google.com,DIRECT
+  - PROCESS-NAME,com.google.android.googlequicksearchbox,DIRECT
+  - PROCESS-NAME,com.google.uid.shared,DIRECT
+  - DOMAIN-SUFFIX,googlevideo.com,DIRECT
   - PROCESS-NAME,ai.qwenlm.chat.android,DIRECT
   - DOMAIN,qwenlm.ai,DIRECT
   - DOMAIN,qwen.ai,DIRECT
   - DOMAIN,cdn.qwenlm.ai,DIRECT
-  - DOMAIN-SUFFIX,googlevideo.com,General
   - DOMAIN-SUFFIX,youtube.com,General
   - DOMAIN-SUFFIX,youtu.be,General
   - DOMAIN-SUFFIX,ytimg.com,General  
   - PROCESS-NAME,org.schabi.newpipe,General
   - PROCESS-NAME,org.schabi.newpipe.nightly,General
   - PROCESS-NAME,me.knighthat.kreate,General
- # - PROCESS-NAME,com.android.vending,General
- # - PROCESS-NAME,com.termux,General
+  - PROCESS-NAME,com.android.vending,General
+  - PROCESS-NAME,com.termux,General
   - PROCESS-NAME,ai.x.grok,General
   #- PROCESS-NAME,com.android.chrome,General,no-resolve
 #  - DOMAIN-SUFFIX,github.com,General,no-resolve
-  - DOMAIN-KEYWORD,gemini,General
-  - DOMAIN-KEYWORD,git,DIRECT
-  - DOMAIN-KEYWORD,google,General
-  - DOMAIN-KEYWORD,githubusercontent,DIRECT
-  - DOMAIN-SUFFIX,gemini.google.com,General
-  #- PROCESS-NAME,com.facebook.katana, General
+
+  - PROCESS-NAME,com.facebook.katana, General
  # - DOMAIN-SUFFIX,generativelanguage.googleapis.com,General
 #  - DOMAIN-SUFFIX,ai.google.dev,General
 #  - DOMAIN-SUFFIX,palm.googleapis.com,General
@@ -354,6 +357,6 @@ rules:
 #  - GEOSITE,youtube,G
  # - GEOSITE,telegram,DIRECT
  # - GEOSITE,facebook,General
-  #- GEOIP,MM,General
+  - GEOIP,MM,General
   #- GEOIP,lan,DIRECT
   - MATCH,General
