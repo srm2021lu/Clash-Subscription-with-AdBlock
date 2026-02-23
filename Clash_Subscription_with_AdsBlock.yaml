@@ -149,6 +149,7 @@ proxy-groups:
     url: "https://gstatic.com/generate_204"
     interval: 300
     tolerance: 50 
+    exclude-filter: "(?i)(b2n.ir|v2ray-configs)"
  #   exclude-filter: "(?i)(trojan|🇭🇰|HK|HongKong|香港|HK-|HONG_KONG|hkt|hkbn|\\[trojan\\]|\\(trojan\\)|\\(tj\\)|\\[tj\\])"
   #  filter: "(?i)(🇸🇬|SG|Singapore)"
   #  filter: "(?i)(Japan|🇯🇵|JP|🇸🇬|SG|Singapore)"
