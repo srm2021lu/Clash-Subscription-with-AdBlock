@@ -57,6 +57,8 @@ dns:
     geoip-code: MM
     geosite:
       - gfw
+
+proxy-providers:
   TSSF: 
     type: http
     path: "./proxies/TSSF.yaml"
