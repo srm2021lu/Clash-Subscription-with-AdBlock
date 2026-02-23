@@ -211,8 +211,8 @@ rules:
   - PROCESS-NAME,org.schabi.newpipe,General
   - PROCESS-NAME,org.schabi.newpipe.nightly,General
   - PROCESS-NAME,me.knighthat.kreate,General
-  - PROCESS-NAME,com.android.vending,General
-  - PROCESS-NAME,com.termux,General
+ # - PROCESS-NAME,com.android.vending,General
+ # - PROCESS-NAME,com.termux,General
   - PROCESS-NAME,ai.x.grok,General
   #- PROCESS-NAME,com.android.chrome,General,no-resolve
 #  - DOMAIN-SUFFIX,github.com,General,no-resolve
@@ -221,7 +221,7 @@ rules:
   - DOMAIN-KEYWORD,google,General
   - DOMAIN-KEYWORD,githubusercontent,DIRECT
   - DOMAIN-SUFFIX,gemini.google.com,General
-  - PROCESS-NAME,com.facebook.katana, General
+  #- PROCESS-NAME,com.facebook.katana, General
  # - DOMAIN-SUFFIX,generativelanguage.googleapis.com,General
 #  - DOMAIN-SUFFIX,ai.google.dev,General
 #  - DOMAIN-SUFFIX,palm.googleapis.com,General
@@ -353,7 +353,7 @@ rules:
   #- GEOSITE,google,General     
 #  - GEOSITE,youtube,G
  # - GEOSITE,telegram,DIRECT
-  - GEOSITE,facebook,General
-  - GEOIP,MM,General
+ # - GEOSITE,facebook,General
+  #- GEOIP,MM,General
   #- GEOIP,lan,DIRECT
   - MATCH,General
