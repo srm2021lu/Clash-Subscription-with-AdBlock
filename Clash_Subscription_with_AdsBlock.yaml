@@ -6,9 +6,9 @@ tcp-timeout: 300
 keep-alive-interval: 15
 disable-keep-alive: false
 log-level: info
-ipv6: true
+ipv6: false
 external-doh-server: "/dns-query"
-geodata-mode: false
+geodata-mode: true
 bind-address: "*"
 geox-url:
   geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/geoip.dat"
@@ -17,15 +17,15 @@ geox-url:
   asn: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country-asn.mmdb"
 find-process-mode: strict
 #client-fingerprint: chrome
-allow-private-domains: false
+#allow-private-domains: false
 unified-delay: true
 tcp-concurrent: true
 experimental:
   quic-go-disable-gso: false
   quic-go-disable-ecn: false
 profile:
-  store-selected: false
-  store-fake-ip: false
+  store-selected: true
+  store-fake-ip: true
 dns:
   enable: true
   cache-algorithm: arc
@@ -33,8 +33,8 @@ dns:
   use-hosts: true
   use-system-hosts: true
   listen: 0.0.0.0:1053
-  ipv6: true
-  prefer-h3: true
+  ipv6: false
+  #prefer-h3: true
   default-nameserver:
     - 8.8.8.8
     - 1.1.1.1
@@ -357,6 +357,6 @@ rules:
 #  - GEOSITE,youtube,G
  # - GEOSITE,telegram,DIRECT
  # - GEOSITE,facebook,General
-  - GEOIP,MM,General
+  #- GEOIP,MM,General
   #- GEOIP,lan,DIRECT
   - MATCH,General
