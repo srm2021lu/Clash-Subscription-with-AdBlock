@@ -21,8 +21,8 @@ find-process-mode: strict
 unified-delay: true
 tcp-concurrent: true
 experimental:
-  quic-go-disable-gso: false
-  quic-go-disable-ecn: false
+  quic-go-disable-gso: true
+  quic-go-disable-ecn: true
 profile:
   store-selected: true
   store-fake-ip: true
@@ -147,7 +147,7 @@ proxy-groups:
     skip-cert-verify: true
     allow-insecure: true
     url: "https://gstatic.com/generate_204"
-    interval: 300
+    interval: 150
     tolerance: 50 
     exclude-filter: "(?i)(b2n.ir|v2ray-configs)"
  #   exclude-filter: "(?i)(trojan|🇭🇰|HK|HongKong|香港|HK-|HONG_KONG|hkt|hkbn|\\[trojan\\]|\\(trojan\\)|\\(tj\\)|\\[tj\\])"
