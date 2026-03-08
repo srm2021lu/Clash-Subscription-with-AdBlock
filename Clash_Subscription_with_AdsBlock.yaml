@@ -139,7 +139,15 @@ proxy-providers:
     disable-udp: false  
     allow-insecure: true    
     skip-cert-verify: true   
-  
+  G7:
+    type: http
+    url: "https://sfdr.zaixianyouxi.dpdns.org/uploads/2026/3/20260308.txt"
+    path: "./proxies/G7.yaml"
+    etag-support: true
+    disable-udp: false  
+    allow-insecure: true    
+    skip-cert-verify: true   
+
 proxy-groups:
   - name: "General"
     type: url-test
