@@ -147,7 +147,14 @@ proxy-providers:
     disable-udp: false  
     allow-insecure: true    
     skip-cert-verify: true   
-
+  ClashV2Ray:
+    type: http
+    url : "https://sfdr.zaixianyouxi.dpdns.org/uploads/2026/3/20260309.yaml"
+    path: "./proxis/ClashV2.yaml"
+    etag-support: true
+    disable-udp: false  
+    allow-insecure: true    
+    skip-cert-verify: true  
 proxy-groups:
   - name: "General"
     type: url-test
