@@ -1,5 +1,5 @@
 socks-port: 7891
-mixedmixed-port: 7890
+mixed-port: 7890
 mode: rule
 allow-lan: false
 tcp-timeout: 300
@@ -16,8 +16,6 @@ geox-url:
   mmdb: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
   asn: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country-asn.mmdb"
 find-process-mode: strict
-#client-fingerprint: chrome
-#allow-private-domains: false
 unified-delay: true
 tcp-concurrent: true
 experimental:
@@ -34,7 +32,6 @@ dns:
   use-system-hosts: true
   listen: 0.0.0.0:1053
   ipv6: false
-  #prefer-h3: true
   default-nameserver:
     - 8.8.8.8
     - 1.1.1.1
@@ -66,6 +63,8 @@ proxy-providers:
     etag-support: true
     disable-udp: false
     allow-insecure: true
+    lazy: true
+    interval: 21600
     skip-cert-verify: true
   MatinGhanbari: 
     type: http
@@ -75,14 +74,8 @@ proxy-providers:
     disable-udp: false
     allow-insecure: true
     skip-cert-verify: true
-  Shuaidaoya:
-    type: http
-    url: "https://gist.githubusercontent.com/shuaidaoya/9e5cf2749c0ce79932dd9229d9b4162b/raw/all.yaml"
-    path: "./proxies/Shuaidaoya.yaml"
-    etag-support: true
-    disable-udp: false
-    allow-insecure: true
-    skip-cert-verify: true
+    lazy: true
+    interval: 21600
   FreeNode:
     type: http
     url: "https://raw.githubusercontent.com/telegeam/freenode/refs/heads/master/clash.yaml"
@@ -91,6 +84,8 @@ proxy-providers:
     skip-cert-verify: true
     disable-udp: false  
     allow-insecure: true
+    lazy: true
+    interval: 21600
   NMWalls:
     type: http
     url: "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml"
@@ -99,6 +94,8 @@ proxy-providers:
     disable-udp: false  
     allow-insecure: true
     skip-cert-verify: true
+    lazy: true
+    interval: 21600
   V2Free:
     type: http
     url: "https://raw.githubusercontent.com/clashv2ray-hub/v2rayfree/refs/heads/main/v2ray.txt"
@@ -106,39 +103,39 @@ proxy-providers:
     etag-support: true
     disable-udp: false  
     allow-insecure: true    
+    skip-cert-verify: true 
+    lazy: true
+    interval: 21600
+  Shuaidaoya:
+    type: http
+    url: "https://gist.githubusercontent.com/shuaidaoya/9e5cf2749c0ce79932dd9229d9b4162b/raw/all.yaml"
+    path: "./proxies/Shuaidaoya.yaml"
+    etag-support: true
+    disable-udp: false
+    allow-insecure: true
     skip-cert-verify: true
-  G3:
+    lazy: true
+    interval: 21600
+  20260311:
     type: http
-    url: "http://g3.03184.com:8091/F_20241011160900vrqpbf/clash.yaml"
-    path: "./proxies/G3.yaml"
+    url: "https://sfdr.zaixianyouxi.dpdns.org/uploads/2026/3/20260311.yaml"
+    path: "./proxies/20260311.yaml"
+    etag-support: true
+    disable-udp: false  
+    allow-insecure: true    
+    skip-cert-verify: true 
+    lazy: true
+    interval: 21600  
+  20260309:
+    type: http
+    url: "https://sfdr.zaixianyouxi.dpdns.org/uploads/2026/3/20260309.yaml"
+    path: "./proxies/20260309.yaml"
     etag-support: true
     disable-udp: false  
     allow-insecure: true    
     skip-cert-verify: true
-  G4:
-    type: http
-    url: "https://ldld.whtjdasha.com/api/v1/client/subscribe?token=6b69e6bc9bc793ea90db235e89a649d5"
-    path: "./proxies/G4.yaml"
-    etag-support: true
-    disable-udp: false  
-    allow-insecure: true    
-    skip-cert-verify: true   
-  G5:
-    type: http
-    url: "https://shz.al/njPK"
-    path: "./proxies/G5.yaml"
-    etag-support: true
-    disable-udp: false  
-    allow-insecure: true    
-    skip-cert-verify: true   
-  G6:
-    type: http
-    url: "https://ldld.whtjdasha.com/api/v1/client/subscribe?token=6b69e6bc9bc793ea90db235e89a649d5"
-    path: "./proxies/G6.yaml"
-    etag-support: true
-    disable-udp: false  
-    allow-insecure: true    
-    skip-cert-verify: true   
+    lazy: true
+    interval: 21600   
   G7:
     type: http
     url: "https://sfdr.zaixianyouxi.dpdns.org/uploads/2026/3/20260308.txt"
@@ -146,15 +143,109 @@ proxy-providers:
     etag-support: true
     disable-udp: false  
     allow-insecure: true    
-    skip-cert-verify: true   
-  ClashV2Ray:
+    skip-cert-verify: true  
+    lazy: true
+    interval: 21600
+  20260312:
     type: http
-    url : "https://sfdr.zaixianyouxi.dpdns.org/uploads/2026/3/20260309.yaml"
-    path: "./proxis/ClashV2.yaml"
+    url : "https://sfdr.zaixianyouxi.dpdns.org/uploads/2026/3/20260312.yaml"
+    path: "./proxies/20260312.yaml"
+    etag-support: true
+    disable-udp: false  
+    allow-insecure: true    
+    skip-cert-verify: true 
+    lazy: true
+    interval: 21600
+  20260310:
+    type: http
+    url : "https://sfdr.zaixianyouxi.dpdns.org/uploads/2026/3/20260310.yaml"
+    path: "./proxies/20260310.yaml"
     etag-support: true
     disable-udp: false  
     allow-insecure: true    
     skip-cert-verify: true  
+    lazy: true
+    interval: 21600
+  Hysteria2: 
+    type: http 
+    url: "https://clash.crossxx.com/sub/hysteria/1773360004"
+    path: "./proxies/Hysteria2.yaml"
+    etag-support: true
+    disable-udp: false  
+    allow-insecure: true    
+    skip-cert-verify: true  
+    lazy: true
+    interval: 21600
+  Vmess:
+    type: http
+    url: "https://clash.crossxx.com/sub/vmess/1773360004"
+    path: "./proxies/Vmess.yaml"
+    etag-support: true
+    disable-udp: false
+    allow-insecure: true
+    skip-cert-verify: true
+    lazy: true
+    interval: 21600
+  Wenode:
+    type: http
+    url: "https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/wenode.yaml"
+    path: "./proxies/wenode.yaml"
+    etag-support: true
+    disable-udp: false
+    allow-insecure: true
+    skip-cert-verify: true 
+    lazy: true
+    interval: 21600
+  v2rayshare:
+    type: http
+    url: "https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/v2rayshare.yaml"
+    path: "./proxies/v2rayshare.yaml"
+    etag-support: true
+    disable-udp: false
+    allow-insecure: true
+    skip-cert-verify: true 
+    lazy: true
+    interval: 21600 
+  NodeFree:
+    type: http
+    url: "https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/nodefree.yaml"
+    path: "./proxies/NodeFree.yaml"
+    etag-support: true
+    disable-udp: false
+    allow-insecure: true
+    skip-cert-verify: true  
+    lazy: true
+    interval: 21600
+  nodev2ray:
+    type: http
+    url: "https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/nodev2ray.yaml"
+    path: "./proxies/nodev2ray.yaml"
+    etag-support: true
+    disable-udp: false
+    allow-insecure: true
+    skip-cert-verify: true  
+    lazy: true
+    interval: 21600
+  ClashMeta:
+    type: http
+    url: "https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/clashmeta.yaml"
+    path: "./proxies/ClashMeta.yaml"
+    etag-support: true
+    disable-udp: false
+    allow-insecure: true
+    skip-cert-verify: true 
+    lazy: true
+    interval: 21600     
+  A861djn:
+    type: http
+    url: "https://rs6.r6r6.xyz/x/yMAapbu"
+    path: "./proxies/A861djn.yaml"
+    etag-support: true
+    disable-udp: false
+    allow-insecure: true
+    skip-cert-verify: true 
+    lazy: true
+    interval: 21600      
 proxy-groups:
   - name: "General"
     type: url-test
@@ -164,11 +255,7 @@ proxy-groups:
     url: "https://gstatic.com/generate_204"
     interval: 150
     tolerance: 50 
-    exclude-filter: "(?i)(b2n.ir|v2ray-configs)"
- #   exclude-filter: "(?i)(trojan|🇭🇰|HK|HongKong|香港|HK-|HONG_KONG|hkt|hkbn|\\[trojan\\]|\\(trojan\\)|\\(tj\\)|\\[tj\\])"
-  #  filter: "(?i)(🇸🇬|SG|Singapore)"
-  #  filter: "(?i)(Japan|🇯🇵|JP|🇸🇬|SG|Singapore)"
-        
+    exclude-filter: "(?i)(b2n.ir|v2ray-configs)"      
     include-all: true
       
 rule-providers:
