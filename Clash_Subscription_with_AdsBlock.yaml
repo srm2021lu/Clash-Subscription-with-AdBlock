@@ -1,8 +1,8 @@
 socks-port: 7891
 mixed-port: 7890
 mode: rule
-allow-lan: false
 tcp-timeout: 300
+external-controller: 0.0.0.0:9090
 keep-alive-interval: 15
 disable-keep-alive: false
 log-level: info
@@ -12,15 +12,15 @@ geodata-mode: true
 bind-address: "*"
 geox-url:
   geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/geoip.dat"
-  geosite: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/202512160513/geosite.dat"
+  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.data"
   mmdb: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
   asn: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country-asn.mmdb"
-find-process-mode: strict
+find-process-mode: strict 
 unified-delay: true
 tcp-concurrent: true
 experimental:
-  quic-go-disable-gso: true
-  quic-go-disable-ecn: true
+  quic-go-disable-gso: false
+  quic-go-disable-ecn: false
 profile:
   store-selected: true
   store-fake-ip: true
@@ -40,21 +40,45 @@ dns:
     - 1.1.1.1
     - https://dns.google/dns-query
     - https://1.1.1.1/dns-query
+  proxy-server-nameserver:
+    - https://dns.google/dns-query
+    - https://1.1.1.1/dns-query
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:      
+    - "*.lan"
+    - "*.localdomain"
+    - "localhost.ptlogin2.qq.com"
+    - "dns.msftncsi.com"
+    - "*.msftconnecttest.com"
+    - "*.srv.nintendo.net"
+    - "*.stun.playstation.net"
+    - "*.xboxlive.com"
+    - "+.pool.ntp.org"
+    - "+.time.windows.com"
+    - "+.time.apple.com"
   fallback:
-    - tls://8.8.8.8:853
-    - tls://1.1.1.1:853
-    - 8.8.8.8
-    - 8.8.4.4
-    - 1.1.1.1
-    - 1.0.0.1
+    - 'tls://8.8.8.8:853'
+    - 'tls://1.1.1.1:853'
+    - '8.8.8.8'
+    - '8.8.4.4'
+    - '1.1.1.1'
+    - '1.0.0.1'
   fallback-filter:
     geoip: true
     geoip-code: MM
     geosite:
       - gfw
-
+      
+tun:
+  enable: true
+  stack: mixed
+  dns-hijack:
+    - "any:53"
+    - "tcp://any:53"
+  auto-route: true
+  auto-detect-interface: true    
+  
 proxy-providers:
   TSSF: 
     type: http
@@ -63,8 +87,6 @@ proxy-providers:
     etag-support: true
     disable-udp: false
     allow-insecure: true
-    lazy: true
-    interval: 21600
     skip-cert-verify: true
   MatinGhanbari: 
     type: http
@@ -74,8 +96,6 @@ proxy-providers:
     disable-udp: false
     allow-insecure: true
     skip-cert-verify: true
-    lazy: true
-    interval: 21600
   FreeNode:
     type: http
     url: "https://raw.githubusercontent.com/telegeam/freenode/refs/heads/master/clash.yaml"
@@ -84,8 +104,6 @@ proxy-providers:
     skip-cert-verify: true
     disable-udp: false  
     allow-insecure: true
-    lazy: true
-    interval: 21600
   NMWalls:
     type: http
     url: "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml"
@@ -94,8 +112,6 @@ proxy-providers:
     disable-udp: false  
     allow-insecure: true
     skip-cert-verify: true
-    lazy: true
-    interval: 21600
   V2Free:
     type: http
     url: "https://raw.githubusercontent.com/clashv2ray-hub/v2rayfree/refs/heads/main/v2ray.txt"
@@ -104,8 +120,6 @@ proxy-providers:
     disable-udp: false  
     allow-insecure: true    
     skip-cert-verify: true 
-    lazy: true
-    interval: 21600
   Shuaidaoya:
     type: http
     url: "https://gist.githubusercontent.com/shuaidaoya/9e5cf2749c0ce79932dd9229d9b4162b/raw/all.yaml"
@@ -114,8 +128,6 @@ proxy-providers:
     disable-udp: false
     allow-insecure: true
     skip-cert-verify: true
-    lazy: true
-    interval: 21600
   20260311:
     type: http
     url: "https://sfdr.zaixianyouxi.dpdns.org/uploads/2026/3/20260311.yaml"
@@ -123,9 +135,7 @@ proxy-providers:
     etag-support: true
     disable-udp: false  
     allow-insecure: true    
-    skip-cert-verify: true 
-    lazy: true
-    interval: 21600  
+    skip-cert-verify: true   
   20260309:
     type: http
     url: "https://sfdr.zaixianyouxi.dpdns.org/uploads/2026/3/20260309.yaml"
@@ -133,9 +143,7 @@ proxy-providers:
     etag-support: true
     disable-udp: false  
     allow-insecure: true    
-    skip-cert-verify: true
-    lazy: true
-    interval: 21600   
+    skip-cert-verify: true   
   G7:
     type: http
     url: "https://sfdr.zaixianyouxi.dpdns.org/uploads/2026/3/20260308.txt"
@@ -144,8 +152,6 @@ proxy-providers:
     disable-udp: false  
     allow-insecure: true    
     skip-cert-verify: true  
-    lazy: true
-    interval: 21600
   20260312:
     type: http
     url : "https://sfdr.zaixianyouxi.dpdns.org/uploads/2026/3/20260312.yaml"
@@ -154,8 +160,6 @@ proxy-providers:
     disable-udp: false  
     allow-insecure: true    
     skip-cert-verify: true 
-    lazy: true
-    interval: 21600
   20260310:
     type: http
     url : "https://sfdr.zaixianyouxi.dpdns.org/uploads/2026/3/20260310.yaml"
@@ -164,8 +168,6 @@ proxy-providers:
     disable-udp: false  
     allow-insecure: true    
     skip-cert-verify: true  
-    lazy: true
-    interval: 21600
   Hysteria2: 
     type: http 
     url: "https://clash.crossxx.com/sub/hysteria/1773360004"
@@ -174,8 +176,6 @@ proxy-providers:
     disable-udp: false  
     allow-insecure: true    
     skip-cert-verify: true  
-    lazy: true
-    interval: 21600
   Vmess:
     type: http
     url: "https://clash.crossxx.com/sub/vmess/1773360004"
@@ -184,8 +184,6 @@ proxy-providers:
     disable-udp: false
     allow-insecure: true
     skip-cert-verify: true
-    lazy: true
-    interval: 21600
   Wenode:
     type: http
     url: "https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/wenode.yaml"
@@ -194,8 +192,6 @@ proxy-providers:
     disable-udp: false
     allow-insecure: true
     skip-cert-verify: true 
-    lazy: true
-    interval: 21600
   v2rayshare:
     type: http
     url: "https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/v2rayshare.yaml"
@@ -203,9 +199,7 @@ proxy-providers:
     etag-support: true
     disable-udp: false
     allow-insecure: true
-    skip-cert-verify: true 
-    lazy: true
-    interval: 21600 
+    skip-cert-verify: true  
   NodeFree:
     type: http
     url: "https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/nodefree.yaml"
@@ -214,8 +208,6 @@ proxy-providers:
     disable-udp: false
     allow-insecure: true
     skip-cert-verify: true  
-    lazy: true
-    interval: 21600
   nodev2ray:
     type: http
     url: "https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/nodev2ray.yaml"
@@ -224,8 +216,6 @@ proxy-providers:
     disable-udp: false
     allow-insecure: true
     skip-cert-verify: true  
-    lazy: true
-    interval: 21600
   ClashMeta:
     type: http
     url: "https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/clashmeta.yaml"
@@ -233,32 +223,91 @@ proxy-providers:
     etag-support: true
     disable-udp: false
     allow-insecure: true
-    skip-cert-verify: true 
-    lazy: true
-    interval: 21600     
-  A861djn:
+    skip-cert-verify: true      
+  yMAapbu:
     type: http
     url: "https://rs6.r6r6.xyz/x/yMAapbu"
-    path: "./proxies/A861djn.yaml"
+    path: "./proxies/yMAapbu.yaml"
     etag-support: true
     disable-udp: false
     allow-insecure: true
-    skip-cert-verify: true 
-    lazy: true
-    interval: 21600      
+    skip-cert-verify: true       
+  KNJC:
+    type: http
+    url: "https://knjc.cfd/api/v1/client/subscribe?token=6e0bac17a0cd02c7ca7c3000ae89558f"
+    path: "./proxies/KNJC.yaml"
+    etag-support: true
+    disable-udp: false
+    allow-insecure: true
+    skip-cert-verify: true  
 proxy-groups:
   - name: "General"
-    type: url-test
-    disable-udp: false
+    type: "url-test"
     skip-cert-verify: true
     allow-insecure: true
     url: "https://gstatic.com/generate_204"
-    interval: 150
-    tolerance: 50 
-    exclude-filter: "(?i)(b2n.ir|v2ray-configs)"      
+    health-check:
+      enable: true
+      interval: 60
+      tolerance: 30 
+      url: "https://gstatic.com/generate_204"
+    exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|日本|@ripaojiedian|socks|🇭🇰|HK|HongKong|香港|🇻🇳|VN|Vietnam)"
     include-all: true
-      
+    
+ # - name: "Youtube"
+#    type: url-test
+#    disable-udp: false
+#    skip-cert-verify: true
+ #   allow-insecure: true
+#    url: "https://gstatic.com/generate_204"
+ #   interval: 60
+  #  tolerance: 50 
+ #   exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|日本|@ripaojiedian|socks|🇭🇰|HK|HongKong|香港)"
+ #   filter: "(?i)(🇸🇬|SG|Singapore)"
+  #  include-all: true
+  #  filter: "(?i)(JP|🇯🇵|Japan)"
+ 
+    
+ # - name: "General"
+  #  type: url-test
+ #   disable-udp: false
+  #  skip-cert-verify: true
+ #   allow-insecure: true
+ #   url: "https://gstatic.com/generate_204"
+#    interval: 600
+ #   tolerance: 50 
+ #   exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|日本3|@ripaojiedian|socks)"
+    #(🇮🇳|IN|India)"
+    #(🇲🇾|MY|Malaysia)"
+    #(🇹🇭|Thailand|TH|THL)"
+    #(🇹🇼|Taiwan|TW)"
+ #   include-all: true
+    
 rule-providers:
+  direct:
+    type: http
+    behavior: domain
+    url: 'https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt'
+    path: "./rules/direct.yaml"
+    interval: 86400
+  reject:
+    type: http
+    behavior: domain
+    url: 'https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt'
+    path: "./rules/reject.yaml"
+    interval: 86400    
+  lancidr:
+    type: http
+    behavior: ipcidr
+    url: 'https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt'
+    path: "./rules/lancidr.yaml"
+    interval: 86400
+  telegramcidr:
+    type: http
+    behavior: ipcidr
+    url: 'https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt'
+    path: "./rules/telegramcidr.yaml"
+    interval: 86400    
   AntiAd:
     type: http
     behavior: domain
@@ -283,28 +332,46 @@ rule-providers:
     interval: 86400
     payload: []
 rules:
+#  - PROCESS-NAME,org.schabi.newpipe,Youtube
+  - PROCESS-NAME,com.google.android.googlequicksearchbox,DIRECT  
+  - PROCESS-NAME,com.riotgames.league.wildrift, General
+  - PROCESS-NAME,com.UCMobile.intl, General
+  - PROCESS-NAME,com.google.uid.shared, General
+  - DOMAIN-SUFFIX,google-analytics.com, General
+  - DOMAIN-SUFFIX,googletagmanager.com, General
+  - DOMAIN-SUFFIX,googleapis.com,General
+  - DOMAIN-SUFFIX,gstatic.com,General
+  - PROCESS-NAME,ai.x.grok,General
+  - PROCESS-NAME,com.viber.voip,General
+  - PROCESS-NAME,com.google.android.apps.labs.language.tailwind,General
+  - PROCESS-NAME,com.facebook.katana,General
+  - DOMAIN-SUFFIX,gvt2.com,General
+  - DOMAIN-SUFFIX,upfileGeneralo.com,General
+   
+  - PROCESS-NAME,org.telegram.group,DIRECT
   - DOMAIN-KEYWORD,git,DIRECT
   - DOMAIN-KEYWORD,githubusercontent,DIRECT
+  - DOMAIN-SUFFIX,gov.mm,DIRECT 
 
   - DOMAIN-SUFFIX,crashlytics.com,General
   - PROCESS-NAME,mm.com.mptvas,DIRECT
   - PROCESS-NAME,com.kbzbank.kpaycustomer,DIRECT
  
-  - DOMAIN-SUFFIX,facebook.net, REJECT-DROP 
-  - DOMAIN,pixel.facebook.com, REJECT-DROP 
-  - DOMAIN,tr.facebook.com, REJECT-DROP 
-  - DOMAIN,gateway.facebook.com, REJECT-DROP 
-  - DOMAIN-SUFFIX,atdmt.com, REJECT-DROP 
-  - DOMAIN-KEYWORD,ad-delivery,REJECT-DROP
-  - DOMAIN-KEYWORD,ad-video,REJECT-DROP
-  - DOMAIN-KEYWORD,ads-internal,REJECT-DROP  
-  - DOMAIN,vbsdkgc.com,REJECT-DROP
-  - DOMAIN,md6tu.com,REJECT-DROP    
-  - DOMAIN,analytics.us.tiktok.com,REJECT-DROP
-  - DOMAIN,com.google.android.adservices.api,REJECT-DROP
-  - DOMAIN-SUFFIX,adtrafficquality.google,REJECT-DROP 
-  - DOMAIN,www.googleadservices.com, REJECT-DROP 
-  - DOMAIN,fundingchoicesmessages.google.com,REJECT-DROP 
+  - DOMAIN-SUFFIX,facebook.net, REJECT
+  - DOMAIN,pixel.facebook.com, REJECT 
+  - DOMAIN,tr.facebook.com, REJECT 
+  - DOMAIN,gateway.facebook.com, REJECT 
+  - DOMAIN-SUFFIX,atdmt.com, REJECT 
+  - DOMAIN-KEYWORD,ad-delivery,REJECT
+  - DOMAIN-KEYWORD,ad-video,REJECT
+  - DOMAIN-KEYWORD,ads-internal,REJECT 
+  - DOMAIN,vbsdkgc.com,REJECT
+  - DOMAIN,md6tu.com,REJECT   
+  - DOMAIN,analytics.us.tiktok.com,REJECT
+  - DOMAIN,com.google.android.adservices.api,REJECT
+  - DOMAIN-SUFFIX,adtrafficquality.google,REJECT 
+  - DOMAIN,www.googleadservices.com, REJECT 
+  - DOMAIN,fundingchoicesmessages.google.com,REJECT
   - DOMAIN,google-analytics.com,REJECT
   - DOMAIN-SUFFIX,blcdog.com,REJECT
   - DOMAIN-SUFFIX,advolve.io,REJECT
@@ -322,17 +389,22 @@ rules:
   - DOMAIN-SUFFIX,a-ads.com,REJECT
   - DOMAIN-SUFFIX,mrktmtrcs.net,REJECT
   - DOMAIN-SUFFIX,dtscout.com,REJECT
-  - DOMAIN,388gaming.info,REJECT
+  - DOMAIN,388General.info,REJECT
   - DOMAIN,388mm.info,REJECT
   - DOMAIN-SUFFIX,histats.com,REJECT
   
-  - RULE-SET,AdBlocker,REJECT-DROP 
-  - RULE-SET,AntiAd,REJECT-DROP 
-  - RULE-SET,AntiAdBlock,REJECT-DROP
-  - GEOSITE,CATEGORY-ADS-ALL,REJECT-DROP 
-  - GEOSITE,CATEGORY-ADS,REJECT-DROP 
-  #- GEOSITE,FACEBOOK-ADS,REJECT-DROP
-  #- GEOSITE,META-ADS,REJECT-DROP
-  #- GEOSITE,GOOGLE-ADS,REJECT-DROP 
+  - RULE-SET,AdBlocker,REJECT 
+  - RULE-SET,AntiAd,REJECT 
+  - RULE-SET,AntiAdBlock,REJECT
+  - GEOSITE,CATEGORY-ADS-ALL,REJECT 
+  - GEOSITE,CATEGORY-ADS,REJECT 
+ # - GEOSITE,FACEBOOK-ADS,REJECT
+ # - GEOSITE,META-ADS,REJECT
+ # - GEOSITE,GOOGLE-ADS,REJECT 
+  - RULE-SET,reject,REJECT
+ # - RULE-SET,lancidr,DIRECT
+ # - RULE-SET,telegramcidr,DIRECT
+ # - RULE-SET,direct,DIRECT
+#  - GEOIP,LAN,DIRECT
 
   - MATCH,General
