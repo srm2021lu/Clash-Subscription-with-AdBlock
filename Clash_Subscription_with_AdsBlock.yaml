@@ -1,5 +1,6 @@
 socks-port: 7891
 mixed-port: 7890
+udp: true 
 mode: rule
 tcp-timeout: 300
 external-controller: 0.0.0.0:9090
@@ -24,6 +25,25 @@ experimental:
 profile:
   store-selected: true
   store-fake-ip: true
+sniffer:
+  enable: true
+  parse-pure-ip: true
+  sniff:
+    TLS:
+      ports: [443, 8443]
+    HTTP:
+      ports: [80, '8080-8880']
+   # QUIC:
+   #  ports: [443, 784]
+  skip-domain:
+    - "Mijia Cloud" 
+    - "dlg.io.mi.com" 
+    - "+.mi.com"
+    - "+.apple.com"
+    - "*.viber.com"
+    - "viber.com"
+  force-dns-mapping: false
+  override-destination: true
 dns:
   enable: true
   cache-algorithm: arc
@@ -35,11 +55,11 @@ dns:
   default-nameserver:
     - 8.8.8.8
     - 1.1.1.1
-  nameserver:   
-    - 8.8.8.8
-    - 1.1.1.1
+  nameserver:
     - https://dns.google/dns-query
     - https://1.1.1.1/dns-query
+    - 8.8.8.8
+    - 1.1.1.1    
   proxy-server-nameserver:
     - https://dns.google/dns-query
     - https://1.1.1.1/dns-query
@@ -243,6 +263,7 @@ proxy-providers:
 proxy-groups:
   - name: "General"
     type: "url-test"
+    disable-udp: false
     skip-cert-verify: true
     allow-insecure: true
     url: "https://gstatic.com/generate_204"
@@ -253,6 +274,8 @@ proxy-groups:
       url: "https://gstatic.com/generate_204"
     exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|日本|@ripaojiedian|socks|🇭🇰|HK|HongKong|香港|🇻🇳|VN|Vietnam)"
     include-all: true
+  #  filter: "(?i)(🇸🇬|SG|Singapore|🇯🇵|Japan|JP)"
+
     
  # - name: "Youtube"
 #    type: url-test
@@ -263,7 +286,6 @@ proxy-groups:
  #   interval: 60
   #  tolerance: 50 
  #   exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|日本|@ripaojiedian|socks|🇭🇰|HK|HongKong|香港)"
- #   filter: "(?i)(🇸🇬|SG|Singapore)"
   #  include-all: true
   #  filter: "(?i)(JP|🇯🇵|Japan)"
  
@@ -332,7 +354,11 @@ rule-providers:
     interval: 86400
     payload: []
 rules:
-#  - PROCESS-NAME,org.schabi.newpipe,Youtube
+  - DOMAIN-SUFFIX,viber.com,General
+  - DOMAIN-KEYWORD,viber,General
+  - DST-PORT,4244, General
+  - DST-PORT,5243, General
+  - DST-PORT,[7000-8000], General
   - PROCESS-NAME,com.google.android.googlequicksearchbox,DIRECT  
   - PROCESS-NAME,com.riotgames.league.wildrift, General
   - PROCESS-NAME,com.UCMobile.intl, General
@@ -349,8 +375,8 @@ rules:
   - DOMAIN-SUFFIX,upfileGeneralo.com,General
    
   - PROCESS-NAME,org.telegram.group,DIRECT
-  - DOMAIN-KEYWORD,git,DIRECT
-  - DOMAIN-KEYWORD,githubusercontent,DIRECT
+  - DOMAIN-KEYWORD,git,General
+  - DOMAIN-KEYWORD,githubusercontent,General
   - DOMAIN-SUFFIX,gov.mm,DIRECT 
 
   - DOMAIN-SUFFIX,crashlytics.com,General
