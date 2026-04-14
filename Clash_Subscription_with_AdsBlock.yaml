@@ -259,20 +259,6 @@ proxy-providers:
     etag-support: true
     disable-udp: false
     allow-insecure: true
-    skip-cert-verify: true 
-  1142026:
-    type: file
-    path: "./proxies/1142026.yaml"
-    etag-support: true
-    disable-udp: false
-    allow-insecure: true
-    skip-cert-verify: true 
-  1142026A:
-    type: file
-    path: "./proxies/1142026A.yaml"
-    etag-support: true
-    disable-udp: false
-    allow-insecure: true
     skip-cert-verify: true        
 proxy-groups:
   - name: "General"
