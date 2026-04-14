@@ -259,7 +259,21 @@ proxy-providers:
     etag-support: true
     disable-udp: false
     allow-insecure: true
-    skip-cert-verify: true  
+    skip-cert-verify: true 
+  1142026:
+    type: file
+    path: "./proxies/1142026.yaml"
+    etag-support: true
+    disable-udp: false
+    allow-insecure: true
+    skip-cert-verify: true 
+  1142026A:
+    type: file
+    path: "./proxies/1142026A.yaml"
+    etag-support: true
+    disable-udp: false
+    allow-insecure: true
+    skip-cert-verify: true        
 proxy-groups:
   - name: "General"
     type: "url-test"
@@ -274,37 +288,8 @@ proxy-groups:
       url: "https://gstatic.com/generate_204"
     exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|日本|@ripaojiedian|socks|🇭🇰|HK|HongKong|香港|🇻🇳|VN|Vietnam)"
     include-all: true
-  #  filter: "(?i)(🇸🇬|SG|Singapore|🇯🇵|Japan|JP)"
-
-    
- # - name: "Youtube"
-#    type: url-test
-#    disable-udp: false
-#    skip-cert-verify: true
- #   allow-insecure: true
-#    url: "https://gstatic.com/generate_204"
- #   interval: 60
-  #  tolerance: 50 
- #   exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|日本|@ripaojiedian|socks|🇭🇰|HK|HongKong|香港)"
-  #  include-all: true
-  #  filter: "(?i)(JP|🇯🇵|Japan)"
- 
-    
- # - name: "General"
-  #  type: url-test
- #   disable-udp: false
-  #  skip-cert-verify: true
- #   allow-insecure: true
- #   url: "https://gstatic.com/generate_204"
-#    interval: 600
- #   tolerance: 50 
- #   exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|日本3|@ripaojiedian|socks)"
-    #(🇮🇳|IN|India)"
-    #(🇲🇾|MY|Malaysia)"
-    #(🇹🇭|Thailand|TH|THL)"
-    #(🇹🇼|Taiwan|TW)"
- #   include-all: true
-    
+    filter: "(?i)(🇸🇬|SG|Singapore|🇯🇵|Japan|JP|TH|Thailand|🇹🇭)"
+   
 rule-providers:
   direct:
     type: http
@@ -424,13 +409,5 @@ rules:
   - RULE-SET,AntiAdBlock,REJECT
   - GEOSITE,CATEGORY-ADS-ALL,REJECT 
   - GEOSITE,CATEGORY-ADS,REJECT 
- # - GEOSITE,FACEBOOK-ADS,REJECT
- # - GEOSITE,META-ADS,REJECT
- # - GEOSITE,GOOGLE-ADS,REJECT 
   - RULE-SET,reject,REJECT
- # - RULE-SET,lancidr,DIRECT
- # - RULE-SET,telegramcidr,DIRECT
- # - RULE-SET,direct,DIRECT
-#  - GEOIP,LAN,DIRECT
-
-  - MATCH,General
+  - MATCH,General   
