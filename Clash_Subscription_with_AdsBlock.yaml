@@ -10,13 +10,13 @@ skip-auth-prefixes:
   - ::1/128  
 tcp-timeout: 300
 udp: true
-external-controller: 127.0.0.1:9090
+external-controller: "127.0.0.1:9090"
 external-controller-cors:
   allow-origins:
       - '*'
   allow-private-network: true
-external-controller-unix: mihomo.sock
-external-controller-tls: 127.0.0.1:9443
+external-controller-unix: "mihomo.sock"
+external-controller-tls: "127.0.0.1:9443"
 external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
 etag-support: true
 global-ua: chrome 
@@ -24,8 +24,8 @@ keep-alive-interval: 15
 keep-alive-idle: 15
 disable-keep-alive: false
 log-level: info
-ipv6: true
-prefer-h3: true 
+ipv6: false
+prefer-h3: false
 external-doh-server: "/dns-query"
 geodata-mode: true
 bind-address: "*"
@@ -38,7 +38,7 @@ find-process-mode: strict
 unified-delay: true
 tcp-concurrent: true
 force-dns-mapping: false
-override-destination: false 
+override-destination: true
 parse-pure-ip: true
 experimental:
   quic-go-disable-gso: false 
@@ -69,7 +69,7 @@ dns:
   use-hosts: true
   use-system-hosts: true
   listen: 0.0.0.0:1053
-  ipv6: true
+  ipv6: false
 
 tun:
   enable: true
@@ -80,6 +80,29 @@ tun:
   auto-detect-interface: true
 
 proxy-providers:
+ 
+  MFuuV2Ray: 
+    type: http
+    path: "./proxies/MFuuV2Ray.yaml"
+    url: "https://raw.githubusercontent.com/mfuu/v2ray/refs/heads/master/clash.yaml"
+    health-check:
+      enable: true
+      url: "https://www.gstatic.com/generate_204"
+    etag-support: true
+    disable-udp: false
+    allow-insecure: true
+    skip-cert-verify: true
+  AwesomeVPN: 
+    type: http
+    path: "./proxies/AwesomeVPM.yaml"
+    url: "https://raw.githubusercontent.com/awesome-vpn/awesome-vpn/master/clash.yaml"
+    health-check:
+      enable: true
+      url: "https://www.gstatic.com/generate_204"
+    etag-support: true
+    disable-udp: false
+    allow-insecure: true
+    skip-cert-verify: true
   5MatinGhanbari: 
     type: http
     path: "./proxies/MatinGhanbari.yaml"
@@ -129,10 +152,12 @@ proxy-groups:
   - name: "General"
     type: "url-test"
     use:
-      - 5MatinGhanbari
-      - 3Shuaidaoya
-      - OpenProxyRaw
-      - v2rayse
+      - "5MatinGhanbari"
+      - "MFuuV2Ray"
+      - "AwesomeVPN"
+      - "3Shuaidaoya"
+      - "OpenProxyRaw"
+      - "v2rayse"
     url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 30
@@ -162,13 +187,14 @@ rule-providers:
     interval: 86400
 
 rules:
+  - PROCESS-NAME,com.google.android.googlequicksearchbox,DIRECT
+  - PROCESS-NAME,com.deepl.mobiletranslator,General
   - DOMAIN-SUFFIX,github.com,General
   - DOMAIN-SUFFIX,reddit.com, General
   - DOMAIN-SUFFIX,javdb.com, General
   - DOMAIN-SUFFIX,viber.com,General
   - DOMAIN-KEYWORD,viber,General
   - PROCESS-NAME,ai.perplexity.app.android, General
-  - PROCESS-NAME,com.google.android.googlequicksearchbox, General 
   - PROCESS-NAME,com.riotgames.league.wildrift, General
   - PROCESS-NAME,com.UCMobile.intl, General
   - PROCESS-NAME,com.google.uid.shared, General
@@ -222,10 +248,12 @@ rules:
   - DOMAIN,388General.info,REJECT
   - DOMAIN,388mm.info,REJECT
   - DOMAIN-SUFFIX,histats.com,REJECT
+  
+  - GEOSITE,CATEGORY-ADS-ALL,REJECT
+  - GEOSITE,CATEGORY-ADS,REJECT 
   - RULE-SET,AdBlocker,REJECT 
   - RULE-SET,reject, REJECT
-  - RULE-SET,AntiAdBlock,REJECT
-  - GEOSITE,CATEGORY-ADS-ALL,REJECT 
-  - GEOSITE,CATEGORY-ADS,REJECT 
+  - RULE-SET,AntiAdBlock,REJECT  
+
   - GEOIP,LAN, DIRECT 
   - MATCH,General
