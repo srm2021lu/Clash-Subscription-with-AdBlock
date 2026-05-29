@@ -19,33 +19,34 @@ external-controller-unix: mihomo.sock
 external-controller-tls: 127.0.0.1:9443
 external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
 etag-support: true
-global-ua: clash.meta
+global-ua: chrome 
 keep-alive-interval: 15
 keep-alive-idle: 15
 disable-keep-alive: false
 log-level: info
-ipv6: false
-prefer-h3: false
+ipv6: true
+prefer-h3: true 
 external-doh-server: "/dns-query"
 geodata-mode: true
-geox-url:
-  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/geoip.dat"
-  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
-  mmdb: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
-  asn: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/GeoLite2-ASN.mmdb"
 bind-address: "*"
+geox-url:
+  geoip: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
+  geosite: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
+  mmdb: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
+  asn: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country-asn.mmdb"
 find-process-mode: strict 
 unified-delay: true
 tcp-concurrent: true
 force-dns-mapping: false
-override-destination: false
+override-destination: false 
 parse-pure-ip: true
 experimental:
-  quic-go-disable-gso: true
-  quic-go-disable-ecn: true
+  quic-go-disable-gso: false 
+  quic-go-disable-ecn: false
 profile:
   store-selected: true
   store-fake-ip: true
+
 dns:
   nameserver:
     - https://dns.google/dns-query
@@ -56,11 +57,6 @@ dns:
     - https://8.8.8.8/dns-query
   direct-nameserver:
     - system://
-  name-server-policy:
-    "geosite:category-ads-all": rcode://success
-    "geosite:category-ads": rcode://success
-    "geosite:tracker": rcode://success
-    "geosite:facebook": rcode://success
   fallback-filter:
     geoip: true
     geoip-code: MM
@@ -73,9 +69,8 @@ dns:
   use-hosts: true
   use-system-hosts: true
   listen: 0.0.0.0:1053
-  ipv6: false
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
+  ipv6: true
+
 tun:
   enable: true
   stack: mixed
@@ -83,6 +78,7 @@ tun:
     - "any:53"
   auto-route: true
   auto-detect-interface: true
+
 proxy-providers:
   5MatinGhanbari: 
     type: http
@@ -91,8 +87,6 @@ proxy-providers:
     health-check:
       enable: true
       url: "https://www.gstatic.com/generate_204"
-      lazy: true
-      interval: 300
     etag-support: true
     disable-udp: false
     allow-insecure: true
@@ -104,34 +98,17 @@ proxy-providers:
     health-check:
       enable: true
       url: "https://www.gstatic.com/generate_204"
-      lazy: true
-      interval: 300
     etag-support: true
     disable-udp: false
     allow-insecure: true
     skip-cert-verify: true
   OpenProxyRaw :
     type: http
-    url: "https://openproxylist.com/v2ray/rawlist/text"
+    url: "https://raw.githubusercontent.com/roosterkid/openproxylist/refs/heads/main/V2RAY_BASE64.txt"
     path: "./proxies/OpenProxyRaw.yaml"
     health-check:
       enable: true
       url: "https://www.gstatic.com/generate_204"
-      lazy: true
-      interval: 300
-    etag-support: true
-    disable-udp: false  
-    allow-insecure: true    
-    skip-cert-verify: true  
-  OPV2RayBase64: 
-    type: http 
-    url: "https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY_BASE64.txt"
-    path: "./proxies/OPV2RayBase64.yaml"
-    health-check:
-      enable: true
-      url: "https://www.gstatic.com/generate_204"
-      lazy: true
-      interval: 300
     etag-support: true
     disable-udp: false  
     allow-insecure: true    
@@ -143,12 +120,11 @@ proxy-providers:
     health-check:
       enable: true
       url: "https://www.gstatic.com/generate_204"
-      lazy: true
-      interval: 300
     etag-support: true
     disable-udp: false
     allow-insecure: true
     skip-cert-verify: true 
+
 proxy-groups:
   - name: "General"
     type: "url-test"
@@ -156,48 +132,37 @@ proxy-groups:
       - 5MatinGhanbari
       - 3Shuaidaoya
       - OpenProxyRaw
-      - OPV2RayBase64
       - v2rayse
     url: "https://www.gstatic.com/generate_204"
     interval: 300
-    tolerance: 50
-    lazy: true
-#    filter: "^(?=.*(SG)).*"
-    exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|日本|@ripaojiedian|socks|🇭🇰|HK|HongKong|香港|🇻🇳|VN|Vietnam|China|CN|🇨🇳|ads|ad-delivery|ad-video|gambling|lucky|jackpot)"
+    tolerance: 30
+   # filter: "^(?=.*(SG)).*"
+    exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|日本|@ripaojiedian|socks|🇭🇰|HK|HongKong|香港|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
 
 rule-providers:
-  REJECT:
+  reject:
     type: http
     behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
-    path: ./ruleset/reject.yaml
-    interval: 86400
-  LANCIDR:
-    type: http
-    behavior: ipcidr
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
-    path: ./ruleset/lancidr.yaml
-    interval: 86400
-  JAPANESE_REJECT:
-    type: http
-    behavior: domain
-    url: "https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_7_Japanese/filter.txt"
-    path: ./ruleset/japanese_reject.yaml
+    url: 'https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt'
+    path: "./rules/reject.yaml"
     interval: 86400    
-  MobileAds:
+  AntiAdBlock:
     type: http
     behavior: domain
-    url: "https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_11_Mobile/filter.txt"
-    path: ./ruleset/mobileads.yaml
-    interval: 86400  
-  DNSFilter:
+    format: yaml
+    url: "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml"
+    path: "./rules/AntiAdBlock.yaml"
+    interval: 86400
+  AdBlocker:
     type: http
+    format: text
     behavior: domain
-    url: "https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_15_DnsFilter/filter.txt"
-    path: ./ruleset/dnsfilter.yaml
-    interval: 86400      
+    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt"
+    path: "./rules/reject.txt"
+    interval: 86400
+
 rules:
-  - DOMAIN-SUFFIX,github.com, General
+  - DOMAIN-SUFFIX,github.com,General
   - DOMAIN-SUFFIX,reddit.com, General
   - DOMAIN-SUFFIX,javdb.com, General
   - DOMAIN-SUFFIX,viber.com,General
@@ -257,14 +222,10 @@ rules:
   - DOMAIN,388General.info,REJECT
   - DOMAIN,388mm.info,REJECT
   - DOMAIN-SUFFIX,histats.com,REJECT
-  - RULE-SET,DNSFilter,REJECT
-  - RULE-SET,MobileAds,REJECT
-  - RULE-SET,JAPANESE_REJECT,REJECT
-  - RULE-SET,LANCIDR,DIRECT
-  - RULE-SET,REJECT,REJECT
-  - GEOSITE,CATEGORY-ADS-ALL,REJECT
+  - RULE-SET,AdBlocker,REJECT 
+  - RULE-SET,reject, REJECT
+  - RULE-SET,AntiAdBlock,REJECT
+  - GEOSITE,CATEGORY-ADS-ALL,REJECT 
   - GEOSITE,CATEGORY-ADS,REJECT 
-  - GEOIP,LAN,DIRECT 
-  - GEOIP,PRIVATE,DIRECT,no-resolve
-  - DST-PORT,80/8080/443/8443, General
+  - GEOIP,LAN, DIRECT 
   - MATCH,General
