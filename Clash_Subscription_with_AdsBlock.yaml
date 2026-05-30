@@ -1,5 +1,6 @@
+http-port: 7890
 socks-port: 7891
-mixed-port: 7890
+mixed-port: 7892
 mode: rule
 allow-lan: true
 lan-allowed-ips:
@@ -50,13 +51,11 @@ profile:
 dns:
   nameserver:
     - https://dns.google/dns-query
-    - https://cloudflare-dns.com/dns-query
-    - system://
   fallback:
-    - https://1.1.1.1/dns-query
-    - https://8.8.8.8/dns-query
+    - tls://8.8.8.8
+    - tls://8.8.4.4
   direct-nameserver:
-    - system://
+    - system
   fallback-filter:
     geoip: true
     geoip-code: MM
@@ -70,15 +69,24 @@ dns:
   use-system-hosts: true
   listen: 0.0.0.0:1053
   ipv6: false
-
+  enhance-mode: "fake-ip"
+  fake-ip-range: "198.18.0.1/16"
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter:
+    - '*.lan'
 tun:
   enable: true
   stack: mixed
-  dns-hijack:
-    - "any:53"
   auto-route: true
+  auto-redirect: true
   auto-detect-interface: true
-
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+  mtu: 9000
+  strict-route: true
+  gso: true
+  gso-max-size: 65536
 proxy-providers:
  
   MFuuV2Ray: 
@@ -188,7 +196,6 @@ rule-providers:
 
 rules:
   - PROCESS-NAME,com.google.android.googlequicksearchbox,DIRECT
-  - PROCESS-NAME,com.deepl.mobiletranslator,General
   - DOMAIN-SUFFIX,github.com,General
   - DOMAIN-SUFFIX,reddit.com, General
   - DOMAIN-SUFFIX,javdb.com, General
@@ -197,17 +204,10 @@ rules:
   - PROCESS-NAME,ai.perplexity.app.android, General
   - PROCESS-NAME,com.riotgames.league.wildrift, General
   - PROCESS-NAME,com.UCMobile.intl, General
-  - PROCESS-NAME,com.google.uid.shared, General
-  - DOMAIN-SUFFIX,google-analytics.com, General
-  - DOMAIN-SUFFIX,googletagmanager.com, General
-  - DOMAIN-SUFFIX,googleapis.com,General
-  - DOMAIN-SUFFIX,gstatic.com,General
   - PROCESS-NAME,ai.x.grok,General
   - PROCESS-NAME,com.viber.voip,General
-  - PROCESS-NAME,com.google.android.apps.labs.language.tailwind,General
   - PROCESS-NAME,com.facebook.katana,General
   - DOMAIN-SUFFIX,gvt2.com,General
-  - DOMAIN-SUFFIX,upfileGeneralo.com,General
   - PROCESS-NAME,org.telegram.group,DIRECT
   - DOMAIN-SUFFIX,gov.mm,DIRECT 
   - DOMAIN-SUFFIX,crashlytics.com,General
