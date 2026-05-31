@@ -189,6 +189,7 @@ rule-providers:
 
 rules:
   - PROCESS-NAME,com.facebook.katana,General
+  - PROCESS-NAME,com.facebook.orca,General    
   - GEOSITE,CATEGORY-ADS-ALL,REJECT
   - GEOSITE,CATEGORY-ADS,REJECT 
   - PROCESS-NAME,com.google.android.googlequicksearchbox,DIRECT
