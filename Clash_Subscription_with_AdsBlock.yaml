@@ -162,7 +162,7 @@ proxy-groups:
     url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-   # filter: "^(?=.*(SG)).*"
+    filter: "^(?=.*(SG)).*"
     #exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|@ripaojiedian|socks|🇭🇰|HK|HongKong|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
 
 rule-providers:
