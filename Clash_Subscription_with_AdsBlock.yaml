@@ -188,6 +188,7 @@ rule-providers:
     interval: 86400
 
 rules:
+  - PROCESS-NAME,com.facebook.katana,General
   - GEOSITE,CATEGORY-ADS-ALL,REJECT
   - GEOSITE,CATEGORY-ADS,REJECT 
   - PROCESS-NAME,com.google.android.googlequicksearchbox,DIRECT
@@ -201,7 +202,6 @@ rules:
   - PROCESS-NAME,com.UCMobile.intl, General
   - PROCESS-NAME,ai.x.grok,General
   - PROCESS-NAME,com.viber.voip,General
-  - PROCESS-NAME,com.facebook.katana,General
   - DOMAIN-SUFFIX,gvt2.com,General
   - PROCESS-NAME,org.telegram.group,DIRECT
   - DOMAIN-SUFFIX,gov.mm,DIRECT 
