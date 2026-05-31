@@ -189,9 +189,14 @@ rule-providers:
 
 rules:
   - PROCESS-NAME,com.facebook.katana,General
-  - PROCESS-NAME,com.facebook.orca,General    
+  - PROCESS-NAME,com.facebook.orca,General  
+  - PROCESS-NAME,com.viber.voip,General
   - GEOSITE,CATEGORY-ADS-ALL,REJECT
   - GEOSITE,CATEGORY-ADS,REJECT 
+  - RULE-SET,AdBlocker,REJECT 
+  - RULE-SET,reject, REJECT
+  - RULE-SET,AntiAdBlock,REJECT  
+  - GEOIP,LAN,DIRECT 
   - PROCESS-NAME,com.google.android.googlequicksearchbox,DIRECT
   - DOMAIN-SUFFIX,github.com,General
   - DOMAIN-SUFFIX,reddit.com, General
@@ -202,7 +207,6 @@ rules:
   - PROCESS-NAME,com.riotgames.league.wildrift, General
   - PROCESS-NAME,com.UCMobile.intl, General
   - PROCESS-NAME,ai.x.grok,General
-  - PROCESS-NAME,com.viber.voip,General
   - DOMAIN-SUFFIX,gvt2.com,General
   - PROCESS-NAME,org.telegram.group,DIRECT
   - DOMAIN-SUFFIX,gov.mm,DIRECT 
@@ -244,8 +248,4 @@ rules:
   - DOMAIN,388General.info,REJECT
   - DOMAIN,388mm.info,REJECT
   - DOMAIN-SUFFIX,histats.com,REJECT
-  - RULE-SET,AdBlocker,REJECT 
-  - RULE-SET,reject, REJECT
-  - RULE-SET,AntiAdBlock,REJECT  
-  - GEOIP,LAN,DIRECT 
   - MATCH,General
