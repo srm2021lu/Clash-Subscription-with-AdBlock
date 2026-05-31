@@ -49,31 +49,24 @@ profile:
   store-fake-ip: true
 
 dns:
-  nameserver:
-    - https://dns.google/dns-query
-  fallback:
-    - tls://8.8.8.8
-    - tls://8.8.4.4
-  direct-nameserver:
-    - system
-  fallback-filter:
-    geoip: true
-    geoip-code: MM
-    geosite:
-      - gfw
-    ipcidr:
-      - 240.0.0.0/4
-  cache-algorithm: arc
-  cache-max-size: 1024
-  use-hosts: true
-  use-system-hosts: true
-  listen: 0.0.0.0:1053
+  enable: true
+  listen: "0.0.0.0:7874"
   ipv6: false
-  enhance-mode: "fake-ip"
+  default-nameserver-policy: all
+  enhanced-mode: "fake-ip"
   fake-ip-range: "198.18.0.1/16"
-  fake-ip-filter-mode: blacklist
-  fake-ip-filter:
-    - '*.lan'
+  query-url-ttl: 600      
+  fallback:
+    - "https://dns.google/dns-query"
+    - "tls://8.8.8.8"
+    - "https://cloudflare-dns.com/dns-query"
+    - "tls://1.1.1.1"
+  default-nameserver:
+    - "8.8.8.8"
+  nameserver-policy:
+    "geoip:mm": "8.8.8.8"
+    "geosite:category-ads-all": "127.0.0.1"
+    "geosite:category-ads": "127.0.0.1"
 tun:
   enable: true
   stack: mixed
@@ -87,8 +80,8 @@ tun:
   strict-route: true
   gso: true
   gso-max-size: 65536
+  
 proxy-providers:
- 
   MFuuV2Ray: 
     type: http
     path: "./proxies/MFuuV2Ray.yaml"
@@ -168,9 +161,9 @@ proxy-groups:
       - "v2rayse"
     url: "https://www.gstatic.com/generate_204"
     interval: 300
-    tolerance: 30
+    tolerance: 50
    # filter: "^(?=.*(SG)).*"
-    exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|日本|@ripaojiedian|socks|🇭🇰|HK|HongKong|香港|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
+    #exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|@ripaojiedian|socks|🇭🇰|HK|HongKong|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
 
 rule-providers:
   reject:
@@ -195,6 +188,8 @@ rule-providers:
     interval: 86400
 
 rules:
+  - GEOSITE,CATEGORY-ADS-ALL,REJECT
+  - GEOSITE,CATEGORY-ADS,REJECT 
   - PROCESS-NAME,com.google.android.googlequicksearchbox,DIRECT
   - DOMAIN-SUFFIX,github.com,General
   - DOMAIN-SUFFIX,reddit.com, General
@@ -215,9 +210,9 @@ rules:
   - PROCESS-NAME,com.kbzbank.kpaycustomer,DIRECT
   - DOMAIN-SUFFIX,facebook.net, REJECT
   - DOMAIN,pixel.facebook.com, REJECT 
-  - DOMAIN,tr.facebook.com, REJECT 
+  - DOMAIN,tr.facebook.com,REJECT 
   - DOMAIN,gateway.facebook.com, REJECT 
-  - DOMAIN-SUFFIX,atdmt.com, REJECT 
+  - DOMAIN-SUFFIX,atdmt.com,REJECT
   - DOMAIN-KEYWORD,ad-delivery,REJECT
   - DOMAIN-KEYWORD,ad-video,REJECT
   - DOMAIN-KEYWORD,ads-internal,REJECT 
@@ -248,12 +243,8 @@ rules:
   - DOMAIN,388General.info,REJECT
   - DOMAIN,388mm.info,REJECT
   - DOMAIN-SUFFIX,histats.com,REJECT
-  
-  - GEOSITE,CATEGORY-ADS-ALL,REJECT
-  - GEOSITE,CATEGORY-ADS,REJECT 
   - RULE-SET,AdBlocker,REJECT 
   - RULE-SET,reject, REJECT
   - RULE-SET,AntiAdBlock,REJECT  
-
-  - GEOIP,LAN, DIRECT 
+  - GEOIP,LAN,DIRECT 
   - MATCH,General
