@@ -88,6 +88,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/mfuu/v2ray/refs/heads/master/clash.yaml"
     health-check:
       enable: true
+      interval: 600
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
     disable-udp: false
@@ -99,6 +100,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/awesome-vpn/awesome-vpn/master/clash.yaml"
     health-check:
       enable: true
+      interval: 600
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
     disable-udp: false
@@ -110,6 +112,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/ss.txt"
     health-check:
       enable: true
+      interval: 600
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
     disable-udp: false
@@ -121,6 +124,7 @@ proxy-providers:
     path: "./proxies/Shuaidaoya.yaml"
     health-check:
       enable: true
+      interval: 600
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
     disable-udp: false
@@ -132,6 +136,7 @@ proxy-providers:
     path: "./proxies/OpenProxyRaw.yaml"
     health-check:
       enable: true
+      interval: 600
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
     disable-udp: false  
@@ -143,6 +148,7 @@ proxy-providers:
     path: "./proxies/v2rayse.yaml"
     health-check:
       enable: true
+      interval: 600
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
     disable-udp: false
