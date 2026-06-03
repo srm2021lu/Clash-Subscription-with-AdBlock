@@ -53,8 +53,7 @@ dns:
   listen: "0.0.0.0:7874"
   ipv6: false
   default-nameserver-policy: all
-  enhanced-mode: "fake-ip"
-  fake-ip-range: "198.18.0.1/16"
+  enhanced-mode: "normal"
   query-url-ttl: 600      
   fallback:
     - "https://dns.google/dns-query"
