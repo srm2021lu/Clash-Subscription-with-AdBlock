@@ -193,6 +193,7 @@ rule-providers:
     interval: 86400
 
 rules:
+  - DOMAIN-SUFFIX,googleapis.com,General
   - PROCESS-NAME,com.facebook.katana,General
   - PROCESS-NAME,com.facebook.orca,General  
   - PROCESS-NAME,com.viber.voip,General
