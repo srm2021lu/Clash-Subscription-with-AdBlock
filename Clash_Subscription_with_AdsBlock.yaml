@@ -26,7 +26,7 @@ keep-alive-idle: 15
 disable-keep-alive: false
 log-level: info
 ipv6: false
-prefer-h3: false
+prefer-h3: true
 external-doh-server: "/dns-query"
 geodata-mode: true
 bind-address: "*"
@@ -44,9 +44,9 @@ parse-pure-ip: true
 experimental:
   quic-go-disable-gso: false 
   quic-go-disable-ecn: false
-profile:
-  store-selected: true
-  store-fake-ip: true
+#profile:
+ # store-selected: true
+ # store-fake-ip: true
 
 dns:
   enable: true
@@ -75,7 +75,7 @@ tun:
   dns-hijack:
     - any:53
     - tcp://any:53
-  mtu: 9000
+  #mtu: 9000
   strict-route: true
   gso: true
   gso-max-size: 65536
@@ -170,6 +170,21 @@ proxy-groups:
   #  filter: "^(?=.*(SG)).*"
     exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
 
+  - name: "Facebook"
+    type: "url-test"
+    use:
+      - "5MatinGhanbari"
+      - "MFuuV2Ray"
+      - "AwesomeVPN"
+      - "3Shuaidaoya"
+      - "OpenProxyRaw"
+      - "v2rayse"
+    url: "https://gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+    filter: "(?i)(SG|🇸🇬|Singapore|HK|HongKong|🇭🇰|TH|Thailand|🇹🇭|JP|Japan|🇯🇵)"
+    exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
+
 rule-providers:
   reject:
     type: http
@@ -194,8 +209,8 @@ rule-providers:
 
 rules:
   - DOMAIN-SUFFIX,googleapis.com,General
-  - PROCESS-NAME,com.facebook.katana,General
-  - PROCESS-NAME,com.facebook.orca,General  
+  - PROCESS-NAME,com.facebook.katana,Facebook 
+  - PROCESS-NAME,com.facebook.orca,Facebook
   - PROCESS-NAME,com.viber.voip,General
   - GEOSITE,CATEGORY-ADS-ALL,REJECT
   - GEOSITE,CATEGORY-ADS,REJECT 
