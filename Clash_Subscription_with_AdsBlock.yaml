@@ -1,4 +1,4 @@
-normal890
+http-port: 7890
 socks-port: 7891
 mixed-port: 7892
 mode: rule
@@ -154,9 +154,7 @@ proxy-groups:
     url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-  #  filter: "^(?=.*(SG)).*"
     exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
-
   - name: "Facebook"
     type: "url-test"
     use:
@@ -171,7 +169,6 @@ proxy-groups:
     tolerance: 50
     filter: "^(?=.*(SG|🇸🇬|Singapore)).*"
     exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
-
 rule-providers:
   reject:
     type: http
