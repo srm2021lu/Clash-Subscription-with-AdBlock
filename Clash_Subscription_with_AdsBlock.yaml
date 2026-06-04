@@ -211,7 +211,7 @@ rules:
   - PROCESS-NAME,com.facebook.katana,Facebook 
   - PROCESS-NAME,com.facebook.orca,Facebook
   - PROCESS-NAME,com.viber.voip,General
-  - PROCESS-NAME,com.sec.android.app.samsungapps,DIRECT
+  - PROCESS-NAME,com.sec.android.app.samsungapps,Facebook
   - GEOSITE,CATEGORY-ADS-ALL,REJECT
   - GEOSITE,CATEGORY-ADS,REJECT 
   - RULE-SET,AdBlocker,REJECT 
