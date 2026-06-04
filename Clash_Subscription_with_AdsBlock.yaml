@@ -1,4 +1,4 @@
-http-port: 7890
+normal890
 socks-port: 7891
 mixed-port: 7892
 mode: rule
@@ -9,7 +9,7 @@ lan-allowed-ips:
 skip-auth-prefixes:
   - "127.0.0.1/8"
   - "::1/128"  
-tcp-timeout: 300
+tcp-timeout: 150
 udp: true
 external-controller: "127.0.0.1:9090"
 external-controller-cors:
@@ -46,8 +46,7 @@ dns:
   listen: "0.0.0.0:7874"
   ipv6: false
   default-nameserver-policy: all
-  enhanced-mode: "normal"
-  query-url-ttl: 600      
+  enhanced-mode: "fake-ip"    
   fallback:
     - "https://dns.google/dns-query"
     - "tls://8.8.8.8"
@@ -67,9 +66,7 @@ tun:
   auto-detect-interface: true
   dns-hijack:
     - any:53
-    - tcp://any:53
-  strict-route: true
-  
+    - tcp://any:53  
 proxy-providers:
   MFuuV2Ray: 
     type: http
@@ -172,7 +169,7 @@ proxy-groups:
     url: "https://gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-    filter: "^(?=.*(SG|🇸🇬|Singapore|JP|Japan|🇯🇵)).*"
+    filter: "^(?=.*(SG|🇸🇬|Singapore)).*"
     exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
 
 rule-providers:
@@ -198,7 +195,7 @@ rule-providers:
     interval: 86400
 
 rules:
-  - DOMAIN-SUFFIX,googleapis.com,General
+  - DOMAIN-SUFFIX,googleapis.com,Facebook
   - PROCESS-NAME,com.facebook.katana,Facebook 
   - PROCESS-NAME,com.facebook.orca,Facebook
   - PROCESS-NAME,com.viber.voip,General
@@ -224,10 +221,10 @@ rules:
   - DOMAIN-SUFFIX,crashlytics.com,General
   - PROCESS-NAME,mm.com.mptvas,DIRECT
   - PROCESS-NAME,com.kbzbank.kpaycustomer,DIRECT
-  - DOMAIN-SUFFIX,facebook.net, REJECT
-  - DOMAIN,pixel.facebook.com, REJECT 
-  - DOMAIN,tr.facebook.com,REJECT 
-  - DOMAIN,gateway.facebook.com, REJECT 
+  - DOMAIN-SUFFIX,facebook.net,Facebook
+  - DOMAIN,pixel.facebook.com,Facebook
+  - DOMAIN,tr.facebook.com,Facebook
+  - DOMAIN,gateway.facebook.com,Facebook
   - DOMAIN-SUFFIX,atdmt.com,REJECT
   - DOMAIN-KEYWORD,ad-delivery,REJECT
   - DOMAIN-KEYWORD,ad-video,REJECT
