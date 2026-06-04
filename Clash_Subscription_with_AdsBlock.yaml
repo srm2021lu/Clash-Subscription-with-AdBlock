@@ -26,7 +26,7 @@ keep-alive-idle: 15
 disable-keep-alive: false
 log-level: info
 ipv6: false
-prefer-h3: true
+prefer-h3: false
 external-doh-server: "/dns-query"
 geodata-mode: true
 bind-address: "*"
@@ -39,15 +39,8 @@ find-process-mode: strict
 unified-delay: true
 tcp-concurrent: true
 force-dns-mapping: false
-override-destination: true
+override-destination: false
 parse-pure-ip: true
-experimental:
-  quic-go-disable-gso: false 
-  quic-go-disable-ecn: false
-profile:
-  store-selected: true
-  store-fake-ip: true
-
 dns:
   enable: true
   listen: "0.0.0.0:7874"
@@ -75,10 +68,7 @@ tun:
   dns-hijack:
     - any:53
     - tcp://any:53
-  mtu: 9000
   strict-route: true
-  gso: true
-  gso-max-size: 65536
   
 proxy-providers:
   MFuuV2Ray: 
