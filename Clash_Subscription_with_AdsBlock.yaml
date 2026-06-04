@@ -53,7 +53,7 @@ dns:
   listen: "0.0.0.0:7874"
   ipv6: false
   default-nameserver-policy: all
-  enhanced-mode: "fake-ip"
+  enhanced-mode: "normal"
   query-url-ttl: 600      
   fallback:
     - "https://dns.google/dns-query"
@@ -182,7 +182,7 @@ proxy-groups:
     url: "https://gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-    filter: "^(?=.*(SG|Singapore|🇸🇬)).*"
+    filter: "^(?=.*(SG|🇸🇬|Singapore|JP|Japan|🇯🇵)).*"
     exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
 
 rule-providers:
@@ -234,10 +234,10 @@ rules:
   - DOMAIN-SUFFIX,crashlytics.com,General
   - PROCESS-NAME,mm.com.mptvas,DIRECT
   - PROCESS-NAME,com.kbzbank.kpaycustomer,DIRECT
-  #- DOMAIN-SUFFIX,facebook.net, REJECT
-  #- DOMAIN,pixel.facebook.com, REJECT 
-  #- DOMAIN,tr.facebook.com,REJECT 
-  #- DOMAIN,gateway.facebook.com, REJECT 
+  - DOMAIN-SUFFIX,facebook.net, REJECT
+  - DOMAIN,pixel.facebook.com, REJECT 
+  - DOMAIN,tr.facebook.com,REJECT 
+  - DOMAIN,gateway.facebook.com, REJECT 
   - DOMAIN-SUFFIX,atdmt.com,REJECT
   - DOMAIN-KEYWORD,ad-delivery,REJECT
   - DOMAIN-KEYWORD,ad-video,REJECT
