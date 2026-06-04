@@ -4,17 +4,17 @@ mixed-port: 7892
 mode: rule
 allow-lan: true
 lan-allowed-ips:
-  - 0.0.0.0/0
-  - ::/0
+  - "0.0.0.0/0"
+  - "::/0"
 skip-auth-prefixes:
-  - 127.0.0.1/8
-  - ::1/128  
+  - "127.0.0.1/8"
+  - "::1/128"  
 tcp-timeout: 300
 udp: true
 external-controller: "127.0.0.1:9090"
 external-controller-cors:
   allow-origins:
-      - '*'
+      - "*"
   allow-private-network: true
 external-controller-unix: "mihomo.sock"
 external-controller-tls: "127.0.0.1:9443"
@@ -41,9 +41,9 @@ tcp-concurrent: true
 force-dns-mapping: false
 override-destination: true
 parse-pure-ip: true
-experimental:
-  quic-go-disable-gso: false 
-  quic-go-disable-ecn: false
+#experimental:
+ # quic-go-disable-gso: false 
+  #quic-go-disable-ecn: false
 #profile:
  # store-selected: true
  # store-fake-ip: true
@@ -77,8 +77,8 @@ tun:
     - tcp://any:53
   #mtu: 9000
   strict-route: true
-  gso: true
-  gso-max-size: 65536
+  #gso: true
+  #gso-max-size: 65536
   
 proxy-providers:
   MFuuV2Ray: 
