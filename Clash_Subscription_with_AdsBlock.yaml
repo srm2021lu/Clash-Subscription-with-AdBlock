@@ -12,10 +12,6 @@ skip-auth-prefixes:
 tcp-timeout: 150
 udp: true
 external-controller: "127.0.0.1:9090"
-external-controller-cors:
-  allow-origins:
-      - "*"
-  allow-private-network: true
 external-controller-unix: "mihomo.sock"
 external-controller-tls: "127.0.0.1:9443"
 external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
@@ -41,6 +37,17 @@ tcp-concurrent: true
 force-dns-mapping: false
 override-destination: false
 parse-pure-ip: true
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  sniff:
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  skip-domain:
+    - "Mijia Cloud"
 dns:
   enable: true
   listen: "0.0.0.0:7874"
@@ -192,6 +199,14 @@ rule-providers:
     interval: 86400
 
 rules:
+  - AND,((NETWORK,UDP),(DST-PORT,443),(PROCESS-NAME,com.facebook.katana)),REJECT
+  - AND,((NETWORK,UDP),(DST-PORT,443),(PROCESS-NAME,com.facebook.orca)),REJECT
+  - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-KEYWORD,facebook)),REJECT
+  - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-SUFFIX,fbcdn.net)),REJECT
+  - DOMAIN-SUFFIX,fbcdn.net,Facebook
+  - DOMAIN-SUFFIX,fbsbx.com,Facebook
+  - DOMAIN-SUFFIX,fb.watch,Facebook
+  - DOMAIN-KEYWORD,facebook,Facebook
   - DOMAIN-SUFFIX,googleapis.com,Facebook
   - PROCESS-NAME,com.facebook.katana,Facebook 
   - PROCESS-NAME,com.facebook.orca,Facebook
