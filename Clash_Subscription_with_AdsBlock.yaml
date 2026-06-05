@@ -10,7 +10,7 @@ skip-auth-prefixes:
   - "127.0.0.1/8"
   - "::1/128"  
 tcp-timeout: 150
-udp: true
+udp: false
 external-controller: "127.0.0.1:9090"
 external-controller-unix: "mihomo.sock"
 external-controller-tls: "127.0.0.1:9443"
@@ -34,20 +34,9 @@ geox-url:
 find-process-mode: strict 
 unified-delay: true
 tcp-concurrent: true
-force-dns-mapping: false
-override-destination: false
+force-dns-mapping: true
+override-destination: true
 parse-pure-ip: true
-sniffer:
-  enable: true
-  force-dns-mapping: true
-  parse-pure-ip: true
-  sniff:
-    TLS:
-      ports: [443, 8443]
-    QUIC:
-      ports: [443, 8443]
-  skip-domain:
-    - "Mijia Cloud"
 dns:
   enable: true
   listen: "0.0.0.0:7874"
@@ -65,6 +54,17 @@ dns:
     "geoip:mm": "8.8.8.8"
     "geosite:category-ads-all": "127.0.0.1"
     "geosite:category-ads": "127.0.0.1"
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  sniff:
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  skip-domain:
+    - "Mijia Cloud"    
 tun:
   enable: true
   stack: mixed
@@ -84,7 +84,7 @@ proxy-providers:
       interval: 600
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
-    disable-udp: false
+    disable-udp: true
     allow-insecure: true
     skip-cert-verify: true
   AwesomeVPN: 
@@ -96,7 +96,7 @@ proxy-providers:
       interval: 600
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
-    disable-udp: false
+    disable-udp: true
     allow-insecure: true
     skip-cert-verify: true
   5MatinGhanbari: 
@@ -108,7 +108,7 @@ proxy-providers:
       interval: 600
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
-    disable-udp: false
+    disable-udp: true
     allow-insecure: true
     skip-cert-verify: true
   3Shuaidaoya:
@@ -120,7 +120,7 @@ proxy-providers:
       interval: 600
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
-    disable-udp: false
+    disable-udp: true
     allow-insecure: true
     skip-cert-verify: true
   OpenProxyRaw :
@@ -132,7 +132,7 @@ proxy-providers:
       interval: 600
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
-    disable-udp: false  
+    disable-udp: true  
     allow-insecure: true    
     skip-cert-verify: true  
   v2rayse:
@@ -144,7 +144,7 @@ proxy-providers:
       interval: 600
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
-    disable-udp: false
+    disable-udp: true
     allow-insecure: true
     skip-cert-verify: true 
 
@@ -161,6 +161,8 @@ proxy-groups:
     url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
+    disable-udp: true
+    allow-insecure: true
     exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
   - name: "Facebook"
     type: "url-test"
@@ -174,6 +176,8 @@ proxy-groups:
     url: "https://gstatic.com/generate_204"
     interval: 300
     tolerance: 50
+    disable-udp: true
+    allow-insecure: true
     filter: "^(?=.*(SG|🇸🇬|Singapore)).*"
     exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
 rule-providers:
