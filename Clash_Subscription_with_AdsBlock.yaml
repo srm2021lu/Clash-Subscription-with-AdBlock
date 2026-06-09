@@ -56,6 +56,12 @@ dns:
   default-nameserver:
     - "8.8.8.8"
   nameserver-policy:
+    "*.github.com": "8.8.8.8"
+    "*.githubusercontent.com": "8.8.8.8"
+    "geoip:google": "8.8.8.8"
+    "geosite:google": "8.8.8.8"
+    "geosite:facebook": "tls://8.8.8.8:853"
+    "geoip:facebook": "tls://8.8.8.8:853"
     "geosite:category-ads-all": "127.0.0.1"
     "geosite:category-ads": "127.0.0.1"
 sniffer:
@@ -192,28 +198,22 @@ rule-providers:
     interval: 86400
 
 rules:
-  - AND,((NETWORK,UDP),(DST-PORT,443),(PROCESS-NAME,com.facebook.orca)),General
+  - GEOSITE,Google,DIRECT
+  - GEOIP,Google,DIRECT
+  - GEOSITE,Telegram,DIRECT 
+  - GEOIP,Telegram,DIRECT
+  - PROCESS-NAME,com.google.android.googlequicksearchbox,DIRECT
+  - DOMAIN-SUFFIX,github.com,DIRECT
+  - DOMAIN-SUFFIX,githubusercontent.com,General
   - AND,((NETWORK,UDP),(DST-PORT,443),(PROCESS-NAME,com.facebook.katana)),REJECT
   - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-KEYWORD,facebook)),REJECT
   - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-SUFFIX,fbcdn.net)),REJECT
-  - DOMAIN-SUFFIX,fbcdn.net,General
-  - DOMAIN-SUFFIX,fbsbx.com,General
-  - DOMAIN-SUFFIX,fb.watch,General
-  - DOMAIN-KEYWORD,facebook,General
-  - DOMAIN-SUFFIX,googleapis.com,General
-  - PROCESS-NAME,com.facebook.katana,General
-  - PROCESS-NAME,com.facebook.orca,General
-  - PROCESS-NAME,com.viber.voip,General
-  - PROCESS-NAME,com.sec.android.app.samsungapps,General
   - GEOSITE,CATEGORY-ADS-ALL,REJECT
   - GEOSITE,CATEGORY-ADS,REJECT 
   - RULE-SET,AdBlocker,REJECT 
   - RULE-SET,reject, REJECT
   - RULE-SET,AntiAdBlock,REJECT  
   - GEOIP,LAN,DIRECT 
-  - PROCESS-NAME,com.google.android.googlequicksearchbox,DIRECT
-  - DOMAIN-SUFFIX,github.com,General
-  - DOMAIN-SUFFIX,reddit.com, General
   - DOMAIN-SUFFIX,javdb.com, General
   - DOMAIN-SUFFIX,viber.com,General
   - DOMAIN-KEYWORD,viber,General
@@ -222,27 +222,16 @@ rules:
   - PROCESS-NAME,com.UCMobile.intl, General
   - PROCESS-NAME,ai.x.grok,General
   - DOMAIN-SUFFIX,gvt2.com,General
-  - PROCESS-NAME,org.telegram.group,DIRECT
   - DOMAIN-SUFFIX,gov.mm,DIRECT 
   - DOMAIN-SUFFIX,crashlytics.com,General
   - PROCESS-NAME,mm.com.mptvas,DIRECT
   - PROCESS-NAME,com.kbzbank.kpaycustomer,DIRECT
-  - DOMAIN-SUFFIX,facebook.net,General
-  - DOMAIN,pixel.facebook.com,General
-  - DOMAIN,tr.facebook.com,General
-  - DOMAIN,gateway.facebook.com,General
   - DOMAIN-SUFFIX,atdmt.com,REJECT
   - DOMAIN-KEYWORD,ad-delivery,REJECT
   - DOMAIN-KEYWORD,ad-video,REJECT
   - DOMAIN-KEYWORD,ads-internal,REJECT 
   - DOMAIN,vbsdkgc.com,REJECT
   - DOMAIN,md6tu.com,REJECT   
-  - DOMAIN,analytics.us.tiktok.com,REJECT
-  - DOMAIN,com.google.android.adservices.api,REJECT
-  - DOMAIN-SUFFIX,adtrafficquality.google,REJECT 
-  - DOMAIN,www.googleadservices.com, REJECT 
-  - DOMAIN,fundingchoicesmessages.google.com,REJECT
-  - DOMAIN,google-analytics.com,REJECT
   - DOMAIN-SUFFIX,blcdog.com,REJECT
   - DOMAIN-SUFFIX,advolve.io,REJECT
   - DOMAIN-SUFFIX,adster.tech,REJECT
@@ -262,4 +251,6 @@ rules:
   - DOMAIN,388General.info,REJECT
   - DOMAIN,388mm.info,REJECT
   - DOMAIN-SUFFIX,histats.com,REJECT
+
   - MATCH,General
+  
