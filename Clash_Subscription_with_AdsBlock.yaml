@@ -4,7 +4,7 @@ mixed-port: 7892
 mode: rule
 profile: 
   store-selected: true
-global-client-fingerprint: chrome
+client-fingerprint: chrome
 allow-lan: true
 lan-allowed-ips:
   - "0.0.0.0/0"
