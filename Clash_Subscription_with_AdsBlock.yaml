@@ -2,9 +2,7 @@ http-port: 7890
 socks-port: 7891
 mixed-port: 7892
 mode: rule
-profile: 
-  store-selected: true
-client-fingerprint: chrome
+client-fingerprint: chrome 
 allow-lan: true
 lan-allowed-ips:
   - "0.0.0.0/0"
@@ -12,15 +10,15 @@ lan-allowed-ips:
 skip-auth-prefixes:
   - "127.0.0.1/8"
   - "::1/128"  
-tcp-timeout: 60
 udp: false
 external-controller: "127.0.0.1:9090"
 external-controller-unix: "mihomo.sock"
 external-controller-tls: "127.0.0.1:9443"
 external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
-etag-support: true 
-keep-alive-interval: 10
-keep-alive-idle: 10
+etag-support: true
+tcp-timeout: 60
+keep-alive-interval: 15
+keep-alive-idle: 15
 disable-keep-alive: false
 log-level: info
 ipv6: false
@@ -41,20 +39,23 @@ override-destination: true
 parse-pure-ip: true
 dns:
   enable: true
+  cache-algorithm: arc
+  cache-max-size: 1024
   listen: "0.0.0.0:7874"
   ipv6: false
-  resolve-prefer: ipv4 
   default-nameserver-policy: all
   enhanced-mode: "fake-ip"    
-  fallback:
+  nameserver: 
     - "https://dns.google/dns-query"
-    - "tls://8.8.8.8"
     - "https://cloudflare-dns.com/dns-query"
-    - "tls://1.1.1.1"
+  fallback-nameserver:
+    - "https://8.8.8.8/dns-query"
+    - "https://1.1.1.1/dns-query"
+    - "tls://8.8.8.8:863"
+    - "tls://1.1.1.1:853"
   default-nameserver:
     - "8.8.8.8"
   nameserver-policy:
-    "geoip:mm": "8.8.8.8"
     "geosite:category-ads-all": "127.0.0.1"
     "geosite:category-ads": "127.0.0.1"
 sniffer:
@@ -87,7 +88,6 @@ proxy-providers:
       interval: 600
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
-    disable-udp: true
     allow-insecure: true
     skip-cert-verify: true
   AwesomeVPN: 
@@ -99,7 +99,6 @@ proxy-providers:
       interval: 600
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
-    disable-udp: true
     allow-insecure: true
     skip-cert-verify: true
   5MatinGhanbari: 
@@ -111,7 +110,6 @@ proxy-providers:
       interval: 600
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
-    disable-udp: true
     allow-insecure: true
     skip-cert-verify: true
   3Shuaidaoya:
@@ -123,7 +121,6 @@ proxy-providers:
       interval: 600
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
-    disable-udp: true
     allow-insecure: true
     skip-cert-verify: true
   OpenProxyRaw :
@@ -135,7 +132,6 @@ proxy-providers:
       interval: 600
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
-    disable-udp: true 
     allow-insecure: true    
     skip-cert-verify: true  
   v2rayse:
@@ -144,10 +140,10 @@ proxy-providers:
     path: "./proxies/v2rayse.yaml"
     health-check:
       enable: true
-      interval: 600
+      interval: 60
+      tolerance: 50
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
-    disable-udp: true
     allow-insecure: true
     skip-cert-verify: true 
 
@@ -161,29 +157,17 @@ proxy-groups:
       - "3Shuaidaoya"
       - "OpenProxyRaw"
       - "v2rayse"
-    url: "https://www.gstatic.com/generate_204"
-    interval: 60
-    tolerance: 50
-    disable-udp: true
+    health-check:
+      enable: true
+      interval: 60
+      tolerance: 50
+      url: "https://www.gstatic.com/generate_204"
+    etag-support: true
+    udp: true
+    prefer-h3: true
     allow-insecure: true
     skip-cert-verify: true
-    exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
-  - name: "Facebook"
-    type: "url-test"
-    use:
-      - "5MatinGhanbari"
-      - "MFuuV2Ray"
-      - "AwesomeVPN"
-      - "3Shuaidaoya"
-      - "OpenProxyRaw"
-      - "v2rayse"
-    url: "https://gstatic.com/generate_204"
-    interval: 60
-    tolerance: 50
-    disable-udp: true
-    skip-cert-verify: true
-    allow-insecure: true
-    filter: "^(?=.*(SG|🇸🇬|Singapore)).*"
+ #   filter: "(?i)(SG|Singapore|🇸🇬)"
     exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
 rule-providers:
   reject:
@@ -208,19 +192,19 @@ rule-providers:
     interval: 86400
 
 rules:
+  - AND,((NETWORK,UDP),(DST-PORT,443),(PROCESS-NAME,com.facebook.orca)),General
   - AND,((NETWORK,UDP),(DST-PORT,443),(PROCESS-NAME,com.facebook.katana)),REJECT
-#  - AND,((NETWORK,UDP),(DST-PORT,443),(PROCESS-NAME,com.facebook.orca)),REJECT
   - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-KEYWORD,facebook)),REJECT
   - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-SUFFIX,fbcdn.net)),REJECT
-  - DOMAIN-SUFFIX,fbcdn.net,Facebook
-  - DOMAIN-SUFFIX,fbsbx.com,Facebook
-  - DOMAIN-SUFFIX,fb.watch,Facebook
-  - DOMAIN-KEYWORD,facebook,Facebook
-  - DOMAIN-SUFFIX,googleapis.com,Facebook
-  - PROCESS-NAME,com.facebook.katana,Facebook 
-  - PROCESS-NAME,com.facebook.orca,Facebook
+  - DOMAIN-SUFFIX,fbcdn.net,General
+  - DOMAIN-SUFFIX,fbsbx.com,General
+  - DOMAIN-SUFFIX,fb.watch,General
+  - DOMAIN-KEYWORD,facebook,General
+  - DOMAIN-SUFFIX,googleapis.com,General
+  - PROCESS-NAME,com.facebook.katana,General
+  - PROCESS-NAME,com.facebook.orca,General
   - PROCESS-NAME,com.viber.voip,General
-  - PROCESS-NAME,com.sec.android.app.samsungapps,Facebook
+  - PROCESS-NAME,com.sec.android.app.samsungapps,General
   - GEOSITE,CATEGORY-ADS-ALL,REJECT
   - GEOSITE,CATEGORY-ADS,REJECT 
   - RULE-SET,AdBlocker,REJECT 
@@ -243,10 +227,10 @@ rules:
   - DOMAIN-SUFFIX,crashlytics.com,General
   - PROCESS-NAME,mm.com.mptvas,DIRECT
   - PROCESS-NAME,com.kbzbank.kpaycustomer,DIRECT
-  - DOMAIN-SUFFIX,facebook.net,Facebook
-  - DOMAIN,pixel.facebook.com,Facebook
-  - DOMAIN,tr.facebook.com,Facebook
-  - DOMAIN,gateway.facebook.com,Facebook
+  - DOMAIN-SUFFIX,facebook.net,General
+  - DOMAIN,pixel.facebook.com,General
+  - DOMAIN,tr.facebook.com,General
+  - DOMAIN,gateway.facebook.com,General
   - DOMAIN-SUFFIX,atdmt.com,REJECT
   - DOMAIN-KEYWORD,ad-delivery,REJECT
   - DOMAIN-KEYWORD,ad-video,REJECT
