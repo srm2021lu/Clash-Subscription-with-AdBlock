@@ -47,9 +47,9 @@ dns:
   default-nameserver-policy: all
   enhanced-mode: "fake-ip"    
   fallback:
-    - "h3://dns.google/dns-query"
+    - "https://dns.google/dns-query"
     - "tls://8.8.8.8"
-    - "h3://cloudflare-dns.com/dns-query"
+    - "https://cloudflare-dns.com/dns-query"
     - "tls://1.1.1.1"
   default-nameserver:
     - "8.8.8.8"
