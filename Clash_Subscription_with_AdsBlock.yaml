@@ -2,6 +2,9 @@ http-port: 7890
 socks-port: 7891
 mixed-port: 7892
 mode: rule
+profile: 
+  store-selected: true
+global-client-fingerprint: chrome
 allow-lan: true
 lan-allowed-ips:
   - "0.0.0.0/0"
@@ -9,20 +12,19 @@ lan-allowed-ips:
 skip-auth-prefixes:
   - "127.0.0.1/8"
   - "::1/128"  
-tcp-timeout: 150
-udp: false
+tcp-timeout: 60
+udp: true
 external-controller: "127.0.0.1:9090"
 external-controller-unix: "mihomo.sock"
 external-controller-tls: "127.0.0.1:9443"
 external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
-etag-support: true
-global-ua: chrome 
-keep-alive-interval: 15
-keep-alive-idle: 15
+etag-support: true 
+keep-alive-interval: 10
+keep-alive-idle: 10
 disable-keep-alive: false
 log-level: info
 ipv6: false
-prefer-h3: false
+prefer-h3: true
 external-doh-server: "/dns-query"
 geodata-mode: true
 bind-address: "*"
@@ -41,12 +43,13 @@ dns:
   enable: true
   listen: "0.0.0.0:7874"
   ipv6: false
+  resolve-prefer: ipv4 
   default-nameserver-policy: all
   enhanced-mode: "fake-ip"    
   fallback:
-    - "https://dns.google/dns-query"
+    - "h3://dns.google/dns-query"
     - "tls://8.8.8.8"
-    - "https://cloudflare-dns.com/dns-query"
+    - "h3://cloudflare-dns.com/dns-query"
     - "tls://1.1.1.1"
   default-nameserver:
     - "8.8.8.8"
@@ -67,7 +70,7 @@ sniffer:
     - "Mijia Cloud"    
 tun:
   enable: true
-  stack: mixed
+  stack: system
   auto-route: true
   auto-redirect: true
   auto-detect-interface: true
@@ -84,7 +87,7 @@ proxy-providers:
       interval: 600
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
-    disable-udp: true
+    disable-udp: false
     allow-insecure: true
     skip-cert-verify: true
   AwesomeVPN: 
@@ -96,7 +99,7 @@ proxy-providers:
       interval: 600
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
-    disable-udp: true
+    disable-udp: false
     allow-insecure: true
     skip-cert-verify: true
   5MatinGhanbari: 
@@ -108,7 +111,7 @@ proxy-providers:
       interval: 600
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
-    disable-udp: true
+    disable-udp: false
     allow-insecure: true
     skip-cert-verify: true
   3Shuaidaoya:
@@ -120,7 +123,7 @@ proxy-providers:
       interval: 600
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
-    disable-udp: true
+    disable-udp: false
     allow-insecure: true
     skip-cert-verify: true
   OpenProxyRaw :
@@ -132,7 +135,7 @@ proxy-providers:
       interval: 600
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
-    disable-udp: true  
+    disable-udp: false 
     allow-insecure: true    
     skip-cert-verify: true  
   v2rayse:
@@ -144,7 +147,7 @@ proxy-providers:
       interval: 600
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
-    disable-udp: true
+    disable-udp: false
     allow-insecure: true
     skip-cert-verify: true 
 
@@ -159,10 +162,11 @@ proxy-groups:
       - "OpenProxyRaw"
       - "v2rayse"
     url: "https://www.gstatic.com/generate_204"
-    interval: 300
+    interval: 60
     tolerance: 50
-    disable-udp: true
+    disable-udp: false
     allow-insecure: true
+    skip-cert-verify: true
     exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
   - name: "Facebook"
     type: "url-test"
@@ -174,9 +178,10 @@ proxy-groups:
       - "OpenProxyRaw"
       - "v2rayse"
     url: "https://gstatic.com/generate_204"
-    interval: 300
+    interval: 60
     tolerance: 50
-    disable-udp: true
+    disable-udp: false
+    skip-cert-verify: true
     allow-insecure: true
     filter: "^(?=.*(SG|🇸🇬|Singapore)).*"
     exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
