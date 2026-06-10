@@ -1,6 +1,6 @@
-http-port: 7890
-socks-port: 7891
-mixed-port: 7892
+#http-port: 7890
+#socks-port: 7891
+mixed-port: 10801
 mode: rule
 client-fingerprint: chrome 
 allow-lan: true
@@ -23,68 +23,151 @@ disable-keep-alive: false
 log-level: info
 ipv6: false
 prefer-h3: false
-external-doh-server: "/dns-query"
+external-doh-server: /dns-query
 geodata-mode: true
 bind-address: "*"
 geox-url:
-  geoip: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
-  geosite: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
-  mmdb: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
-  asn: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country-asn.mmdb"
+  geoip: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
+  geosite: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
+  mmdb: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.metadb"
+geo-auto-update: true
+geo-update-interval: 24
+geosite-matcher: succinct
 find-process-mode: strict 
 unified-delay: true
 tcp-concurrent: true
 force-dns-mapping: true
 override-destination: true
 parse-pure-ip: true
-dns:
-  enable: true
-  cache-algorithm: arc
-  cache-max-size: 1024
-  listen: "0.0.0.0:7874"
-  ipv6: false
-  default-nameserver-policy: all
-  enhanced-mode: "fake-ip"    
-  nameserver: 
-    - "https://dns.google/dns-query"
-    - "https://cloudflare-dns.com/dns-query"
-  fallback-nameserver:
-    - "https://8.8.8.8/dns-query"
-    - "https://1.1.1.1/dns-query"
-    - "tls://8.8.8.8:863"
-    - "tls://1.1.1.1:853"
-  default-nameserver:
-    - "8.8.8.8"
-  nameserver-policy:
-    "*.github.com": "8.8.8.8"
-    "*.githubusercontent.com": "8.8.8.8"
-    "geoip:google": "8.8.8.8"
-    "geosite:google": "8.8.8.8"
-    "geosite:facebook": "tls://8.8.8.8:853"
-    "geoip:facebook": "tls://8.8.8.8:853"
-    "geosite:category-ads-all": "127.0.0.1"
-    "geosite:category-ads": "127.0.0.1"
+profile:
+  store-selected: false
+  store-fake-ip: true
+also:
+  enable: false
+  stack: system 
+  dns-hijack:
+    - 0.0.0.0:53
+  auto-redirect: false
+  route-address:
+    - 0.0.0.0/1
+    - 128.0.0.0/1
+#dns:
+#  enable: true
+#  cache-algorithm: arc
+#  cache-max-size: 1024
+#  listen: "0.0.0.0:7874"
+#  ipv6: false
+#  default-nameserver-policy: all
+#  enhanced-mode: "fake-ip"    
+#  nameserver: 
+#    - "https://dns.google/dns-query"
+ #   - "https://cloudflare-dns.com/dns-query"
+#  fallback-nameserver:
+#    - "https://8.8.8.8/dns-query"
+#    - "https://1.1.1.1/dns-query"
+#    - "tls://8.8.8.8:863"
+#    - "tls://1.1.1.1:853"
+#  default-nameserver:
+#    - "8.8.8.8"
+#  nameserver-policy:
+#    "*.github.com": "8.8.8.8"
+#    "*.githubusercontent.com": "8.8.8.8"
+#    "geoip:google": "8.8.8.8"
+#    "geosite:google": "8.8.8.8"
+#    "geosite:facebook": "tls://8.8.8.8:853"
+#    "geoip:facebook": "tls://8.8.8.8:853"
+#   "geosite:category-ads-all": "127.0.0.1"
+#   "geosite:category-ads": "127.0.0.1"
 sniffer:
-  enable: true
-  force-dns-mapping: true
-  parse-pure-ip: true
+  enable: false
+  override-destination: false
   sniff:
     TLS:
-      ports: [443, 8443]
-    QUIC:
-      ports: [443, 8443]
-  skip-domain:
-    - "Mijia Cloud"    
-tun:
-  enable: true
-  stack: system
-  auto-route: true
-  auto-redirect: true
-  auto-detect-interface: true
-  dns-hijack:
-    - any:53
-    - tcp://any:53  
+    HTTP: 
+      ports: [80, 8080-8880]
+      override-destination: true
+  force-domain:
+    - +.v2ex.com
+  sniffing:
+    - tls
+    - http
+  port-whitelist:
+    - "80"
+    - "443"
+dns:
+  cache-algorithm: arc
+  enable: false 
+  prefer-h3: false 
+  listen: 0.0.0.0:53
+  default-nameserver:
+    - 114.114.114.114
+    - 8.8.8.8
+    - tls://1.12.12.12:853
+    - tls://8.8.8.8:853
+    - system
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - '*.and'
+  fake-ip-filter-mode: blacklist
+  fake-ip-ttl: 1
+  respect-rules: false
+  nameserver:
+    - 114.114.114.114 
+    - 8.8.8.8 
+    - tls://223.5.5.5:853 
+    - https://dns.google/dns-query
+    - https://dns.alidns.com/dns-query#h3=true
+    - https://mozilla.cloudflare-dns.com/dns-query#DNS&h3=true
+    - dhcp://en0
+    - quic://dns.adguard.com:784
+  nameserver-policy:
+    "geosite:category-ads-all": rcode://success
+    "geosite:category-ads": rcode://success
+    "+.google.com,+.facebook.com,+.youtube.com,+.facebook.net,+.fbcdn.net": [8.8.8.8, https://dns.google/dns-query]
+#sniffer:
+#  enable: true
+#  force-dns-mapping: true
+#  parse-pure-ip: true
+#  sniff:
+#    TLS:
+#      ports: [443, 8443]
+#    QUIC:
+#      ports: [443, 8443]
+#  skip-domain:
+#    - "Mijia Cloud"    
+#tun:
+#  enable: true
+#  stack: system
+#  auto-route: true
+#  auto-redirect: true
+#  auto-detect-interface: true
+#  dns-hijack:
+#    - any:53
+#    - tcp://any:53  
 proxy-providers:
+  Snake1: 
+    type: http
+    path: "./proxies/snake1.yaml"
+    url: "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml"
+    health-check:
+      enable: true
+      interval: 600
+      url: "https://www.gstatic.com/generate_204"
+    etag-support: true
+    allow-insecure: true
+    skip-cert-verify: true
+  Snake2: 
+    type: http
+    path: "./proxies/snake2.yaml"
+    url: "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta-2.yaml"
+    health-check:
+      enable: true
+      interval: 600
+      url: "https://www.gstatic.com/generate_204"
+    etag-support: true
+    allow-insecure: true
+    skip-cert-verify: true    
   MFuuV2Ray: 
     type: http
     path: "./proxies/MFuuV2Ray.yaml"
@@ -157,6 +240,8 @@ proxy-groups:
   - name: "General"
     type: "url-test"
     use:
+      - "Snake1"
+      - "Snake2"
       - "5MatinGhanbari"
       - "MFuuV2Ray"
       - "AwesomeVPN"
@@ -175,6 +260,30 @@ proxy-groups:
     skip-cert-verify: true
  #   filter: "(?i)(SG|Singapore|🇸🇬)"
     exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
+  - name: "Messenger"
+    type: "url-test"
+    use:
+      - "Snake1"
+      - "Snake2"
+      - "5MatinGhanbari"
+      - "MFuuV2Ray"
+      - "AwesomeVPN"
+      - "3Shuaidaoya"
+      - "OpenProxyRaw"
+      - "v2rayse"
+    health-check:
+      enable: true
+      interval: 60
+      tolerance: 50
+      url: "https://www.gstatic.com/generate_204"
+    etag-support: true
+    udp: true
+    prefer-h3: true
+    allow-insecure: true
+    skip-cert-verify: true
+ #   filter: "(?i)(SG|Singapore|🇸🇬)"
+    exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
+        
 rule-providers:
   reject:
     type: http
@@ -198,6 +307,7 @@ rule-providers:
     interval: 86400
 
 rules:
+  - PROCESS-NAME,com.github.android,General
   - GEOSITE,Google,DIRECT
   - GEOIP,Google,DIRECT
   - GEOSITE,Telegram,DIRECT 
@@ -251,6 +361,5 @@ rules:
   - DOMAIN,388General.info,REJECT
   - DOMAIN,388mm.info,REJECT
   - DOMAIN-SUFFIX,histats.com,REJECT
-
   - MATCH,General
   
