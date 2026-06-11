@@ -205,7 +205,7 @@ proxy-groups:
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
     udp: true
-    prefer-h3: true
+    prefer-h3: false
     allow-insecure: true
     skip-cert-verify: true
  #   filter: "(?i)(SG|Singapore|🇸🇬)"
@@ -228,7 +228,7 @@ proxy-groups:
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
     udp: true
-    prefer-h3: true
+    prefer-h3: false
     allow-insecure: true
     skip-cert-verify: true
     filter: "(?i)(SG|Singapore|🇸🇬)"
