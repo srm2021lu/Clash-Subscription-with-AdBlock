@@ -1,6 +1,6 @@
-#http-port: 7890
-#socks-port: 7891
-mixed-port: 10801
+http-port: 7890
+socks-port: 7891
+mixed-port: 7892
 mode: rule
 client-fingerprint: chrome 
 allow-lan: true
@@ -10,7 +10,7 @@ lan-allowed-ips:
 skip-auth-prefixes:
   - "127.0.0.1/8"
   - "::1/128"  
-udp: false
+udp: true
 external-controller: "127.0.0.1:9090"
 external-controller-unix: "mihomo.sock"
 external-controller-tls: "127.0.0.1:9443"
@@ -23,7 +23,7 @@ disable-keep-alive: false
 log-level: info
 ipv6: false
 prefer-h3: false
-external-doh-server: /dns-query
+external-doh-server: "/dns-query"
 geodata-mode: true
 bind-address: "*"
 geox-url:
@@ -42,109 +42,59 @@ parse-pure-ip: true
 profile:
   store-selected: false
   store-fake-ip: true
-also:
-  enable: false
-  stack: system 
-  dns-hijack:
-    - 0.0.0.0:53
-  auto-redirect: false
-  route-address:
-    - 0.0.0.0/1
-    - 128.0.0.0/1
-#dns:
-#  enable: true
-#  cache-algorithm: arc
-#  cache-max-size: 1024
-#  listen: "0.0.0.0:7874"
-#  ipv6: false
-#  default-nameserver-policy: all
-#  enhanced-mode: "fake-ip"    
-#  nameserver: 
-#    - "https://dns.google/dns-query"
- #   - "https://cloudflare-dns.com/dns-query"
-#  fallback-nameserver:
-#    - "https://8.8.8.8/dns-query"
-#    - "https://1.1.1.1/dns-query"
-#    - "tls://8.8.8.8:863"
-#    - "tls://1.1.1.1:853"
-#  default-nameserver:
-#    - "8.8.8.8"
-#  nameserver-policy:
-#    "*.github.com": "8.8.8.8"
-#    "*.githubusercontent.com": "8.8.8.8"
-#    "geoip:google": "8.8.8.8"
-#    "geosite:google": "8.8.8.8"
-#    "geosite:facebook": "tls://8.8.8.8:853"
-#    "geoip:facebook": "tls://8.8.8.8:853"
-#   "geosite:category-ads-all": "127.0.0.1"
-#   "geosite:category-ads": "127.0.0.1"
-sniffer:
-  enable: false
-  override-destination: false
-  sniff:
-    TLS:
-    HTTP: 
-      ports: [80, 8080-8880]
-      override-destination: true
-  force-domain:
-    - +.v2ex.com
-  sniffing:
-    - tls
-    - http
-  port-whitelist:
-    - "80"
-    - "443"
 dns:
+  enable: true
   cache-algorithm: arc
-  enable: false 
-  prefer-h3: false 
-  listen: 0.0.0.0:53
+  cache-max-size: 1024
+  listen: "0.0.0.0:7874"
+  ipv6: false
+  default-nameserver-policy: all
+  enhanced-mode: "fake-ip"    
+  nameserver: 
+    - "8.8.8.8"
+    - "https://dns.google/dns-query"
+    - "1.1.1.1"
+    - "https://cloudflare-dns.com/dns-query"
+    - "dhcp://en0"
+    - "quic://dns.google:784"
+  fallback-nameserver:
+    - "https://8.8.8.8/dns-query"
+    - "https://1.1.1.1/dns-query"
+    - "tls://8.8.8.8:853"
+    - "tls://1.1.1.1:853"
   default-nameserver:
-    - 114.114.114.114
-    - 8.8.8.8
-    - tls://1.12.12.12:853
-    - tls://8.8.8.8:853
-    - system
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:
-    - '*.and'
-  fake-ip-filter-mode: blacklist
-  fake-ip-ttl: 1
-  respect-rules: false
-  nameserver:
-    - 114.114.114.114 
-    - 8.8.8.8 
-    - tls://223.5.5.5:853 
-    - https://dns.google/dns-query
-    - https://dns.alidns.com/dns-query#h3=true
-    - https://mozilla.cloudflare-dns.com/dns-query#DNS&h3=true
-    - dhcp://en0
-    - quic://dns.adguard.com:784
+    - "8.8.8.8"
   nameserver-policy:
-    "geosite:category-ads-all": rcode://success
-    "geosite:category-ads": rcode://success
-    "+.google.com,+.facebook.com,+.youtube.com,+.facebook.net,+.fbcdn.net": [8.8.8.8, https://dns.google/dns-query]
-#sniffer:
-#  enable: true
-#  force-dns-mapping: true
-#  parse-pure-ip: true
-#  sniff:
-#    TLS:
-#      ports: [443, 8443]
-#    QUIC:
-#      ports: [443, 8443]
-#  skip-domain:
-#    - "Mijia Cloud"    
-#tun:
-#  enable: true
-#  stack: system
-#  auto-route: true
-#  auto-redirect: true
-#  auto-detect-interface: true
-#  dns-hijack:
-#    - any:53
-#    - tcp://any:53  
+     "*.github.com": "8.8.8.8"
+     "*.githubusercontent.com": "8.8.8.8"
+     "geoip:google": "8.8.8.8"
+     "geosite:google": "8.8.8.8"
+     "geosite:facebook": ["tls://8.8.8.8:853", "quic://dns.google:784"]
+     "geoip:facebook": ["tls://8.8.8.8:853", "quic://dns.google:784"]
+     "geosite:category-ads-all": "rcode://success"
+     "geosite:category-ads": "rcode://success"
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  sniff:
+    HTTP:
+      ports: [80,443,8443,"8080-8880"]
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+     ports: [443, 8443]
+  skip-domain:
+    - "Mijia Cloud"    
+tun:
+  enable: true
+  stack: system
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+  dns-hijack:
+    - any:53
+    - tcp://any:53  
 proxy-providers:
   Snake1: 
     type: http
@@ -261,7 +211,7 @@ proxy-groups:
  #   filter: "(?i)(SG|Singapore|🇸🇬)"
     exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
   - name: "Messenger"
-    type: "url-test"
+    type: "fallback"
     use:
       - "Snake1"
       - "Snake2"
@@ -281,7 +231,7 @@ proxy-groups:
     prefer-h3: true
     allow-insecure: true
     skip-cert-verify: true
- #   filter: "(?i)(SG|Singapore|🇸🇬)"
+    filter: "(?i)(SG|Singapore|🇸🇬)"
     exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
         
 rule-providers:
