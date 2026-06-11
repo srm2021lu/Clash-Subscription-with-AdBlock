@@ -78,10 +78,12 @@ sniffer:
   force-dns-mapping: true
   parse-pure-ip: true
   sniff:
+    HTTP:
+      ports: [80,443,5222,8443]
     TLS:
-      ports: [443, 8443]
+      ports: [443,8443]
     QUIC:
-     ports: [443, 8443]
+     ports: [443,8443]
   skip-domain:
     - "Mijia Cloud"    
 tun:
@@ -263,9 +265,9 @@ rules:
   - PROCESS-NAME,com.google.android.googlequicksearchbox,DIRECT
   - DOMAIN-SUFFIX,github.com,DIRECT
   - DOMAIN-SUFFIX,githubusercontent.com,General
-  - AND,((NETWORK,UDP),(DST-PORT,443),(PROCESS-NAME,com.facebook.katana)),REJECT
-  - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-KEYWORD,facebook)),REJECT
-  - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-SUFFIX,fbcdn.net)),REJECT
+ # - AND,((NETWORK,UDP),(DST-PORT,443),(PROCESS-NAME,com.facebook.katana)),REJECT
+  #- AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-KEYWORD,facebook)),REJECT
+ # - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-SUFFIX,fbcdn.net)),REJECT
   - GEOSITE,CATEGORY-ADS-ALL,REJECT
   - GEOSITE,CATEGORY-ADS,REJECT 
   - RULE-SET,AdBlocker,REJECT 
