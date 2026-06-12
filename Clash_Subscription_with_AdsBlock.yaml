@@ -95,6 +95,19 @@ tun:
   dns-hijack:
     - any:53
     - tcp://any:53  
+proxies:
+  - name: 140🇸🇬
+    type: trojan
+    server: 46.137.202.140
+    port: 443
+    password: 5JKj82yC2BNxy8LAZha8Gsj2BAexJJU7ttTfeFcuHzmLjAiZ
+    udp: true
+    sni: node1.bw8848.org
+    network: ws
+    ws-opts:
+      path: /node1-node1-5sczzi
+      headers:
+        Host: node1.bw8848.force-dns-mapping
 proxy-providers:
   Snake1: 
     type: http
@@ -210,29 +223,14 @@ proxy-groups:
     skip-cert-verify: true
  #   filter: "(?i)(SG|Singapore|🇸🇬)"
     exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
-  - name: "Messenger"
+  - name: "Facebook"
     type: "fallback"
-    use:
-      - "Snake1"
-      - "Snake2"
-      - "5MatinGhanbari"
-      - "MFuuV2Ray"
-      - "AwesomeVPN"
-      - "3Shuaidaoya"
-      - "OpenProxyRaw"
-      - "v2rayse"
-    health-check:
-      enable: true
-      interval: 60
-      tolerance: 50
-      url: "https://www.gstatic.com/generate_204"
+    proxies:
+      - 140🇸🇬
     etag-support: true
     udp: true
-    prefer-h3: true
     allow-insecure: true
     skip-cert-verify: true
-    filter: "(?i)(SG|Singapore|🇸🇬)"
-    exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
         
 rule-providers:
   reject:
@@ -257,6 +255,8 @@ rule-providers:
     interval: 86400
 
 rules:
+  - PROCESS-NAME,com.facebook.katana,Facebook
+  - PROCESS-NAME,com.facebook.orca,Facebook
   - PROCESS-NAME,com.github.android,General
   - GEOSITE,Google,DIRECT
   - GEOIP,Google,DIRECT
@@ -312,4 +312,3 @@ rules:
   - DOMAIN,388mm.info,REJECT
   - DOMAIN-SUFFIX,histats.com,REJECT
   - MATCH,General
-  
