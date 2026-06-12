@@ -69,8 +69,8 @@ dns:
      "*.githubusercontent.com": "8.8.8.8"
      "geoip:google": "8.8.8.8"
      "geosite:google": "8.8.8.8"
-     "geosite:facebook": ["8.8.8.8","https://dns.google/dns-query","tls://8.8.8.8:853", "quic://dns.google:784"]
-     "geoip:facebook": ["8.8.8.8","https://dns.google/dns-query","tls://8.8.8.8:853", "quic://dns.google:784"]
+     "geosite:facebook": ["tls://8.8.8.8:853", "quic://dns.google:784"]
+     "geoip:facebook": ["tls://8.8.8.8:853", "quic://dns.google:784"]
      "geosite:category-ads-all": "rcode://success"
      "geosite:category-ads": "rcode://success"
 sniffer:
@@ -79,11 +79,11 @@ sniffer:
   parse-pure-ip: true
   sniff:
     HTTP:
-      ports: [80,443,5222,8443]
+      ports: [80,443,8443,"8080-8880"]
     TLS:
-      ports: [443,8443]
+      ports: [443, 8443]
     QUIC:
-     ports: [443,8443]
+     ports: [443, 8443]
   skip-domain:
     - "Mijia Cloud"    
 tun:
@@ -205,7 +205,7 @@ proxy-groups:
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
     udp: true
-    prefer-h3: false
+    prefer-h3: true
     allow-insecure: true
     skip-cert-verify: true
  #   filter: "(?i)(SG|Singapore|🇸🇬)"
@@ -228,7 +228,7 @@ proxy-groups:
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
     udp: true
-    prefer-h3: false
+    prefer-h3: true
     allow-insecure: true
     skip-cert-verify: true
     filter: "(?i)(SG|Singapore|🇸🇬)"
@@ -265,9 +265,9 @@ rules:
   - PROCESS-NAME,com.google.android.googlequicksearchbox,DIRECT
   - DOMAIN-SUFFIX,github.com,DIRECT
   - DOMAIN-SUFFIX,githubusercontent.com,General
- # - AND,((NETWORK,UDP),(DST-PORT,443),(PROCESS-NAME,com.facebook.katana)),REJECT
-  #- AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-KEYWORD,facebook)),REJECT
- # - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-SUFFIX,fbcdn.net)),REJECT
+  - AND,((NETWORK,UDP),(DST-PORT,443),(PROCESS-NAME,com.facebook.katana)),REJECT
+  - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-KEYWORD,facebook)),REJECT
+  - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-SUFFIX,fbcdn.net)),REJECT
   - GEOSITE,CATEGORY-ADS-ALL,REJECT
   - GEOSITE,CATEGORY-ADS,REJECT 
   - RULE-SET,AdBlocker,REJECT 
