@@ -48,44 +48,50 @@ dns:
   cache-max-size: 1024
   listen: "0.0.0.0:7874"
   ipv6: false
-  default-nameserver-policy: all
   enhanced-mode: "fake-ip"    
   nameserver: 
     - "8.8.8.8"
     - "https://dns.google/dns-query"
     - "1.1.1.1"
     - "https://cloudflare-dns.com/dns-query"
-    - "dhcp://en0"
-    - "quic://dns.google:784"
   fallback-nameserver:
     - "https://8.8.8.8/dns-query"
     - "https://1.1.1.1/dns-query"
     - "tls://8.8.8.8:853"
     - "tls://1.1.1.1:853"
+    - "quic://dns.google:784"
+    - "dhcp://system"
   default-nameserver:
     - "8.8.8.8"
   nameserver-policy:
      "*.github.com": "8.8.8.8"
      "*.githubusercontent.com": "8.8.8.8"
-     "geoip:google": "8.8.8.8"
+     "geoip:cloudflare": ["1.1.1.1","https://cloudflare-dns.com/dns-query","tls://1.1.1.1:853"]
+     "geoip:cloudfront": ["1.1.1.1","https://cloudflare-dns.com/dns-query","tls://1.1.1.1:853"]
      "geosite:google": "8.8.8.8"
      "geosite:facebook": ["tls://8.8.8.8:853", "quic://dns.google:784"]
-     "geoip:facebook": ["tls://8.8.8.8:853", "quic://dns.google:784"]
      "geosite:category-ads-all": "rcode://success"
      "geosite:category-ads": "rcode://success"
+  fake-ip-filter:
+     - "+.lan"
+     - "+.local"
+     - "geoip:private"
+     - "geoip:category-bank-mm"
 sniffer:
   enable: true
   force-dns-mapping: true
   parse-pure-ip: true
+  override-destination: true
   sniff:
     HTTP:
-      ports: [80,443,8443,"8080-8880"]
+      ports: [80, 8443, "8000-8880", 5222]
     TLS:
       ports: [443, 8443]
     QUIC:
-     ports: [443, 8443]
+      ports: [443, 8443]
   skip-domain:
-    - "Mijia Cloud"    
+    - "+.google.com"
+    - "geosite:category-bank-mm"
 tun:
   enable: true
   stack: system
@@ -108,33 +114,22 @@ proxies:
       path: /node1-node1-5sczzi
       headers:
         Host: node1.bw8848.force-dns-mapping
+  - name: 140🇸🇬2
+    type: trojan
+    server: 46.137.202.140
+    port: 443
+    password: 5JKj82yC2BNxy8LAZha8Gsj2BAexJJU7ttTfeFcuHzmLjAiZ
+    sni: node1.bw8848.org
+    network: ws
+    ws-opts:
+      path: /node1-node1-5sczzi
+      headers:
+        Host: node1.bw8848.org        
 proxy-providers:
-  Snake1: 
+  OpenProxyList: 
     type: http
-    path: "./proxies/snake1.yaml"
-    url: "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml"
-    health-check:
-      enable: true
-      interval: 600
-      url: "https://www.gstatic.com/generate_204"
-    etag-support: true
-    allow-insecure: true
-    skip-cert-verify: true
-  Snake2: 
-    type: http
-    path: "./proxies/snake2.yaml"
-    url: "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta-2.yaml"
-    health-check:
-      enable: true
-      interval: 600
-      url: "https://www.gstatic.com/generate_204"
-    etag-support: true
-    allow-insecure: true
-    skip-cert-verify: true    
-  MFuuV2Ray: 
-    type: http
-    path: "./proxies/MFuuV2Ray.yaml"
-    url: "https://raw.githubusercontent.com/mfuu/v2ray/refs/heads/master/clash.yaml"
+    path: "./proxies/OpenProxyList.yaml"
+    url: "https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY_BASE64.txt"
     health-check:
       enable: true
       interval: 600
@@ -152,7 +147,7 @@ proxy-providers:
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
     allow-insecure: true
-    skip-cert-verify: true
+    skip-cert-verify: true    
   5MatinGhanbari: 
     type: http
     path: "./proxies/MatinGhanbari.yaml"
@@ -175,17 +170,6 @@ proxy-providers:
     etag-support: true
     allow-insecure: true
     skip-cert-verify: true
-  OpenProxyRaw :
-    type: http
-    url: "https://raw.githubusercontent.com/roosterkid/openproxylist/refs/heads/main/V2RAY_BASE64.txt"
-    path: "./proxies/OpenProxyRaw.yaml"
-    health-check:
-      enable: true
-      interval: 600
-      url: "https://www.gstatic.com/generate_204"
-    etag-support: true
-    allow-insecure: true    
-    skip-cert-verify: true  
   v2rayse:
     type: http
     url: "https://v2rayse.com/fs/public/20260424/free-node-share-0800.txt"
@@ -202,18 +186,18 @@ proxy-providers:
 proxy-groups:
   - name: "General"
     type: "url-test"
+    proxies:
+      - "140🇸🇬"
+      - "140🇸🇬2"
     use:
-      - "Snake1"
-      - "Snake2"
-      - "5MatinGhanbari"
-      - "MFuuV2Ray"
+      - "OpenProxyList"
       - "AwesomeVPN"
+      - "5MatinGhanbari"
       - "3Shuaidaoya"
-      - "OpenProxyRaw"
       - "v2rayse"
     health-check:
       enable: true
-      interval: 60
+      interval: 600
       tolerance: 50
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
@@ -222,14 +206,17 @@ proxy-groups:
     allow-insecure: true
     skip-cert-verify: true
  #   filter: "(?i)(SG|Singapore|🇸🇬)"
-    exclude-filter: "(?i)(b2n.ir|v2ray-configs|trojan|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
+  #  exclude-filter: "(?i)(b2n.ir|v2ray-configs|troj|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
   - name: "Facebook"
     type: "fallback"
     proxies:
-      - 140🇸🇬
+      - "140🇸🇬"
+      - "140🇸🇬2"
+      - "General"
     etag-support: true
     udp: true
     allow-insecure: true
+    prefer-h3: true
     skip-cert-verify: true
         
 rule-providers:
@@ -253,45 +240,42 @@ rule-providers:
     url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt"
     path: "./rules/reject.txt"
     interval: 86400
-
 rules:
-  - PROCESS-NAME,com.facebook.katana,Facebook
-  - PROCESS-NAME,com.facebook.orca,Facebook
-  - PROCESS-NAME,com.github.android,General
+  - GEOIP,LAN,DIRECT
+  - GEOSITE,category-bank-mm,DIRECT
+  - DOMAIN-SUFFIX,gvt2.com,General
   - GEOSITE,Google,DIRECT
   - GEOIP,Google,DIRECT
-  - GEOSITE,Telegram,DIRECT 
+  - GEOSITE,Telegram,DIRECT
   - GEOIP,Telegram,DIRECT
-  - PROCESS-NAME,com.google.android.googlequicksearchbox,DIRECT
-  - DOMAIN-SUFFIX,github.com,DIRECT
-  - DOMAIN-SUFFIX,githubusercontent.com,General
+  - GEOSITE,category-ads-all,REJECT
+  - GEOSITE,category-ads,REJECT
+  - RULE-SET,AdBlocker,REJECT
+  - RULE-SET,reject,REJECT
+  - RULE-SET,AntiAdBlock,REJECT
   - AND,((NETWORK,UDP),(DST-PORT,443),(PROCESS-NAME,com.facebook.katana)),REJECT
   - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-KEYWORD,facebook)),REJECT
   - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-SUFFIX,fbcdn.net)),REJECT
-  - GEOSITE,CATEGORY-ADS-ALL,REJECT
-  - GEOSITE,CATEGORY-ADS,REJECT 
-  - RULE-SET,AdBlocker,REJECT 
-  - RULE-SET,reject, REJECT
-  - RULE-SET,AntiAdBlock,REJECT  
-  - GEOIP,LAN,DIRECT 
-  - DOMAIN-SUFFIX,javdb.com, General
-  - DOMAIN-SUFFIX,viber.com,General
-  - DOMAIN-KEYWORD,viber,General
-  - PROCESS-NAME,ai.perplexity.app.android, General
-  - PROCESS-NAME,com.riotgames.league.wildrift, General
-  - PROCESS-NAME,com.UCMobile.intl, General
+  - PROCESS-NAME,com.facebook.katana,Facebook
+  - PROCESS-NAME,com.facebook.orca,Facebook
+  - PROCESS-NAME,com.viber.voip,Facebook
+  - PROCESS-NAME,com.github.android,General
+  - DOMAIN-SUFFIX,github.com,DIRECT
+  - DOMAIN-SUFFIX,githubusercontent.com,General
+  - DOMAIN-SUFFIX,javdb.com,General
+  - PROCESS-NAME,ai.perplexity.app.android,General
+  - PROCESS-NAME,com.riotgames.league.wildrift,General
+  - PROCESS-NAME,com.UCMobile.intl,General
   - PROCESS-NAME,ai.x.grok,General
-  - DOMAIN-SUFFIX,gvt2.com,General
-  - DOMAIN-SUFFIX,gov.mm,DIRECT 
+  - DOMAIN-SUFFIX,gov.mm,DIRECT
   - DOMAIN-SUFFIX,crashlytics.com,General
   - PROCESS-NAME,mm.com.mptvas,DIRECT
-  - PROCESS-NAME,com.kbzbank.kpaycustomer,DIRECT
   - DOMAIN-SUFFIX,atdmt.com,REJECT
   - DOMAIN-KEYWORD,ad-delivery,REJECT
   - DOMAIN-KEYWORD,ad-video,REJECT
-  - DOMAIN-KEYWORD,ads-internal,REJECT 
+  - DOMAIN-KEYWORD,ads-internal,REJECT
   - DOMAIN,vbsdkgc.com,REJECT
-  - DOMAIN,md6tu.com,REJECT   
+  - DOMAIN,md6tu.com,REJECT
   - DOMAIN-SUFFIX,blcdog.com,REJECT
   - DOMAIN-SUFFIX,advolve.io,REJECT
   - DOMAIN-SUFFIX,adster.tech,REJECT
@@ -299,8 +283,8 @@ rules:
   - DOMAIN-SUFFIX,growcdnssedge.com,REJECT
   - DOMAIN-SUFFIX,myavlive.com,REJECT
   - DOMAIN,stripchat.org,REJECT
-  - DOMAIN-SUFFIX,tradplusad.com,REJECT 
-  - DOMAIN-SUFFIX,appsflyersdk.com,REJECT 
+  - DOMAIN-SUFFIX,tradplusad.com,REJECT
+  - DOMAIN-SUFFIX,appsflyersdk.com,REJECT
   - DOMAIN-SUFFIX,pangle.io,REJECT
   - DOMAIN-SUFFIX,i18n-pglstatp.com,REJECT
   - DOMAIN-SUFFIX,dtscdn.com,REJECT
@@ -308,7 +292,7 @@ rules:
   - DOMAIN-SUFFIX,a-ads.com,REJECT
   - DOMAIN-SUFFIX,mrktmtrcs.net,REJECT
   - DOMAIN-SUFFIX,dtscout.com,REJECT
-  - DOMAIN,388General.info,REJECT
+  - DOMAIN,388bet.info,REJECT
   - DOMAIN,388mm.info,REJECT
   - DOMAIN-SUFFIX,histats.com,REJECT
   - MATCH,General
