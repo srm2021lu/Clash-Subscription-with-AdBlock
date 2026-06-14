@@ -40,7 +40,7 @@ force-dns-mapping: true
 override-destination: true
 parse-pure-ip: true
 profile:
-  store-selected: false
+  store-selected: true
   store-fake-ip: true
 dns:
   enable: true
@@ -59,8 +59,6 @@ dns:
     - "https://1.1.1.1/dns-query"
     - "tls://8.8.8.8:853"
     - "tls://1.1.1.1:853"
-    - "quic://dns.google:784"
-    - "dhcp://system"
   default-nameserver:
     - "8.8.8.8"
   nameserver-policy:
@@ -69,7 +67,7 @@ dns:
      "geoip:cloudflare": ["1.1.1.1","https://cloudflare-dns.com/dns-query","tls://1.1.1.1:853"]
      "geoip:cloudfront": ["1.1.1.1","https://cloudflare-dns.com/dns-query","tls://1.1.1.1:853"]
      "geosite:google": "8.8.8.8"
-     "geosite:facebook": ["tls://8.8.8.8:853", "quic://dns.google:784"]
+     "geosite:facebook": ["tls://8.8.8.8:853","tls://1.1.1.1:853","https:/dns.google/dns-query"]
      "geosite:category-ads-all": "rcode://success"
      "geosite:category-ads": "rcode://success"
   fake-ip-filter:
@@ -95,6 +93,7 @@ sniffer:
 tun:
   enable: true
   stack: system
+  mtu: 1422
   auto-route: true
   auto-redirect: true
   auto-detect-interface: true
@@ -197,28 +196,45 @@ proxy-groups:
       - "v2rayse"
     health-check:
       enable: true
-      interval: 600
+      interval: 300
       tolerance: 50
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
     udp: true
-    prefer-h3: true
+    prefer-h3: false
     allow-insecure: true
     skip-cert-verify: true
  #   filter: "(?i)(SG|Singapore|🇸🇬)"
   #  exclude-filter: "(?i)(b2n.ir|v2ray-configs|troj|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
-  - name: "Facebook"
-    type: "fallback"
+  - name: "Facebook_Messenger"
+    type: "url-test"
+    proxies:
+      - "140🇸🇬"
+      - "140🇸🇬2"
+    use:
+      - "OpenProxyList"
+      - "AwesomeVPN"
+      - "5MatinGhanbari"
+      - "3Shuaidaoya"
+      - "v2rayse"
+    health-check:
+      enable: true
+      interval: 3600
+      tolerance: 200
+      url: "https://www.gstatic.com/generate_204"
+    etag-support: true
+    udp: true
+    prefer-h3: false
+    allow-insecure: true
+    skip-cert-verify: true
+    
+  - name: "As You Wish"  
+    type: "select"
     proxies:
       - "140🇸🇬"
       - "140🇸🇬2"
       - "General"
-    etag-support: true
-    udp: true
-    allow-insecure: true
-    prefer-h3: true
-    skip-cert-verify: true
-        
+      - "DIRECT"
 rule-providers:
   reject:
     type: http
@@ -241,11 +257,12 @@ rule-providers:
     path: "./rules/reject.txt"
     interval: 86400
 rules:
+  - PROCESS-NAME,com.google.android.apps.bard,DIRECT
   - GEOIP,LAN,DIRECT
   - GEOSITE,category-bank-mm,DIRECT
-  - DOMAIN-SUFFIX,gvt2.com,General
-  - GEOSITE,Google,DIRECT
-  - GEOIP,Google,DIRECT
+  - GEOSITE,Google,General
+  - GEOIP,Google,General
+  - GEOIP,AI,General
   - GEOSITE,Telegram,DIRECT
   - GEOIP,Telegram,DIRECT
   - GEOSITE,category-ads-all,REJECT
@@ -254,20 +271,21 @@ rules:
   - RULE-SET,reject,REJECT
   - RULE-SET,AntiAdBlock,REJECT
   - AND,((NETWORK,UDP),(DST-PORT,443),(PROCESS-NAME,com.facebook.katana)),REJECT
+  - AND,((NETWORK,UDP),(DST-PORT,443),(PROCESS-NAME,com.facebook.orca)),REJECT
   - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-KEYWORD,facebook)),REJECT
   - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-SUFFIX,fbcdn.net)),REJECT
-  - PROCESS-NAME,com.facebook.katana,Facebook
-  - PROCESS-NAME,com.facebook.orca,Facebook
-  - PROCESS-NAME,com.viber.voip,Facebook
+  - PROCESS-NAME,com.facebook.katana,General
+  - PROCESS-NAME,com.facebook.orca,Facebook_Messenger
+  - PROCESS-NAME,com.viber.voip,Facebook_Messenger 
   - PROCESS-NAME,com.github.android,General
-  - DOMAIN-SUFFIX,github.com,DIRECT
+  - PROCESS-NAME,ai.qwenlm.chat.android,General
+  - DOMAIN-SUFFIX,github.com,General
   - DOMAIN-SUFFIX,githubusercontent.com,General
   - DOMAIN-SUFFIX,javdb.com,General
   - PROCESS-NAME,ai.perplexity.app.android,General
-  - PROCESS-NAME,com.riotgames.league.wildrift,General
+  - PROCESS-NAME,com.riotgames.league.wildrift,Facebook_Messenger
   - PROCESS-NAME,com.UCMobile.intl,General
-  - PROCESS-NAME,ai.x.grok,General
-  - DOMAIN-SUFFIX,gov.mm,DIRECT
+  - PROCESS-NAME,ai.x.grok,General 
   - DOMAIN-SUFFIX,crashlytics.com,General
   - PROCESS-NAME,mm.com.mptvas,DIRECT
   - DOMAIN-SUFFIX,atdmt.com,REJECT
@@ -296,3 +314,4 @@ rules:
   - DOMAIN,388mm.info,REJECT
   - DOMAIN-SUFFIX,histats.com,REJECT
   - MATCH,General
+  
