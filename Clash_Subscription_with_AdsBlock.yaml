@@ -65,9 +65,7 @@ dns:
      "*.github.com": "8.8.8.8"
      "*.githubusercontent.com": "8.8.8.8"
      "geoip:cloudflare": ["1.1.1.1","https://cloudflare-dns.com/dns-query","tls://1.1.1.1:853"]
-     "geoip:cloudfront": ["1.1.1.1","https://cloudflare-dns.com/dns-query","tls://1.1.1.1:853"]
      "geosite:google": "8.8.8.8"
-     "geosite:facebook": ["tls://8.8.8.8:853","tls://1.1.1.1:853","https:/dns.google/dns-query"]
      "geosite:category-ads-all": "rcode://success"
      "geosite:category-ads": "rcode://success"
   fake-ip-filter:
@@ -101,6 +99,20 @@ tun:
     - any:53
     - tcp://any:53  
 proxies:
+  - name: "🇸🇬3Vless"
+    type: vless
+    server: 188.114.97.6
+    port: 2096
+    uuid: 70252937-5c61-4fb0-8656-d1a16261b795
+    network: ws
+    tls: true
+    sni: group.shalana.xyz
+    servername: group.shalana.xyz
+    ws-opts:
+      path: "/shalana"
+      headers:
+        Host: group.shalana.xyz
+
   - name: 140🇸🇬
     type: trojan
     server: 46.137.202.140
@@ -186,6 +198,7 @@ proxy-groups:
   - name: "General"
     type: "url-test"
     proxies:
+      - "🇸🇬3Vless"
       - "140🇸🇬"
       - "140🇸🇬2"
     use:
@@ -197,7 +210,7 @@ proxy-groups:
     health-check:
       enable: true
       interval: 300
-      tolerance: 50
+      tolerance: 30
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
     udp: true
@@ -207,34 +220,28 @@ proxy-groups:
  #   filter: "(?i)(SG|Singapore|🇸🇬)"
   #  exclude-filter: "(?i)(b2n.ir|v2ray-configs|troj|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
   - name: "Facebook_Messenger"
-    type: "url-test"
+    type: "fallback"
     proxies:
-      - "140🇸🇬"
+      - "🇸🇬3Vless"
       - "140🇸🇬2"
-    use:
-      - "OpenProxyList"
-      - "AwesomeVPN"
-      - "5MatinGhanbari"
-      - "3Shuaidaoya"
-      - "v2rayse"
-    health-check:
-      enable: true
-      interval: 3600
-      tolerance: 200
-      url: "https://www.gstatic.com/generate_204"
+      - "140🇸🇬"
+   # use:
+   #   - "OpenProxyList"
+   #   - "AwesomeVPN"
+   #   - "5MatinGhanbari"
+   #   - "3Shuaidaoya"
+   #   - "v2rayse"
+ #   health-check:
+ #     enable: true
+ #     interval: 3600
+  #    tolerance: 200
+  #    url: "https://www.gstatic.com/generate_204"
     etag-support: true
     udp: true
-    prefer-h3: false
-    allow-insecure: true
-    skip-cert-verify: true
+ #   prefer-h3: false
+#    allow-insecure: true
+ #   skip-cert-verify: true
     
-  - name: "As You Wish"  
-    type: "select"
-    proxies:
-      - "140🇸🇬"
-      - "140🇸🇬2"
-      - "General"
-      - "DIRECT"
 rule-providers:
   reject:
     type: http
@@ -258,23 +265,25 @@ rule-providers:
     interval: 86400
 rules:
   - PROCESS-NAME,com.google.android.apps.bard,DIRECT
+  - PROCESS-NAME,com.android.vending,DIRECT
   - GEOIP,LAN,DIRECT
   - GEOSITE,category-bank-mm,DIRECT
   - GEOSITE,Google,General
   - GEOIP,Google,General
   - GEOIP,AI,General
   - GEOSITE,Telegram,DIRECT
-  - GEOIP,Telegram,DIRECT
+  - GEOIP,Telegram,DIRECT  
   - GEOSITE,category-ads-all,REJECT
   - GEOSITE,category-ads,REJECT
   - RULE-SET,AdBlocker,REJECT
   - RULE-SET,reject,REJECT
   - RULE-SET,AntiAdBlock,REJECT
+  - DOMAIN-SUFFIX,rayjump.com,REJECT
   - AND,((NETWORK,UDP),(DST-PORT,443),(PROCESS-NAME,com.facebook.katana)),REJECT
   - AND,((NETWORK,UDP),(DST-PORT,443),(PROCESS-NAME,com.facebook.orca)),REJECT
   - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-KEYWORD,facebook)),REJECT
   - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-SUFFIX,fbcdn.net)),REJECT
-  - PROCESS-NAME,com.facebook.katana,General
+  - PROCESS-NAME,com.facebook.katana,Facebook_Messenger
   - PROCESS-NAME,com.facebook.orca,Facebook_Messenger
   - PROCESS-NAME,com.viber.voip,Facebook_Messenger 
   - PROCESS-NAME,com.github.android,General
@@ -314,4 +323,3 @@ rules:
   - DOMAIN,388mm.info,REJECT
   - DOMAIN-SUFFIX,histats.com,REJECT
   - MATCH,General
-  
