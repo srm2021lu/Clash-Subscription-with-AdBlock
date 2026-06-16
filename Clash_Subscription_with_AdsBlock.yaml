@@ -62,8 +62,6 @@ dns:
   default-nameserver:
     - "8.8.8.8"
   nameserver-policy:
-     "*.github.com": "8.8.8.8"
-     "*.githubusercontent.com": "8.8.8.8"
      "geoip:cloudflare": ["1.1.1.1","https://cloudflare-dns.com/dns-query","tls://1.1.1.1:853"]
      "geosite:google": "8.8.8.8"
      "geosite:category-ads-all": "rcode://success"
@@ -80,7 +78,7 @@ sniffer:
   override-destination: true
   sniff:
     HTTP:
-      ports: [443, 80, 8443, "8000-8880", 5222]
+      ports: [80, 443, "8000-8880", 5222]
     TLS:
       ports: [443, 8443]
     QUIC:
