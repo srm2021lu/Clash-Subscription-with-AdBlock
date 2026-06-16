@@ -10,7 +10,7 @@ lan-allowed-ips:
 skip-auth-prefixes:
   - "127.0.0.1/8"
   - "::1/128"  
-udp: false
+udp: true
 external-controller: "127.0.0.1:9090"
 external-controller-unix: "mihomo.sock"
 external-controller-tls: "127.0.0.1:9443"
@@ -213,7 +213,7 @@ proxy-groups:
       tolerance: 30
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
-    udp: false
+    udp: true
     prefer-h3: false
     allow-insecure: true
     skip-cert-verify: true
