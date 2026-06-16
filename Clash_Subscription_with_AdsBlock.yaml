@@ -273,10 +273,6 @@ rules:
   - GEOIP,AI,General
   - GEOSITE,Telegram,DIRECT
   - GEOIP,Telegram,DIRECT  
-  - GEOSITE,category-ads-all,REJECT
-  - GEOSITE,category-ads,REJECT
-  - RULE-SET,AdBlocker,REJECT
-  - RULE-SET,reject,REJECT
   - RULE-SET,AntiAdBlock,REJECT
   - DOMAIN-SUFFIX,rayjump.com,REJECT
   - AND,((NETWORK,UDP),(DST-PORT,443),(PROCESS-NAME,com.facebook.katana)),REJECT
@@ -287,6 +283,10 @@ rules:
   - PROCESS-NAME,com.facebook.orca,General
   - PROCESS-NAME,com.viber.voip,General 
   - PROCESS-NAME,com.github.android,General
+  - GEOSITE,category-ads-all,REJECT
+  - GEOSITE,category-ads,REJECT
+  - RULE-SET,AdBlocker,REJECT
+  - RULE-SET,reject,REJECT
   - PROCESS-NAME,ai.qwenlm.chat.android,General
   - DOMAIN-SUFFIX,github.com,General
   - DOMAIN-SUFFIX,githubusercontent.com,General
