@@ -21,7 +21,7 @@ keep-alive-interval: 15
 keep-alive-idle: 15
 disable-keep-alive: false
 log-level: info
-ipv6: false
+ipv6: true
 prefer-h3: false
 external-doh-server: "/dns-query"
 geodata-mode: true
@@ -47,7 +47,7 @@ dns:
   cache-algorithm: arc
   cache-max-size: 1024
   listen: "0.0.0.0:7874"
-  ipv6: false
+  ipv6: true
   enhanced-mode: "fake-ip"    
   nameserver: 
     - "8.8.8.8"
@@ -80,7 +80,7 @@ sniffer:
   override-destination: true
   sniff:
     HTTP:
-      ports: [80, 8443, "8000-8880", 5222]
+      ports: [443, 80, 8443, "8000-8880", 5222]
     TLS:
       ports: [443, 8443]
     QUIC:
@@ -272,9 +272,12 @@ rules:
   - GEOIP,Google,General
   - GEOIP,AI,General
   - GEOSITE,Telegram,DIRECT
-  - GEOIP,Telegram,DIRECT  
+  - GEOIP,Telegram,DIRECT
+  - GEOSITE,category-ads-all,REJECT
+  - GEOSITE,category-ads,REJECT
+  - RULE-SET,AdBlocker,REJECT
+  - RULE-SET,reject,REJECT
   - RULE-SET,AntiAdBlock,REJECT
-  - DOMAIN-SUFFIX,rayjump.com,REJECT
   - AND,((NETWORK,UDP),(DST-PORT,443),(PROCESS-NAME,com.facebook.katana)),REJECT
   - AND,((NETWORK,UDP),(DST-PORT,443),(PROCESS-NAME,com.facebook.orca)),REJECT
   - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-KEYWORD,facebook)),REJECT
@@ -283,10 +286,6 @@ rules:
   - PROCESS-NAME,com.facebook.orca,General
   - PROCESS-NAME,com.viber.voip,General 
   - PROCESS-NAME,com.github.android,General
-  - GEOSITE,category-ads-all,REJECT
-  - GEOSITE,category-ads,REJECT
-  - RULE-SET,AdBlocker,REJECT
-  - RULE-SET,reject,REJECT
   - PROCESS-NAME,ai.qwenlm.chat.android,General
   - DOMAIN-SUFFIX,github.com,General
   - DOMAIN-SUFFIX,githubusercontent.com,General
