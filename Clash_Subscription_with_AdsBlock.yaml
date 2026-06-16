@@ -10,13 +10,13 @@ lan-allowed-ips:
 skip-auth-prefixes:
   - "127.0.0.1/8"
   - "::1/128"  
-udp: true
+udp: false
 external-controller: "127.0.0.1:9090"
 external-controller-unix: "mihomo.sock"
 external-controller-tls: "127.0.0.1:9443"
 external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
 etag-support: true
-tcp-timeout: 60
+tcp-timeout: 300
 keep-alive-interval: 15
 keep-alive-idle: 15
 disable-keep-alive: false
@@ -213,11 +213,11 @@ proxy-groups:
       tolerance: 30
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
-    udp: true
+    udp: false
     prefer-h3: false
     allow-insecure: true
     skip-cert-verify: true
- #   filter: "(?i)(SG|Singapore|🇸🇬)"
+    filter: "(?i)(SG|Singapore|🇸🇬)"
   #  exclude-filter: "(?i)(b2n.ir|v2ray-configs|troj|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
   - name: "Facebook_Messenger"
     type: "fallback"
@@ -283,9 +283,9 @@ rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(PROCESS-NAME,com.facebook.orca)),REJECT
   - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-KEYWORD,facebook)),REJECT
   - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-SUFFIX,fbcdn.net)),REJECT
-  - PROCESS-NAME,com.facebook.katana,Facebook_Messenger
-  - PROCESS-NAME,com.facebook.orca,Facebook_Messenger
-  - PROCESS-NAME,com.viber.voip,Facebook_Messenger 
+  - PROCESS-NAME,com.facebook.katana,General
+  - PROCESS-NAME,com.facebook.orca,General
+  - PROCESS-NAME,com.viber.voip,General 
   - PROCESS-NAME,com.github.android,General
   - PROCESS-NAME,ai.qwenlm.chat.android,General
   - DOMAIN-SUFFIX,github.com,General
@@ -323,3 +323,4 @@ rules:
   - DOMAIN,388mm.info,REJECT
   - DOMAIN-SUFFIX,histats.com,REJECT
   - MATCH,General
+  
