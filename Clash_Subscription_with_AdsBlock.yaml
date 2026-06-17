@@ -227,12 +227,12 @@ proxy-groups:
     filter: "(?i)(SG|Singapore|🇸🇬|JP|Japan|🇯🇵)"
   #  exclude-filter: "(?i)(b2n.ir|v2ray-configs|troj|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
   - name: "Facebook_Messenger"
-    type: "fallback"
+    type: "url-test"
     proxies:
       - "🇸🇬_Hy2"
       - "🇸🇬3Vless"
-      - "140🇸🇬2"
       - "140🇸🇬"
+      - "140🇸🇬2"
     use:
       - "OpenProxyList"
       - "AwesomeVPN"
@@ -247,8 +247,8 @@ proxy-groups:
     etag-support: true
     udp: true
     prefer-h3: true
-    skip-cert-verify: true
     allow-insecure: true
+    skip-cert-verify: true
     filter: "(?i)(SG|Singapore|🇸🇬|JP|Japan|🇯🇵)"
     
 rule-providers:
@@ -292,7 +292,7 @@ rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(PROCESS-NAME,com.facebook.orca)),REJECT
   - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-KEYWORD,facebook)),REJECT
   - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-SUFFIX,fbcdn.net)),REJECT
-  - PROCESS-NAME,com.facebook.katana,General 
+  - PROCESS-NAME,com.facebook.katana,General
   - PROCESS-NAME,com.facebook.orca,Facebook_Messenger
   - PROCESS-NAME,com.viber.voip,Facebook_Messenger
   - PROCESS-NAME,com.github.android,General
