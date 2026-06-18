@@ -78,7 +78,7 @@ sniffer:
   override-destination: true
   sniff:
     HTTP:
-      ports: [80,443,"8000-8880", 5222]
+      ports: [80,443,8443,"8000-8880", 5222]
     TLS:
       ports: [443,8443]
     QUIC:
@@ -164,6 +164,29 @@ proxy-providers:
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
     allow-insecure: true
+    skip-cert-verify: true   
+  Barry-far:
+    type: http
+    url: "https://raw.githubusercontent.com/barry-far/V2ray-config/main/All_Configs_Sub.txt"
+    path: "./proxies/barry-far.yaml"
+    health-check:
+      enable: true
+      interval: 60
+      tolerance: 50
+      url: "https://www.gstatic.com/generate_204"
+    etag-support: true
+    allow-insecure: true
+    skip-cert-verify: true 
+  Epodonios: 
+    type: http
+    path: "./proxies/Epodonios.yaml"
+    url: "https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/Splitted-By-Protocol/ss.txt"
+    health-check:
+      enable: true
+      interval: 600
+      url: "https://www.gstatic.com/generate_204"
+    etag-support: true
+    allow-insecure: true
     skip-cert-verify: true    
   5MatinGhanbari: 
     type: http
@@ -187,18 +210,6 @@ proxy-providers:
     etag-support: true
     allow-insecure: true
     skip-cert-verify: true
-  v2rayse:
-    type: http
-    url: "https://v2rayse.com/fs/public/20260424/free-node-share-0800.txt"
-    path: "./proxies/v2rayse.yaml"
-    health-check:
-      enable: true
-      interval: 60
-      tolerance: 50
-      url: "https://www.gstatic.com/generate_204"
-    etag-support: true
-    allow-insecure: true
-    skip-cert-verify: true 
 
 proxy-groups:
   - name: "General"
@@ -211,9 +222,10 @@ proxy-groups:
     use:
       - "OpenProxyList"
       - "AwesomeVPN"
+      - "Barry-far"
+      - "Epodonios"
       - "5MatinGhanbari"
       - "3Shuaidaoya"
-      - "v2rayse"
     health-check:
       enable: true
       interval: 300
@@ -222,34 +234,33 @@ proxy-groups:
     etag-support: true
     udp: true
     prefer-h3: true
-    allow-insecure: true
-    skip-cert-verify: true
-    filter: "(?i)(SG|Singapore|🇸🇬|JP|Japan|🇯🇵)"
+    allow-insecure: false
+    skip-cert-verify: false
+  #  filter: "(?i)(SG|Singapore|🇸🇬|JP|Japan|🇯🇵)"
   #  exclude-filter: "(?i)(b2n.ir|v2ray-configs|troj|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
   - name: "Facebook_Messenger"
-    type: "url-test"
+    type: "fallback"
     proxies:
       - "🇸🇬_Hy2"
       - "🇸🇬3Vless"
-      - "140🇸🇬"
       - "140🇸🇬2"
-    use:
-      - "OpenProxyList"
-      - "AwesomeVPN"
-      - "5MatinGhanbari"
-      - "3Shuaidaoya"
-      - "v2rayse"
-    health-check:
-      enable: true
-      interval: 3600
-      tolerance: 200
-      url: "https://www.gstatic.com/generate_204"
+      - "140🇸🇬"
+   # use:
+   #   - "OpenProxyList"
+   #   - "AwesomeVPN"
+   #   - "5MatinGhanbari"
+   #   - "3Shuaidaoya"
+   #   - "v2rayse"
+ #   health-check:
+ #     enable: true
+ #     interval: 3600
+  #    tolerance: 200
+  #    url: "https://www.gstatic.com/generate_204"
     etag-support: true
     udp: true
-    prefer-h3: true
-    allow-insecure: true
-    skip-cert-verify: true
-    filter: "(?i)(SG|Singapore|🇸🇬|JP|Japan|🇯🇵)"
+ #   prefer-h3: false
+#    allow-insecure: true
+ #   skip-cert-verify: true
     
 rule-providers:
   reject:
