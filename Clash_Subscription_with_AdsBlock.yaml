@@ -78,17 +78,16 @@ sniffer:
   override-destination: true
   sniff:
     HTTP:
-      ports: [80,443,8443,"8000-8880", 5222]
+      ports: [443,"8000-8880",5222]
     TLS:
       ports: [443,8443]
     QUIC:
       ports: [443,8443]
   skip-domain:
-    - "+.google.com"
     - "geosite:category-bank-mm"
 tun:
   enable: true
-  stack: system
+  stack: mixed
   mtu: 1422
   auto-route: true
   auto-redirect: true
@@ -236,7 +235,7 @@ proxy-groups:
     prefer-h3: true
     allow-insecure: false
     skip-cert-verify: false
-  #  filter: "(?i)(SG|Singapore|🇸🇬|JP|Japan|🇯🇵)"
+    filter: "(?i)(SG|Singapore|🇸🇬|JP|Japan|🇯🇵)"
   #  exclude-filter: "(?i)(b2n.ir|v2ray-configs|troj|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
   - name: "Facebook_Messenger"
     type: "fallback"
