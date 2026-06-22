@@ -235,7 +235,7 @@ proxy-groups:
     prefer-h3: false
    # allow-insecure: true
    # skip-cert-verify: true
-   # filter: "(?i)(SG|Singapore|🇸🇬|JP|Japan|🇯🇵)"
+    filter: "(?i)(SG|Singapore|🇸🇬)"
   #  exclude-filter: "(?i)(b2n.ir|v2ray-configs|troj|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
   - name: "Facebook_Messenger"
     type: "fallback"
@@ -292,6 +292,9 @@ rules:
   - DOMAIN,gemini.google.com,DIRECT
   - GEOSITE,Google,General
   - GEOIP,Google,General 
+  - PROCESS-NAME,com.facebook.katana,General
+  - PROCESS-NAME,com.facebook.orca,Facebook_Messenger
+  - PROCESS-NAME,com.viber.voip,Facebook_Messenger
   - GEOIP,LAN,DIRECT
   - GEOSITE,category-bank-mm,DIRECT
   - GEOSITE,Telegram,DIRECT
@@ -306,9 +309,7 @@ rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(PROCESS-NAME,com.facebook.orca)),REJECT
   - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-KEYWORD,facebook)),REJECT
   - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-SUFFIX,fbcdn.net)),REJECT
-  - PROCESS-NAME,com.facebook.katana,General
-  - PROCESS-NAME,com.facebook.orca,Facebook_Messenger
-  - PROCESS-NAME,com.viber.voip,Facebook_Messenger
+
   - PROCESS-NAME,com.github.android,General
   - PROCESS-NAME,ai.qwenlm.chat.android,General
   - DOMAIN-SUFFIX,github.com,General
@@ -346,3 +347,4 @@ rules:
   - DOMAIN,388mm.info,REJECT
   - DOMAIN-SUFFIX,histats.com,REJECT
   - MATCH,General
+  
