@@ -164,22 +164,22 @@ proxy-providers:
     etag-support: true
     allow-insecure: true
     skip-cert-verify: true   
-  Barry-far:
+  Aner:
     type: http
-    url: "https://raw.githubusercontent.com/barry-far/V2ray-config/main/All_Configs_Sub.txt"
-    path: "./proxies/barry-far.yaml"
+    url: "https://anaer.github.io/Sub/proxies.yaml"
+    path: "./proxies/anaer.yaml"
     health-check:
       enable: true
-      interval: 60
+      interval: 600
       tolerance: 50
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
     allow-insecure: true
     skip-cert-verify: true 
-  Epodonios: 
+  MFuu: 
     type: http
-    path: "./proxies/Epodonios.yaml"
-    url: "https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/Splitted-By-Protocol/ss.txt"
+    path: "./proxies/mfuu.yaml"
+    url: "https://raw.githubusercontent.com/mfuu/v2ray/master/clash.yaml"
     health-check:
       enable: true
       interval: 600
@@ -221,21 +221,21 @@ proxy-groups:
     use:
       - "OpenProxyList"
       - "AwesomeVPN"
-      - "Barry-far"
-      - "Epodonios"
+      - "Aner"
+      - "MFuu"
       - "5MatinGhanbari"
       - "3Shuaidaoya"
     health-check:
       enable: true
-      interval: 600
+      interval: 300
       tolerance: 10
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
     udp: true
     prefer-h3: false
-   # allow-insecure: true
-   # skip-cert-verify: true
-    filter: "(?i)(SG|Singapore|🇸🇬)"
+    allow-insecure: true
+    skip-cert-verify: true
+   # filter: "(?i)(SG|Singapore|🇸🇬)"
   #  exclude-filter: "(?i)(b2n.ir|v2ray-configs|troj|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
   - name: "Facebook_Messenger"
     type: "fallback"
@@ -289,12 +289,11 @@ rule-providers:
 rules:
   - PROCESS-NAME,com.sec.android.app.samsungapps,DIRECT
   - PROCESS-NAME,com.google.android.apps.bard,DIRECT
+  - DOMAIN-SUFFIX,b7510.com,General
   - DOMAIN,gemini.google.com,DIRECT
-  - GEOSITE,Google,General
-  - GEOIP,Google,General 
-  - PROCESS-NAME,com.facebook.katana,General
-  - PROCESS-NAME,com.facebook.orca,Facebook_Messenger
-  - PROCESS-NAME,com.viber.voip,Facebook_Messenger
+#  - GEOSITE,Google,General
+#  - GEOIP,Google,General 
+
   - GEOIP,LAN,DIRECT
   - GEOSITE,category-bank-mm,DIRECT
   - GEOSITE,Telegram,DIRECT
@@ -309,11 +308,13 @@ rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(PROCESS-NAME,com.facebook.orca)),REJECT
   - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-KEYWORD,facebook)),REJECT
   - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-SUFFIX,fbcdn.net)),REJECT
-
-  - PROCESS-NAME,com.github.android,General
+  - PROCESS-NAME,com.facebook.katana,General
+  - PROCESS-NAME,com.facebook.orca,Facebook_Messenger
+  - PROCESS-NAME,com.viber.voip,Facebook_Messenger
+  #- PROCESS-NAME,com.github.android,General
   - PROCESS-NAME,ai.qwenlm.chat.android,General
-  - DOMAIN-SUFFIX,github.com,General
-  - DOMAIN-SUFFIX,githubusercontent.com,General
+  #- DOMAIN-SUFFIX,github.com,General
+ # - DOMAIN-SUFFIX,githubusercontent.com,General
   - DOMAIN-SUFFIX,javdb.com,General
   - PROCESS-NAME,ai.perplexity.app.android,General
   - PROCESS-NAME,com.riotgames.league.wildrift,Facebook_Messenger
@@ -347,4 +348,3 @@ rules:
   - DOMAIN,388mm.info,REJECT
   - DOMAIN-SUFFIX,histats.com,REJECT
   - MATCH,General
-  
