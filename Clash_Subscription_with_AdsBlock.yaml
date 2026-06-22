@@ -22,7 +22,7 @@ keep-alive-idle: 15
 disable-keep-alive: false
 log-level: info
 ipv6: false
-prefer-h3: true
+prefer-h3: false
 external-doh-server: "/dns-query"
 geodata-mode: true
 bind-address: "*"
@@ -228,14 +228,14 @@ proxy-groups:
     health-check:
       enable: true
       interval: 300
-      tolerance: 30
+      tolerance: 10
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
     udp: true
-    prefer-h3: true
-    allow-insecure: false
-    skip-cert-verify: false
-    filter: "(?i)(SG|Singapore|🇸🇬|JP|Japan|🇯🇵)"
+    prefer-h3: false
+   # allow-insecure: true
+   # skip-cert-verify: true
+   # filter: "(?i)(SG|Singapore|🇸🇬|JP|Japan|🇯🇵)"
   #  exclude-filter: "(?i)(b2n.ir|v2ray-configs|troj|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
   - name: "Facebook_Messenger"
     type: "fallback"
@@ -244,7 +244,11 @@ proxy-groups:
       - "🇸🇬3Vless"
       - "140🇸🇬2"
       - "140🇸🇬"
-   # use:
+      - "General"
+    interval: 3600
+    tolerance: 0
+    filter: "(?i)(SG|Singapore|🇸🇬)"
+   
    #   - "OpenProxyList"
    #   - "AwesomeVPN"
    #   - "5MatinGhanbari"
@@ -254,10 +258,10 @@ proxy-groups:
  #     enable: true
  #     interval: 3600
   #    tolerance: 200
-  #    url: "https://www.gstatic.com/generate_204"
+    url: "https://www.gstatic.com/generate_204"
     etag-support: true
     udp: true
- #   prefer-h3: false
+    prefer-h3: false
 #    allow-insecure: true
  #   skip-cert-verify: true
     
@@ -283,13 +287,13 @@ rule-providers:
     path: "./rules/reject.txt"
     interval: 86400
 rules:
+  - PROCESS-NAME,com.sec.android.app.samsungapps,DIRECT
   - PROCESS-NAME,com.google.android.apps.bard,DIRECT
-  - PROCESS-NAME,com.android.vending,DIRECT
+  - DOMAIN,gemini.google.com,DIRECT
+  - GEOSITE,Google,General
+  - GEOIP,Google,General 
   - GEOIP,LAN,DIRECT
   - GEOSITE,category-bank-mm,DIRECT
-  - GEOSITE,Google,General
-  - GEOIP,Google,General
-  - GEOIP,AI,General
   - GEOSITE,Telegram,DIRECT
   - GEOIP,Telegram,DIRECT  
   - GEOSITE,category-ads-all,REJECT
