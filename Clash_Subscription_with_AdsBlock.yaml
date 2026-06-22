@@ -227,7 +227,7 @@ proxy-groups:
       - "3Shuaidaoya"
     health-check:
       enable: true
-      interval: 300
+      interval: 600
       tolerance: 10
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
