@@ -283,7 +283,7 @@ proxy-groups:
     prefer-h3: false
     allow-insecure: true
     skip-cert-verify: true
-    filter: "(?i)(SG|Singapore|🇸🇬)"
+  #  filter: "(?i)(SG|Singapore|🇸🇬)"
   #  exclude-filter: "(?i)(b2n.ir|v2ray-configs|troj|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
   - name: "Facebook_Messenger"
     type: "fallback"
@@ -295,7 +295,7 @@ proxy-groups:
       - "General"
     interval: 3600
     tolerance: 0
-    filter: "(?i)(SG|Singapore|🇸🇬)"
+ #   filter: "(?i)(SG|Singapore|🇸🇬)"
    
    #   - "OpenProxyList"
    #   - "AwesomeVPN"
