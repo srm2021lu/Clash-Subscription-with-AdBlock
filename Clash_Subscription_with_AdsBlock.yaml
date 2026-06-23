@@ -1,4 +1,4 @@
-http-port: 7890
+proxy-providersvidersviders: 7890
 socks-port: 7891
 mixed-port: 7892
 mode: rule
@@ -140,10 +140,8 @@ proxies:
     ws-opts:
       path: /node1-node1-5sczzi
       headers:
-        Host: node1.bw8848.org        
-
-      proxy-providers:
-
+        Host: node1.bw8848.oproxy-provide
+proxy-providers:
   Trojan: 
     type: http
     path: "./proxies/Trojan.yaml"
