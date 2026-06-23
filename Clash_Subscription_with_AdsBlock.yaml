@@ -141,7 +141,53 @@ proxies:
       path: /node1-node1-5sczzi
       headers:
         Host: node1.bw8848.org        
-proxy-providers:
+
+      proxy-providers:
+
+  Trojan: 
+    type: http
+    path: "./proxies/Trojan.yaml"
+    url: "https://raw.githubusercontent.com/SoliSpirit/v2ray-configs/refs/heads/main/Protocols/trojan.txt"
+    health-check:
+      enable: true
+      interval: 600
+      url: "https://www.gstatic.com/generate_204"
+    etag-support: true
+    allow-insecure: true
+    skip-cert-verify: true
+  SS: 
+    type: http
+    path: "./proxies/SS.yaml"
+    url: "https://raw.githubusercontent.com/SoliSpirit/v2ray-configs/refs/heads/main/Protocols/ss.txt"
+    health-check:
+      enable: true
+      interval: 600
+      url: "https://www.gstatic.com/generate_204"
+    etag-support: true
+    allow-insecure: true
+    skip-cert-verify: true 
+  VMESS: 
+    type: http
+    path: "./proxies/Vmess.yaml"
+    url: "https://raw.githubusercontent.com/SoliSpirit/v2ray-configs/refs/heads/main/Protocols/vmess.txt"
+    health-check:
+      enable: true
+      interval: 600
+      url: "https://www.gstatic.com/generate_204"
+    etag-support: true
+    allow-insecure: true
+    skip-cert-verify: true 
+  VLESS: 
+    type: http
+    path: "./proxies/VLess.yaml"
+    url: "https://raw.githubusercontent.com/SoliSpirit/v2ray-configs/refs/heads/main/Protocols/vless.txt"
+    health-check:
+      enable: true
+      interval: 600
+      url: "https://www.gstatic.com/generate_204"
+    etag-support: true
+    allow-insecure: true
+    skip-cert-verify: true        
   OpenProxyList: 
     type: http
     path: "./proxies/OpenProxyList.yaml"
@@ -219,6 +265,10 @@ proxy-groups:
       - "140🇸🇬"
       - "140🇸🇬2"
     use:
+      - "Trojan"
+      - "SS"
+      - "VMESS"
+      - "VLESS"
       - "OpenProxyList"
       - "AwesomeVPN"
       - "Aner"
@@ -235,7 +285,7 @@ proxy-groups:
     prefer-h3: false
     allow-insecure: true
     skip-cert-verify: true
-   # filter: "(?i)(SG|Singapore|🇸🇬)"
+    filter: "(?i)(SG|Singapore|🇸🇬)"
   #  exclude-filter: "(?i)(b2n.ir|v2ray-configs|troj|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
   - name: "Facebook_Messenger"
     type: "fallback"
@@ -262,8 +312,6 @@ proxy-groups:
     etag-support: true
     udp: true
     prefer-h3: false
-#    allow-insecure: true
- #   skip-cert-verify: true
     
 rule-providers:
   reject:
