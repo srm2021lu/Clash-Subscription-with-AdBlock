@@ -95,9 +95,8 @@ tun:
   dns-hijack:
     - any:53
     - tcp://any:53  
-
+  
 proxies:
-
   - name: "FasterVPN-SG"
     type: hysteria2
     server: 13.213.12.36
@@ -148,7 +147,6 @@ proxies:
       path: /node1-node1-5sczzi
       headers:
         Host: node1.bw8848.oproxy-provide
-        
 proxy-providers:
   Hy2: 
     type: http
@@ -227,10 +225,10 @@ proxy-providers:
     etag-support: true
     allow-insecure: true
     skip-cert-verify: true
-  0xRadikal_Vless:
+  0xRadikal:
     type: http
-    url: "https://cdn.jsdelivr.net/gh/0xRadikal/Free-v2ray-Configs@main/protocols/vless.text"
-    path: "./proxies/0xRadikal_Vless.yaml"
+    url: "https://cdn.jsdelivr.net/gh/0xRadikal/Free-v2ray-Configs@main/all/configs_base64.txt"
+    path: "./proxies/0xRadikal.yaml"
     health-check:
       enable: true
       interval: 600
@@ -249,7 +247,7 @@ proxy-groups:
       - "140🇲🇲2"
     use:
       - "Hy2"
-      - "0xRadikal_Vless"
+      - "0xRadikal"
       - "Hy2_Clash"
       - "SoliSpirit"
       - "OpenProxyList"
@@ -265,7 +263,7 @@ proxy-groups:
     udp: true
     allow-insecure: true
     skip-cert-verify: true
-
+    exclude-type: "�N|smy"
   - name: "Facebook_Messenger"
     type: "fallback"
     proxies:
@@ -276,7 +274,7 @@ proxy-groups:
     tolerance: 0               
     url: "https://gstatic.com/generate_204"
     etag-support: true
-    udp: true               
+    udp: true        
             
 rule-providers:
   reject:
