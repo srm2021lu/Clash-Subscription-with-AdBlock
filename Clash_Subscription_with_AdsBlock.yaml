@@ -95,16 +95,24 @@ tun:
   dns-hijack:
     - any:53
     - tcp://any:53  
+
 proxies:
-  - name: "🇸🇬_Hy2"
+
+  - name: "FasterVPN-SG"
+    type: hysteria2
+    server: 13.213.12.36
+    port: 443
+    password: "qQe1z5kU8kN6SlKnDt9Ru3Qp"
+    sni: "vpn-sg-001.fastervpn.world"
+    skip-cert-verify: true
+  - name: "🇲🇲_Hy2"
     type: hysteria2
     server: vpn-sg-002.fastervpn.world
     port: 443
     password: qQe1z5kU8kN6SlKnDt9Ru3Qp
     sni: vpn-sg-002.fastervpn.world
     skip-cert-verify: true
-
-  - name: "🇸🇬3Vless"
+  - name: "🇲🇲3Vless"
     type: vless
     server: 188.114.97.6
     port: 2096
@@ -117,8 +125,7 @@ proxies:
       path: "/shalana"
       headers:
         Host: group.shalana.xyz
-
-  - name: 140🇸🇬
+  - name: 140🇲🇲
     type: trojan
     server: 46.137.202.140
     port: 443
@@ -130,7 +137,7 @@ proxies:
       path: /node1-node1-5sczzi
       headers:
         Host: node1.bw8848.force-dns-mapping
-  - name: 140🇸🇬2
+  - name: 140🇲🇲2
     type: trojan
     server: 46.137.202.140
     port: 443
@@ -141,11 +148,12 @@ proxies:
       path: /node1-node1-5sczzi
       headers:
         Host: node1.bw8848.oproxy-provide
+        
 proxy-providers:
-  Trojan: 
+  Hy2: 
     type: http
-    path: "./proxies/Trojan.yaml"
-    url: "https://raw.githubusercontent.com/SoliSpirit/v2ray-configs/refs/heads/main/Protocols/trojan.txt"
+    path: "./proxies/Hy2.yaml"
+    url: "https://cdn.jsdelivr.net/gh/0xRadikal/Free-v2ray-Configs@main/protocols/hysteria2.txt"
     health-check:
       enable: true
       interval: 600
@@ -153,39 +161,28 @@ proxy-providers:
     etag-support: true
     allow-insecure: true
     skip-cert-verify: true
-  SS: 
+  Hy2_Clash: 
     type: http
-    path: "./proxies/SS.yaml"
-    url: "https://raw.githubusercontent.com/SoliSpirit/v2ray-configs/refs/heads/main/Protocols/ss.txt"
+    path: "./proxies/Hy2_Clash.yaml"
+    url: "https://github.com/free-nodes/clashfree/raw/refs/heads/main/clash20260625.yml"
     health-check:
       enable: true
       interval: 600
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
     allow-insecure: true
-    skip-cert-verify: true 
-  VMESS: 
+    skip-cert-verify: true
+  SoliSpirit: 
     type: http
-    path: "./proxies/Vmess.yaml"
-    url: "https://raw.githubusercontent.com/SoliSpirit/v2ray-configs/refs/heads/main/Protocols/vmess.txt"
+    path: "./proxies/SoliSpirit.yaml"
+    url: "https://raw.githubusercontent.com/SoliSpirit/v2ray-configs/refs/heads/main/all_configs.txt"
     health-check:
       enable: true
       interval: 600
       url: "https://www.gstatic.com/generate_204"
     etag-support: true
     allow-insecure: true
-    skip-cert-verify: true 
-  VLESS: 
-    type: http
-    path: "./proxies/VLess.yaml"
-    url: "https://raw.githubusercontent.com/SoliSpirit/v2ray-configs/refs/heads/main/Protocols/vless.txt"
-    health-check:
-      enable: true
-      interval: 600
-      url: "https://www.gstatic.com/generate_204"
-    etag-support: true
-    allow-insecure: true
-    skip-cert-verify: true        
+    skip-cert-verify: true
   OpenProxyList: 
     type: http
     path: "./proxies/OpenProxyList.yaml"
@@ -208,18 +205,6 @@ proxy-providers:
     etag-support: true
     allow-insecure: true
     skip-cert-verify: true   
-  Aner:
-    type: http
-    url: "https://anaer.github.io/Sub/proxies.yaml"
-    path: "./proxies/anaer.yaml"
-    health-check:
-      enable: true
-      interval: 600
-      tolerance: 50
-      url: "https://www.gstatic.com/generate_204"
-    etag-support: true
-    allow-insecure: true
-    skip-cert-verify: true 
   MFuu: 
     type: http
     path: "./proxies/mfuu.yaml"
@@ -242,10 +227,10 @@ proxy-providers:
     etag-support: true
     allow-insecure: true
     skip-cert-verify: true
-  3Shuaidaoya:
+  0xRadikal_Vless:
     type: http
-    url: "https://gist.githubusercontent.com/shuaidaoya/9e5cf2749c0ce79932dd9229d9b4162b/raw/all.yaml"
-    path: "./proxies/Shuaidaoya.yaml"
+    url: "https://cdn.jsdelivr.net/gh/0xRadikal/Free-v2ray-Configs@main/protocols/vless.text"
+    path: "./proxies/0xRadikal_Vless.yaml"
     health-check:
       enable: true
       interval: 600
@@ -253,64 +238,46 @@ proxy-providers:
     etag-support: true
     allow-insecure: true
     skip-cert-verify: true
-
 proxy-groups:
   - name: "General"
     type: "url-test"
     proxies:
-      - "🇸🇬_Hy2"
-      - "🇸🇬3Vless"
-      - "140🇸🇬"
-      - "140🇸🇬2"
+      - "FasterVPN-SG"
+      - "🇲🇲_Hy2"
+      - "🇲🇲3Vless"
+      - "140🇲🇲"
+      - "140🇲🇲2"
     use:
-      - "Trojan"
-      - "SS"
-      - "VMESS"
-      - "VLESS"
+      - "Hy2"
+      - "0xRadikal_Vless"
+      - "Hy2_Clash"
+      - "SoliSpirit"
       - "OpenProxyList"
       - "AwesomeVPN"
-      - "Aner"
       - "MFuu"
       - "5MatinGhanbari"
-      - "3Shuaidaoya"
+    #filter: "(?i)(SG|Singapore|🇸🇬)"
     health-check:
       enable: true
       interval: 300
       tolerance: 10
-      url: "https://www.gstatic.com/generate_204"
-    etag-support: true
+      url: "https://gstatic.com/generate_204"
     udp: true
-    prefer-h3: false
     allow-insecure: true
     skip-cert-verify: true
-  #  filter: "(?i)(SG|Singapore|🇸🇬)"
-  #  exclude-filter: "(?i)(b2n.ir|v2ray-configs|troj|@ripaojiedian|socks|🇻🇳|VN|Vietnam|China|CN|🇨🇳)"
+
   - name: "Facebook_Messenger"
     type: "fallback"
     proxies:
-      - "🇸🇬_Hy2"
-      - "🇸🇬3Vless"
-      - "140🇸🇬2"
-      - "140🇸🇬"
+      - "FasterVPN-SG"
+      - "🇲🇲_Hy2"            
       - "General"
-    interval: 3600
-    tolerance: 0
- #   filter: "(?i)(SG|Singapore|🇸🇬)"
-   
-   #   - "OpenProxyList"
-   #   - "AwesomeVPN"
-   #   - "5MatinGhanbari"
-   #   - "3Shuaidaoya"
-   #   - "v2rayse"
- #   health-check:
- #     enable: true
- #     interval: 3600
-  #    tolerance: 200
-    url: "https://www.gstatic.com/generate_204"
+    interval: 3600             
+    tolerance: 0               
+    url: "https://gstatic.com/generate_204"
     etag-support: true
-    udp: true
-    prefer-h3: false
-    
+    udp: true               
+            
 rule-providers:
   reject:
     type: http
