@@ -104,6 +104,12 @@ proxies:
     password: "qQe1z5kU8kN6SlKnDt9Ru3Qp"
     sni: "vpn-sg-001.fastervpn.world"
     skip-cert-verify: true
+  - name: "SG 18.143.178.20"
+    type: hysteria2
+    server: 18.143.178.20
+    port: 443
+    password: H7mP2xY9kJ4nQ8wR5tF6vB3z
+    skip-cert-verify: true
   - name: "🇲🇲_Hy2"
     type: hysteria2
     server: vpn-sg-002.fastervpn.world
@@ -240,6 +246,7 @@ proxy-groups:
   - name: "General"
     type: "url-test"
     proxies:
+      - "SG 18.143.178.20"
       - "FasterVPN-SG"
       - "🇲🇲_Hy2"
       - "🇲🇲3Vless"
@@ -267,6 +274,7 @@ proxy-groups:
   - name: "Facebook_Messenger"
     type: "fallback"
     proxies:
+      - "SG 18.143.178.20"
       - "FasterVPN-SG"
       - "🇲🇲_Hy2"            
       - "General"
